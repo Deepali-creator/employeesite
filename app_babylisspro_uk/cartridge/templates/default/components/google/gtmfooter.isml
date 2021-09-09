@@ -1,0 +1,35 @@
+<!--- TEMPLATENAME: gtmfooter.isml --->
+<isif condition="${dw.system.Site.current.preferences.custom.GoogleAnalyticsEnabled&&!empty(dw.system.Site.current.preferences.custom.GoogleAnalyticsID)}">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${dw.system.Site.current.preferences.custom.GoogleAnalyticsID}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+</isif>
+<script>(function(){
+	if("undefined"!==typeof(dataLayer)){
+		if("undefined"!==typeof(impressions)){
+			var ecomm={'impressions': impressions};
+			if("undefined"!==typeof(currency)){
+				ecomm.currencyCode=currency;
+			}
+			dataLayer.push({'ecommerce': ecomm});
+		}
+		$(".search-result-items").on("click",".product-tile a.thumb-link, .product-tile a.name-link",function(e){
+			var jqt=$(this).closest(".product-tile");
+			dataLayer.push({
+				'event': 'productClick',
+				'ecommerce': { 'click': { 'actionField': {
+					'list': 'Search Results'
+					}, 'products': [{
+						'name': jqt.find(".product-name").text(),
+						'id': jqt.data("itemid"),
+						'price': jqt.find(".product-pricing").text(),
+						'category': $(".breadcrumb .breadcrumb-element:last").text()
+				}]}},
+				'eventCallback': function () {
+					document.location = e.currentTarget.href;
+				},"eventTimeout":1000
+				});
+			e.preventDefault();
+		});
+	}
+})();</script>

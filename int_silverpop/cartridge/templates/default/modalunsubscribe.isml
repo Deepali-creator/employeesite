@@ -1,0 +1,17 @@
+<!--- TEMPLATENAME: modalsignup.isml --->
+<isinclude template="util/modules"/>
+<div class="newsletter-wrap">
+	<div class="newsletter-signup">
+		<h1 class="newsletter-header">${Resource.msg('newsletter.unsubscribe', 'forms', null)}</h1>		
+		<form method="post" class="form-horizontal" action="${URLUtils.continueURL()}">
+			<div class="newsletter-inputfields">
+				<isinputfield formfield="${pdict.CurrentForms.unsubscribe.emailAddress}" type="email" required="true"/>
+			</div>
+			<input type="hidden" name="${pdict.CurrentForms.unsubscribe.secureKeyHtmlName}" value="${pdict.CurrentForms.unsubscribe.secureKeyValue}"/>
+			<input type="hidden" name="${pdict.CurrentForms.unsubscribe.unsubscribe.htmlName}" value="${pdict.CurrentForms.unsubscribe.unsubscribe.htmlName}"/>
+			<div class="form-row-button">
+				<button type="submit" name="${pdict.CurrentForms.unsubscribe.unsubscribe.htmlName}" value="${Resource.msg(pdict.CurrentForms.unsubscribe.unsubscribe.label, 'forms', null)}">${Resource.msg(pdict.CurrentForms.unsubscribe.unsubscribe.label, 'forms', null)}</button>
+			</div>
+		</form>
+	</div>
+</div>

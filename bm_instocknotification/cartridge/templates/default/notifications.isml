@@ -1,0 +1,48 @@
+<!--- TEMPLATENAME: notifications.isml --->
+<isdecorate template="application/MenuFrame">
+<isinclude template="inc/Modules">
+<isinclude template="custom/modules">
+
+<isbreadcrumb name1="Merchant Tools" url1="${URLUtils.url('SiteNavigationBar-ShowSiteOverview')}" name2="${Resource.msg('category.product','forms',null)}" url2="${URLUtils.url('SiteNavigationBar-ShowMenuitemOverview', 'CurrentMenuItemId', 'prod-cat')}" name3="${Resource.msg('category.notifications','forms',null)}">
+
+<h1 class="overview_title" style="font-weight: normal">In-Stock Notifications</h1>
+
+<form action="${URLUtils.continueURL()}" method="post">
+<table width="70%" class="infobox n w e" cellspacing="0" cellpadding="10"><tr>
+	<td><isinputfield formfield="${pdict.CurrentForms.notifications.searchSKU}" type="text" /></td>
+	<td><input class="button" type="submit" name="${pdict.CurrentForms.notifications.search.htmlName}" value="${Resource.msg('global.search','forms',null)}" /></td>
+</tr></table>
+</form>
+
+<form action="${URLUtils.continueURL()}" method="post">
+<table width="70%" border="0" cellspacing="0" cellpadding="0"><thead><tr>
+	<th class="table_header n w e s left"><isprint value="${Resource.msg('sku','forms',null)}"/></th>
+	<th class="table_header n e s left"><isprint value="${Resource.msg('email','forms',null)}"/></th>
+	<th class="table_header n e s left"><isprint value="${Resource.msg('notified','forms',null)}"/></th>
+	<th class="table_header n e s left"><isprint value="${Resource.msg('altsku','forms',null)}"/></th>
+	<th class="table_header n e s left"><isprint value="${Resource.msg('update','forms',null)}"/></th>
+</tr></thead><tbody><isloop items="${pdict.CurrentForms.notifications.notifyList}" var="notif" ><tr>
+	<td class="table_detail w e s"><isprint value="${notif.object.custom.productSKU}"/></td>
+	<td class="table_detail e s"><isprint value="${notif.object.custom.customerEmail}"/></td>
+	<isif condition="${notif.object.custom.sentNotification}">
+		<td class="table_detail e s sent"><isprint value="${Resource.msg('global.yes','forms',null)}"/></td>
+	<iselse/>
+		<td class="table_detail e s notsent"><isprint value="${Resource.msg('global.no','forms',null)}"/></td>
+	</isif>
+	<isif condition="${!empty(notif.object.custom.alternateSKU)}">
+		<td class="table_detail e s sent"><isprint value="${notif.object.custom.alternateSKU}"/></td>
+	<iselse/>
+		<td class="table_detail e s notsent"></td>
+	</isif>
+	<td class="table_detail e s"><isif condition="${!notif.object.custom.sentNotification}"><isinputfield formfield="${notif.select}" type="checkbox" /></isif></td>
+</tr></isloop></tbody></table>
+
+<table width="70%" class="infobox w e s" cellspacing="0" cellpadding="10"><tr>
+	<td><select name="${pdict.CurrentForms.notifications.altSKU.htmlName}" required="true"><option value>Select SKU</option>
+		<isloop items="${pdict.ProductSearchModel.products}" var="product"><option value="${product.ID}"><isprint value="${product.ID}"/> - <isprint value="${product.name}"/></option></isloop>
+	</select></td>
+	<td><input class="button" type="submit" name="${pdict.CurrentForms.notifications.set.htmlName}" value="${Resource.msg('setalt','forms',null)}" /></td>
+</tr></table>
+</form>
+
+</isdecorate>

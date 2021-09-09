@@ -1,0 +1,11 @@
+<iscache type="relative" hour="24"/>
+<isinclude template="util/modules"/>
+
+<div id="primary" class="primary-content">
+	<ul class="search-result-items video-search-list">
+		<isinclude template="content/content/video_paging"/>
+	</ul>
+	<div class="video-actions">
+		<a class="viewMore button" href="${'#'}">${Resource.msg('global.viewmore', 'locale', null)}</a>
+	</div>
+</div>

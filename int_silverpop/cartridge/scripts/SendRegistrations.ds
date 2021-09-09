@@ -1,0 +1,197 @@
+/**
+*
+*   @input registrations : dw.util.Iterator silverpop objects
+*
+*/
+importPackage( dw.system );
+importPackage( dw.object );
+importPackage( dw.util );
+importPackage( dw.net );
+importPackage( dw.svc );
+importPackage( dw.io );
+
+var defaultSilverpopConfig = {
+	createRequest : function(sv:HTTPService, params) : Object {
+		var request : XML;
+		sv.setEncoding("UTF-8");
+		switch(params.action){
+			case "login":
+				request = <Envelope><Body><Login>
+					<USERNAME>{sv.configuration.credential.user}</USERNAME>
+					<PASSWORD>{sv.configuration.credential.password}</PASSWORD>
+				</Login></Body></Envelope>;
+				break;
+			case "logout":
+				request = <Envelope><Body><Logout/></Body></Envelope>;
+				if (sv.URL.indexOf(params["sessionid"])==-1){
+					sv.URL+=params["sessionid"];
+				}
+				break;
+			case "optin":
+				var addrecipient : XML = <AddRecipient>
+						<LIST_ID>{params["database"]}</LIST_ID><CREATED_FROM>2</CREATED_FROM>
+						<CONTACT_LISTS>
+							<CONTACT_LIST_ID>{params["mailinglist"]}</CONTACT_LIST_ID>
+						</CONTACT_LISTS><COLUMN>
+							<NAME>Email</NAME>
+							<VALUE>{params["emailaddress"]}</VALUE>
+						</COLUMN><COLUMN>
+							<NAME>Opt In Date</NAME>
+							<VALUE>{StringUtils.formatCalendar(new Calendar(), "yyyy-MM-dd'T'HH:mm:ss'Z'")}</VALUE>
+					</COLUMN></AddRecipient>;
+				if (!empty(params["contacttype"])){
+					addrecipient.appendChild(<COLUMN>
+							<NAME>Contact Type</NAME>
+							<VALUE>{params["contacttype"]}</VALUE></COLUMN>);
+				}
+				if (!empty(params["language"])){
+					addrecipient.appendChild(<COLUMN>
+							<NAME>Language</NAME>
+							<VALUE>{params["language"]}</VALUE>
+						</COLUMN>);
+				}
+				if("ca-cuisinart"==Site.current.ID){
+					if (!empty(params["firstname"])){
+						addrecipient.appendChild(<COLUMN>
+								<NAME>{"firstname"}</NAME>
+								<VALUE>{params["firstname"]}</VALUE></COLUMN>);
+					}
+					if (!empty(params["lastname"])){
+						addrecipient.appendChild(<COLUMN>
+								<NAME>{"lastname"}</NAME>
+								<VALUE>{params["lastname"]}</VALUE></COLUMN>);
+					}
+				}if("uk-babyliss"==Site.current.ID){
+					if (!empty(params["firstname"]) || !empty(params["lastname"])){
+						addrecipient.appendChild(<COLUMN>
+								<NAME>{"Name"}</NAME>
+								<VALUE>{params["firstname"] + (!empty(params["lastname"])? " "+params["lastname"] : "")}</VALUE></COLUMN>);
+					}
+				}else{
+					if (!empty(params["firstname"])){
+						addrecipient.appendChild(<COLUMN>
+								<NAME>{"First Name"}</NAME>
+								<VALUE>{params["firstname"]}</VALUE></COLUMN>);
+					}
+					if (!empty(params["lastname"])){
+						addrecipient.appendChild(<COLUMN>
+								<NAME>{"Last Name"}</NAME>
+								<VALUE>{params["lastname"]}</VALUE></COLUMN>);
+					}
+				}
+				request = <Envelope><Body>{addrecipient}</Body></Envelope>;
+				if (sv.URL.indexOf(params["sessionid"])==-1){
+					sv.URL+=params["sessionid"];
+				}
+				break;
+			case "optout":
+				request = <Envelope><Body><RemoveRecipient>
+						<LIST_ID>{params["database"]}</LIST_ID>
+						<COLUMN>
+							<NAME>Email</NAME>
+							<VALUE>{params["emailaddress"]}</VALUE>
+						</COLUMN>
+					</RemoveRecipient></Body></Envelope>;
+				if (sv.URL.indexOf(params["sessionid"])==-1){
+					sv.URL+=params["sessionid"];
+				}
+				break;
+		}
+		var out : String = request.toString();
+		sv.addHeader("Content-Length",out.length);
+		sv.addHeader("Content-Type","text/xml;charset=UTF-8");
+		return out;
+	},
+	parseResponse: function(sv:HTTPService, client:HTTPClient) {
+		var resp : XML = new XML(client.text);
+		var out = {success: resp.Body.RESULT.SUCCESS};
+		var session = resp.Body.RESULT.SESSION_ENCODING.toString();
+		if (!empty(session)){
+			out["sessionid"]=session;
+		}
+		var error = resp.Body.Fault.FaultString.toString();
+		if (!empty(error)){
+			if("Error removing recipient from list. Recipient is not a member of this list." != error){
+				throw new Error(error);
+			}
+		}
+		return out;
+	}
+};
+
+// site-specific configs (or different services for different credentials)
+var configs={"Silverpop":defaultSilverpopConfig,
+		"Silverpopca-dannyco":defaultSilverpopConfig,
+		"Silverpopus-tasty":defaultSilverpopConfig};
+
+function execute( args : PipelineDictionary ) : Number {
+	var serviceID : String = empty(configs["Silverpop"+Site.current.ID]) ? 
+			"Silverpop" : "Silverpop"+Site.current.ID;
+	var service : Service = LocalServiceRegistry.createService(serviceID, configs[serviceID]);
+	var output : Result = service.call({action : "login"});
+	if (!output.object.success){
+		return PIPELET_ERROR;
+	}
+	var session : String = output.object["sessionid"];
+	while (args.registrations.hasNext()){
+		var reg : CustomObject = args.registrations.next();
+		/*
+		this part of code is used specificly to send Babyliss custom object
+		*/
+		if(reg.custom.SilverpopBabylissDBID || reg.custom.SilverpopBabylissForMenDBID){
+			if(reg.custom.SilverpopBabylissDBID){
+				var params = {action : reg.custom.optout? "optout" : "optin", "sessionid": session, "emailaddress": reg.custom.email,"mailinglist" : reg.custom.contactListBabyliss, "database" : reg.custom.SilverpopBabylissDBID};
+				output = service.call(params);
+				if (!output.ok){
+					if(output.msg.indexOf("Error: Unable to Add Recipient. Recipient Already Exists.")==0){
+						// user already signed up for newsletter, this one can be skipped
+					}else{
+						Logger.error("Exception during Silverpop: " + output.msg);
+						service.call({action : "logout", "sessionid": session});
+						return PIPELET_ERROR;
+					}
+				}
+			}
+			if(reg.custom.SilverpopBabylissForMenDBID){
+				var params = {action : reg.custom.optout? "optout" : "optin", "sessionid": session, "emailaddress": reg.custom.email, "mailinglist" : reg.custom.contactListBabylissForMen, "database" : reg.custom.SilverpopBabylissForMenDBID};
+				output = service.call(params);
+				if (!output.ok){
+					if(output.msg.indexOf("Error: Unable to Add Recipient. Recipient Already Exists.")==0){
+						// user already signed up for newsletter, this one can be skipped
+					}else{
+						Logger.error("Exception during Silverpop: " + output.msg);
+						service.call({action : "logout", "sessionid": session});
+						return PIPELET_ERROR;
+					}
+				}
+			}
+		}
+		else {
+			for each (var interest in reg.custom.interest){
+				var params = {action : reg.custom.optout? "optout" : "optin", "sessionid": session, "emailaddress": reg.custom.email, "mailinglist" : interest, "database" : reg.custom.SilverpopDatabaseID};
+				if (!empty(reg.custom.language)){
+					params.language=reg.custom.language;
+				}
+				if (!empty(reg.custom.firstname)){
+					params.firstname=reg.custom.firstname;
+				}
+				if (!empty(reg.custom.lastname)){
+					params.lastname=reg.custom.lastname;
+				}
+				output = service.call(params);
+				if (!output.ok){
+					if(output.msg.indexOf("Error: Unable to Add Recipient. Recipient Already Exists.")==0){
+						// user already signed up for newsletter, this one can be skipped
+					}else{
+						Logger.error("Exception during Silverpop: " + output.msg);
+						service.call({action : "logout", "sessionid": session});
+						return PIPELET_ERROR;
+					}
+				}
+			}
+		}
+		CustomObjectMgr.remove(reg);
+	}
+	service.call({action : "logout", "sessionid": session});
+	return PIPELET_NEXT;
+}

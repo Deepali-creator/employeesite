@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- TemplateComment :  EMail Sending a Product List -->
+<iscontent type="text/html" charset="UTF-8"/>
+<isinclude template="util/modules"/>
+<subject><isif condition="${!empty(pdict.MailSubject)}">${pdict.MailSubject}<iselse/></isif></subject>
+<html>
+<head>
+<style type="text/css">
+	body {color:black;font-family: GrotesqueMTStd, Arial, Verdana, Helvetica, sans-serif;font-size:1.0em;}
+	.label {font-weight:bold;}
+	.product .name a {font-size:1.2em;font-weight:bold; color:#333333;}
+	.product .price .standardprice {float:left;margin-right:5px;text-decoration:line-through;}
+	.product .price .salesprice {color:red;float:left;}
+	.product, .pricing, .price, .pricing span {display:inline;float:left;}
+	ul {clear:both;list-style: none;margin:0;padding:0;}
+	ul li.onorder {color:red;}
+	.product_options {clear:both;font-weight:bold;}
+	.item-image img{display:block; max-width:150px; width:150px;}
+	@import url("//hello.myfonts.net/count/348441");
+
+	@font-face {font-family: 'GrotesqueMTStd';src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.eot')}');src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.eot?#iefix')}') format('embedded-opentype'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.woff2')}') format('woff2'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.woff')}') format('woff'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.ttf')}') format('truetype'); font-weight:normal; font-style:normal;}
+
+	@font-face {font-family: 'GrotesqueMTStd-Bold';src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.eot')}');src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.eot?#iefix')}') format('embedded-opentype'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.woff2')}') format('woff2'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.woff')}') format('woff'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.ttf')}') format('truetype'); font-weight:normal; font-style:normal;}
+ </style>
+</head>
+<body>
+<div class="previewpanel" id="previewPanel">
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" style="background:#e0e0e0;padding:50px 0;">
+			<center>
+
+<table  style="box-sizing:border-box; background:#ffffff;border:1px solid #d2d4d6;width:680px; color: #4c4c4c; padding:15px;">
+					<tr>
+						<td style="width:70%; font-size:24px;font-family:GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 20px 20px 0;font-weight:bold;color:#5DA044;">${Resource.msg('account.wishlist.emailtitle','account',null)} <isprint value="${pdict.CurrentCustomer.profile.email}" encoding="off"/> </td>
+						<td><img width="225" src="${URLUtils.httpStatic('/images/logo.png')}"></img></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+
+							<div style="border-bottom:1px solid #d2d4d6;border-top:1px solid #d2d4d6;margin:0;padding:0;">
+								<h3 style="background-color:#fff;color: #4c4c4c; font-family:GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif; font-size:18px;font-weight:bold;margin:0;padding:15px 0;">
+									<isif condition="${pdict.ProductList.type == dw.customer.ProductList.TYPE_GIFT_REGISTRY}"> 			<isprint value="${pdict.ProductList.name}"/>
+									<iselseif condition="${pdict.ProductList.type == dw.customer.ProductList.TYPE_WISH_LIST}">
+										${Resource.msg('productlist.wishlistemailheader','account',null)}
+									</isif>
+								</h3>
+									<isif condition="${pdict.ProductList.type == dw.customer.ProductList.TYPE_GIFT_REGISTRY}">
+										<table style="margin:auto;width:65%;">
+									         <tr>
+									             <td style="font-family:GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif; font-weight:bold"><b><isprint value="${pdict.ProductList.registrant.role}"/>:</b></td>
+									             <td><isprint value="${pdict.ProductList.registrant.firstName}"/> <isprint value="${pdict.ProductList.registrant.lastName}"/></td>
+									             <td style="font-family:GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif; font-weight:bold"><b>${Resource.msg('productlist.eventtype','account',null)}:</b> </td>
+									             <td><isprint value="${pdict.ProductList.eventType}"/></td>
+									         </tr>
+									         <tr>
+									         <isif condition="${pdict.ProductList.coRegistrant != null && (pdict.ProductList.coRegistrant.firstName != '' || pdict.ProductList.coRegistrant.lastName != '')}">
+									         	<iscomment><td style="font-weight:bold"><b><isprint value="${pdict.ProductList.coRegistrant.role}"/>:</b></td>
+									            <td><isprint value="${pdict.ProductList.coRegistrant.firstName}"/> <isprint value="${pdict.ProductList.coRegistrant.lastName}"/></td></iscomment>
+									         <iselse/>
+									           	<td></td>
+									           	<td></td>
+									         </isif>
+									             <td><b>${Resource.msg('productlist.eventdate','account',null)}:</b></td>
+									             <td><isprint value="${pdict.ProductList.eventDate}"/></td>
+									         </tr>
+									         <tr>
+									         	<td></td>
+									           	<td></td>
+									           	<td><b>${Resource.msg('productlist.eventlocation','account',null)}:</b></td>
+									            <td><isprint value="${pdict.ProductList.eventCity}"/>, <isprint value="${pdict.ProductList.eventState}"/></td>
+									         </tr>
+									    </table>
+
+									<iselseif condition="${pdict.ProductList.type == dw.customer.ProductList.TYPE_WISH_LIST}">
+										<table style="width:100%; border-spacing:initial; color: #4c4c4c; padding-bottom:15px; font-family:GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;">
+										    <tr>
+										    	<td colspan="3">
+										    		<strong>${Resource.msg('global.from','locale',null)}:</strong><br/>
+										        	<isprint value="${pdict.CurrentCustomer.profile.firstName}"/> <isprint value="${pdict.CurrentCustomer.profile.lastName}"/> <br/>
+										        	<isprint value="${pdict.CurrentCustomer.profile.email}"/>
+									         	</td>
+									         </tr>
+									         <iscomment>
+									         <tr>
+									         	<td>
+									         		<strong><isprint value="${pdict.CurrentCustomer.profile.firstName}"/> ${Resource.msg('giftcert.msghasbeenleftforyou','email',null)}</strong><br/>
+									         		<iscomment>NEED TO INCLUDE THE PERSONAL MESSAGE</iscomment>
+									         		<isprint value="${pdict.WishList.personalMessage}" />
+									         	</td>
+									         </tr>
+									         </iscomment>
+									    </table>
+									</isif>
+							 	</div>
+							<table style="width:100%; border-bottom:2px solid #d2d4d6; margin-top:10px;">
+								<tr>
+									<td style="font-size:16px; font-family:GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif; color: #4c4c4c; text-align:left; font-weight:bold; padding:0 0 10px;">
+													${Resource.msg('account.stocknotification.label.product', 'account', null)}
+									</td>
+									<td style="width:180px;"></th>
+									<td style="font-size:16px; font-family:GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif; color:#4c4c4c; text-align:left; font-weight:bold; padding:0 0 10px;">
+										${Resource.msg('account.stocknotification.label.link', 'account', null)}
+									</td>
+								</tr>
+							</table>
+							<table style="width:100%;">
+								<isloop items="${pdict.ProductList.items}" var="item" status="loopstate">
+									<isif condition="${item.public}">
+										<tr <isif condition="${loopstate.first}">class="first"<iselseif condition="${loopstate.last}">class="last"</isif>>
+											<td style="margin:auto;text-align:center;width:75px;">
+												<div class="item-image">
+													<isdisplayproductimage p_productli="${item}" p_email="${true}" p_size="small"/>
+												</div>
+											</td>
+											<td>
+												<isdisplayproductlistitem p_productli="${item}"/>
+												<isdisplayproductavailability p_productli="${item}"/>
+											</td>
+											<td style="margin:0 5px 0 0;padding:5px 10px 0 0;text-align:right;">
+												<div>${Resource.msg('wishlist.dateadded','account',null)} <isprint value="${item.creationDate}"/></div>
+												<isif condition="${item.type == item.TYPE_PRODUCT}">
+													<div><b>${Resource.msg('productlist.qtydesired','account',null)}</b> <isprint value="${item.quantity.value}" formatter="#"/></div>
+												<iselseif condition="${item.type == item.TYPE_GIFT_CERTIFICATE}">
+													<!-- Gift Cetificate Qty Message -->
+												</isif>
+												<isif condition="${item.priority==0}">
+													<!--  No Priority Set -->
+												<iselse/>
+													<div>
+														<b>${Resource.msg('wishlist.priority','account',null)}:</b>
+														<isif condition="${item.priority==1}">${Resource.msg('productlist.1','account',null)}</isif>
+														<isif condition="${item.priority==2}">${Resource.msg('productlist.2','account',null)}</isif>
+														<isif condition="${item.priority==3}">${Resource.msg('productlist.3','account',null)}</isif>
+														<isif condition="${item.priority==4}">${Resource.msg('productlist.4','account',null)}</isif>
+														<isif condition="${item.priority==5}">${Resource.msg('productlist.5','account',null)}</isif>
+													</div>
+												</isif>
+												<isif condition="${item.product == null || !item.product.availabilityModel.orderable}">
+													${Resource.msg('product.displayproductlistitems.notavailable','product',null)}
+												<iselse/>
+													<a href="${URLUtils.http('Product-Show', 'pid', item.product.ID)}" title="${Resource.msg('productlist.purchaseitem','account',null)}" title="${Resource.msg('productlist.purchaseitem','account',null)}" style="font-family:GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif; font-weight:bold;line-height:24pt">${Resource.msg('productlist.purchaseitem','account',null)}</a>
+												</isif>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3" style="margin-top:10px;padding-bottom:10px; border-bottom:1px dotted #d2d4d6;">
+												<!--  Dotted Line -->
+											</td>
+										</tr>
+									</isif>
+								</isloop>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</center>
+		</td>
+	</tr>
+</table>
+
+
+</div>
+</body>
+</html>

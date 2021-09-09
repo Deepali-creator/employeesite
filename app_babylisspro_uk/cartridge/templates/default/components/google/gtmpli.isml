@@ -1,0 +1,8 @@
+GTMproducts.push({
+	"name": "${pli.product.name}",
+	"id": "${pli.product.ID}",
+	"brand": "${pli.product.brand}",
+	"category": "${!empty(pli.category) ? pli.category.displayName : !empty(pli.product.primaryCategory) ? pli.product.primaryCategory.displayName : !empty(pli.product.classificationCategory) ? pli.product.classificationCategory.displayName : pli.product.categories.iterator().next().displayName}",
+	"price": ${pli.adjustedPrice.value.toFixed(2)},
+	"quantity": ${pli.quantityValue.toFixed()}
+});

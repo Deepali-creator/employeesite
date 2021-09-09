@@ -1,0 +1,60 @@
+<!--- TEMPLATENAME: modalsignup.isml --->
+<isinclude template="util/modules"/>
+<div class="newsletter-wrap">
+	<div class="newsletter-signup">
+		<h1 class="newsletter-header">${Resource.msg('product.notifymesubmit', 'product', null)}</h1>
+		<form method="post" class="form-horizontal" action="${URLUtils.continueURL()}">
+			<div class="newsletter-inputfields">
+				<isinputfield formfield="${pdict.CurrentForms.newsletterform.firstName}" type="input" required="true"/>
+				<isinputfield formfield="${pdict.CurrentForms.newsletterform.emailAddress}" type="email" required="true"/>
+				<isinputfield formfield="${pdict.CurrentForms.newsletterform.emailConfirm}" type="email" required="true"/>
+			</div>
+			<iscomment>
+				<isinputfield formfield="${pdict.CurrentForms.newsletterform.confirm}" type="checkbox" rowclass="confirm-signup"/>
+			</iscomment>
+			<iscomment>Display radio buttons if there is more than one newsletter ID</iscomment>
+			<isscript>
+				var mailinglistId = dw.system.Site.getCurrent().getCustomPreferenceValue("SilverpopMailingListID");
+				var mailinglistJson = JSON.parse(mailinglistId);
+				var multipleLists = !empty(mailinglistJson.listids) ? true : false;
+			</isscript>
+			<isif condition="${multipleLists}">
+				<div class="form-row label-inline form-indent">
+				<iscontentasset aid="newsletter-signup-form-label" /></div>
+				<isloop items="${mailinglistJson.listids}" var="listid" status="loopstate">
+					<div class="form-row label-inline form-indent">
+						<input type="radio" class="input-radio" id="${pdict.CurrentForms.newsletterform.confirmMulti.htmlName}" name="${pdict.CurrentForms.newsletterform.confirmMulti.htmlName}" value="${listid.id}"/> <label><isprint value="${listid.label}" /></label>
+					</div>
+				</isloop>
+			<iselse/>
+				<div class="form-row confirm-signup label-inline form-indent">
+					<div class="field-wrapper">
+						<input type="checkbox" class="input-checkbox" id="${pdict.CurrentForms.newsletterform.confirm.htmlName}" name="${pdict.CurrentForms.newsletterform.confirm.htmlName}" value="true"/>
+					</div>
+					<label for="${pdict.CurrentForms.newsletterform.confirm.htmlName}">
+						<span class="newsletter-signup-form-label">
+							<iscontentasset aid="newsletter-signup-form-label" />
+						</span>
+					</label>
+				</div>
+			</isif>
+
+			<div class="form-caption form-caption--privacy-policy">
+				<iscontentasset aid="privacy-policy-disclaimer" />
+				<iscomment>
+					<p>${Resource.msg('global.privacypolicy.newsletter', 'locale', null)} <a href="${URLUtils.url('Page-Show', 'cid', 'privacy-policy')}" class="privacy-policy"><span>${Resource.msg('global.privacypolicy.text', 'locale', null)}.<span></a></p>
+				</iscomment>
+			</div>
+			<input type="hidden" name="${pdict.CurrentForms.newsletterform.secureKeyHtmlName}" value="${pdict.CurrentForms.newsletterform.secureKeyValue}"/>
+			<input type="hidden" name="${pdict.CurrentForms.newsletterform.submitnewsletter.htmlName}" value="${pdict.CurrentForms.newsletterform.submitnewsletter.htmlName}"/>
+			
+			<div class="form-caption">
+				<iscomment>GDPR Privacy Content Asset</iscomment>
+		 		<iscontentasset aid="gdpr-privacy-content" />
+			</div>
+			<div class="form-row-button">
+				<button type="submit" name="${pdict.CurrentForms.newsletterform.submitnewsletter.htmlName}" value="${Resource.msg(pdict.CurrentForms.newsletterform.submitnewsletter.label, 'forms', null)}">${Resource.msg(pdict.CurrentForms.newsletterform.submitnewsletter.label, 'forms', null)}</button>
+			</div>
+		</form>
+	</div>
+</div>

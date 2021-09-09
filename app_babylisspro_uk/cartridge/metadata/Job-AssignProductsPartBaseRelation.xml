@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobs xmlns="http://www.demandware.com/xml/impex/jobs/2015-07-01">
+    <job job-id="AssignProductsPartBaseRelation" priority="0">
+        <description>Converts a CSV information to XML to assign part product to base product relationship on part products and base products
+CSV structure: Part Product ID,Base Model ID</description>
+        <parameters/>
+        <flow>
+            <context site-id="uk-babylisspro"/>
+            <step step-id="AssignProductsPartBaseRelation" type="ExecuteScriptModule" enforce-restart="false">
+                <description/>
+                <parameters>
+                    <parameter name="ExecuteScriptModule.Module">app_babylisspro_uk/cartridge/scripts/impex/AssignProductsPartBaseRelation.js</parameter>
+                    <parameter name="ExecuteScriptModule.FunctionName">AssignRelation</parameter>
+                    <parameter name="ExecuteScriptModule.Transactional">false</parameter>
+                    <parameter name="csvFileName">product_compatible_with.csv</parameter>
+                    <parameter name="catalogID">master-uk</parameter>
+                </parameters>
+            </step>
+        </flow>
+        <rules/>
+        <triggers>
+            <run-once enabled="false">
+                <date>2018-03-07Z</date>
+                <time>10:17:32.000Z</time>
+            </run-once>
+        </triggers>
+    </job>
+
+</jobs>

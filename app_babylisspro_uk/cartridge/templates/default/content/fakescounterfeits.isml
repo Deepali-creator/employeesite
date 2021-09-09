@@ -1,0 +1,49 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="content/content/pt_content">
+
+	<isinclude template="util/modules"/>
+<div class="content">
+	<div class="fakescounterfeits">
+		<isif condition="${!empty(pdict.ConfirmationMessage)}">
+			<div class="confirmation-message">
+				<p>${Resource.msg('contactus.messagesent','forms',null)}</p>
+				<p>${Resource.msg('contactus.messagerequires','forms',null)}</p>
+			</div>
+		<iselse/>
+	
+			<iscontentasset aid="fakes-and-counterfeits"/>
+			
+			<form action="${URLUtils.httpsContinue()}" method="post" class="form-horizontal" id="FakeCounterfits">
+	
+				<fieldset>
+	
+					<isinputfield formfield="${pdict.CurrentForms.contactus.url}" type="input"/>
+	
+					<isscript>
+						var attributes = {
+							rows: 8,
+							cols: 40
+						};
+					</isscript>
+					<isinputfield formfield="${pdict.CurrentForms.contactus.information}" type="textarea" attributes="${attributes}"/>
+					
+					<iscomment> reCAPTCHA</iscomment>
+					<isif condition="${'reCAPTCHAEnabled' in dw.system.Site.current.preferences.custom && dw.system.Site.current.preferences.custom.reCAPTCHAEnabled !=''}">
+					   <isinclude template="recaptcha_display"/>
+					</isif>
+					<iscomment> end reCAPTCHA</iscomment>
+					
+					<div class="form-row form-row-button">
+						<button id="sendBtn" type="submit" value="${Resource.msg('global.send','locale',null)}" name="${pdict.CurrentForms.contactus.send.htmlName}" class="button-fancy-large">
+							${Resource.msg('global.submit','locale',null)}
+						</button>
+					</div>
+	
+				</fieldset>
+	
+			</form>
+			<iscontentasset aid="fakescounterfeits-notice"/>
+		</isif>
+	</div>
+</div>
+</isdecorate>

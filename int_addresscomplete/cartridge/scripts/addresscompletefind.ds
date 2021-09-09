@@ -1,0 +1,49 @@
+/**
+* 
+*
+*
+*
+*   @input address : Object must be compatible with dw.order.OrderAddress
+*   @input locale : String
+*   @output suggestions : Object
+*/
+importPackage( dw.system );
+importPackage( dw.crypto );
+importPackage( dw.util );
+importPackage( dw.net );
+importPackage( dw.svc );
+importPackage( dw.ws );
+
+function execute( args : PipelineDictionary ) : Number {
+	var svcConfig : Service = LocalServiceRegistry.createService("AddressCompleteFind",{
+		// params[0] is an OrderAddress object
+		createRequest : function(service : Service, params) {
+			var cc = "CA";
+			var address = arguments[1];
+			var searchterm=address.address1;
+			searchterm+=", "+address.city;
+			searchterm+=", "+address.stateCode;
+			searchterm+=", "+address.postalCode;
+			Logger.info("search term: {0} country code: {1}", searchterm, cc);
+			var url = service.URL + StringUtils.format("?Key={0}&SearchTerm={1}&SearchFor={2}&Country={3}&LanguagePreference={4}&MaxSuggestions={5}&MaxResults={6}",
+					service.configuration.credential.password, Encoding.toURI(searchterm), "Everything", cc, arguments[2], 50, 100);
+			service.setURL(url);
+		},
+		parseResponse : function(service : Service, response) : Object {
+			// return something useful based on the data from response parameter
+			var options = JSON.parse(response.text);
+			var list : dw.util.ArrayList = new dw.util.ArrayList();
+			var length = options.length;
+			for(var i = 0; i < length; i++){
+				list.add(options[i]);
+			}
+			return list;
+		}
+	});
+	var result : Result = svcConfig.call(args.address,args.locale);
+	if (Result.OK == result.status){
+		args.suggestions=result.object;
+		return PIPELET_NEXT;
+	}
+	return PIPELET_ERROR;
+}

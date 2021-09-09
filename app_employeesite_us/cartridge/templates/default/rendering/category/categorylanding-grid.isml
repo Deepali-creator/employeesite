@@ -1,0 +1,15 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isinclude template="util/modules"/>
+<ul class="search-result-items tiles-container">
+	<isloop items="${pdict.ProductSearchResult.productSearchHits}" var="hit" status="loopstate">
+		<isif condition="${loopstate.index === 4 && !(pdict.CurrentHttpParameterMap.format.stringValue == 'ajax' || pdict.CurrentHttpParameterMap.format.stringValue == 'page-element')}">
+			<li class="product-tile_view-more"><a href="${URLUtils.url('Search-Show', 'cgid', pdict.ProductSearchResult.category.ID, 'format', 'ajax', 'template','gridonly').toString()}" class="viewMore button">${Resource.msg('global.viewmore', 'locale', null)}</a></li>
+			<isbreak/>
+		</isif>
+		<li class="grid-tile col4">
+			<div class="product-tile">
+				<isproducttile product="${hit.product}" showswatches="${false}" showpricing="${true}" showpromotion="${false}" showrating="${false}"/>
+			</div>
+		</li>
+	</isloop>
+</ul>

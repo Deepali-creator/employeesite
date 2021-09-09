@@ -1,0 +1,283 @@
+.menu-utility-user {
+  float:right;
+	margin:0;
+	padding: 0;
+	background-color: transparent;
+	border-color: transparent;
+	text-align:center;
+	&:first-child{
+	  border:none;
+	}
+	li {
+		border-top: 1px solid darken($night-rider, 10%);
+		list-style: none;
+		padding: 0;
+		&:first-child {
+			border: none;
+		}
+		i {
+			font-size: 1.5em;
+			padding: 0 8px 0 0;
+		}
+		a {
+			display:block;
+			  background: transparent;
+				color: $medium-gray;
+				transition: none;
+				text-transform:none;
+				padding: 0;
+        		letter-spacing: initial;
+        		font-size: 12px;
+				&:hover {
+					color: $brown;
+					text-decoration: none;
+					.account-menu-icon{
+					  background-position: -27px -58px;
+					}
+					.menu-arrow{
+            background-position:-20px 0;
+          }
+				}
+				i {
+					font-size: 3em;
+					padding: 0;
+				}
+		}
+	}
+	.user-info {
+			position: relative;
+			transition: color .5s ease;
+			z-index:99;
+			&:hover,
+			&.active{
+			  a.user-account{
+			    color: $black;
+			    border-top: 1px solid #000;
+          border-left: 1px solid #000;
+          border-right: 1px solid #000;
+          border-bottom:0;
+			  }
+				.user-login {
+					color: $dark-gray;
+				}
+				.user-panel {
+					opacity: 1;
+					visibility: visible;
+				}
+        .account-menu-icon{
+          background-position: -27px -58px; 
+        }
+        .menu-arrow{
+          background-position:-20px 0;
+        }
+			}
+			a.user-account{
+			  border-top: 1px solid rgba(255,255,255,0);
+        border-left: 1px solid rgba(255,255,255,0);
+        border-right: 1px solid rgba(255,255,255,0);
+        border-bottom:0;
+        height:35px;
+			}
+
+		.account-menu-icon{
+		  width: 25px;
+		  height:25px;
+		  background-image: url("../images/header-sprites@2x.png");
+		  background-repeat: no-repeat;
+		  background-size: 54px;
+		  background-position:0 -58px;
+		  display:inline-block;
+		  margin:5px;
+		}
+		.account-menu-title{
+		  line-height: 30px;
+      float: right;
+		}
+		.menu-arrow{
+		  width: 20px;
+      height:20px;
+      background-image: url("../images/header-sprites@2x.png");
+      background-repeat: no-repeat;
+      background-size: 40px;
+      background-position:0 0;
+      display:inline-block;
+      float:right;
+      margin:5px;
+		}
+		.user-panel {
+			text-align: left;
+			transition: all .3s ease;
+			width:100%;
+			background-color: $white;
+        margin-top: 0;
+        opacity: 0;
+        padding: 0 10px;
+        position: absolute;
+        visibility: hidden;
+        z-index: 90;
+        border-radius: 0;
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+        top: 35px;
+			h3 {
+			  display:block;
+			  display:none;
+				margin: 0;
+				padding-bottom: 0.7em;
+				text-transform: uppercase;
+			}
+			.user-links {
+			  border-top:1px solid $black;
+			  .account-username{
+			    text-transform:uppercase;
+			    font-weight:bold;
+			    display:block;
+			    margin-bottom:10px;
+			    color: $black;
+			    padding:1em 0.5em 0;
+			    overflow:hidden;
+			    text-overflow:ellipsis;
+			  }
+			}
+			a {
+			  padding: 0;
+			  padding-left:5px;
+			  margin:0;
+        	  margin-bottom: 15px;
+        	  text-align: left;
+        	  color: #000;
+              &:hover{
+                  background-color: transparent;
+              }
+			}
+			.user-logout {
+		        color: $white;
+		        text-align: center;
+		        border: 1px solid $brown;
+		        height: 22px;
+		        line-height: 22px;
+		        font-size: 11px;
+		        border-radius: 0;
+		        background: $brown;
+		        border-color: $brown;
+		        &:hover{
+		          background: $dark-gray; 
+		          border-color: $dark-gray;
+		        }
+			}
+		}
+	}
+}
+
+    
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+  .menu-utility-user{
+    margin:0;
+    float:none;
+    li{
+      a{
+        background: $white;
+        color: $dark-gray;
+        text-decoration: none;
+        display:block;
+        text-transform:uppercase;
+        padding-left: 0.8rem;
+        font-size:14px;
+        padding: 0.9rem 1rem;
+        border:1px solid $dark-gray;
+        border-width:0 0 1px 0;
+        &:active {
+          color: $brown;
+        }
+      }
+    }
+    .user-info{
+      .user-panel{
+        background:none;
+        border:none;
+        top:0;
+        padding:0;
+        opacity:1;
+        visibility:visible;
+        h3{
+          display:none;
+        }
+        .user-links{
+          border:none;
+          .account-username{
+            font-size:1.25em;
+            color: $white;
+            padding-top:0;
+            margin:-3px 0 0;
+            border:1px solid $dark-gray;
+            border-width:1px 0;
+            background:$brown;
+            span{
+            	display:block;
+            	margin:0;
+            	padding:0.5rem 0.375rem;	
+            }
+          }
+        }
+        a{
+          color: $dark-gray;
+          display: block;
+          margin:0;
+          font-weight:400;
+          padding:0.9rem 0.8rem;
+          transition: background-color 0.3s, color 0.3s;
+          &:first-child{
+            margin-top:0;
+          }
+          &:hover{
+            color: $brown;
+          }
+        }
+        .user-logout{
+          color: $white;
+          text-transform: uppercase;
+          text-align: left;
+          border: none;
+          height: auto;
+          line-height: inherit;
+          font-size: 14px;
+          font-weight:600;
+          border-radius: 0;
+          background:$brown;
+          &:hover{
+            background: $dark-gray;
+            color: $white;
+          }
+        }
+      }
+    }
+    
+  }
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+}
+
+

@@ -1,0 +1,412 @@
+nav[role="navigation"] {
+	margin-top:0;
+	background-color: $white;
+	color: $dark-gray;
+	left: auto;
+	float:left;
+	top:0;
+	position: static;
+	width: 100%;
+	padding:0;
+	> .wrap{
+		border:1px solid $dark-gray;
+		border-width:1px 0;	
+	}
+}
+
+.menu-toggle {
+	background-color: transparent;
+	border: none;
+	color: $dark-gray;
+	float: left;
+	padding: 15px;
+	width:16.9%;
+	line-height: inherit;
+	border-radius: 0;
+  	background: none;
+  	display:none;
+	&:hover {
+	  background:none;
+		background-color: transparent;
+	}
+	&:focus,
+	&:active{
+	  outline:none;
+	}
+	.menu-icon {
+		font-size: 2em;
+	}
+}
+
+.menu-category {
+	@extend %clearfix;
+	display:table;
+	padding: 0;
+	list-style:none;
+	text-transform: uppercase;
+	width:100%;
+	border-bottom:0;
+	margin:0 auto;
+	li {
+		list-style: none;
+		border:none;
+		//float:left;
+		margin:0;
+		&:first-child,
+		&:last-child{
+		  margin:0;
+		}
+		&:first-child{
+			a{
+				text-align:left;	
+			}	
+		}
+		&:last-child{
+			a{
+				text-align:right;	
+			}	
+		}
+		&.activeCat{
+		  a{
+		    color: $brown;
+		  }
+		  .menu-active & {
+		    a{
+		      color: $white;
+		    }
+		  }
+		}
+	}
+	a {
+		color: $dark-gray;
+		display: block;
+		font-size: 14px;
+		padding: 0.9rem 1rem;
+		width: 100%;
+		width:auto;
+		padding:0;
+		font-weight:400;
+		&:hover{
+			color: $brown;	
+		}
+	}
+}
+
+.level-1 > li {
+	@extend %clearfix;
+	// override background-color for small viewport
+	background-color: transparent;
+	display:table-cell;
+	width:20%;
+	text-align:center;
+	&:first-child {
+		border: none;
+	}
+	&.has-submenu{
+	  .fa{
+	  		display:none;
+	  }
+	  &.active{
+	    ul li{
+	      font-weight:normal;
+	    }
+	  }
+	}
+	.menu-item-toggle {
+		color: $dark-gray;
+		cursor: pointer;
+		float: left;
+		line-height: 1.1;
+		padding: 1rem 0.8rem;
+		transition: background-color 0.3s;
+		width: 2.1rem;
+		display:none;
+		&:hover {
+			background-color: darken($night-rider, 10%);
+		}
+	}
+	a {
+	  background-color: transparent;
+		transition: background-color 0.3s, color 0.3s;
+		&:hover {
+			background-color: transparent;
+		}
+	}
+	> a {
+		width:100%;
+		line-height:35px;
+		padding:0 10px;
+		float:none;
+		&.has-sub-menu{
+		  width:100%;
+		}
+		&:hover{
+		  text-decoration:none;
+		  color: $brown;
+		}
+	}
+}
+
+.menu-category-submenu{
+  clear:both;
+  float:left;
+  width:100%;
+  margin:0;
+  padding:0;
+  max-height:0;
+  overflow:hidden;
+  transition:all 0.3s ease;
+  li{
+    margin:1px 0 0 !important;
+    a{
+      font-size:12px;
+      &:hover{
+        background: transparent;
+        text-decoration:none;
+      }
+    }
+    &:last-child{
+      margin-bottom:1px;
+    }
+  }
+  .level-1 > li.has-submenu.active & {
+    max-height:1000px;
+  }
+}
+
+.level-2 {
+	background-color: $white;
+	box-shadow: 0 3px 3px 2px rgba($charcoal, 0.3);
+	color: $night-rider;
+	padding:0;
+	position:absolute;
+	z-index:1;
+	.level-1 li:hover & ,
+	.level-1 > .active & {
+	  display:block;
+	}
+    a {
+      color: $dark-gray;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    > ul {
+      float: left;
+      padding-left: 0;
+      > li {
+        float: none;
+        min-width: 12em;
+        > a {
+          padding: 0.5em 1rem;
+          text-transform: none;
+          &:hover{
+            text-decoration:none;
+          }
+        }
+      }
+    }
+    .menu-vertical {
+      > li > a:first-child {
+        padding-top: 1em;
+      }
+    }
+    .menu-horizontal {
+      float: none;
+      > li {
+        border-right: 1px solid $gainsboro;
+        float: left;
+        padding-right: 2rem;
+        &:last-child {
+          border-right: none;
+        }
+      }
+
+    }
+    .banner {
+      float: left;
+      display:block;
+      img{
+        vertical-align:top;
+      }
+    }
+
+}
+
+.level-3 {
+  display:block;
+	.level-2 .active & {
+		display: block;
+	}
+	a{
+	  color: darken($dark-gray, 20%);
+	  font-weight:normal;
+	  font-size: 1em;
+	  padding:0;
+	}
+	li{
+	  float:none;
+	  padding:0.4em;
+	}
+}
+
+
+    
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  nav[role="navigation"] {
+    @extend .clearfix;
+    background-color: $white;
+    border-right:1px solid $dark-gray;
+    color: $dark-gray;
+    left: -50%;
+    margin-top: 0;
+    position: absolute;
+    width: 50%;
+    top: 0;
+    padding:0;
+   	> .wrap{
+   		border:0;	
+   	}
+    .menu-active &{
+      position:fixed;
+      /*left:-50%;*/
+      left:0;
+      bottom:0;
+      z-index:999;
+    }
+    a.user-account{
+      display:none;
+    }
+  }
+  
+  .menu-toggle {
+    display:block;
+  }
+  .menu-category{
+    border-bottom: 2px solid $white;
+    margin: 0;
+    display:block;
+    &.wrap{
+      width:100%;
+      min-width:inherit;
+      padding:0;
+    }
+    li{
+      margin:0 !important;
+      border:none;
+      float:none;
+      margin:0;
+      display:block;
+      width:100%;
+      text-align:left;
+      
+      &:first-child{
+      	a{
+      		text-align:left;
+      	}
+      }
+      &:last-child{
+        margin-bottom:10px;
+        a{
+        	text-align:left;
+        }
+      }
+      a{
+        padding:0.9rem 1rem;
+        width:100%;
+        color: $dark-gray;
+      }
+	     .menu-active &{
+	   		&.activeCat{
+	   			a{
+	   				color: $brown;		
+	   			}
+	   		}
+	   	}
+    }
+  }
+  
+  .level-1{
+    > li{
+      a{
+        background-color: $gainsboro;
+        border:1px solid $dark-gray;
+        border-width:0 0 1px 0;
+        color: $dark-gray;
+        &:hover{
+          color: $brown;
+        }
+        li{
+          a{
+            //background-color: $gainsboro;
+            padding-left:1.5rem;
+          }
+        }
+      }
+      > a{
+        float: left;
+        line-height:initial;
+        padding-left: 0.8rem;
+        background-color: $white;
+        &:hover{
+          text-decoration:none;
+        }
+       	li{
+       		a{
+       			background-color: $gainsboro;	
+       		}	
+       	}
+      }
+      &.has-submenu{
+      	.fa{
+        	display:inline-block;
+        	float:right;
+        	font-size:1em;
+      	}
+      }
+    }
+  }
+  
+  .level-2{
+    clear: left;
+    display: none !important;
+    > ul{
+      @extend .clearfix;
+      padding-left:0.5rem;
+      padding-bottom:2.1rem;
+    }
+    .banner{
+      display:none;
+    }
+  }
+  
+  .level-3{
+    display:none;
+    padding-left:2em;
+  }
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+}
+
+
+

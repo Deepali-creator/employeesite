@@ -1,0 +1,1535 @@
+.checkout-progress-indicator {
+    font-size: 0.75em;
+    //font-weight: bold;
+    text-transform: capitalize;
+	overflow: hidden;
+	padding-bottom: 2em;
+	div {
+		display: inline;
+		padding: 0 0.83em 0 0;
+		color: $medium-gray;
+		.step-label {
+			text-transform: uppercase;
+		}
+	}
+	.active{
+		a,
+		span{
+			color:$black;
+		}
+	}
+	a {
+		color: $medium-gray;
+		text-decoration:underline;
+		.fa{
+			text-decoration:none;
+		}
+	}
+	i {
+		padding-left: .75em;
+		color: $black;
+	}
+	.step-3 {
+		padding-right: 0;
+	}
+}
+
+.shipping-method {
+	margin-top: 1.83em;
+	label {
+		display: inline;
+		float: none !important;
+		padding-right: .42em !important;
+	}
+	.shipping-description {
+		display: inline;
+	}
+}
+
+.gift-message-text {
+	&.hidden {
+		display: none;
+	}
+}
+
+.billing-coupon-code {
+	.form-row {
+		width: 50%;
+	}
+}
+
+.redemption {
+	.success {
+		color: $islamic-green;
+	}
+	color: $sangria;
+	span.error {
+		margin-left: 0;
+	}
+}
+
+.payment-method-options {
+	.form-row {
+		clear: none;
+		float: left;
+		width: auto;
+	}
+}
+
+.payment-method {
+	clear: both;
+	display: none;
+}
+
+.payment-method-expanded {
+	display: block;
+}
+
+.month,
+.year,
+.day {
+	clear: none;
+	float: left;
+	margin: 0 0 2% 2%;
+	label {
+		@extend .visually-hidden;
+	}
+	select {
+		width: 100%;
+	}
+}
+
+.month .form-caption {
+	margin-left: 0;
+}
+
+.cvn {
+	clear: left;
+}
+
+.ssn {
+	clear: left;
+}
+
+.payment-method{
+  .tooltip{
+    font-size:0.875em;
+  }
+}
+.bml-terms-and-conditions {
+	border: 1px solid $dark-gray;
+	font-size: 0.8em;
+	height: 400px;
+	overflow: auto;
+	padding: 1em;
+}
+
+.bml-table-col-1 {
+	width: 25%;
+}
+
+.pt_checkout{
+  .content-asset p{
+    font-size:0.875em;
+  }
+  h3{
+    padding-bottom:1em;
+  }
+}
+
+
+
+.checkout-mini-cart {
+	background-color: $white-smoke;
+	max-height: 330px;
+	overflow: auto;
+}
+
+.checkout-order-totals {
+	padding: 0.3rem 0.5rem;
+}
+
+.place-order-totals {
+	clear: both;
+	.order-totals-table {
+		float: right;
+		width: 50%;
+	}
+}
+
+.order-component-block {
+	margin: 1.67em 0;
+	.section-header a {
+		float: right;
+		font-weight: normal;
+	}
+	.details {
+		padding: 0;
+		font-size: 0.75em;
+	}
+}
+
+.order-summary-footer {
+	position: relative;
+	h2 {
+		font-size: 2em;
+		font-style: italic;
+		font-weight: normal;
+	}
+}
+
+.summary-help {
+	float: right;
+	font-size: 0.8em;
+	margin: 1em 0;
+}
+
+.submit-order {
+	clear: both;
+	display: block;
+	padding: 1.5em 0.3125em 0;
+	text-align: right;
+	.back-to-cart {
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	button {
+		margin-left: 1.5em;
+	}
+}
+
+.pt_checkout {
+  #main > .wrap{
+    .primary-content{
+			float: left;
+			form.checkout-billing, 
+			form.checkout-shipping {
+		    	padding-right: 16px;
+			}
+		}
+	}
+	&.review {
+		#main > .wrap {
+			.primary-content {
+				padding-right: 1.325em;
+			}
+		}
+	}
+}
+
+.pt_order-confirmation {
+  #main > .wrap{
+    .primary-content{
+      margin:1em 0 5em 0;
+      padding:1em;
+      width:100%;
+      background: $white;
+    }
+
+  }
+	h1 {
+    font-size: 2em;
+    text-transform: none;
+    letter-spacing: normal;
+    text-align: center;
+    color: $red;
+	}
+  button.print-page {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    vertical-align: middle;
+    padding: 0.3125em 1.25em;
+    text-align: center;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    background-color: $white;
+    width: 100%;
+    box-shadow: none;
+    text-transform: none;
+    color: $black;
+  }
+  #primary{
+    h2{
+      font-size:1.5em;
+      font-style:normal;
+      color: $cuisinart-dark-gray;
+    }
+  }
+  #order-items-form .order-items-table {
+    max-width: 100%;
+    tbody {
+      float: right;
+    }
+  }
+  .continue {
+    float: right;
+    text-decoration: underline;
+    color: $black;
+  }
+  .item-list, .order-shipment-table {
+    th.section-header {
+      padding: 0.3125em 1em;
+      text-transform: capitalize;
+      font-weight:400;
+      width: auto;
+      background-color: $cuisinart-dark-gray;
+      color: $white;
+      text-align: left;
+      border: none;
+    }
+    tr {
+      border: none;
+    }
+    tr.order-total {
+      border-top: 1px solid $cuisinart-gray;
+    }
+    td.order-billing, td.order-payment-instruments, td.order-payment-summary, td.line-item-details, td.line-item-quantity, td.line-item-price, td.order-shipment-details {
+      border: 1px solid $cuisinart-gray;
+      border-top:0;
+    }
+    tr.first td {
+      border-top: none;
+    }
+  }
+	.order-shipment-table {
+		margin: 0 0 1.67em;
+    &.desktop-only {
+      table-layout: fixed;
+    }
+		.order-shipment-details {
+			min-width: 200px;
+		}
+	}
+	#primary h2 {
+		font-size: 2em;
+		font-style: italic;
+		font-weight: normal;
+	}
+	.print-page {
+		float: right;
+    display: block !important;
+	}
+	#secondary{
+    display:none;
+  }
+}
+
+.confirmation-message {
+	margin-bottom: 1.67em;
+	padding-bottom: 1.67em;
+	font-size:0.75em;
+}
+
+.order-discount {
+	color: $sangria;
+}
+
+.gift-cert-used {
+	padding: .83em 0;
+}
+
+.order-detail-options {
+	border-top: 1px solid $gainsboro;
+	margin: 1.67em 0 0;
+	padding: 1.67em 0 0;
+	text-align: right;
+	a {
+		margin: 0 .83em;
+	}
+}
+
+.summary .edit {
+	position: absolute;
+	text-transform: uppercase;
+	right: 10px;
+	font-size: 0.9em;
+	line-height: 1.5em;
+}
+
+.pt_order-confirmation{
+  .order-confirmation-details{
+    .content-header{
+      margin:0.6em 0;
+    }
+  }
+  .item-list,
+  .order-shipment-table{
+    td{
+      font-size:0.875em;
+      .order-totals-table{
+        font-size:1.3125em;
+      }
+    }
+  }
+}
+
+.order-confirmation-details{
+  .item-list{
+    th.paymentTotal{
+      min-width:190px;
+      text-align:right;
+    }
+    .order-totals-table{
+      tr{
+        border:none;
+        &.order-total {
+          border-top: 1px dashed $cuisinart-gray;
+        }
+      }
+    }
+  }
+}
+.order-shipment-details {
+	.label,
+	.firstname,
+	.lastname {
+		font-weight: 400;
+	}
+}
+
+.item-shipping-address {
+	min-width: 120px;
+}
+
+.order-shipment-gift-message-header {
+	font-weight: bold;
+	font-size: 1.2em;
+	padding-bottom: 0px;
+}
+
+.order-shipment-gift-message {
+	font-size: 1.1em;
+}
+
+.billing-error {
+	color: $sangria;
+	margin: 0 0 0.83em 24%;
+}
+
+.cvn-tooltip {
+	margin: 5px;
+	text-align: center;
+  p{
+    font-size:0.875em;
+  }
+	img {
+		height: 150px;
+		width: 110px;
+	}
+}
+.pt_checkout {
+	 #main {
+	    margin: 6px 0 90px;
+	    .wrap{
+	      background: $white;
+	    }
+	}
+
+	.order-totals-table {
+		.order-total {
+			background: $cuisinart-dark-gray;
+		    font-weight: 400;
+		    color: $white;
+		    margin: 0 0 0.625em 0;
+		    padding: 0.3125em 0.5em;
+		    position: relative;
+		    text-transform: none;
+		    width: 100%;
+			font-size: 0.875em;
+		}
+	}
+	.primary-focus .primary-content {
+		width: 70%;
+		padding: 0.8em 0em 3em 0.8em;
+	}
+	.primary-focus #secondary {
+		width: 30%;
+		margin-top:0;
+		margin-right:0;
+		margin-top: 54px;
+		padding-top:0;
+		float: right;
+    	border-right: none;
+	}
+	legend {
+    padding: 0.51em 2.5%;
+    font-size: 0.875em;
+    text-transform: none;
+    & .required-indicator {
+      color: red;
+    }
+	}
+	.form-horizontal label {
+		width: 22.5%;
+		margin-top: 4px;
+	}
+	.form-row {
+	    margin: 1rem 0;
+	    &.CREDIT_CARD{
+	      margin-right:1em;
+	    }
+	}
+	
+	.form-row-continue{
+    width:100%;
+    text-align:right;
+  }
+  
+	.form-row .required-indicator {
+	    display: inline-block;
+	    font-size: 16px;
+	    margin: 4px 4px 0 0;
+	    vertical-align: middle;
+	    line-height: 15px;
+	}
+	.form-horizontal{
+	  .form-caption{
+	    margin-left: 24.5%;
+	    font-size:0.75em;
+	  }
+	  .error{
+	    .form-caption{
+	      font-size:1em;
+	    }
+	  }
+	}
+
+	.form-indent {
+	    margin: 0.3125em 0 0 24.5%;
+	    padding-left: 1px;
+	    &.add-address-book,
+	    &.use-for-billing{
+	      display:block;
+	      
+	    }
+	}
+	.label-inline .field-wrapper {
+	    margin: 2px 0;
+    	width: auto;
+	}
+	input[type="radio"] {
+	    margin: 0.5em 1% 0.5em 0.5%;
+	}
+	.field-wrapper input[type="radio"]:last-child {
+	    margin: 0 4px 0 8px;
+	}
+	label {
+		font-size: 14px;
+	}
+	.form-row.gift-radio {
+	    margin: 35px 0 0;
+	}
+	.form-row.shippinginstruction-radio {
+	    margin: 0;
+	    label{
+        float:left;
+        width:auto;
+        margin-right:10px;
+      }
+      > label{
+        width:22.5%;
+      }
+	    input[type='radio']{
+	      float:left;
+	    }
+	    .field-wrapper{
+	      padding-left:0;
+	    }
+	}
+	.char-count {
+	   font-size:14px;
+	   margin: 2px;
+	}
+	.form-row.gift-message-text {
+	    margin-top: 0.5em;
+	}
+	.form-row.shippinginstruction-text {
+	    margin-top: 0.5em;
+	}
+	
+	#shipping-method-list{
+	  margin-top:1em;
+	  .form-indent{
+	    display:block;
+	    .form-caption{
+	      margin-left:2em;
+	      padding:0;
+	      //font-weight:600;
+	    }
+	  }
+	  .tooltip{
+	    font-size:1em;
+	  }
+	  label{
+	    vertical-align: unset;
+	  }
+	  .standard-shipping{
+	    &.has-discount{
+	      text-decoration:line-through;
+	      +{
+	        .discount-shipping{
+	          color: $sangria;
+	          font-weight:400;
+	        }
+	      }
+	    }
+	  }
+	}
+	
+	.gift-message-text .field-wrapper {
+	    margin-bottom: 0;
+	}
+	.input-textarea {
+	    line-height: 17px;
+	    height: auto;
+	}
+	.shipping-footer {
+	    padding: 0.35em 0 2em 24.5%;
+	}
+  .summary {
+		h3.section-header {
+			padding: 0;
+			text-transform:uppercase;
+			font-size: 1em;
+			border-bottom:1px solid $cuisinart-gray;
+			a{
+		        font-size:0.75em;
+		        color: $black;
+		        text-decoration:none;
+		        float:right;
+		        line-height:20px;
+		        
+		        &:hover{
+		          color: $black;
+		        }
+	      	}
+		}
+		> h3.section-header {
+	      	background: $cuisinart-dark-gray;
+		    color: $white;
+		    margin: 0 0 10px 0;
+		    padding: 0.51em 2.5%;
+		    position: relative;
+		    text-transform: none;
+		    width: 100%;
+		    font-size: 0.875em;
+		    line-height:1.4;
+		    border:none;
+	      	a{
+	        	color: $white;
+		        &:hover{
+		          color: $cuisinart-gray;
+		        }
+	      	}
+	    }
+	}
+  
+	.section-header-note {
+		text-decoration: underline;
+	}
+	.mini-cart-product .mini-cart-toggle {
+		display: block;
+	}
+
+	.mini-cart-product {
+		
+		&.collapsed {
+			.mini-cart-image {
+				display: block;
+			}
+		}
+	}
+	.checkout-mini-cart {
+		background-color: unset;
+		.mini-cart-product{
+		  border-bottom: 2px solid $cuisinart-gray;
+		}
+		.mini-cart-image {
+	      margin: 0 0.625em;
+	    }
+	    .mini-cart-image img {
+	      width: 100%;
+	    }
+	    .mini-cart-name {
+	      float:none;
+	      width:auto;
+	      .mini-cart-name-link{
+	        text-decoration:underline;
+	        text-decoration: underline;
+	        font-weight: 400;
+	        display: inline;
+	        float: none;
+	        text-transform: none;
+	        width: auto;
+	      }
+	    }
+	    .mini-cart-product-id{
+	      display:inline-block;
+	    }
+	}
+	
+	.promo{
+	    color: $sangria;
+	 }
+	.mini-cart-attributes {
+	    float: none;
+	    font-size: 1em;
+	    padding: 1px 0;
+	    width: auto;
+	}
+	.mini-cart-pricing {
+		float: right;
+    	width: 100%;
+		text-align: right;
+		.minicart-pricing-row {
+			width: 50%;
+			display: inline;
+			&:after{
+			  display:inline-block;
+			  content:"|";
+			  margin:0.25em;
+			}
+		}
+		.mini-cart-price {
+			width: 50%;
+			display: inline;
+		}
+		.label {
+		    text-transform: uppercase;
+		}
+	}
+	.size span {
+	    display: none;
+	}
+	.checkout-order-totals {
+		margin-top: 10px;
+	    background-color: unset;
+		padding: 0;
+	}
+	select {
+    	font-size:14px;
+	}
+	.order-component-block{
+	  margin:2em 0;
+	  .details{
+	    background: none;
+	    padding:0.5em;
+	  }
+	}
+
+	.gift-message-text label,
+	.shippinginstruction-text label {
+	    display: none;
+	}
+	.gift-message-text .field-wrapper,
+	.shippinginstruction-text .field-wrapper {
+		margin: 0 0 0 23%;
+	}
+	.billing-coupon-code .form-row {
+	    width: 63.5%;
+	    margin-bottom:0;
+	    &.copuon-error{
+	      margin:0 0 1em;
+	    }
+	}
+	.billing-coupon-code {
+	    margin-bottom: 3em;
+	}
+
+	/************ Billing Page **********/
+	.privacy-policy {
+	    display: block;
+	    font-size: 1.2em;
+	    padding-bottom: 45px;
+	    text-decoration: underline;
+	}
+	#checkout-giftcertcoupon-help p {
+	    font-size: 1.2em;
+	    padding-right:1em;
+	}
+	.label-above label {
+	    width: auto;
+	}
+	.form-horizontal .label-above .field-wrapper {
+	    width: auto;
+	}
+	.billing-coupon-code{
+    .form-row{
+      &.coupon-error{
+        margin-top:0;
+      }
+    }
+	}
+  
+	.form-row .month,
+	.form-row .year {
+	    margin: 0 0 0 11px;
+	    width:22.125%;
+	    .field-wrapper{
+	      width:100%;
+	    }
+	}
+	.form-horizontal .cvn .field-wrapper {
+	    width: 23.75%;
+	    margin-bottom:0.625em;
+	    input[type="text"]{
+	      width:100%;
+	    }
+	    span.error{
+	      position:absolute;
+	    }
+	}
+	
+	.save-card{
+	  margin:1em 0 0 24.5%;
+	}
+	
+	.form-field-tooltip {
+		padding-top: 0.3em;
+	}
+	.payment-method-options .field-wrapper input[type="radio"] {
+	    margin: 0 5px 0 0;
+	}
+	.gift-cert-redemption {
+		display: none;
+	}
+	.payment-method-options .PayPal,
+	.payment-method-options .BML {
+	    display: none;
+	}
+	.payment-select {
+	    display: none;
+	}
+
+	/************** Summary Page *************/
+	#cart-table .item-image {
+	    width: 15%;
+	}
+	#cart-table .product-list-item .sku span {
+	    color: $black;
+	    font-weight: normal;
+	}
+	.section-header span {
+	    font-size: 1em;
+	    padding: 0;
+	 }
+ 	.order-component-block .details {
+	    padding: 0;
+	}
+  #cart-table {
+     .section-header {
+        font-size:0.875em;
+        padding: 0.5em 1em;
+        text-transform: capitalize;
+        width: auto;
+        background-color: $cuisinart-dark-gray;
+        color: $white;
+        text-align: left;
+        border-right: 2px solid $white;
+        &:last-child{
+          border:none;
+        }
+        &.qty {
+          border-right: none;
+        }
+        &.details {
+          border-left: none;
+        }
+    }
+  }
+}
+.review {
+	#cart-table td {
+	    padding: 1em 0.5em 4em;
+	}
+  .wrap #cart-table tr.cart-row {
+      font-size: 12px;
+      .item-details {
+        .product-list-item {
+          .name a {
+            color: $black;
+            text-decoration: underline;
+          }
+        }
+      }
+  }
+  .wrap #cart-table tr.cart-divider {
+    border-bottom: none;
+    background-color: $cuisinart-dark-gray;
+    td {
+      padding: 16px;
+    }
+  }
+  &.pt_checkout .order-summary-footer  {
+    a.back-to-cart {
+      color: $black;
+      text-decoration: underline;
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .order-totals-table {
+      float: right;
+      .order-total {
+        background: $white;
+        font-weight: 400;
+        color: $black;
+        margin: 0.625em 0;
+        padding: 0.3125em 0.5em;
+        position: relative;
+        text-transform: none;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+	.item-details .product-list-item .value {
+	    font-weight: normal;
+	}
+	.item-image > img {
+	    width: 100px;
+	}
+	.sku {
+	    padding: 4px 0;
+	}
+	#cart-table .item-quantity,
+	#cart-table .item-total,
+	#cart-table .item-quantity-details {
+	    font-size: 1.2em;
+	}
+	#cart-table .item-quantity {
+	    text-indent: 13px;
+	    width: 10%;
+	}
+	#cart-table td:last-child {
+	    font-weight: normal;
+	}
+	.checkout-order-totals {
+	    border-top: 0 none;
+	}
+	.mini-shipment h3.section-header {
+	    border-top: 0;
+	}
+	.mini-shipment {
+	    margin:1.5em 0 0;
+	}
+	.mobile-qty{
+		display: none;
+	}
+}
+
+.pt_checkout_avs{
+  #main.primary-focus{
+    margin-top:55px;
+    .primary-content{
+      width:100%;
+      padding:1em;
+    }
+  }
+
+  .avs-results{
+    padding:15px 0;
+    overflow:hidden;
+  }
+
+  .address{
+    overflow:hidden;
+    position:relative;
+    margin-bottom:5px;
+    padding:5px 0;
+    border-bottom:1px solid $medium-gray;
+    p{
+      float:left;
+      padding-right:110px;
+    }
+    button{
+      position:absolute;
+      display:block;
+      top:50%;
+      right:0;
+      margin-top:-15px;
+    }
+  }
+
+  .original-address{
+    position:relative;
+    display:block;
+    width:25%;
+    max-width:250px;
+    padding:0 10px 15px;
+    border:2px solid $gainsboro;
+    float:left;
+    .address{
+      border: none;
+    }
+  }
+
+  .suggested-address{
+    position:relative;
+    display:block;
+    width:72%;
+    padding:0 15px 15px;
+    background: $gainsboro;
+    float:right;
+    .address-list{
+      border-top:1px solid $medium-gray;
+    }
+  }
+}
+
+.pt_order{
+  #main > .wrap{
+    background: $white;
+  }
+}
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  .pt_order-confirmation {
+    .item-list {
+      th {
+        display: none;
+      }
+      td {
+        float: left;
+        padding: 1em 0;
+        width: 98%;
+      }
+      .order-totals-table td {
+        float: left;
+        width: 48%;
+      }
+    }
+    #main .wrap {
+      max-width: 100%;
+    }
+    #order-items-form{
+      padding:0 10px;
+      .item-list,
+      .order-shipment-table{
+        .mobile-table-header{
+          font-size: 1.0em;
+          font-weight: normal;
+          padding: 5px 16px;
+          text-transform: capitalize;
+          width: auto;
+          background-color: $cuisinart-dark-gray;
+          color: $white-smoke;
+          text-align: left;
+          border: none;
+        }
+        td {
+          border: none;
+        }
+        td.order-billing, td.order-payment-instruments, td.order-payment-summary {
+          border: 2px solid $cuisinart-gray;
+          border-top: none;
+        }
+        .order-table-gen {
+          padding: 6px;
+        }
+        td{
+          padding:0;
+        }
+        td.order-shipment-details {
+          border-top: 2px solid $cuisinart-gray;
+        }
+      }
+      .order-shipment-table{
+        tr {
+          border: 2px solid $cuisinart-gray;
+          border-top: none;
+        }
+      }
+    }
+    .order-shipment-table.mobile-only {
+      display: table !important;
+      th {
+        display: none;
+      }
+      .order-shipment-details {
+        border: none;
+        width: 100%;
+      }
+      .shipping-method {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .pt_checkout{
+    .primary-focus{
+      .primary-content{
+        width:100%;
+        padding-right:0.8em;
+      }
+      #secondary{
+        width:100%;
+        margin-right:0;
+        padding:20px 0.8em 55px;
+        margin-top: 0;
+      }
+    }
+    .shippinginstruction-text{
+      .field-wrapper{
+        margin:0;
+      }
+    }
+    #main > .wrap{
+      padding: 0;
+      .primary-content{
+  			float: left;
+  			form.checkout-billing, form.checkout-shipping {
+  				border-right: none;
+  		    padding-right: none;
+  			}
+  		}
+  	}
+  }
+
+  /****** Shipping Page ********/
+  .pt_checkout {
+    #main {
+        margin: 22px 0 50px;
+    }
+    .primary-focus .primary-content {
+        padding: 0.8em;
+        width: 100%;
+    }
+    legend {
+      font-size: 12px;
+    }
+    .checkout-progress-indicator {
+      font-size: 12px;
+      position:relative;
+      top:auto;
+      overflow:hidden;
+      clear:both;
+      padding-bottom:0;
+      div{
+        padding: 0 0.43em 0 0.4em;
+        display:inline-block;
+        width:32%;
+        text-align:center;
+        float:left;
+        &.step-1,
+        &.step-2,
+        &.step-3{
+          span{
+            display:inherit;
+            width:100%;
+            clear:both;
+            float:left;
+          }
+        }
+        &.step-1{
+          padding-left:0;
+        }
+        &.step-3{
+          width:30%;
+          margin-left: 3%;
+          margin-right:0;
+        }
+      }
+      .fa{
+        transform: translate(40px, -20px);
+      }
+    }
+    .select-address label {
+        margin-bottom: 4px;
+    }
+    .checkout-billing .discount-codes {
+        margin: 0;
+    }
+    .form-horizontal .field-wrapper {
+        width: 53%;
+    }
+    .form-horizontal label {
+        float: none;
+        width: auto;
+      }
+      .form-horizontal .field-wrapper {
+        width: 85%;
+    }
+    .form-horizontal .form-caption,
+    .form-indent {
+        margin-left: 0;
+        clear:both;
+    }
+    .label-inline .field-wrapper {
+        width: auto;
+    }
+    .shipping-footer {
+        padding: 0;
+    }
+    .summary h3.section-header {
+        padding: 0.3125em 0.5em;
+    }
+    .mini-cart-product .mini-cart-toggle {
+        display: none;
+    }
+    .mini-cart-product.collapsed .mini-cart-image {
+        display: block;
+        width: 17%;
+    }
+    .mini-cart-product.collapsed .mini-cart-name,
+    .mini-cart-product.collapsed .mini-cart-attributes,
+    .mini-cart-product.collapsed .mini-cart-pricing {
+      width: 75%;
+    }
+    .mini-cart-image img {
+      width: auto;
+    }
+    .order-totals-table td:first-child {
+        width: 80%;
+    }
+    .order-component-block {
+        margin: 0;
+    }
+    .mini-cart-image {
+        width: 22%;
+    }
+    .mini-shipment h3.section-header {
+        border-top: medium none;
+    }
+    .order-component-block .section-header a {
+        float: none;
+    }
+    .summary h3.section-header {
+        padding: 0.3125em 0.5em;
+    }
+    .order-component-block .section-header a {
+        float: right;
+    }
+    .order-component-block .details {
+        padding: 0.5em 1em 1.5em;
+    }
+    .input-textarea {
+      margin-top: 8px;
+    }
+    .payment-method-options {
+        margin: 0;
+    }
+    .payment-method-options .label-inline {
+        width: auto;
+    }
+    .payment-method-options .form-row label {
+        padding-left: 0.2em;
+    }
+    .form-row .month {
+        margin: 0;
+    }
+    .checkout-billing .form-row-button .button-fancy-large {
+        margin: 20px 0 40px;
+    }
+    .billingpage {
+        display: none;
+    }
+    .checkout-billing .form-row-button .button-fancy-large {
+        margin: 0 0 20px;
+    }
+    .section-header-note {
+        float: right;
+    }
+    .form-row{
+      &.shippinginstruction-radio > label{
+        width:auto;
+      }
+    }
+  }
+
+  .review {
+    .place-order-totals {
+    	.order-totals-table {
+    		float: right;
+    		width: 80%;
+        font-size: 13px;
+        .order-subtotal {
+          font-size: 13px;
+        }
+    	}
+    }
+    .item-image {
+        padding: 0.5em 0.5em 0.5em 1.2em;
+    }
+    .wrap #cart-table td:nth-child(2n+1) {
+        width: 35%;
+    }
+    .wrap #cart-table td:nth-child(2n) {
+        width: 63%;
+    }
+    .color {
+        padding: 1px 0 4px;
+    }
+    .wrap #cart-table td.item-quantity-details {
+      top: -10px;
+    }
+    .wrap #cart-table td.item-quantity {
+        padding: 0 1em;
+        position: relative;
+        top: -8px;
+    }
+    .wrap #cart-table .cart-row td.item-total {
+        width: 50%;
+    }
+  }
+  .review .wrap #cart-table .item-details {
+      padding: 0.5em 0 1em;
+  }
+  .privacy-policy {
+      padding-top: 10px;
+  }
+
+
+  /************* Order Summary **************/
+  .review {
+
+    #cart-table .item-image {
+        float: none;
+        padding: 1em 1.5em;
+    }
+    .wrap #cart-table td:nth-child(2n+1) {
+        width: 46%;
+    }
+    .wrap #cart-table td:nth-child(2n) {
+        width: 50%;
+    }
+    .wrap #cart-table .item-details {
+        float: none;
+        padding: 1em 1em 1em 0;
+    }
+    #cart-table td {
+      display: inline-block;
+    }
+    .wrap #cart-table td.item-quantity {
+        padding: 0 2em;
+        text-align: left;
+        text-indent: unset
+    }
+    .wrap #cart-table td.item-quantity-details {
+        padding: 0;
+        position: relative;
+        top: -17px;
+    }
+    .wrap #cart-table .item-price {
+        float: none;
+        padding: 5px;
+        visibility: hidden;
+    }
+    .wrap #cart-table .item-total {
+        float: none;
+        font-size: 1em;
+        padding: 0 0 5px;
+    }
+    .wrap #cart-table td.item-total {
+        width: 100%;
+        padding-right: 0.5em;
+    }
+    .wrap #cart-table tr.cart-row {
+        font-size: 12px;
+    }
+    .item-edit-details {
+      display: none;
+    }
+    .color, .sku, .size {
+        color: $black;
+        padding: 0;
+    }
+    .mobile-qty{
+      display: inline-block;
+    }
+    .order-summary-footer {
+        padding: 0 0.5em;
+    }
+    .checkout-order-totals {
+        padding-right: 0;
+    }
+    .mobile-qty {
+        display: inline-block;
+    }
+  }
+
+  .pt_checkout_avs{
+    #main.primary-focus{
+      margin-top:22px;
+      margin-bottom:0;
+      .primary-content{
+        width:100%;
+        padding-right:0.8em;
+      }
+    }
+    .original-address,
+    .suggested-address{
+      clear:both;
+      width:100%;
+      max-width:100%;
+    }
+  }
+  .pt_wish-list {
+    td.item-dashboard{
+      width:17rem;
+    }
+    .item-image{
+      width:100px;
+    }
+
+  }
+
+  .pt_error .error-page-search .input-text {
+      width: 77%;
+  }
+
+
+
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .pt_checkout{
+    .checkout-progress-indicator{
+      padding-bottom: 1em;
+      div{
+        width: 32.5%;
+        font-size:1em;
+        text-align:left;
+        display:inline;
+        float:none;
+        &.step-1,
+        &.step-2,
+        &.step-3{
+          span{
+            clear:none;
+            float:none;
+          }
+        }
+      }
+      .fa{
+        transform: translate(0,0);
+      }
+    }
+  }
+
+
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  .pt_checkout {
+    #main {
+        margin: 6px 0 72px;
+    }
+    .wrap {
+      width: 100%;
+    }
+    .primary-focus .primary-content {
+        width: 67%;
+    }
+    .primary-focus #secondary {
+        margin-right: 0;
+        width: 33%;
+				margin-top: 74px;
+    }
+    .shipping-footer {
+        padding: 15px 0 25px 26.5%;
+    }
+    .form-horizontal{
+      .field-wrapper{
+        width: 53%;
+      }
+      .label-inline{
+        .field-wrapper{
+          margin:2px 0;
+          width:auto;
+        }
+      }
+      label{
+        width:24%;
+        margin-top:7px;
+      }
+    }
+    .form-indent {
+      margin: 1em 0 1em 26%;
+    }
+    .gift-message-text .field-wrapper,
+    .pt_checkout .shippinginstruction-text .field-wrapper {
+        margin: 0 0 0 24.5%;
+    }
+
+    /************ Billing Page ***********/
+    .form-field-tooltip {
+        line-height: 14px;
+        padding-top: 0;
+    }
+    .billing-coupon-code {
+        margin-left: 5%;
+    }
+    .billing-coupon-code label {
+        width: auto;
+    }
+    .payment-method-options.form-indent {
+        overflow: auto;
+        margin-left: 32%;
+    }
+    .form-horizontal .payment-method-expanded label {
+        margin-top: 7px;
+        width: 30%;
+    }
+    .form-row .month,
+    .form-row .year {
+        margin: 0 0 0 8px;
+    }
+    .cvn .form-field-tooltip {
+        padding-top: 6px;
+    }
+    .form-horizontal .payment-method-expanded .form-caption {
+        margin-left: 32%;
+        clear:both;
+    }
+    .checkout-billing .form-row-button {
+        width: 82%;
+    }
+    .payment-method .form-indent {
+        margin-left: 32%;
+    }
+    .form-horizontal .form-caption {
+        margin-left: 26.5%;
+        clear:both;
+    }
+    .label-inline input[type="checkbox"] {
+        margin: -1px 0.5rem 0 0;
+    }
+  }
+  .review{
+    #primary,
+    #secondary{
+      padding-top:0.8em;
+    }
+  }
+
+  .pt_checkout_avs{
+    #main.primary-focus{
+      margin-top:55px;
+      .primary-content{
+        width:100%;
+        padding-right:0.8em;
+      }
+    }
+  }
+
+
+}

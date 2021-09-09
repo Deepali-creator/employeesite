@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobs xmlns="http://www.demandware.com/xml/impex/jobs/2015-07-01">
+    <job job-id="AssignImagesToProducts" priority="0">
+        <description>Assigns images to products. Generates Catalog XML file with images paths for images.</description>
+        <parameters/>
+        <flow>
+            <context site-id="uk-babylisspro"/>
+            <step step-id="AssignImagesToProducts" type="ExecuteScriptModule" enforce-restart="false">
+                <description/>
+                <parameters>
+                    <parameter name="ExecuteScriptModule.Module">app_babylisspro_uk/cartridge/scripts/impex/AssignImagesToProducts.js</parameter>
+                    <parameter name="ExecuteScriptModule.FunctionName">AssignImages</parameter>
+                    <parameter name="ExecuteScriptModule.Transactional">false</parameter>
+                    <parameter name="masterCatalogID">master-uk</parameter>
+                </parameters>
+            </step>
+        </flow>
+        <rules/>
+        <triggers>
+            <run-once enabled="false">
+                <date>2018-03-07Z</date>
+                <time>10:17:32.000Z</time>
+            </run-once>
+        </triggers>
+    </job>
+
+</jobs>

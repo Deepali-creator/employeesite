@@ -1,0 +1,88 @@
+<!--- TEMPLATENAME: pressinquiry.isml --->
+<iscontent type="text/html" charset="UTF-8"/>
+<isinclude template="util/modules"/>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<subject>${pdict.MailSubject}</subject>
+<head>
+<style>
+	@import url("//hello.myfonts.net/count/348441");
+
+	@font-face {font-family: 'GrotesqueMTStd';src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.eot')}');src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.eot?#iefix')}') format('embedded-opentype'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.woff2')}') format('woff2'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.woff')}') format('woff'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.ttf')}') format('truetype'); font-weight:normal; font-style:normal;}
+
+	@font-face {font-family: 'GrotesqueMTStd-Bold';src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.eot')}');src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.eot?#iefix')}') format('embedded-opentype'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.woff2')}') format('woff2'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.woff')}') format('woff'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.ttf')}') format('truetype'); font-weight:normal; font-style:normal;}
+ </style>
+</head>
+<body>
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" style="background:#e0e0e0;padding:50px 0;">
+			<center>
+				<table  style="background:#ffffff;border:1px solid #d2d4d6;width:680px; padding:15px; color:#4c4c4c;">
+					<tr>
+						<td style="width:70%; font-size:24px;font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 20px 20px 0;font-weight:bold;color:#5DA044;">${Resource.msg('global.storename','locale',null)} ${Resource.msg('global.mediainquiry','locale',null)}</td>
+						<td><img style="width:225px; height:auto;" src="${URLUtils.httpStatic('/images/logo.png')}"></img></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="font-size:12px; font-family: GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 15px 20px 0;vertical-align:top;">
+							<p style="padding-bottom:15px; font-size:14px;">${Resource.msg('global.mediainquiry.intro', 'locale', null)} <isprint value="${pdict.CurrentForms.mediainquiry.firstname.value}"/> <isprint value="${pdict.CurrentForms.mediainquiry.lastname.value}"/></p>
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size:18px; color: #5DA044; font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif; font-weight:bold; padding:20px 0; border-top:2px solid #d2d4d6;" colspan="2">
+						    ${Resource.msg('global.inquirydetails', 'locale', null)}
+						</td>
+					</tr>
+					<tr>
+						<td>
+						    <table width="100%" cellpadding="0" cellspacing="0">
+						    	<tr>
+						    		<td style="font-size:16px; text-align:left; font-weight:bold; font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;"><p>${Resource.msg('profile.firstname','forms',null)}: </p></td>
+									<td style="font-size:16px; font-family: GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif; padding:10px 15px 10px 0;"><p><isprint value="${pdict.CurrentForms.mediainquiry.firstname.value}"/></p></td>
+						    	</tr>
+						    	<tr>
+									<td style="font-size:16px; text-align:left; font-weight:bold; font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;"><p>${Resource.msg('profile.lastname','forms',null)}: </p></td>
+									<td style="font-size:16px; font-family: GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;padding:10px 15px 10px 0; "><p><isprint value="${pdict.CurrentForms.mediainquiry.lastname.value}"/></p></td>
+								</tr>
+								<tr>
+									<td style="font-size:16px; text-align:left; font-weight:bold; font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;"><p>${Resource.msg('resource.address1','forms',null)}: </p></td>
+									<td style="font-size:16px; font-family: GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;padding:10px 15px 10px 0; "><p><isprint value="${pdict.CurrentForms.mediainquiry.address1.value}"/></p></td>
+								</tr>
+								<tr>
+									<td style="font-size:16px; text-align:left; font-weight:bold; font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;"><p>${Resource.msg('resource.city','forms',null)}: </p></td>
+									<td style="font-size:16px; font-family: GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;padding:10px 15px 10px 0; "><p><isprint value="${pdict.CurrentForms.mediainquiry.city.value}"/></p></td>
+								</tr>
+								<tr>
+									<td style="font-size:16px; text-align:left; font-weight:bold; font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;"><p>${Resource.msg('resource.province','forms',null)}:</p></td>
+									<td style="font-size:16px; font-family: GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;padding:10px 15px 10px 0; "><p><isprint value="${pdict.CurrentForms.mediainquiry.states.stateCA.value}"/></p></td>
+								</tr>
+								<tr>
+									<td style="font-size:16px; text-align:left; font-weight:bold;font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;"><p>${Resource.msg('resource.postalcode','forms',null)}: </p></td>
+									<td style="font-size:16px; font-family: GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;padding:10px 15px 10px 0; "><p><isprint value="${pdict.CurrentForms.mediainquiry.postal.value}"/></p></td>
+								</tr>
+								<tr>
+									<td style="font-size:16px; text-align:left; font-weight:bold; font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;"><p>${Resource.msg('profile.phone','forms',null)}: </p></td>
+									<td style="font-size:16px; font-family: GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;padding:10px 15px 10px 0; "><p><isprint value="${pdict.CurrentForms.mediainquiry.phone.value}"/></p></td>
+								</tr>
+								<tr>
+									<td style="font-size:16px; text-align:left; font-weight:bold; font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;"><p>${Resource.msg('organization','forms',null)}: </p></td>
+									<td style="font-size:16px; font-family: GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;padding:10px 15px 10px 0; "><p><isprint value="${pdict.CurrentForms.mediainquiry.organization.value}"/></p></td>
+								</tr>
+								<tr>
+									<td style="font-size:16px; text-align:left; font-weight:bold;  font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;"><p>${Resource.msg('billing.email','forms',null)}: </p></td>
+									<td style="font-size:16px; font-family: GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;padding:10px 15px 10px 0; "><p><isprint value="${pdict.CurrentForms.mediainquiry.emailAddress.value}"/></p></td>
+								</tr>
+								<tr>
+									<td style="font-size:16px; text-align:left; font-weight:bold;  font-family: GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;"><p>${Resource.msg('contactus.comment','forms',null)}: </p></td>
+									<td style="font-size:16px; font-family: GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;padding:10px 15px 10px 0; "><p><isprint value="${pdict.CurrentForms.mediainquiry.comment.value}"/></p></td>
+								</tr>
+						    </table>
+						</td>
+					</tr>
+				</table>
+			</center>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

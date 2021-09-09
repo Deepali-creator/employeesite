@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- TemplateComment :  EMail form for inviting someone to shop  -->
+<iscontent type="text/html" charset="UTF-8"/>
+<isinclude template="util/modules"/>
+<isscript>importScript("ProductImageSO.ds");</isscript>
+<subject><isif condition="${!empty(pdict.MailSubject)}">${pdict.MailSubject}<iselse/></isif></subject>
+<html>
+<head>
+	
+</head>
+<body>
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" style="background:#e0e0e0;padding:50px 0;">
+			<center>
+				<table  style="background:#ffffff;border:1px solid #999999;width:680px; padding:15px; color:#58585a;">
+					<tr><td style="font-size:16px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;padding:0 0 10px" colspan="2">
+						<isif condition="${dw.system.System.PRODUCTION_SYSTEM==dw.system.System.instanceType}">
+							<span style="color:#A00000">${Resource.msg('global.comingfrom', 'locale', null)} ${Resource.msg('global.production', 'locale', null)}.</span>
+						<iselseif condition="${dw.system.System.STAGING_SYSTEM==dw.system.System.instanceType}"/>
+							<span style="color:#0000A0">${Resource.msg('global.comingfrom', 'locale', null)} ${Resource.msg('global.staging', 'locale', null)}.</span>
+						<iselse/>
+							<span style="color:#008000">${Resource.msg('global.comingfrom', 'locale', null)} ${Resource.msg('global.development', 'locale', null)} (${dw.system.System.instanceHostname}).</span>
+						</isif>
+					</td></tr>
+					<tr>
+					  <td style="width:100%;" colspan="2">
+					    <table style="width:100%; border-spacing:initial; border-bottom:2px solid #cccccc; color: #58585a;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
+								<tr>
+								    <th style="font-size:18px; text-align:left; font-weight:bold; padding:0 0 10px;" colspan="2">
+								        ${Resource.msg('account.stocknotification.label.product', 'account', null)}
+								    </th>
+								</tr>
+								<isloop items="${pdict.LowStockProducts.keySet()}" var="category">
+									<tr>
+										<td style="background-color: #e0e0e0; font-size:15px; padding:10px; font-weight:600;" colspan="2">
+											${category}
+										</td>
+									</tr>
+									<isloop items="${pdict.LowStockProducts.get(category)}" var="product">
+										<tr style="border:1px solid #e0e0e0; border-top:0;">
+										    <td style="vertical-align:middle; padding:10px; border:1px solid #e0e0e0; border-top:0; border-right:0;">
+										    	<isset name="image" value="${new ProductImage('small', product, 0)}" scope="page"/>
+                                        		<isset name="imageURL" value="${image.getURL()}" scope="page"/>
+			                                	<isif condition="${!empty(image)}">
+			                                    	<isset name="thumbnailUrl" value="${imageURL}" scope="page"/>
+			                                    	<isset name="imageAlt" value="${image.getAlt()}" scope="page"/>
+			                                    	<isset name="imageTitle" value="${image.getTitle()}" scope="page"/>
+			                                	<iselse/>
+			                                    	<isset name="thumbnailUrl" value="${URLUtils.httpStatic('/images/noimagesmall.png')}" scope="page"/>
+			                                    	<isset name="imageTitle" value="${product.name}" scope="page"/>
+			                                    	<isset name="imageAlt" value="${product.name}" scope="page"/>
+			                                	</isif>
+			                                	<a style="text-decoration:none;" href="${URLUtils.http('Product-Show', 'pid', product.ID)}">
+			                                		<img width="100" style="float:left; display:block; max-width:100px; width:100px; height:auto;" src="${thumbnailUrl}" alt="${imageAlt}" title="${imageTitle}"/>
+												</a>
+										    </td>
+									    	<td style="vertical-align:middle; font-size:16px; border:1px solid #e0e0e0; border-top:0; border-left:0; padding:10px;">
+												<a style="text-decoration:none;" href="${URLUtils.http('Product-Show', 'pid', product.ID)}">
+												    <p style="color:#6c8d23; font-weight:bold; width:100%; margin:0 0 5px; text-transform:uppercase; ">
+												    	<isprint value="${product.ID}" encoding="off"/>
+												    </p>
+												    <p style="color: #58585a; font-size:14px;margin:0;">
+												    	<isprint value="${product.name}" encoding="off"/>
+												    </p>
+												</a>
+											</td>
+										</tr>
+									</isloop>
+									<tr>
+										<td style="padding-bottom:15px;" colspan="2"></td>
+									</tr>
+								</isloop>
+							</table>
+						</td>
+					</tr>
+				</table>						
+			</center>
+		</td>
+	</tr>
+</table>
+	
+</body>
+</html>

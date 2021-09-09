@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobs xmlns="http://www.demandware.com/xml/impex/jobs/2015-07-01">
+    <job job-id="ImportProductsToCatalogCSV" priority="0">
+        <description>Converts a CSV catalog information to XML and imports.
+CSV structure: Product ID,weight,length,width,height,product display name,full_description,meta_keywords,meta_description,page_title,price,seo_name</description>
+        <parameters/>
+        <flow>
+            <context site-id="uk-babylisspro"/>
+            <step step-id="ImportProductsToCatalogCSV" type="ExecuteScriptModule" enforce-restart="false">
+                <description/>
+                <parameters>
+                    <parameter name="ExecuteScriptModule.Module">app_babylisspro_uk/cartridge/scripts/impex/ImportProductsToCatalogCSV.js</parameter>
+                    <parameter name="ExecuteScriptModule.FunctionName">ImportCatalog</parameter>
+                    <parameter name="ExecuteScriptModule.Transactional">false</parameter>
+                    <parameter name="csvFileName">products.csv</parameter>
+                    <parameter name="catalogID">master-uk</parameter>
+                    <parameter name="pricebookID">gbp-list-prices</parameter>
+                </parameters>
+            </step>
+        </flow>
+        <rules/>
+        <triggers>
+            <run-once enabled="false">
+                <date>2018-03-07Z</date>
+                <time>10:17:32.000Z</time>
+            </run-once>
+        </triggers>
+    </job>
+
+</jobs>

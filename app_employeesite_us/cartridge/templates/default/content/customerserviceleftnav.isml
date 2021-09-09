@@ -1,0 +1,35 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscache type="relative" hour="24"/>
+
+<isif condition="${!empty(pdict.CustomerServiceLinks)}">
+
+
+	<isloop items="${pdict.CustomerServiceLinks.keySet()}" var="links">
+
+		<span class="toggle cs-toggle expanded"><i class="fa fa-minus"></i><isprint value="${links}"/></span>
+
+		<ul class="nav-submenu">
+			<iscomment> Loop Through Customer Service Libraries </iscomment>
+			<isloop items="${pdict.CustomerServiceLinks.get(links)}" var="ContentAsset" status="loopcounter">
+				<isif condition="${ContentAsset.ID !='customer-support-landing'}" >
+
+					<isif condition="${empty(ContentAsset.custom.externalContentURL)}" >
+						<li>
+							<a href="${URLUtils.url('Page-Show','cid', ContentAsset.ID)}" title="${ContentAsset.name}">
+								<isprint value="${ContentAsset.name}"/>
+							</a>
+						</li>
+					<iselse>
+						<li>
+							<a class="direct" href="${ContentAsset.custom.externalContentURL}" target="_blank"><isprint value="${ContentAsset.name}"/></a>
+						</li>
+
+					</isif>
+
+				</isif>
+
+			</isloop>
+		</ul>
+
+	</isloop>
+</isif>

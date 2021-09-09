@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+	<field formid="firstName" label="profile.firstname" type="string" mandatory="true" binding="firstName" max-length="50" missing-error="address.firstname.missing" range-error="address.field.invalid" />
+	<field formid="lastName" label="profile.lastname" type="string" mandatory="true" binding="lastName" max-length="50" missing-error="address.lastname.missing" range-error="address.field.invalid" />
+	<field formid="addressFinder" label="resource.addressfinder" type="string" mandatory="false" description="resource.findertooltip"/>
+	<field formid="toggleFields" label="resource.enablemanualentry" type="boolean" mandatory="false" />
+
+	<field formid="address1" label="resource.address1" type="string" mandatory="true" binding="address1" max-length="50" missing-error="resource.addresserror" range-error="address.field.invalid" />
+	<field formid="address2" label="resource.address2" type="string" mandatory="false" binding="address2" max-length="50" range-error="address.field.invalid" />
+	<field formid="city" label="resource.city" type="string" mandatory="true" binding="city" min-length="2" max-length="50" missing-error="address.city.missing" range-error="address.field.invalid" />
+	<include formid="states" name="states"/>
+	<field formid="postal" label="resource.zipcode" type="string" mandatory="true" min-length="3" max-length="10" binding="postalCode" missing-error="resource.errorzip" description="address.postalcode.example"/>
+
+	<!-- use set of supported billing countries -->
+	<field formid="country" label="resource.country" type="string" default="gb" mandatory="true" binding="countryCode" missing-error="address.country.missing" value-error="address.field.invalid">
+		<options>
+			<option optionid="gb" 	label="country.unitedkingdom"	value="gb"/>
+			<option optionid="gg" 	label="country.guernsey"	value="gg"/>
+			<option optionid="ie" 	label="country.ireland"	value="ie"/>
+			<option optionid="im" 	label="country.isleofman"	value="im"/>
+			<option optionid="je" 	label="country.jersey"	value="je"/>
+		</options>
+	</field>
+
+	<!-- phone is optional for billing addresses -->
+	<field formid="phone" label="profile.phone" description="address.phone.example" type="string" mandatory="true" binding="phone" max-length="20" missing-error="address.phone.missing" range-error="address.field.invalid" regexp="(^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$)"/>
+
+	<!-- actions provided by the edit billing address dialog -->
+	<action formid="apply" valid-form="true"/>
+	<action formid="remove" valid-form="false"/>
+</form>

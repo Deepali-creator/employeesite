@@ -1,0 +1,71 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscomment>Press landing page</iscomment>
+<iscache type="relative" hour="24"/>
+<isdecorate template="content/content/pt_content-press">
+	<isinclude template="util/modules"/>
+	<div class="press">
+		<div class="press-main">
+			<div class="wrap">
+				<h1><isprint value="${dw.content.ContentMgr.getFolder('press').displayName}" encoding="off" /></h1>
+				<p class="press-intro"><isprint value="${dw.content.ContentMgr.getFolder('press').description}" encoding="off" /></p>
+				<iscontentasset aid="press-intro-text" />
+				<div class="search-result-options sorting-pagination top">
+					<div class="sortpages">
+						<div class="sort-by">
+							<form action="${URLUtils.url('Press-Show')}" method="post" name="Product-Sorting-Options"><fieldset>
+								<label for="sorting-options">${Resource.msg('global.paginginformation.sortby','locale',null)}</label>
+								<select id="sorting-options" <isif condition="${empty(pdict.sortingRuleID)}"> style="font-style:italic;"</isif> >
+									<isloop items="${pdict.SortingOptions}" var="SortingOption" status="Status">
+										<option value="${URLUtils.url('Press-Show','sorting',SortingOption.ID,'sz',pdict.CurrentHttpParameterMap.sz.value)}"<isif condition="${pdict.CurrentHttpParameterMap.sorting.value == SortingOption.ID}">selected</isif>>${SortingOption.displayName}</option>
+									</isloop>
+								</select>
+								<button class="sort-Go-Button simple-submit" type="submit" value="${Resource.msg('productsortingoptions.go','search',null)}">${Resource.msg('productsortingoptions.go','search',null)}</button>
+							</fieldset></form>
+						</div><!-- END: sortby -->
+						<ispaginginformation pagingmodel="${pdict.PagingModel}" pageurl="${URLUtils.url('Press-Show','sorting',pdict.CurrentHttpParameterMap.sorting.value)}" uniqueid="grid-paging-header"/>
+					</div>
+					
+					<ispagingbar pageurl="${URLUtils.url('Press-Show','sorting',pdict.CurrentHttpParameterMap.sorting.value)}" pagingmodel="${pdict.PagingModel}"/>
+				</div>
+					<ul class="press-grid">
+						<isloop items="${pdict.PagingModel.pageElements}" var="pressRelease" status="pressStatus">
+			                <li class="item-tile">
+			                	<div class="item-image">
+			                		<isif condition="${!empty(pressRelease.custom["press-image"])}">
+										<img alt="${pressRelease.name}" src="${pressRelease.custom["press-image"].getURL()}">
+									</isif>
+			                	</div>
+			                	<h3 class="item-name"><isprint value="${pressRelease.name}" encoding="off"></h3>
+								<isif condition="${!empty(pressRelease.custom["press-date-published"])}">
+									<span class="item-date"><isprint value="${pressRelease.custom["press-date-published"]}" encoding="off" /></span>
+								</isif>
+			                	<isif condition="${!empty(pressRelease.custom["press-pdf"])}">
+			                		<a class="item-link" href="${pressRelease.custom["press-pdf"].getURL()}" target="_blank">
+			                			<i class="fa fa-download"></i><isprint value="${Resource.msg('press.download', 'locale', null)}"/>
+			                		</a>
+								</isif>
+			                </li>	   
+				    	</isloop>
+					</ul>
+					<div class="search-result-options sorting-pagination bottom">
+					<div class="sortpages">
+						<div class="sort-by">
+							<form action="${URLUtils.url('Press-Show')}" method="post" name="Product-Sorting-Options"><fieldset>
+								<label for="sorting-options">${Resource.msg('global.paginginformation.sortby','locale',null)}</label>
+								<select id="sorting-options" <isif condition="${empty(pdict.sortingRuleID)}"> style="font-style:italic;"</isif> >
+									<isloop items="${pdict.SortingOptions}" var="SortingOption" status="Status">
+										<option value="${URLUtils.url('Press-Show','sorting',SortingOption.ID,'sz',pdict.CurrentHttpParameterMap.sz.value)}"<isif condition="${pdict.CurrentHttpParameterMap.sorting.value == SortingOption.ID}">selected</isif>>${SortingOption.displayName}</option>
+									</isloop>
+								</select>
+								<button class="sort-Go-Button simple-submit" type="submit" value="${Resource.msg('productsortingoptions.go','search',null)}">${Resource.msg('productsortingoptions.go','search',null)}</button>
+							</fieldset></form>
+						</div><!-- END: sortby -->
+						<ispaginginformation pagingmodel="${pdict.PagingModel}" pageurl="${URLUtils.url('Press-Show','sorting',pdict.CurrentHttpParameterMap.sorting.value)}" uniqueid="grid-paging-header"/>
+					</div>
+					
+					<ispagingbar pageurl="${URLUtils.url('Press-Show','sorting',pdict.CurrentHttpParameterMap.sorting.value)}" pagingmodel="${pdict.PagingModel}"/>
+				</div>
+			</div><!-- /press wrap -->
+		</div><!-- /press-main -->
+	</div><!-- /press -->
+</isdecorate>

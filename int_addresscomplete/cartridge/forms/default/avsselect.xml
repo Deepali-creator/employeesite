@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19" secure="true">
+	<list formid="suggest" binding="suggestions">
+		<field formid="text" binding="Text" type="string"/>
+		<field formid="desc" binding="Description" type="string"/>
+		<action formid="select" valid-form="false" />
+	</list>
+	<action formid="original" valid-form="false" />
+	<action formid="back" valid-form="false" />
+</form>

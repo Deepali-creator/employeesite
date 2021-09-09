@@ -1,0 +1,738 @@
+h1 {
+	&.page-title {
+		padding: 0.625em 0 0;
+	}
+
+}
+
+p {
+	.content-page & {
+		line-height: 1.6;
+	}
+
+	.page-description {
+		font-size: 1rem;
+		margin: 0 auto 2em;
+	}
+
+}
+
+.pt_content {
+	.content {
+		padding: 0 1em;
+	}
+
+}
+
+.content-asset {
+	.content-retailers,
+	.content-support {
+		ul {
+			margin: 1em 0 0;
+			padding: 0;
+
+			li {
+				list-style: none outside none;
+				margin-bottom: 0.625em;
+			}
+
+		}
+
+	}
+
+	.content-retailers {
+		.retailer-tile {
+			display: block;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+
+			img {
+				//width: 100%;
+			}
+
+		}
+
+	}
+
+}
+
+.content-page {
+	@extend %clearfix;
+	padding: 0 0 5em;
+
+	> .wrap {
+		margin: 0 auto;
+	}
+
+	.content-page_banner {
+		margin: 1em auto;
+	}
+
+	.primary-content {
+		border: 0 solid $cuisinart-gray;
+		border-width: 1px 0 0;
+		padding: 0;
+		width: 75%;
+
+		&.full-width {
+			width: 100%;
+			border: 0;
+		}
+
+		&.no-border {
+			border: 0;
+		}
+
+		&.section-bottom {
+			margin-top: 3em;
+		}
+
+	}
+
+	#secondary {
+		background: transparent;
+		padding: 0;
+		width: 25%;
+		//max-width: 14.0625em;
+		padding: 0 3% 5% 0;
+	}
+
+	.content-page_list {
+		margin: 0;
+
+		.content-page_item {
+			border: 0 solid $cuisinart-gray;
+			border-width: 0 0 1px 0;
+			margin: 0;
+
+			&:first-child {
+				border-width: 1px 0;
+			}
+
+			.content-page_link {
+				display: block;
+				padding: 1em 0.5em;
+				color: $cuisinart-gray-50;
+				font-weight: 400;
+			}
+
+			&.active, &:hover {
+				.content-page_link {
+					color: $black;
+				}
+
+			}
+
+		}
+
+	}
+
+	.product-line {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: space-around;
+		align-items: center;
+		width: 100%;
+		margin: 3em auto;
+	}
+
+}
+
+.content-support {
+	font-size: 0.875em;
+
+	p {
+		line-height: normal;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.icon {
+		display: inline-block;
+		width: 75px;
+		height: 75px;
+		float: left;
+		margin-right: 1em;
+		vertical-align: middle;
+
+		&.icon-phone {
+			background: url('../images/interface/icon_support1.jpg')0 0 no-repeat;
+		}
+
+		&.icon-cart {
+			background: url('../images/interface/icon_support2.jpg')0 0 no-repeat;
+		}
+
+		&.icon-walk {
+			background: url('../images/interface/icon_support3.jpg')0 0 no-repeat;
+		}
+
+	}
+
+	.service-info {
+		overflow: hidden;
+
+		p {
+			&:first-of-type {
+				margin-bottom: 0;
+			}
+
+		}
+
+	}
+
+	.service-info-left {
+		width: 35%;
+		float: left;
+		margin-top: 0.625em;
+	}
+
+	.service-info-right {
+		width: 62%;
+		padding-left: 3%;
+		float: right;
+		margin-top: 0.625em;
+	}
+
+	.map {
+		display: block;
+		display: none;
+		margin: 0.5em 0 0 5.5625em;
+	}
+
+	section {
+		border-top: 1px solid $cuisinart-gray;
+
+		&:first-of-type {
+			border: none;
+		}
+
+		p {
+			margin-top: 0;
+		}
+
+	}
+
+}
+
+.content-timeline {
+	margin: 1em 0;
+
+	.h4 {
+		font-weight: 400;
+		padding-right: 0.3125em;
+	}
+
+}
+
+.content-newsletter {
+	.email-signup {
+		width: 75%;
+
+		.input-text {
+			width: 65%;
+		}
+
+	}
+
+}
+
+ul.sitemap-links {
+	padding-left: 1.325em;
+
+	li {
+		list-style: disc outside none;
+	}
+
+	a {
+		color: $black;
+
+		&:hover {
+			color: $cuisinart-dark-gray;
+		}
+
+	}
+
+}
+
+/***** Press Content *****/
+.press {
+	.press-main {
+		padding: 50px 0;
+
+		h1 {
+			font-size: 2.5em;
+			text-transform: none;
+			margin-bottom: 5px;
+		}
+
+		.press-intro {
+			font-family: $sans-serif;
+			color: $black;
+			line-height: normal;
+			font-size: 18px;
+			font-weight: 400;
+			margin: 5px 0 30px;
+		}
+
+		.sorting-pagination {
+			&.top {
+				margin-top: 15px;
+				margin-bottom: 30px;
+			}
+
+			&.bottom {
+				margin-top: 30px;
+			}
+
+			.sort-by {
+				margin-left: 0;
+			}
+
+		}
+
+		.pagination {
+			margin-right: 10px;
+
+			.results-hits {
+				padding-right: 5px;
+			}
+
+		}
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.item-tile {
+			display: inline-block;
+			list-style: none outside none;
+			width: 23%;
+			margin: 0 0 5% 2%;
+			text-align: center;
+			vertical-align: top;
+
+			&:first-child,
+			&:nth-child(4n+1) {
+				margin-left: 0;
+			}
+
+			.item-image {
+				padding-bottom: 15px;
+				margin-bottom: 15px;
+				border-bottom: 1px solid $cuisinart-gray;
+			}
+
+			.item-name,
+			.item-date,
+			.item-link {
+				display: block;
+				width: 100%;
+				padding: 0 2%;
+			}
+
+			.item-name {
+				font-size: 18px;
+				color: $black;
+				font-style: italic;
+				margin: 10px 0;
+			}
+
+			.item-date {
+				font-size: 14px;
+				margin-bottom: 10px;
+			}
+
+			.item-link {
+				.fa {
+					margin-right: 5px;
+				}
+
+			}
+
+		}
+
+		.page-actions {
+			padding: 45px 0;
+			text-align: center;
+
+			a {
+				display: inline-block;
+				font-weight: normal;
+				text-transform: none;
+				padding: 0 15px;
+				text-decoration: none;
+
+				&.btn-back {
+					.fa {
+						margin-left: 0;
+						margin-right: 10px;
+					}
+
+				}
+
+				&.btn-view-more {
+					width: 200px;
+					color: $cuisinart-dark-gray;
+					background: $white;
+
+					&:hover {
+						background: $cuisinart-dark-gray;
+						color: $white;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+.video-wrapper {
+	position: relative;
+	width: 100%;
+	height: 0;
+	text-align: center;
+	padding-bottom: 56.25%;
+	overflow: hidden;
+
+	.video {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+}
+
+.content-page {
+	.section {
+		display: block;
+
+		&.top-section {
+			text-align: center;
+		}
+		&.bottom-section{
+			.content-row{
+				&:first-child{
+					padding-bottom:2.5em;
+				}
+			}
+		}
+
+	}
+
+	.banner {
+		margin-bottom: 2em;
+
+		img {
+			width: 100%;
+		}
+
+	}
+
+	.title {
+		font-size: 3rem;
+	}
+
+	.intro {
+		font-size: 1.375rem;
+		margin: 0 auto;
+	}
+
+	/*
+	.video-content {
+		max-width: 35rem;
+		margin: 0 auto;
+	}
+	*/
+
+	.content-row {
+		min-height: 10em;
+		padding: 1em 0;
+
+		> .wrap {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: row;
+			align-items: center;
+		}
+
+		&:nth-child(odd) {
+			background-color: $light-gray;
+		}
+
+		&:nth-child(even) {
+			> .wrap {
+				flex-direction: row-reverse;
+			}
+
+		}
+		&.content-video{
+			padding:3em 0 4em;
+		}
+		.content-row_image {
+			padding: 1em;
+
+			&.image-grid {
+				position: relative;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				align-content: space-between;
+				align-items: flex-end;
+
+				img {
+					width: 45%;
+					height: 45%;
+					margin-bottom: 10%;
+
+					&:nth-child(3),
+					&:nth-child(4) {
+						margin-bottom: 0;
+					}
+
+				}
+
+			}
+
+		}
+
+		.content-row_copy {
+			max-width: 60%;
+			line-height: 1.25;
+			padding: 0 1em;
+
+			h2,
+			.row-heading {
+				font-size: 2em;
+			}
+
+			p,
+			.row-copy {
+				display: inline-block;
+				font-size: 1.375rem;
+				margin-top: 0;
+				text-align: justify;
+			}
+
+		}
+
+		&.bottom {
+			background: transparent;
+
+			> .wrap {
+				flex-direction: column;
+			}
+
+			.content-row_image {
+				padding: 0;
+			}
+
+			.content-row_copy {
+				text-align: center;
+			}
+
+		}
+
+		.btn-green-view{
+			background-color: $black;
+			&:hover{
+				background-color: $cuisinart-gray-50;
+			}
+		}
+
+	}
+
+}
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+/* Mobile Lg/Sm */
+@media screen and (max-width:767px) {
+	.category-head-content {
+		.content-slot {
+			display: none;
+		}
+
+	}
+
+	.content-page {
+		.primary-content,
+		#secondary {
+			width: 100%;
+			max-width: 100%;
+		}
+
+		.content-page_list {
+			margin-top: 2em;
+		}
+
+		.product-line {
+			flex-wrap: wrap;
+
+			img {
+				width: 20%;
+			}
+
+		}
+
+	}
+
+	.content-support {
+		.service-info-left,
+		.service-info-right {
+			display: block;
+			width: 100%;
+			float: none;
+			margin: 0;
+			padding-left: 0;
+		}
+
+		.service-info-left {
+			margin-top: 0.5em;
+		}
+
+		.map {
+			margin: 1em 0;
+		}
+
+	}
+
+	/***** Press *****/
+	.press {
+		.press-main {
+			.item-tile {
+				width: 45%;
+				margin: 0 0 8% 5%;
+
+				&:nth-child(odd) {
+					margin-left: 0;
+				}
+
+				.item-image {
+					margin-bottom: 5px;
+					padding-bottom: 5px;
+				}
+
+				.item-name {
+					font-size: 0.875em;
+					margin: 5px 0;
+				}
+
+				.item-link {
+					font-size: 0.675em;
+				}
+
+			}
+
+		}
+
+	}
+
+	.content-page {
+		> .wrap {
+			margin: 0 auto;
+		}
+
+		.title {
+			font-size: 1.875rem;
+		}
+
+		.intro {
+			font-size: 1rem;
+		}
+
+		.content-row {
+			padding: 1em;
+
+			> .wrap {
+				flex-direction: column;
+			}
+
+			&:nth-child(even) {
+				> .wrap {
+					flex-direction: column;
+				}
+
+			}
+
+			.content-row_copy {
+				max-width: 100%;
+				text-align: center;
+
+				.row-heading {
+					font-size: 1.5rem;
+				}
+
+				.row-copy {
+					font-size: 1rem;
+				}
+
+			}
+
+			&.bottom {
+				padding-top: 3em;
+			}
+
+		}
+
+	}
+
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width:480px) and (max-width:767px) {
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width:479px) {
+	.content-page {
+		.content-about-us {
+			.image-wrap {
+				float: none;
+				margin: 2em auto;
+				text-align: center;
+			}
+
+			p {
+				clear: both;
+			}
+
+		}
+
+		.product-line {
+			flex-wrap: wrap;
+
+			img {
+				width: 40%;
+				margin-bottom: 10%;
+			}
+
+		}
+
+	}
+
+}
+
+/* Tablet Only */
+@media screen and (min-width:768px) and (max-width:959px) {
+	.category-head-content {
+		.content-slot {
+			display: none;
+		}
+
+	}
+
+}

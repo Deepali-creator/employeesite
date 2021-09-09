@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<iscontent type="text/html" charset="UTF-8"/>
+<subject>${pdict.MailSubject}</subject>
+<html><head></head>
+<body style="background-color: #fff;color: #333;font-family: "Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;font-size: 13px;font-size: 1.3rem;line-height: 1.4;margin: 0;">
+<h1 style="font-weight: normal;padding: 10px 0;font-size: 26px;color: #84BD00;">Orders Not Acknowledged by SAP</h1>
+<table width="50%" border="0" cellspacing="0" cellpadding="0" style="font-size: inherit;text-align: start;line-height: inherit;"><thead>
+	<th style="background-color: #eee;color: #54585a;font-weight: bold;padding: 3px 5px;white-space: nowrap;border-left: 1px solid #dadada;border-right: 1px solid #dadada;border-bottom: 1px solid #dadada;">Order Number</th>
+	<th style="background-color: #eee;color: #54585a;font-weight: bold;padding: 3px 5px;white-space: nowrap;text-align: left;border-right: 1px solid #dadada;border-bottom: 1px solid #dadada;">Order Date</th>
+</thead>
+<tbody><isloop items="${pdict.Orders}" var="order" status="loopstatus" >
+	<tr><td style="padding-right: 6px;padding-left: 6px;padding-top: 3px;padding-bottom: 3px;height: 18px;border-left: 1px solid #dadada;border-right: 1px solid #dadada;border-bottom: 1px solid #dadada;">${order.orderNo}</td>
+	<td style="padding-right: 6px;padding-left: 6px;padding-top: 3px;padding-bottom: 3px;height: 18px;border-right: 1px solid #dadada;border-bottom: 1px solid #dadada;">${dw.util.StringUtils.formatCalendar(new dw.util.Calendar(order.creationDate), "yyyy-MM-dd h:mm aa")}</td></tr>
+</isloop></tbody></table>
+</body></html>

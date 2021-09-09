@@ -1,0 +1,226 @@
+#wrapper {
+	border: 0;
+	left: 0;
+	margin: auto;
+	position: relative; 
+	width: 100%;
+	min-height:100%;
+	margin-bottom:-183px;
+	&:after{
+	  content:"";
+	  display:block;
+	  height:183px;
+	}
+	&.pt_categorylanding {
+		.primary-content {
+			padding-bottom: 0;
+			width:80%;
+		}
+		.refinements {
+			border-right: 0;
+			display: none;
+			width: 0;
+			display:block;
+			width:20%;
+		}
+	}
+	&.menu-active {
+		margin-left: 50%;
+		left: auto;
+		.wrap{
+		  padding:0;
+		  margin:0;
+		}
+	}
+}
+
+.wrap{
+  display:block;
+  max-width:960px;
+  width:100%;
+  margin:0 auto;
+  clear:both;
+  transition:margin 0.3s ease;
+  &:after{
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+  }
+}
+
+.primary-content {
+	width:70%;
+  border: none;
+  float: right;
+  margin-left: -1px;
+  padding: 0 0 20px;
+  position: relative;
+	.primary-focus & {
+		border: 0 none;
+		float: left;
+		margin: 0;
+		width: 76%;
+	}
+	.full-width & {
+		border: 0 none;
+		width: 100%;
+		padding: 0 0 50px;
+	}
+}
+
+#secondary {
+	/*temporary fix for auto-height bug */
+	overflow:hidden;
+  background: #fff;
+  float: left;
+  width: 28%;
+  position: relative;
+  margin-right: 15px;
+  padding: 9px;
+  font-size:1.1em;
+  nav {
+    padding-left: 10px;
+    padding-right: 10px;
+    a {
+      display: block;
+    }
+  }
+  .primary-focus & {
+    background: none;
+    border: none;
+    box-sizing: border-box;
+    float: left;
+    padding-left: 0.4rem;
+    width: 24%;
+  }
+}
+
+.secondary-content {
+	clear: both;
+}
+
+
+
+    
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  /* needed for sticky footer */
+  #wrapper{
+    margin-bottom: 0;
+    min-height:0;
+    /*overflow:hidden;*/
+    &:after{
+      height:auto;
+    }
+    &.pt_categorylanding{
+      .primary-content,
+      .refinements{
+        width:100%;
+      }
+    }
+  }
+  
+  .wrap{
+    width:100%;
+    max-width:320px;
+    padding:0 2%;
+  }
+  
+  .primary-content {
+    width: 100%;
+    border: 0;
+  }
+  
+  #secondary{
+    border: 0;
+    float: none;
+    font-size: 1.1em;
+    width: 100%;
+    background: $white;
+    &.nav{
+      .secondary-navigation{
+        text-align:center;
+        margin-top:2em;
+        padding-top:1em;
+        border-top:1px solid $gainsboro;
+      }
+    }
+    .account-nav-asset{
+      text-align:center;
+      padding:10px 15px;
+    }
+  }
+  
+  
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+  /* needed for sticky footer */
+  #wrapper{
+    margin-bottom: 0;
+    min-height:0;
+    &:after{
+      height:auto;
+    }
+  }
+  
+  .wrap{
+    width:100%;
+    max-width:480px;
+  }
+  
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+  /* needed for sticky footer */
+  #wrapper{
+    margin-bottom: 0;
+    min-height:0;
+    &:after{
+      height:0;
+    }
+  }
+  
+  .wrap{
+    width:100%;
+    max-width:760px;
+  }
+  
+  #secondary {
+    width: 28%;
+  }
+  .primary-content {
+    width: 70%;
+  }
+  .primary-focus {
+    .primary-content {
+      width: 540px;
+    }
+    #secondary {
+      width: 190px;
+    }
+  }
+  
+}
+
+

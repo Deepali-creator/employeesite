@@ -1,0 +1,249 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscomment>In the product pipeline, if a product was not found for the selected attributes, we need to refresh the ProductVariationModel using the default selected variant</iscomment>
+
+<isset name="isQuickView" value="${pdict.CurrentHttpParameterMap.source.stringValue == 'quickview' || pdict.CurrentHttpParameterMap.source.stringValue == 'cart' || pdict.CurrentHttpParameterMap.source.stringValue == 'giftregistry' || pdict.CurrentHttpParameterMap.source.stringValue == 'wishlist'}" scope="page"/>
+
+<iscomment>
+ /* Currently not being used by BabylissPRO UK */
+<isif condition="${isQuickView && pdict.CurrentHttpParameterMap.source.stringValue != 'cart'}">
+	<div class="quickview-nav">
+		<button class="quickview-prev">< ${Resource.msg('global.previous', 'locale', null)}</button>
+		<button class="quickview-next">${Resource.msg('global.next', 'locale', null)} ></button>
+	</div>
+</isif>
+</iscomment>
+
+<div class="product-col-1 clearfix">
+    <div class="product-image-container">
+    <div class="mobile-images-block mobile-only flexslider"><ul class="slides"></ul></div>
+    <isinclude template="product/components/productimages"/>
+</div>
+</div>
+
+<div class="product-col-2  product-detail">
+	<h1 class="product-name" itemprop="name"><isprint value="${pdict.Product.name}"/></h1>
+	<div id="product-content">
+		<isinclude template="product/productcontent"/>
+	</div>
+</div>
+<div class="info-tabs product-detail">
+<isif condition="${!isQuickView}">
+	<iscomment><button class="print-page">${Resource.msg('global.print', 'locale', null)}</button></iscomment>
+	<h2 class="visually-hidden">Additional Information</h2>
+	<isset name="vags" value="${pam.getVisibleAttributeGroups()}" scope="page"/>
+	<isset name="showAttributes" value="${false}" scope="page"/>
+	
+	<iscomment> 	
+	<isloop items="${vags}" var="AttributeGroup" status="loopstatus">
+			<isif condition="${AttributeGroup.ID != 'mainAttributes'}">
+				<isset name="showAttributes" value="${true}" scope="page"/>
+			</isif>
+	</isloop>
+	</iscomment>
+
+	<div class="product-tabs desktop-only">
+		<ul class="tabs-menu">
+			<isif condition="${! empty(pdict.Product.custom.tabDetails) && pdict.Product.custom.tabDetails.markup.length > 0}">
+				<li><a href="#tab1" data-href="#tab1">${Resource.msg('product.tab.features', 'product', null)}</a>
+				</li>
+			</isif>
+			<isif condition="${! empty(pdict.Product.longDescription) && pdict.Product.longDescription.markup.length > 0}">
+				<li><a href="#tab2" data-href="#tab2">${Resource.msg('product.tab.description', 'product', null)}</a>
+				</li>
+			</isif>
+			
+			<isif condition="${! empty(pdict.Product.custom.tvAdverts) && pdict.Product.custom.tvAdverts.length > 0}">
+				<li><a href="#tab3" data-href="#tab3">${Resource.msg('product.tab.tvad', 'product', null)}</a>
+				</li>
+			</isif>
+			<isif condition="${! empty(pdict.Product.custom.qrVideos) && pdict.Product.custom.qrVideos.length > 0}">
+				<li><a href="#tab4" data-href="#tab4">${Resource.msg('product.tab.howto', 'product', null)}</a>
+				</li>
+			</isif>
+			<isif condition="${! empty(pdict.Product.custom.gettheLook) && pdict.Product.custom.gettheLook.length > 0}">
+				<li><a href="#tab5" data-href="#tab5">${Resource.msg('product.tab.getthelook', 'product', null)}</a>
+				</li>
+			</isif>
+			<isif condition="${! empty(pdict.Product.custom.tabDescription) && pdict.Product.custom.tabDescription.markup.length > 0}">
+				<li><a href="#tab6" data-href="#tab6">${Resource.msg('product.tab.toptips', 'product', null)}</a>
+				</li>
+			</isif>
+			
+			
+			<isif condition="${showAttributes}">
+				<li><a href="#tab7" data-href="#tab7">${Resource.msg('product.tab.attributes', 'product', null)}</a></li>
+			</isif>
+			
+		</ul>
+
+		<isif condition="${! empty(pdict.Product.custom.tabDetails) && pdict.Product.custom.tabDetails.markup.length > 0}">
+			<div id="tab1" class="tab-content">
+				<isprint value="${pdict.Product.custom.tabDetails}" encoding="off"/>
+				
+			</div>
+		</isif>
+		<isif condition="${! empty(pdict.Product.longDescription) && pdict.Product.longDescription.markup.length > 0}">
+			<div id="tab2" class="tab-content" itemprop="description">
+				<isprint value="${pdict.Product.longDescription}" encoding="off"/>
+				<isif condition="${!empty(pdict.Product.custom.informationBooklet) && pdict.Product.custom.informationBooklet.length > 0}">
+					<isscript>
+						var filePath = URLUtils.staticURL(URLUtils.CONTEXT_LIBRARY, "", "/information-booklets/");
+					</isscript>
+					<isset name="downloadURL" value="${filePath+pdict.Product.custom.informationBooklet}" scope="page" />
+					<div>
+						<a href="${downloadURL}" class="button-download-manual" target="_blank">
+							<span class="fa fa-download">&nbsp;</span>
+							<span class="download-label"><isprint value="${Resource.msg('product.booklet','product',null)}"/> - </span>
+							<span class="download-product"><isprint value="${pdict.Product.name}"/>[<isprint value="${pdict.Product.custom.informationBookletSize}" encoding="off"/>]</span>
+						</a>
+					</div>
+				</isif>
+			</div>
+		</isif>
+		
+		<isif condition="${! empty(pdict.Product.custom.tvAdverts) && pdict.Product.custom.tvAdverts.length > 0}">
+			<div id="tab3" class="tab-content tab-video">
+				<isloop items="${pdict.Product.custom.tvAdverts}" var="tvAd" status="loopstatus">
+					<div class="vid-container">
+						<iframe width="100%" height="100%" src="<isprint value="${tvAd}" encoding="off"/>" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</isloop>
+			</div>
+		</isif>
+		<isif condition="${! empty(pdict.Product.custom.qrVideos) && pdict.Product.custom.qrVideos.length > 0}">
+			<div id="tab4" class="tab-content tab-video">
+				<isloop items="${pdict.Product.custom.qrVideos}" var="qrVid" status="loopstatus">
+					<div class="vid-container">
+						<iframe width="100%" height="100%" src="<isprint value="${qrVid}" encoding="off"/>" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</isloop>
+			</div>
+		</isif>
+		<isif condition="${! empty(pdict.Product.custom.gettheLook) && pdict.Product.custom.gettheLook.length > 0}">
+			<div id="tab5" class="tab-content tab-video">
+				<isloop items="${pdict.Product.custom.gettheLook}" var="gtlVid" status="loopstatus">
+					<div class="vid-container">
+						<iframe width="100%" height="100%" src="<isprint value="${gtlVid}" encoding="off"/>" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</isloop>
+			</div>
+		</isif>
+		<isif condition="${! empty(pdict.Product.custom.tabDescription) && pdict.Product.custom.tabDescription.markup.length > 0}">
+			<div id="tab6" class="tab-content">
+				<isprint value="${pdict.Product.custom.tabDescription}" encoding="off"/>
+				
+			</div>
+		</isif>
+		<isif condition="${showAttributes}">
+			<div id="tab7" class="tab-content">
+				<isloop items="${vags}" var="AttributeGroup" status="loopstatus">
+					<isif condition="${AttributeGroup.ID != 'mainAttributes'}">
+						<isset name="group" value="${AttributeGroup}" scope="page"/>
+						<h3><isprint value="${group.getDisplayName()}"/></h3>
+						<isinclude template="product/components/group"/>
+					</isif>
+				</isloop>
+			</div>
+		</isif>
+		<iscomment>
+		<div id="tab8" class="tab-content">
+			<isinclude template="product/components/reviews"/>
+		</div>
+		</iscomment>
+	</div>
+	
+	<div class="product-tabs-mobile mobile-only">
+		<ul class="tabs-menu">
+			
+			<isif condition="${! empty(pdict.Product.custom.tabDetails) && pdict.Product.custom.tabDetails.markup.length > 0}">
+				<li><a href="#tab1">${Resource.msg('product.tab.features', 'product', null)}</a>
+					<div id="tab1" class="tab-content">
+						<isprint value="${pdict.Product.custom.tabDetails}" encoding="off"/>
+					</div>
+				</li>
+			</isif>
+			<isif condition="${! empty(pdict.Product.longDescription) && pdict.Product.longDescription.markup.length > 0}">
+				<li><a href="#tab2">${Resource.msg('product.tab.description', 'product', null)}</a> 
+					<div id="tab2" class="tab-content" itemprop="description">
+						<isprint value="${pdict.Product.longDescription}" encoding="off"/>
+						
+						<isif condition="${!empty(pdict.Product.custom.informationBooklet) && pdict.Product.custom.informationBooklet.length > 0}">
+							<isscript>
+								var filePath = URLUtils.staticURL(URLUtils.CONTEXT_LIBRARY, "", "/information-booklets/");
+							</isscript>
+							<isset name="downloadURL" value="${filePath+pdict.Product.custom.informationBooklet}" scope="page" />
+							<div>
+								<a href="${downloadURL}" class="button-download-manual" target="_blank"> 
+									<span class="fa fa-download">&nbsp;</span>
+									<span class="download-label"><isprint value="${Resource.msg('product.booklet','product',null)}"/> - </span>
+									<span class="download-product"><isprint value="${pdict.Product.name}"/>[<isprint value="${pdict.Product.custom.informationBookletSize}" encoding="off"/>]</span>
+								</a>
+							</div>
+						</isif>
+					</div>					
+				</li>
+			</isif>
+			<isif condition="${! empty(pdict.Product.custom.tvAdverts) && pdict.Product.custom.tvAdverts.length > 0}">
+				<li><a href="#tab3">${Resource.msg('product.tab.tvad', 'product', null)}</a>
+					<div id="tab3" class="tab-content tab-video">
+						<isloop items="${pdict.Product.custom.tvAdverts}" var="tvAd" status="loopstatus">
+							<div class="vid-container">
+								<iframe width="100%" height="100%" src="<isprint value="${tvAd}" encoding="off"/>" frameborder="0" allowfullscreen></iframe>
+							</div>
+						</isloop>
+					</div>
+				</li>
+			</isif>
+			<isif condition="${! empty(pdict.Product.custom.qrVideos) && pdict.Product.custom.qrVideos.length > 0}">
+				<li><a href="#tab4">${Resource.msg('product.tab.howto', 'product', null)}</a>
+					<div id="tab4" class="tab-content tab-video">
+						<isloop items="${pdict.Product.custom.qrVideos}" var="qrVid" status="loopstatus">
+							<div class="vid-container">
+								<iframe width="100%" height="100%" src="<isprint value="${qrVid}" encoding="off"/>" frameborder="0" allowfullscreen></iframe>
+							</div>
+						</isloop>
+					</div>
+				</li>
+			</isif>
+			<isif condition="${! empty(pdict.Product.custom.gettheLook) && pdict.Product.custom.gettheLook.length > 0}">
+				<li><a href="#tab5">${Resource.msg('product.tab.getthelook', 'product', null)}</a>
+					<div id="tab5" class="tab-content tab-video">
+						<isloop items="${pdict.Product.custom.gettheLook}" var="gtlVid" status="loopstatus">
+							<div class="vid-container">
+								<iframe width="100%" height="100%" src="<isprint value="${gtlVid}" encoding="off"/>" frameborder="0" allowfullscreen></iframe>
+							</div>
+						</isloop>
+					</div>
+				</li>
+			</isif>
+			<isif condition="${! empty(pdict.Product.custom.tabDescription) && pdict.Product.custom.tabDescription.markup.length > 0}">
+				<li><a href="#tab6">${Resource.msg('product.tab.toptips', 'product', null)}</a>
+					<div id="tab6" class="tab-content">
+						<isprint value="${pdict.Product.custom.tabDescription}" encoding="off"/>
+					</div>
+				</li>
+			</isif>
+			<isif condition="${showAttributes}">
+				<li><a href="#tab7">${Resource.msg('product.tab.attributes', 'product', null)}</a>
+					<div id="tab7" class="tab-content">
+						<isloop items="${vags}" var="AttributeGroup" status="loopstatus">
+							<isif condition="${AttributeGroup.ID != 'mainAttributes'}">
+								<isset name="group" value="${AttributeGroup}" scope="page"/>
+								<h3><isprint value="${group.getDisplayName()}"/></h3>
+								<isinclude template="product/components/group"/>
+							</isif>
+						</isloop>
+					</div>
+				</li>
+			</isif>
+			<iscomment>
+			<li><a href="#tab4">${Resource.msg('product.tab.reviews', 'product', null)}</a>
+				<div id="tab4" class="tab-content">
+					<isinclude template="product/components/reviews"/>
+				</div>
+			</li>
+			</iscomment>
+		</ul>
+	</div>
+</isif>
+</div>

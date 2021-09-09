@@ -1,0 +1,49 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="content/content/pt_cs-content">
+<isinclude template="util/modules"/>
+
+<isscript>
+	var parentFolder = pdict.Content.classificationFolder.getID();
+	var pages : Collection = dw.content.ContentMgr.getFolder(parentFolder).getOnlineContent();
+	var	contentName = pdict.Content.name;
+</isscript>
+
+<div class="content-page">
+
+	<div class="wrap">
+		<isif condition="${!empty(pdict.Content.custom.featuredStoryBanner)}">
+			<div class="content-page_banner">
+				<img src="${pdict.Content.custom.featuredStoryBanner.getURL()}" />
+			</div>
+		</isif>
+
+		<div id="secondary" class="nav ">
+			<ul class="content-page_list">
+				<isloop items="${pages}" var="page" status="pageStatus">
+					<isset name="pageID" value="${page.getID()}" scope="page" />
+					<li class="content-page_item <isif condition="${page.name == contentName}">active</isif> ">
+						<a class="content-page_link" href="${dw.web.URLUtils.url('Page-Show','cid', pageID)}" title="${page.name}" >
+							<h4 class="content-page_name"><isprint value="${page.name}" encoding="off" /></h4>
+						</a>
+					</li>
+				</isloop>
+			</ul>
+		</div>
+
+		<div id="primary" class="primary-content <isif condition="${empty(pdict.Content.custom.featuredStoryBanner)}">no-border</isif>">
+			<isprint value="${pdict.Content.custom.body}" encoding="off" />
+		</div>
+
+	</div><!--/wrap -->
+	<div class="primary-content section-bottom full-width <isif condition="${empty(pdict.Content.custom.featuredStoryBanner)}">no-border</isif>">
+		<isloop items="${pdict.Content.custom.contentSection}" var="row" status="rowStatus">
+			<section class="content-row">
+				<div class="wrap">
+					<isprint value="${dw.content.ContentMgr.getContent(row).custom.body}" encoding="off" />
+				</div>
+			</section>
+		</isloop>
+	</div>
+</div>
+
+</isdecorate>

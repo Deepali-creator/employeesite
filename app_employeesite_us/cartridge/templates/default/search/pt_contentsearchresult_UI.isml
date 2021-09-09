@@ -1,0 +1,21 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isscript>
+	var folder : dw.content.Folder = null;
+	var folderCustomCSS = [];
+
+	// get folder from search context
+	if( !empty(pdict.ContentSearchResult) )	{
+		folder = pdict.ContentSearchResult.folder;
+
+		if (folder != null)	{
+			while( folder.parent != null ) {
+				if( folder.online && ('customCSSFile' in folder.custom) && !empty(folder.custom.customCSSFile))	{
+					folderCustomCSS.push(folder.custom.customCSSFile.getURL().toString());
+				}
+				folder = folder.parent;
+			}
+		}
+	}
+	var ojson = JSON.stringify(folderCustomCSS);
+</isscript>
+

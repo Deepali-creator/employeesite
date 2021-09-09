@@ -1,0 +1,191 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="content/content/pt_recipe-content-fullwidth">
+<isscript>importScript("util/ProductImageSO.ds");</isscript>
+<div class="recipe-main">
+	<button class="button-back" onclick="window.history.back()"><i class="fa fa-chevron-left"></i> <span>${Resource.msg('content.recipe.back', 'content', null)}</span></button>
+	<div class="recipe-top">
+		<div class="recipe-col-1">
+		    <div class="recipe-image-container">
+		    	<iscomment>
+		    	<div class="mobile-images-block flexslider"><ul class="slides"></ul></div>
+		      	<div id="thumbnails" class="recipe-thumbnails">
+		      		<div class="thumbs-wrap">
+				      	<ul class="thumbs">
+				      	<isloop items="${pdict.Content.custom["recipeImage"]}" var="recipeImages" status="recipeImgStatus">
+							<isset name="recipeImgUrl" value="${pdict.Content.custom.recipeImage[recipeImgStatus.index]}" scope="page" />
+							<li class='thumb <isif condition="${recipeImgStatus.first}" >selected </isif>'>
+								<a href='${"#"}'>
+									<img src="${URLUtils.staticURL(URLUtils.CONTEXT_LIBRARY, '', recipeImgUrl)}" alt="${pdict.Content.name}" />
+								</a>
+							</li>
+						</isloop>
+				      	</ul>
+			      	</div>
+		      	</div>
+		      	</iscomment>
+
+		      <div class="recipe-primary-image">
+		      	<img src="${URLUtils.staticURL(URLUtils.CONTEXT_LIBRARY, '', pdict.Content.custom.recipeImage[0])}" alt="${pdict.Content.name}" />
+
+		      	<isif condition="${!empty(pdict.Content.custom.recipeVideo)}">
+					<a class="recipe-video-button" data-url="${pdict.Content.custom.recipeVideo}" href="${'#'}" title="${Resource.msg('content.recipe.viewvideo', 'content', null)}" /><i class="fa fa-play-circle" ></i> </a>
+				</isif>
+		      </div>
+			      <iscomment>
+			    	<isif condition="${!empty(pdict.Content.custom["recipeImage"]) && pdict.Content.custom["recipeImage"].length > 0}">
+						<img src="${pdict.Content.custom.recipeImage[0].getURL()}" alt="${pdict.Content.name}"/>
+					<iselse>
+						<img class="placeholder-image" src="${URLUtils.staticURL('/images/noimagelarge.png')}" />
+					</isif>
+				  </iscomment>
+			</div>
+
+		</div>
+		<div class="recipe-col-2">
+			<h1 class="recipe-name" itemprop="name"><isprint value="${pdict.Content.name}"/></h1>
+			<div class="recipe-stats">
+				<isif condition="${!empty(pdict.Content.custom.recipeServings)}">
+					<span class="recipe-servings">
+						<iscomment>
+							<span class="icon"><i class="fa fa-spoon"></i></span>
+						</iscomment>
+						<div>
+							<span class="label"><isprint value="${Resource.msg('content.recipe.servings', 'content', null)}"/></span>
+							<span class="value"><isprint value="${pdict.Content.custom.recipeServings}" /></span>
+						</div>
+					</span>
+				</isif>
+				<iscomment>
+				<isif condition="${!empty(pdict.Content.custom.recipePrepTime)}">
+					<span class="recipe-prepTime">
+						<span class="icon"><i class="fa fa-clock-o"></i></span>
+						<div>
+							<span class="label"><isprint value="${Resource.msg('content.recipe.prepTime', 'content', null)}"/></span> <br/><isprint value="${pdict.Content.custom.recipePrepTime}" />
+						</div>
+					</span>
+				</isif>
+				<isif condition="${!empty(pdict.Content.custom.recipeCookTime)}">
+					<span class="recipe-cookTime">
+						<span class="icon"><i class="fa fa-clock-o"></i></span>
+						<div>
+							<span class="label"><isprint value="${Resource.msg('content.recipe.cookTime', 'content', null)}"/></span> <br/><isprint value="${pdict.Content.custom.recipeCookTime}" />
+						</div>
+					</span>
+				</isif>
+				</iscomment>
+			</div>
+			<p class="recipe-desc"><isprint value="${pdict.Content.description}" encoding="off"/></p>
+
+			<div class="recipe-actions clearfix">
+				<a class="button print-button print-page" href="${'#'}"><isprint value="${Resource.msg('content.recipe.printrecipe', 'content', null)}"/></a>
+				<a class="button button-text email-button send-to-friend" href="${URLUtils.https('SendToFriend-Start', 'cid', pdict.Content.ID, 'source', 'recipedetail')}"><isprint value="${Resource.msg('content.recipe.emailrecipe', 'content', null)}"/></a>
+				<div class="socialsharing">
+					<isscript>
+						var escapedUrl = pdict.url ? encodeURIComponent(pdict.url): '';
+						var escapedTitle = pdict.title ? encodeURIComponent(pdict.title) : '';
+					</isscript>
+					<ul class="social-links">
+						<li>
+							<a class="social-link twitter" href="https://twitter.com/intent/tweet/?url=${escapedUrl}&text=${escapedTitle}" title="${Resource.msg('global.socialshare.twitter', 'locale', null)}" target="_blank"><i class="fa fa-twitter"></i></a>
+						</li>
+						<li>
+							<a class="social-link facebook" data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u=${escapedUrl}" title="${Resource.msg('global.socialshare.facebook', 'locale', null)}" target="_blank"><i class="fa fa-facebook"></i></a>
+						</li>
+					</ul>
+					</a>
+				</div>
+			</div>
+
+			<iscomment>
+			<div class="recipe-related-products">
+				<isif condition="${!empty(pdict.Content.custom.recipeRelatedProducts)}">
+					<span class="label">Related Products</span>
+					<ul>
+						<isloop items="${pdict.Content.custom["recipeRelatedProducts"]}" var="relatedProduct" status="recipeRelatedStatus">
+							<isset name="recipeRelatedUrl" value="${pdict.Content.custom.recipeRelatedProducts[recipeRelatedStatus.index]}" scope="page" />
+							<li>
+								<a href='${"#"}'>
+									<isprint value="recipeRelatedUrl" />
+								</a>
+							</li>
+						</isloop>
+					</ul>
+					<span class="recipe-cookTime">
+						<span class="icon"><i class="fa fa-clock-o"></i></span>
+						<div>
+							<span class="label"><isprint value="${Resource.msg('content.recipe.cookTime', 'content', null)}"/></span> <br/><isprint value="${pdict.Content.custom.recipeCookTime}" />
+						</div>
+					</span>
+				</isif>
+			</div>
+			</iscomment>
+		</div>
+	</div>
+	<div class="recipe-bottom">
+		<div class="recipe-ingredients">
+			<isif condition="${!empty(pdict.Content.custom.recipeIngredients)}">
+				<h3 class="section-title"><isprint value="${Resource.msg('content.recipe.ingredients', 'content', null)}"/></h3>
+				<isprint value="${pdict.Content.custom.recipeIngredients}" encoding="off" />
+			</isif>
+		</div>
+		<div class="recipe-instructions">
+			<isif condition="${!empty(pdict.Content.custom.recipeInstructions)}">
+				<h3 class="section-title"><isprint value="${Resource.msg('content.recipe.directions', 'content', null)}"/>:</h3>
+				<isprint value="${pdict.Content.custom.recipeInstructions}" encoding="off" />
+			</isif>
+		</div>
+		<isif condition="${!empty(pdict.Content.custom.recipeRelatedProducts)}">
+			<div class="compatible-products">
+				<h3 class="section-title"><isprint value="${Resource.msg('content.recipe.compatibleproducts', 'content', null)}" encoding="off" /></h3>
+				<ul class="search-result-items">
+					<isloop items="${pdict.Content.custom["recipeRelatedProducts"]}" var="relatedProduct" status="recipeRelatedStatus">
+						<isset name="recipeRelatedSku" value="${pdict.Content.custom.recipeRelatedProducts[recipeRelatedStatus.index]}" scope="page" />
+						<isset name="model" value="${dw.catalog.ProductMgr.getProduct(relatedProduct)}" scope="page" />
+						<isset name="modelImgMedium" value="${new ProductImage('medium', model, 0 ).getURL()}" scope="page" />
+						<isset name="modelImgHiRes" value="${new ProductImage('hi-res', model, 0 ).getURL()}" scope="page" />
+						<isif condition="${model.onlineFlag}">
+							<li class="grid-tile">
+								<div class="product-tile">
+									<div class="product-image">
+										<a href="${URLUtils.url('Product-Show', 'pid', recipeRelatedSku)}" class="thumb-link">
+											<isif condition="${modelImgMedium != null}">
+												<img src="${modelImgMedium}" alt="${model.name}" />
+											<iselse/>
+												<img src="${modelImgHiRes}" alt="${model.name}"  />
+											</isif>
+										</a>
+									</div>
+									<div class="product-name">
+										<a href="${URLUtils.url('Product-Show', 'pid', recipeRelatedSku)}">
+											<isprint value="${model.name}" encoding="off" />
+										</a>
+									</div>
+								</div>
+							</li>
+						</isif>
+					</isloop>
+				</ul>
+			</div>
+		</isif>
+		<iscomment>
+		<div class="recipe-actions clearfix mobile-only">
+			<a class="button print-button print-page" href="${'#'}"><i class="fa fa-print"></i> <isprint value="${Resource.msg('content.recipe.printrecipe', 'content', null)}"/></a>
+			<a class="button button-text email-button" href="${'#'}"><i class="fa fa-envelope"></i><isprint value="${Resource.msg('content.recipe.emailrecipe', 'content', null)}"/></a>
+			<div class="socialsharing">
+				<isscript>
+					var escapedUrl = pdict.url ? encodeURIComponent(pdict.url): '';
+					var escapedTitle = pdict.title ? encodeURIComponent(pdict.title) : '';
+				</isscript>
+				<a class="share-icon" title="${Resource.msg('global.socialshare.facebook.label', 'locale', null)}" data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u=${escapedUrl}" target="_blank"><i class="fa fa-facebook"></i><span class="visually-hidden">${Resource.msg('global.socialshare.facebook', 'locale', null)}</span></a>
+
+				<a class="share-icon" title="${Resource.msg('global.socialshare.twitter.label', 'locale', null)}" data-share="twitter" href="https://twitter.com/intent/tweet/?url=${escapedUrl}&text=${escapedTitle}" target="_blank"><i class="fa fa-twitter"></i><span class="visually-hidden">${Resource.msg('global.socialshare.twitter', 'locale', null)}</span></a>
+
+				<a class="share-icon" title="${Resource.msg('global.socialshare.pinterest.label', 'locale', null)}" data-share="pinterest" href="https://www.pinterest.com/pin/create/button/?url=${escapedUrl}&description=${escapedTitle}" target="_blank"><i class="fa fa-pinterest"></i><span class="visually-hidden">${Resource.msg('global.socialshare.pinterest', 'locale', null)}</span></a>
+			</div>
+		</div><!--/recipe-actions-mobile -->
+		</iscomment>
+
+	</div><!--/recipe-bottom -->
+
+</div><!-- /recipe-main -->
+</isdecorate>

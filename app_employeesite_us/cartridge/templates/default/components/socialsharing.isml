@@ -1,0 +1,11 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isscript>
+	var escapedUrl = pdict.url ? encodeURIComponent(pdict.url): '';
+	var escapedTitle = pdict.title ? encodeURIComponent(pdict.title) : '';
+</isscript>
+<label>${Resource.msg('global.share', 'locale', null)}:</label>
+<a class="share-icon facebook" title="${Resource.msg('global.socialshare.facebook.label', 'locale', null)}" data-share="facebook" href="https://www.facebook.com/sharer/sharer.php?u=${escapedUrl}" target="_blank" onclick="javascript:window.open(this.href + window.location.href ,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=380,width=550');return false;"><i class="fa fa-facebook"></i><span class="visually-hidden">${Resource.msg('global.socialshare.facebook', 'locale', null)}</span></a>
+<a class="share-icon twitter" title="${Resource.msg('global.socialshare.twitter.label', 'locale', null)}" data-share="twitter" href="https://twitter.com/intent/tweet/?url=${escapedUrl}&text=${escapedTitle}" target="_blank" onclick="javascript:window.open(this.href + window.location.href ,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=253,width=500');return false;"><i class="fa fa-twitter"></i><span class="visually-hidden">${Resource.msg('global.socialshare.twitter', 'locale', null)}</span></a>
+<a class="share-icon google" title="${Resource.msg('global.socialshare.googleplus.label', 'locale', null)}" data-share="googleplus" href="https://plus.google.com/share?url=${escapedUrl}" target="_blank" onclick="javascript:window.open(this.href + window.location.href ,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=380,width=550');return false;"><i class="fa fa-google-plus"></i><span class="visually-hidden">${Resource.msg('global.socialshare.googleplus', 'locale', null)}</span></a>
+<a class="share-icon pinterest" title="${Resource.msg('global.socialshare.pinterest.label', 'locale', null)}" data-share="pinterest" href="https://www.pinterest.com/pin/create/button/?url=${escapedUrl}&description=${escapedTitle}" target="_blank" onclick="javascript:window.open(this.href + window.location.href ,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=690,width=750');return false;"><i class="fa fa-pinterest-p"></i><span class="visually-hidden">${Resource.msg('global.socialshare.pinterest', 'locale', null)}</span></a>
+</a>

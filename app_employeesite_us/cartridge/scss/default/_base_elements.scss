@@ -1,0 +1,218 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body{
+  height:100%;
+}
+
+body {
+	color: $black;
+	font-family: $sans-serif;
+	font-size: 16px;
+	background: $light-gray;
+}
+
+a {
+  color: $black;
+  text-decoration:none;
+  overflow:hidden;
+  outline:none;
+  transition: color .3s ease;
+  &:hover {
+    color: $cuisinart-gray-50;
+    text-decoration:none;
+  }
+  &:focus,
+  &:active{
+    outline:none;
+  }
+}
+
+p {
+	.content-asset & {
+		line-height: 1.6em;
+		margin: 1em 0;
+	}
+}
+
+ul,
+ol{
+	.content-asset &{
+		line-height:1.6em;
+		padding:0 1.5em;
+	}
+}
+
+ul{
+  margin:0;
+  padding:0;
+  li{
+    list-style:none outside none;
+    .content-asset & {
+    	list-style:square outside none;
+    }
+  }
+}
+
+ol{
+  &.lower-alpha{
+    list-style: lower-alpha;
+    li{
+      list-style: inherit !important;
+    }
+  }
+  &.lower-roman{
+    list-style: lower-roman;
+    li{
+      list-style: inherit !important;
+    }
+  }
+  .content-asset & {
+  	li {
+		list-style: decimal outside none;
+	}
+  }
+}
+
+fieldset {
+	border: 0 none;
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	width: 100%;
+}
+
+th {
+	text-align: left;
+}
+
+td {
+	padding: 1em;
+	vertical-align: top;
+}
+
+#main {
+	width: 100%;
+}
+
+address{
+	.content-asset & {
+		margin:1em 0;
+	}
+}
+button,
+.button,
+.buttonstyle,
+input[type="button"] {
+  position:relative;
+  border:none;
+	color: $white;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 400;
+	vertical-align:middle;
+	padding: 0.3125em 0.75em;
+	text-align: center;
+	transition: all 0.3s ease;
+  	background: $black;
+  	border:2px solid $black;
+  	&:hover {
+		text-decoration:none;
+		color: $black;
+		background: $white;
+	}
+	&:focus,
+	&:active{
+	  outline:none;
+	}
+	&.ui-dialog-titlebar-close,
+	&.ui-dialog-titlebar-close:hover{
+	  background: transparent;
+	}
+	&[disabled],
+	&.disabled {
+		background-color: $very-light-gray;
+		border-color: $very-light-gray;
+		color: $white;
+		opacity: 0.5;
+	}
+	i {
+	  display:inline-block;
+	  vertical-align:middle;
+    margin-right:0.3125em;
+	}
+	&.button-secondary{
+	  border-color: $cuisinart-dark-gray;
+	  .category-search & {
+	  	border-color: rgba(0,0,0,0);
+	  }
+	}
+	&.viewMore {
+		background-color: $black;
+		border-color: $black;
+		color: $white;
+		&:hover {
+			background-color: $cuisinart-gray-50;
+			border-color: $cuisinart-gray-50;
+			color: $white;
+		}
+	}
+	&.menu-toggle{
+	  border:none;
+	  box-shadow:none;
+	}
+}
+
+.button-text {
+    margin:0;
+    padding: 0;
+    background: none;
+    color: $black;
+    text-transform: none;
+    box-shadow:none;
+    border:none;
+    font-size:1em;
+	&:hover {
+		color: $cuisinart-gray-50;
+		text-decoration: underline;
+		background:none;
+	}
+}
+
+.button-full-width {
+	padding-left: 0;
+	padding-right: 0;
+	text-align: center;
+	width: 100%;
+}
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  img {
+    max-width: 100%;
+  }
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}

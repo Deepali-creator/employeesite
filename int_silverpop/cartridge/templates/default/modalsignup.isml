@@ -1,0 +1,42 @@
+<!--- TEMPLATENAME: modalsignup.isml --->
+<isinclude template="util/modules"/>
+<div class="newsletter-signup">
+	<h2><isprint value="${Resource.msg('newsletter.heading','account',null)}"/></h2>
+	<form method="post" action="${URLUtils.continueURL()}">
+		<isinputfield formfield="${pdict.CurrentForms.newsletterform.firstName}" type="input" required="true"/>
+		<isinputfield formfield="${pdict.CurrentForms.newsletterform.lastName}" type="input" required="true"/>
+		<isinputfield formfield="${pdict.CurrentForms.newsletterform.emailAddress}" type="email" required="true"/>
+	
+		<label><isprint value="${Resource.msg(pdict.CurrentForms.newsletterform.contacttype.label,'forms',null)}"/></label>
+		<isloop items="${pdict.CurrentForms.newsletterform.contacttype.options}" var="contacttype">
+			<div class="form-row label-inline">
+				<input id="${contacttype.optionId}" name="${pdict.CurrentForms.newsletterform.contacttype.htmlName}" value="${contacttype.htmlValue}" type="radio" class="input-radio" />
+				<label for="${contacttype.value}"><isprint value="${Resource.msg(contacttype.label,'forms',null)}"/></label>
+			</div>
+		</isloop>
+		<iscomment>
+			<isinputfield formfield="${pdict.CurrentForms.newsletterform.confirm}" type="checkbox" required="true" rowclass="confirm-signup"/>
+		</iscomment>
+		<div class="form-row confirm-signup label-inline form-indent">
+			<div class="field-wrapper">
+				<input type="checkbox" class="input-checkbox" id="${pdict.CurrentForms.newsletterform.confirm.htmlName}" name="${pdict.CurrentForms.newsletterform.confirm.htmlName}" value="true"/>
+			</div>
+			<label for="${pdict.CurrentForms.newsletterform.confirm.htmlName}">
+				<span class="newsletter-signup-form-label">
+					<iscontentasset aid="newsletter-signup-form-label" />
+				</span>
+			</label>
+		</div>
+
+		<isinputfield formfield="${pdict.CurrentForms.newsletterform.language}" type="select" required="true" rowclass="newsletter-language"/>
+
+		<input type="hidden" name="${pdict.CurrentForms.newsletterform.secureKeyHtmlName}" value="${pdict.CurrentForms.newsletterform.secureKeyValue}"/>
+
+		<div class="form-caption">
+			<iscomment>GDPR Privacy Content Asset</iscomment>
+			<iscontentasset aid="gdpr-privacy-content" />
+		</div>
+		<button type="submit" name="${pdict.CurrentForms.newsletterform.submitnewsletter.htmlName}" value="${Resource.msg(pdict.CurrentForms.newsletterform.submitnewsletter.label, 'forms', null)}">${Resource.msg(pdict.CurrentForms.newsletterform.submitnewsletter.label, 'forms', null)}</button>
+	</form>
+
+</div>

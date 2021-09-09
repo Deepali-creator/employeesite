@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- TemplateComment :  EMail form for inviting someone to shop  -->
+<iscontent type="text/html" charset="UTF-8"/>
+<isinclude template="util/modules"/>
+<subject><isif condition="${!empty(pdict.CurrentForms.sendtofriend.subject.value)}"><isprint value="${pdict.CurrentForms.sendtofriend.subject.value}" encoding="off" /><iselse/></isif></subject>
+<html>
+<head>
+	<style>
+		@import url("//hello.myfonts.net/count/348441");
+
+		@font-face {font-family: 'GrotesqueMTStd';src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.eot')}');src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.eot?#iefix')}') format('embedded-opentype'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.woff2')}') format('woff2'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.woff')}') format('woff'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.ttf')}') format('truetype'); font-weight:normal; font-style:normal;}
+
+		@font-face {font-family: 'GrotesqueMTStd-Bold';src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.eot')}');src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.eot?#iefix')}') format('embedded-opentype'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.woff2')}') format('woff2'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.woff')}') format('woff'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.ttf')}') format('truetype'); font-weight:normal; font-style:normal;}
+	 </style>
+</head>
+<body>
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" style="background:#e0e0e0;padding:50px 0;">
+			<center>
+				<table  style="box-sizing:border-box; background:#ffffff;border:1px solid #d2d4d6;width:680px; color: #4c4c4c; padding:15px;">
+					<tr>
+						<td style="width:70%; font-size:24px;font-family:GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 20px 20px 0;font-weight:bold;color:#5DA044;">${Resource.msg('account.sendtofriend.recipetitle','account',null)} <isprint value="${pdict.CurrentCustomer.profile.email}" encoding="off"/> </td>
+						<td><img width="225" src="${URLUtils.httpStatic('/images/logo.png')}"></img></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="font-size:12px;font-family:arial;padding:20px 0;vertical-align:top;">
+							<p style="font-size:14px;">${Resource.msg('account.sendtofriend.yourfriend','account',null)} ${pdict.CurrentForms.sendtofriend.yourname.value}, ${Resource.msg('account.sendtofriend.wantedtosharerecipe','account',null)}</p>
+							<p style="font-size:14px;">${Resource.msg('account.passwordemail.message2','account',null)}</p>
+							<p style="font-size:14px;">${Resource.msg('account.passwordemail.message3','account',null)}</p>
+						</td>
+					</tr>
+                    <isif condition="${!empty(pdict.CurrentForms.sendtofriend.message.value)}">
+                        <tr>
+                            <td colspan="2" style="font-size:12px;font-family:arial;padding:20px 0;vertical-align:top;border-top:1px solid black;">
+                                <p style="font-size:14px;"><isprint value="${pdict.CurrentForms.sendtofriend.message.value}" encoding="off" /></p>
+                            </td>
+                        </tr>
+                    </isif>
+					<tr>
+						<td style="width:100%; vertical-align:middle; align:center;" colspan="2">
+                            <img style="float:left; display:block; max-height:120px; margin-right:15px; margin-bottom:15px;" src="${URLUtils.httpsStatic(URLUtils.CONTEXT_LIBRARY, '', pdict.Content.custom.recipeImage[0])}" alt="${pdict.Content.name}"/>
+							
+                            <p><strong><isprint value="${pdict.Content.name}" encoding="off"/></strong></p>
+							<p>
+                                <a style="color: #5DA044 !important;" href="${URLUtils.http('Page-Show', 'cid', pdict.Content.ID)}" title="${Resource.msg('account.sendtofriend.viewnow','account',null)}">${Resource.msg('account.sendtofriend.viewnow','account',null)}</a>
+                            </p>
+						</td>
+					</tr>
+				</table>
+			</center>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

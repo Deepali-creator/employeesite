@@ -1,0 +1,48 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<!--- TEMPLATENAME: ga_ecommerce.isml --->
+<iscomment>The purpose of this template is to bring in the ecommerce plugin and send transaction data to google analytics. 
+It should be used on the order confirmation page </iscomment>
+<!-- Begin Google Analytics - Ecommerce -->
+
+<isif condition="${!empty(pdict.Order)}">
+	<isscript>importScript("int_ga:GoogleAnalytics.ds");</isscript>
+	<isset name="orderInfo" value="${new GA_OrderInfo(pdict.Order)}" scope="page"/>
+	
+	<script>
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', '${dw.system.Site.getCurrent().getCustomPreferenceValue('GoogleAnalyticsID')}']);
+		_gaq.push(['_addTrans',
+			'${orderInfo.id}',
+			'${dw.system.Site.current.name}',   																						// Affiliation or store name.
+			'${orderInfo.total}',
+			'${orderInfo.tax}',
+			'${orderInfo.shipping}',
+			"","",""
+		]);
+	</script>
+	<isloop items="${orderInfo.items}" var="thisItem" status="items_loopstate">
+		<script>
+			_gaq.push(['_addItem',
+				'${orderInfo.id}',
+				'${thisItem.sku}',
+				'${thisItem.name}',
+				'',
+				'${thisItem.unitPrice}',                 
+				'${thisItem.quantity}'
+		    ]);
+		</script>
+	</isloop>	
+	<script>
+		_gaq.push(['_trackTrans']);
+
+	  	(function() {
+	    	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  	})();
+	</script>
+	
+</isif>
+
+<!-- End Google Analytics - Ecommerce -->

@@ -1,0 +1,15 @@
+importPackage( dw.svc );
+importPackage( dw.net );
+importPackage( dw.io );
+
+/**
+*
+* HTTP Service
+*
+*/
+ServiceRegistry.configure("recaptchaVerify", {
+	parseResponse: function(svc:HTTPFormService, client:HTTPClient) {
+		var response=JSON.parse(client.text);
+		return response;
+	}
+}); 

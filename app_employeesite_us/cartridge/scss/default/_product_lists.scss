@@ -1,0 +1,248 @@
+.item-list {
+	margin-bottom: 1em;
+	tr:not(.header-row) {
+		border-bottom: 2px dashed $cuisinart-gray;
+		
+		&:last-child {
+			border: none;
+		}
+		&.headings {
+			display: none;
+		}
+	}
+	th{
+	  &.section-header{
+	    white-space:nowrap;
+	  }
+	}
+	td {
+		padding: 1em;
+		vertical-align: top;
+		&.view{
+		  min-width:60px;
+		  text-align:center;
+		  a{
+		    text-decoration:underline;
+		  }
+		}
+	}
+}
+
+.rma-list {
+	margin-bottom: 1em;
+	tr {
+		border-bottom: 0;
+		&.first {
+			border-top: 1px solid $cuisinart-gray;
+		}
+		&.last {
+			border-bottom: 1px solid $cuisinart-gray;
+		}
+		&.headings {
+			display: none;
+		}
+	}
+	th{
+	  &.section-header{
+	    white-space:nowrap;
+	  }
+	}
+	td {
+		padding: 1em;
+		vertical-align: top;
+		&.view{
+		  min-width:60px;
+		  text-align:center;
+		  a{
+		    text-decoration:underline;
+		  }
+		}
+	}
+}
+
+.section-header {
+	padding: 1em;
+}
+
+.item-details .product-list-item {
+  
+	.name {
+		font-size: 1.2em;
+		font-style: italic;
+		line-height:1.2;
+		margin-bottom:0.3125em;
+	}
+	.value {
+		font-weight: 700;
+	}
+	.promo {
+		color: $sangria;
+	}
+	.price-standard {
+		color: $nobel;
+		text-decoration: line-through;
+	}
+	
+	.price{
+	  font-size:0.875em;
+	}
+}
+
+.item-link{
+  font-size:0.875em;
+  text-decoration:underline;
+}
+
+.item-availability{
+  font-size:0.875em;
+  min-width:85px;
+}
+.item-availability ul,
+.item-quantity-details ul {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+td.item-dashboard {
+	color: $dark-gray;
+	width: 18rem;
+	padding:1em 0;
+	label {
+		font-weight: normal;
+		width: auto;
+	}
+	.field-wrapper {
+		width: auto;
+		margin-bottom:0;
+	}
+	.value {
+		font-size: 1em;
+		font-weight:600;
+	}
+	.form-row {
+		margin: 0 0 10px;
+		display:inline-block;
+	}
+	input,
+	.value,
+	select
+	.option-toggle-public label {
+		color: $dark-gray;
+		float:left;
+		margin-top:0.5em;
+	}
+
+	.form-row.option-date-added{
+    margin-bottom:5px;
+    width:100%;
+    label{
+      margin-top:0;
+    }
+    .value{
+      font-size:1em;
+      margin-top:0;
+    }
+  }
+  .form-row.option-quantity-desired {
+    min-width:45%;
+    margin-right:10px;
+    input {
+      width: 3rem;
+      padding:0;
+      text-align:center;
+    }
+    label,
+    .value{
+      margin-top:0.5em;
+    }
+    /*
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    */
+  }
+  .option-priority{
+    .value{
+      margin-top:.6em;
+    }
+  }
+	.option-update{
+    margin-bottom:10px;
+    button{
+      text-decoration:underline;
+    }
+    button:first-child{
+      margin-right:10px;
+    }
+  }
+	.option-add-to-cart {
+		margin-top: .5rem;
+		width: 18rem; //for IE
+		width: max-content;
+		label {
+			color: $night-rider;
+			float: left;
+			font-weight: 700;
+			margin: .75rem .5rem 0 0;
+			text-transform: uppercase;
+			width: auto;
+		}
+		input {
+			width: 3rem;
+			margin-right: 1em;
+			text-align:center;
+			padding:0;
+		}
+		/*
+		input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    */
+   .button-fancy-large{
+     margin-top:.5em;
+     padding:0 20px;
+     font-size:1em;
+     line-height:30px;
+     height:30px;
+   }
+	}
+}
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  .item-list {
+  	tr {
+  		border-bottom: 2px solid $cuisinart-gray;
+  	}
+  }
+  td.item-dashboard{
+    
+    label{
+      margin-right:0.3125em !important;
+    }
+  }
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="urn:sap-com:document:sap:soap:functions:mc-style" 
+				  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+				  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+				  xmlns:wsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+				  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+				  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/2004-08-24.xsd" 
+				  xmlns:tns="urn:sap-com:document:sap:soap:functions:mc-style" 
+				  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" 
+				  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+	<wsdl:documentation>
+		<sidl:sidl xmlns:sidl="http://www.sap.com/2007/03/sidl"/>
+	</wsdl:documentation>
+	<wsp:UsingPolicy wsdl:required="true"/>
+	<wsp:Policy wsu:Id="BN_BN_CC_Binding">
+		<saptrnbnd:OptimizedXMLTransfer uri="http://xml.sap.com/2006/11/esi/esp/binxml" xmlns:saptrnbnd="http://www.sap.com/webas/710/soap/features/transportbinding/" wsp:Optional="true"/>
+		<saptrnbnd:OptimizedMimeSerialization xmlns:saptrnbnd="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" wsp:Optional="true"/>
+		<wsp:ExactlyOne xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+			<wsp:All>
+				<sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+					<wsp:Policy>
+					  	<sp:TransportToken>
+					  		<wsp:Policy>
+					  			<sp:HttpsToken>
+									<wsp:Policy>
+										<sp:HttpBasicAuthentication/>
+				  					</wsp:Policy>
+				  				</sp:HttpsToken>
+				  			</wsp:Policy>
+				  		</sp:TransportToken>
+					  	<sp:AlgorithmSuite>
+							<wsp:Policy>
+					  			<sp:Basic128Rsa15/>
+							</wsp:Policy>
+				  		</sp:AlgorithmSuite>
+				 		<sp:Layout>
+				  			<wsp:Policy>
+				  				<sp:Strict/>
+					  		</wsp:Policy>
+					  	</sp:Layout>
+					</wsp:Policy>
+				</sp:TransportBinding>
+			</wsp:All>
+		</wsp:ExactlyOne>
+		<sapattahnd:Enabled xmlns:sapattahnd="http://www.sap.com/710/features/attachment/">false</sapattahnd:Enabled>
+		<wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" wsp:Optional="true"/>
+	</wsp:Policy>
+	<wsp:Policy wsu:Id="BN_BN_CC_Binding_SOAP12">
+ 		<saptrnbnd:OptimizedXMLTransfer uri="http://xml.sap.com/2006/11/esi/esp/binxml" xmlns:saptrnbnd="http://www.sap.com/webas/710/soap/features/transportbinding/" wsp:Optional="true"/>
+			<saptrnbnd:OptimizedMimeSerialization xmlns:saptrnbnd="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" wsp:Optional="true"/>
+				<wsp:ExactlyOne xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+				  	<wsp:All>
+				  		<sp:TransportBinding xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:sapsp="http://www.sap.com/webas/630/soap/features/security/policy" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:wsu="http://schemas.xmlsoap.org/ws/2002/07/utility" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+				  			<wsp:Policy>
+				  				<sp:TransportToken>
+				  					<wsp:Policy>
+				  						<sp:HttpsToken>
+				  							<wsp:Policy>
+				  								<sp:HttpBasicAuthentication/>
+				  							</wsp:Policy>
+				  						</sp:HttpsToken>
+				  					</wsp:Policy>
+				  				</sp:TransportToken>
+				  				<sp:AlgorithmSuite>
+				  					<wsp:Policy>
+				  						<sp:Basic128Rsa15/>
+				  					</wsp:Policy>
+				  				</sp:AlgorithmSuite>
+				  				<sp:Layout>
+				  					<wsp:Policy>
+				  						<sp:Strict/>
+				  					</wsp:Policy>
+				  				</sp:Layout>
+				  			</wsp:Policy>
+				  		</sp:TransportBinding>
+				  	</wsp:All>
+				 </wsp:ExactlyOne>
+			<sapattahnd:Enabled xmlns:sapattahnd="http://www.sap.com/710/features/attachment/">false</sapattahnd:Enabled>
+			<wsaw:UsingAddressing xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" wsp:Optional="true"/>
+		</wsp:Policy>
+		<wsp:Policy wsu:Id="IF_IF_ZCREDITCHECK">
+			<sapsession:Session xmlns:sapsession="http://www.sap.com/webas/630/soap/features/session/">
+	  			<sapsession:enableSession>false</sapsession:enableSession>
+	  		</sapsession:Session>
+	  		<sapcentraladmin:CentralAdministration xmlns:sapcentraladmin="http://www.sap.com/webas/700/soap/features/CentralAdministration/" wsp:Optional="true">
+	  		<sapcentraladmin:BusinessApplicationID>56517C397352023AE1008000C0A80A8C</sapcentraladmin:BusinessApplicationID>
+	  		</sapcentraladmin:CentralAdministration>
+	  	</wsp:Policy>
+	  	<wsp:Policy wsu:Id="OP_IF_OP_ZcreditcheckApi">
+	  		<sapcomhnd:enableCommit xmlns:sapcomhnd="http://www.sap.com/NW05/soap/features/commit/">false</sapcomhnd:enableCommit>
+	  		<sapblock:enableBlocking xmlns:sapblock="http://www.sap.com/NW05/soap/features/blocking/">true</sapblock:enableBlocking>
+	  		<saptrhnw05:required xmlns:saptrhnw05="http://www.sap.com/NW05/soap/features/transaction/">no</saptrhnw05:required>
+	  		<saprmnw05:enableWSRM xmlns:saprmnw05="http://www.sap.com/NW05/soap/features/wsrm/">false</saprmnw05:enableWSRM>
+	  	</wsp:Policy>
+  		<wsdl:types>
+  			<xsd:schema attributeFormDefault="qualified" targetNamespace="urn:sap-com:document:sap:soap:functions:mc-style">
+  				<xsd:element name="ZcreditcheckApi">
+  					<xsd:complexType>
+  						<xsd:sequence>
+  							<xsd:element name="Customer" type="xsd:string"/>
+  							<xsd:element name="Site" type="xsd:string"/>
+  						</xsd:sequence>
+  					</xsd:complexType>
+  				</xsd:element>
+  				<xsd:element name="ZcreditcheckApiResponse">
+  					<xsd:complexType>
+  						<xsd:sequence>
+  							<xsd:element name="Credit" type="xsd:string"/>
+  						</xsd:sequence>
+  					</xsd:complexType>
+  				</xsd:element>
+  			</xsd:schema>
+  		</wsdl:types>
+  	<wsdl:message name="ZcreditcheckApi">
+  		<wsdl:part name="parameters" element="tns:ZcreditcheckApi"/>
+	</wsdl:message>
+	<wsdl:message name="ZcreditcheckApiResponse">
+		<wsdl:part name="parameter" element="tns:ZcreditcheckApiResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="ZCREDITCHECK">
+  		<wsp:Policy>
+			<wsp:PolicyReference URI="#IF_IF_ZCREDITCHECK"/>
+		</wsp:Policy>
+		<wsdl:operation name="ZcreditcheckApi">
+			<wsp:Policy>
+				<wsp:PolicyReference URI="#OP_IF_OP_ZcreditcheckApi"/>
+  			</wsp:Policy>
+  			<wsdl:input message="tns:ZcreditcheckApi"/>
+  			<wsdl:output message="tns:ZcreditcheckApiResponse"/>
+  		</wsdl:operation>
+  	</wsdl:portType>
+  	<wsdl:binding name="CC_Binding" type="tns:ZCREDITCHECK">
+  		<wsp:Policy>
+ 			<wsp:PolicyReference URI="#BN_BN_CC_Binding"/>
+  		</wsp:Policy>
+  		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+  		<wsdl:operation name="ZcreditcheckApi">
+ 			<soap:operation soapAction="urn:sap-com:document:sap:soap:functions:mc-style:ZCREDITCHECK:ZcreditcheckApiRequest" style="document"/>
+  			<wsdl:input>
+  				<soap:body use="literal"/>
+  			</wsdl:input>
+  			<wsdl:output>
+  				<soap:body use="literal"/>
+  			</wsdl:output>
+  		</wsdl:operation>
+  	</wsdl:binding>
+  	<wsdl:binding name="CC_Binding_SOAP12" type="tns:ZCREDITCHECK">
+  		<wsp:Policy>
+  			<wsp:PolicyReference URI="#BN_BN_CC_Binding_SOAP12"/>
+  		</wsp:Policy>
+  		<wsoap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+  		<wsdl:operation name="ZcreditcheckApi">
+  			<wsoap12:operation soapAction="urn:sap-com:document:sap:soap:functions:mc-style:ZCREDITCHECK:ZcreditcheckApiRequest" style="document"/>
+  			<wsdl:input>
+  				<wsoap12:body use="literal"/>
+  			</wsdl:input>
+  			<wsdl:output>
+ 				<wsoap12:body use="literal"/>
+  			</wsdl:output>
+  		</wsdl:operation>
+  	</wsdl:binding>
+  	<wsdl:service name="ZCreditCheck">
+  		<wsdl:port name="CC_Binding" binding="tns:CC_Binding">
+  			<soap:address location="https://ecc6dv1.conair.com:38000/sap/bc/srt/rfc/sap/zcreditcheck/012/5652c23fb2bb0243e1008000c0a80a8c/cc_binding"/>
+  		</wsdl:port>
+  		<wsdl:port name="CC_Binding_SOAP12" binding="tns:CC_Binding_SOAP12">
+  			<wsoap12:address location="https://ecc6dv1.conair.com:38000/sap/bc/srt/rfc/sap/zcreditcheck/012/5652c23fb2bb0243e1008000c0a80a8c/cc_binding"/>
+  		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

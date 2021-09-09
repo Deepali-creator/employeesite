@@ -1,0 +1,183 @@
+.pt_gift-registry {
+	.create-new-registry {
+		margin: 1em 0;
+		button {
+			float: left;
+			margin-right: 2em;
+		}
+		p {
+			font-size: 1.3em;
+		}
+	}
+	.add-gift-cert {
+		border: 1px solid $white-smoke;
+		margin-bottom: -1px;
+		overflow: auto;
+		padding: .83em;
+		p {
+			color: $nobel;
+			font-style: italic;
+			line-height: 1.5em;
+		}
+	}
+	.hdr-options {
+		width: 9%;
+	}
+	@media screen and (min-width: 768px) {
+		#secondary {
+			width: 20%;
+			min-height: 775px;
+			margin-bottom: 45px;
+		}
+		#primary {
+			width: 78%;
+			padding: 24px;
+			margin-bottom: 45px;
+			background-color: $white;
+			min-height: 775px;
+		}
+		.g-recaptcha {
+		    margin-left: 27%;
+		    margin-top: 20px;
+		}
+	    .col-1 {
+			.g-recaptcha {
+			    margin-left: 0;
+			}
+	    }
+	}
+	.secondary-navigation {
+		ul {
+			margin-left: 10px;
+		}
+	}
+}
+
+.page-content-tab-navigaton button {
+	background-color: $gainsboro;
+	border-color: $white-smoke;
+	border-width: 1px;
+	color: $nobel;
+	font-size: 1.1em;
+	font-style: italic;
+	font-weight: 400;
+	margin: 0 0 -1px;
+	&.selected {
+		background-color: $white;
+		border-bottom: 1px solid $white;
+	}
+}
+
+.page-content-tab-wrapper {
+	&.registry-form-content{
+	  .form-row{
+	    .field-wrapper{
+	      select{
+	        width:95%;
+	      }
+	    }
+	  }
+	  button{
+	    .fa{
+	      font-size:1.25em;
+	      margin-right:0.3125em;
+	    }
+	    &.button-text{
+	      margin-right:0.625em;
+	    }
+	  }
+	}
+}
+
+.gift-reg-purchases {
+	.item-purchased-by {
+		dd {
+			float: left;
+			font-weight: bold;
+			margin: 0 1em 0 0;
+			position: relative;
+			width: auto;
+		}
+		dt {
+			clear: both;
+			float: left;
+			margin: 0 1em 0 0;
+			position: relative;
+			width: auto;
+		}
+	}
+	.quantity-purchased {
+		color: $sangria;
+	}
+}
+
+.login-search-gift{
+  .form-row{
+    width:100%;
+    margin-bottom:0;
+  }
+}
+.gift-registry-advanced {
+	@extend %clearfix;
+	.toggle{
+	  display:block;
+	  width:100%;
+	  clear:both;
+	  float:left;
+	  margin-bottom:1em;
+	}
+	.toggle-content {
+	  @extend %clearfix;
+		display: none;
+	}
+}
+
+
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  .pt_gift-registry {
+    .add-gift-cert {
+      p {
+        width: 100%;
+      }
+    }
+    .create-new-registry {
+      p {
+        display: none;
+      }
+      overflow: hidden;
+    }
+    .item-list {
+      width: 98%;
+      th {
+        display: none;
+      }
+    }
+  }
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  .pt_gift-registry .add-gift-cert p {
+    width: auto;
+  }
+}
+

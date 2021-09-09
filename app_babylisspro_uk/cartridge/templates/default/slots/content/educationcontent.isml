@@ -1,0 +1,18 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscache type="relative" hour="24"/>
+
+<iscomment>
+	This template renders the slot content for the Recipe Landing Featured Recipes section
+</iscomment>
+
+<iscomment>make sure we have content at all</iscomment>
+<isif condition="${slotcontent != null}">
+	<iscomment>Loop through all assets in slot</iscomment>
+	<isloop items="${slotcontent.content}" var="contentAsset">
+		<li class="grid-tile education-tile">
+			<div class="product-tile">
+				<isprint value="${contentAsset.custom.body}" encoding="off"/>
+			</div>
+		</li>
+	</isloop>
+</isif>

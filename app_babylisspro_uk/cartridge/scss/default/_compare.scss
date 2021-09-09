@@ -1,0 +1,294 @@
+.pt_product-compare {
+	.full-width {
+		padding: 0 1.25em;
+		.print-page {
+			float: right;
+			margin:.75em;
+			display:none;
+		}
+		.back {
+			padding: 1em 0;
+			margin:0;
+		}
+	}
+}
+
+.compare-items {
+  background: $white;
+  width:100%;
+	clear: both;
+	margin: 1em 0;
+	overflow: hidden;
+	padding: 0 1em 1em;
+	h2 {
+		font-size: 0.9em;
+		margin: 0.5em 0;
+		text-transform: uppercase;
+	}
+}
+
+.compare-items-panel {
+	@extend %clearfix;
+	float: left;
+}
+
+.compare-item {
+	background-color: $gainsboro;
+	float: left;
+	height: 55px;
+	margin-right: 1.08em;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	width: 55px;
+	.compare-item-remove {
+		background-color: $very-light-gray;
+		color: $white;
+		cursor: pointer;
+		display: none;
+		padding: 0 .16em;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1;
+	}
+	&.active {
+		.compare-item-remove {
+			display: block;
+		}
+	}
+	.compare-item-number {
+		color: $very-light-gray;
+		font-size: 3em;
+		line-height:55px;
+		vertical-align:middle;
+	}
+}
+
+.compare-item-image {
+	max-width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border:1px solid $very-light-gray;
+}
+
+.compare-buttons {
+	float: left;
+	margin-top:0.625em;
+	padding: 0.7em 0 0;
+	button{
+	  margin-right:1em;
+	  &.button-compare{
+	    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, $white 0%, $stark-white 100%) repeat scroll 0 0;
+	    &:hover{
+	      background: rgba(0, 0, 0, 0) linear-gradient(to bottom, $stark-white 0%, $white 100%) repeat scroll 0 0;
+	    }
+	  }
+	}
+}
+
+.category-switch {
+	@extend .clearfix;
+	background: $white;
+	padding:1em;
+	label {
+		float: left;
+		margin: 0;
+		width: 11em;
+	}
+	select {
+	  clear:both;
+		float: left;
+		margin: 0.5em 0;
+		width: 15em;
+	}
+}
+
+#compare-table {
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
+	background: $white;
+	th {
+		overflow: hidden;
+		padding: .5em;
+		&.product{
+		  position:relative;
+		}
+	}
+	td {
+		overflow: hidden;
+	}
+	a{
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.quickview{
+	  min-width:100%;
+	  &:hover{
+	    text-decoration:none;
+	  }
+	}
+	.attribute-row {
+		border-bottom: 1px solid $very-light-gray;
+		&:first-of-type {
+			border-top: 1px solid $very-light-gray;
+		}
+		&:last-of-type {
+			border-bottom: none;
+		}
+		&:nth-child(2n) {
+			background-color: $white-smoke;
+		}
+	}
+	.product-attribute {
+		border-right: 1px solid $very-light-gray;
+		word-break: break-all;
+	}
+	.action {
+		display: block;
+		padding: 0.5em 0;
+		text-decoration:underline;
+	}
+	.remove-link {
+		color: $nobel;
+		float: right;
+		padding: .3rem;
+		transition: color .5s ease;
+		position:absolute;
+		top:0;
+		right:0;
+		z-index:50;
+		&:hover {
+			color: $dark-gray;
+			text-decoration: none;
+		}
+	}
+	.product {
+		font-weight: normal;
+		text-align: center;
+	}
+	.value {
+		.value-item {
+			&:after {
+				content: ', ';
+			}
+			&:last-child {
+				&:after {
+					content: '';
+				}
+			}
+		}
+	}
+	.product-tile {
+	  z-index:49;
+		.product-name {
+			height: auto;
+			margin: .2em 0 1em 0;
+		}
+		.swatch-list {
+			display: inline-block;
+		}
+	}
+	.product-image {
+		height: auto;
+		img {
+			height: auto;
+		}
+	}
+  .button-cart{
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, $white 0%, $stark-white 100%) repeat scroll 0 0;
+    font-weight:600;
+    &:hover{
+      background: rgba(0, 0, 0, 0) linear-gradient(to bottom, $stark-white 0%, $white 100%) repeat scroll 0 0;
+    }
+    font-size:11px;
+    padding:0 5px;
+  }
+	.section-header {
+		font-size: 0.9em;
+		padding: 1em;
+		text-transform: none;
+	}
+	.selectcategory {
+		label {
+			display: block;
+			font-size: 0.9em;
+			margin: 1em 0;
+			text-transform: none;
+		}
+		select {
+			margin: 0;
+			width: 100px;
+		}
+	}
+	.comparelists {
+		padding: 0;
+	}
+	.compare-lists {
+		label,
+		select {
+			float: none;
+			text-align: left;
+			width: 100%;
+		}
+	}
+}
+
+
+    
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+  .product-compare,
+  .compareitems {
+    display: none !important;
+  }
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  .category-switch {
+      label{
+        width: 45%;
+    }
+    select {
+      width: 55%;
+    }
+  }
+
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+  #compare-table{
+    .button-cart{
+      font-size:10px;
+      padding:5px;
+      line-height:normal;
+    }
+  }
+  
+  #compare-table td .product-tile {
+    width: 79px;
+  }
+  
+}
+
+
+

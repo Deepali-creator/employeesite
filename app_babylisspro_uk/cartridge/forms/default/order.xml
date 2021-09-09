@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+
+	<!-- shipments -->
+	<list formid="shipments">
+		<!-- products -->
+		<list formid="items" binding="productLineItems">
+			<field formid="quantity" type="number" binding="quantityValue" format="0.#"/>
+			<field formid="returnquantity" type="number" binding="quantityValue" format="0.#"/>
+			<field formid="return" type="boolean" mandatory="false" format="0.#"/>
+			<action formid="editLineItem" valid-form="false"/>
+			<action formid="deleteProduct" valid-form="false"/>
+			<action formid="addToWishList" valid-form="false"/>
+			<action formid="addToGiftRegistry" valid-form="false"/>
+		</list>
+	</list>
+
+
+	<field formid="reason" type="string" mandatory="true">
+		<options>
+			<option optionid="itemnotworking" 	label="Item not working" 	value="itemnotworking"/>
+			<option optionid="wrongitemordered" 	label="Wrong item ordered" 	value="wrongitemordered"/>
+			<option optionid="wrongdescriptiononline" 	label="Wrong description online" 	value="wrongdescriptiononline"/>
+			<option optionid="cantmakeitwork" 	label="Can’t make it work" 	value="cantmakeitwork"/>
+			<option optionid="manufacturerdefect" 	label="Manufacturer defect" 	value="manufacturerdefect"/>
+			<option optionid="wrongitemdelivered" 	label="Wrong item delivered" 	value="wrongitemdelivered"/>
+			<option optionid="outofwarranty" 	label="Out of warranty" 	value="outofwarranty"/>
+			<option optionid="damagedduringshipping" 	label="Damaged during shipping" 	value="damagedduringshipping"/>
+			<option optionid="other" 	label="Other" 	value="other"/>
+		</options>
+	</field>
+	<field formid="requiredAction" type="string" mandatory="true">
+		<options>
+			<option optionid="replace" 	label="Replace Item" 	value="replace"/>
+			<option optionid="refund" 	label="Refund" 	value="refund"/>
+		</options>
+	</field>
+	<!-- functional buttons -->
+	<action formid="returnItems" valid-form="false"/>
+</form>

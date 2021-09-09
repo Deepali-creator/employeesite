@@ -1,0 +1,100 @@
+.breadcrumb {
+    font-size: 12px;
+    margin: 0;
+    padding: 14px 0 14px 1em;
+    text-transform: uppercase;
+	li {
+		display: inline;
+		list-style: none outside none;
+	}
+}
+
+.paging-current-page {
+	left: -999em;
+	position: absolute;
+}
+
+.breadcrumb-element {
+  color: $dim-gray;
+  font-size: 12px; 
+	&:after {
+		color: $dim-gray;
+		content: '/';
+		margin-left: .4em;
+		text-decoration: none !important;
+	}
+	&:last-child {
+		&:after {
+			content: '';
+		}
+	}
+	&:first-child{
+	  color: $dark-gray;
+	}
+}
+
+.breadcrumb-refinement {
+	font-weight: 700;
+	&:after {
+		content: attr(data-divider);
+		font-style: normal;
+	}
+	&:last-of-type {
+		&:after {
+			content: '';
+		}
+	}
+}
+
+.breadcrumb-refinement-value {
+	background-color: rgba($mortar, 0.3);
+	display: inline-block;
+	border-radius: 3px;
+	margin: 0 .42em .42em 0;
+	padding: 0 .42em;
+}
+
+.breadcrumb-relax {
+	background: none;
+	color: $sangria;
+	font-style: normal;
+	padding: 0 0 0 .4em;
+}
+
+.breadcrumb-result-text a,
+.breadcrumb .searchphraselink {
+	background: none;
+	color: $black;
+	padding: 0;
+}
+
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+}
+
+
+

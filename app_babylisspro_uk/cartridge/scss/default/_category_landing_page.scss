@@ -1,0 +1,46 @@
+.bottom-banner-container {
+	overflow: hidden;
+	.bottom-banner-cell {
+		float: left;
+		overflow: hidden;
+		text-align: center;
+	}
+	.banner-cell-1 {
+		width: 33%;
+	}
+	.banner-cell-2 {
+		width: 34%;
+	}
+	.banner-cell-3 {
+		width: 33%;
+	}
+}
+
+    
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+}
+
+

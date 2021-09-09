@@ -1,0 +1,108 @@
+<!--- TEMPLATENAME: foldercontentgrid.isml --->
+
+<isinclude template="util/modules"/>
+<iscomment>calculated correct index position to separate the result columns</iscomment>
+<isscript>
+	var count = pdict.ContentPagingModel.end + 1;
+	var cutIndex = Math.ceil( count / 2 ) - 1;
+	var endIndex = cutIndex + (cutIndex + 1);
+importScript("util/ProductImageSO.ds");
+</isscript>
+
+<iscomment>render the results as two column layout</iscomment>
+<ul class="folder-content-list tiles-container search-result-items">
+<isloop items="${pdict.ContentPagingModel.pageElements}" var="asset" status="loopstate" end="${endIndex}">
+
+	<li class="grid-tile">
+		<iscomment>append the search parameters to the article URL</iscomment>
+		<isset name="articleURL" value="${pdict.ContentSearchResult.url( URLUtils.url('Page-Show','cid', asset.ID) )}" scope="page"/>
+
+		<div class="content-tile">
+			<isif condition="${!empty(asset.custom.recipeImage)}">
+				<div class="content-image">
+					<a class="thumb-link" href="${articleURL}">
+						<isif condition="${!empty(asset.custom.recipeImage)}">
+							<img src="${URLUtils.staticURL(URLUtils.CONTEXT_LIBRARY, '', asset.custom.recipeImage[0])}" alt="${asset.name}" />
+						<iselse/>
+							<img src="${URLUtils.staticURL('/images/noimagelarge.png')}" alt="${asset.name}" />
+						</isif>
+					</a>
+				</div>
+			</isif>
+
+			<div class="content-name">
+				<a class="name-link" href="${articleURL}">
+					<isprint value="${asset.name}"/>
+				</a>
+			</div>
+
+			<iscomment>Recipe - Related Products</iscomment>
+			<iscomment>++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</iscomment>
+			<iscomment>
+			<isif condition="${!empty(asset.custom.recipeRelatedProducts) && asset.custom.recipeRelatedProducts.length > 0}" >
+				<div class="product-compatibility">
+					<a href="${'#'}" class="product-compatibility-link">
+						<iscontentasset aid="compatible-products-label" />
+					</a>
+					<div class="product-compatibility-content">
+						<h2><iscontentasset aid="compatible-products-label" /> <span class="compatible-for"><isprint value="${Resource.msg('product.for','product',null)}" encoding="off" /> <isprint value="${asset.name}" /></span></h2>
+						<isset name="baseModel" value="${asset.custom.recipeRelatedProducts}" scope="page"/>
+						<ul class="search-result-items">
+							<isloop items="${asset.custom.recipeRelatedProducts}" status="modelstatus">
+								<isset name="model" value="${dw.catalog.ProductMgr.getProduct(baseModel[modelstatus.index])}" scope="page" />
+								<isprint value="${}" />
+								<isif condition="${model.onlineFlag}">
+									<li class="grid-tile">
+										<div class="product-tile base-model-tile">
+											<div class="product-image">
+												<a href="${URLUtils.url('Product-Show', 'pid', baseModel[modelstatus.index])}" class="thumb-link">
+													<img src="${new ProductImage('medium', model, 0 ).getURL()}" />
+												</a>
+											</div>
+											<div class="product-name">
+												<a href="${URLUtils.url('Product-Show', 'pid', baseModel[modelstatus.index])}" class="name-link">
+													<isprint value="${model.name}" />
+												</a>
+											</div>
+											<div class="product-number">
+												<span><isprint value="${baseModel[modelstatus.index]}" /></span>
+											</div>
+										</div>
+									</li>
+								<iselse>
+									<li class="grid-tile ">
+										<div class="product-tile base-model-tile">
+											<div class="product-image">
+												<span class="thumb-link">
+													<img src="${new ProductImage('medium', model, 0 ).getURL()}" />
+												</span>
+											</div>
+											<div class="product-name">
+												<span href="" class="name-link">
+													<isprint value="${model.name}" />
+												</span>
+											</div>
+											<div class="product-number">
+												<span><isprint value="${baseModel[modelstatus.index]}" /></span>
+											</div>
+										</div>
+									</li>
+
+								</isif>
+							</isloop>
+						</ul>
+					</div>
+				</div>
+
+			</isif>
+			</iscomment>
+		</div>
+
+	</li>
+
+</isloop>
+</ul>
+
+<isif condition="${pdict.ContentPagingModel.currentPage != pdict.ContentPagingModel.maxPage }">
+	<button class="infinite-scroll-placeholder" data-loading-state="unloaded" data-grid-url="${decodeURI(pdict.ContentPagingModel.appendPaging ( pdict.ContentSearchResult.url('Search-ShowContent'), (pdict.ContentPagingModel.currentPage + 1) * pdict.ContentPagingModel.pageSize).append('format','page-element'))}" >${Resource.msg("global.viewmore","locale",null)}</button>
+</isif>

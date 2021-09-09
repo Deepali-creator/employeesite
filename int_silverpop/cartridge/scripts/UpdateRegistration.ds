@@ -1,0 +1,86 @@
+/**
+*
+*
+*
+*
+*
+*
+*   @input email : String user's email address
+*   @input listid : String id of the list to add the email address to
+*   @input firstname : String
+*   @input lastname : String
+*   @input language : String
+*   @input databaseid : String id where the list resides
+*   @input unsubscribe : Boolean true to remove subscriber
+*	@input silverpopBabylissDB : String
+*	@input silverpopBabylissForMenDB : String
+*	@input silverpopBabylissContact : String
+*	@input silverpopBabylissForMenContact : String
+*
+*/
+importPackage( dw.system );
+importPackage( dw.object );
+importPackage( dw.util );
+importPackage( dw.web );
+
+function execute( args : PipelineDictionary ) : Number {
+	if ((empty(args.email) || empty(args.listid)) && (empty(args.silverpopBabylissDB) && empty(args.silverpopBabylissForMenDB)) ){
+		throw new ReferenceError("A null parameter was passed to UpdateRegistration.ds:execute");
+	}
+	var lower:String=args.email.toLocaleLowerCase();
+	var emailValidationRegExp:String = Resource.msg('validation.email.regexp','silverpopconfig','null');
+	if (!new RegExp(emailValidationRegExp).test(args.email)||
+		0===lower.indexOf("abuse@")||
+		0===lower.indexOf("admin@")||
+		0===lower.indexOf("administrator@")||
+		0===lower.indexOf("info@")||
+		0===lower.indexOf("webmaster@")||
+		0===lower.indexOf("postmaster@")||
+		0===lower.indexOf("support@")){
+		throw new ReferenceError("Bad email address: "+args.email);
+	}
+	var registration : CustomObject = CustomObjectMgr.getCustomObject("SilverpopRegistration",args.email);
+	if (empty(registration)){
+		registration = CustomObjectMgr.createCustomObject("SilverpopRegistration",args.email);
+	}
+	registration.custom['SilverpopDatabaseID'] = args.databaseid;
+	var interests : Array = new Array();
+	for each (var interest in registration.custom['interest']){
+		interests.push(interest);
+	}
+	if(!empty(args.listid)){
+		var listIDs : Array = args.listid.split(',');
+		for each (var id in listIDs){
+	        interests.push(id);
+	    }
+	}
+	registration.custom['interest'] = interests;
+	if(!empty(args.firstname)){
+		registration.custom['firstname']=args.firstname;
+	}
+	if(!empty(args.lastname)){
+		registration.custom['lastname']=args.lastname;
+	}
+	if(!empty(args.language)){
+		registration.custom['language']=args.language;
+	}
+	if(true===args.unsubscribe){
+		registration.custom['optout']=true;
+	}
+	if(args.silverpopBabylissDB != null)
+	{
+		registration.custom['SilverpopBabylissDBID']=args.silverpopBabylissDB;
+	}
+	if(args.silverpopBabylissContact != null){
+		registration.custom['contactListBabyliss']=args.silverpopBabylissContact;
+	}
+	if(args.silverpopBabylissForMenDB != null)
+	{
+		registration.custom['SilverpopBabylissForMenDBID']=args.silverpopBabylissForMenDB;
+	}
+	if(args.silverpopBabylissForMenContact != null){
+		registration.custom['contactListBabylissForMen']=args.silverpopBabylissForMenContact;
+	}
+	
+	return PIPELET_NEXT;
+}

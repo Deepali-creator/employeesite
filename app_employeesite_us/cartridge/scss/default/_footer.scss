@@ -1,0 +1,500 @@
+.footer-menu {
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 15px 0;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+			display: inline-block;
+			width: 100%;
+			line-height: 40px;
+			vertical-align: middle;
+			border-top: 2px solid $cuisinart-gray;
+
+			&:last-child {
+				border-bottom: 2px solid $cuisinart-gray;
+			}
+
+			a {
+				display: block;
+				width: 100%;
+				height: 100%;
+				font-size: 1em;
+				font-weight: 400;
+				text-align: center;
+				transition: all .3s ease;
+
+				&:hover,
+				&.open {
+					color: $white;
+					background: $cuisinart-dark-gray;
+					text-decoration: none;
+				}
+
+			}
+
+			ul {
+				max-height: 0px;
+				transition: all .3s ease;
+				overflow: hidden;
+
+				li {
+					margin: 0;
+
+					a {
+						font-size: 13px;
+						color: $white;
+						background: $dark-gray;
+
+						&:hover {
+							color: $dark-gray;
+							background: $medium-gray;
+						}
+
+					}
+
+					&:last-child {
+						margin-bottom: 0;
+					}
+
+				}
+
+				&.open {
+					max-height: 1000px;
+				}
+
+			}
+
+			&.active > a {
+				font-weight: 400;
+
+				&:hover {
+					background: $white;
+					color: $dark-gray;
+				}
+
+			}
+
+		}
+
+	}
+
+	&.menu-active {
+		left: 65%;
+	}
+
+}
+
+footer {
+	position: relative;
+	clear: both;
+	font-size: 0.875rem;
+	padding:2em 0;
+	background-color: $white-smoke;
+	color: $altGray;
+	overflow: hidden;
+	> .wrap{
+		position:relative;
+		height:100%;
+	}
+	.footer-logo {
+		max-width: 14.5rem;
+		margin: 0.5em 0 2em;
+	}
+
+	.footer-nav {
+		width: 50%;
+		float: left;
+
+		section {
+			display: inline-block;
+			width: 47%;
+			margin-right: 2%;
+			vertical-align: top;
+		}
+
+		.section-title {
+			font-size: 1.125rem;
+			margin-bottom: 0.5em;
+			color: $night-rider;
+			text-transform: uppercase;
+
+			.fa {
+				display: none;
+			}
+
+		}
+
+		.nav-links {
+			display: inline-block;
+			vertical-align: top;
+			margin: 0;
+			padding: 0;
+			//width: 49%;
+
+			li {
+				list-style: none;
+			}
+
+		}
+
+		.nav-link {
+			color: $dim-gray;
+			text-transform: uppercase;
+
+			&:hover {
+				color: $black;
+				text-decoration: none;
+			}
+
+		}
+
+	}
+
+	.footer-social {
+		position:absolute;
+		bottom:3.75em;
+		right:0;
+		overflow: hidden;
+
+		.content-asset {
+			float: right;
+		}
+
+		.social-links {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+
+			li {
+				list-style: none;
+				float: left;
+				width: 2.3625em;
+				height: 2.3625em;
+				margin: 0 0.5em;
+				border-radius: 50%;
+				&:last-child{
+					margin-right:0;
+				}
+			}
+
+			.social-link {
+				display: block;
+				//width: 2.29375em;
+				//height: 2.29375em;
+				width:100%;
+				height:100%;
+				text-align: center;
+				line-height: 2.5em;
+				color: $white;
+				border-radius: 50%;
+				transition: background 0.3s ease;
+				background-image: url('../images/interface/footer-social-sprite@2x.png');
+				background-position:0 0;
+				background-size: 165px 33px;
+				.fa {
+					display:none;
+					font-size: 1.3125rem;
+					//position:relative;
+					//top:50%;
+					//transform:translateY(-50%);
+				}
+
+				&.facebook {
+					background-position:0 0;
+					//background-color: #3b5998;
+				}
+				&.twitter {
+					background-position:-33px 0;
+					//background-color: #0084FF;
+				}
+
+				&.instagram {
+					background-position:-66px 0;
+					/*
+					background: linear-gradient(145deg, #3051F1 10%, #C92BB7 70%) no-repeat;
+					&:before{
+						background: radial-gradient(circle farthest-corner at 28% 100% ,#FCDF8F 0%, #FBD377 10%, #FA8E37 22%, #F73344 35%, fade(#F73344, 0%) 65%) no-repeat;
+					}
+					*/
+					/*
+					background:
+				    /////// Use radial gradients to get the rounded
+				    /////// gradient effect in each corner
+
+				    // left bottom
+				    radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%),
+				    radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%),
+				    // left top
+				    radial-gradient(ellipse farthest-corner at 0 -15%, #5258cf, transparent 50%),
+				    radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%),
+				    //  right top
+				    radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%),
+				    radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%),
+				    // right bottom
+				    radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent),
+
+				    /////// create a base coat to smooth
+				    /////// corner gradients
+				    linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+					*/
+				}
+				&.youtube {
+					background-position:-99px 0;
+					//background-color: #cc181e;
+				}
+				&.pinterest {
+					background-position:-132px 0;
+					//background-color: #c92228;
+				}
+				&.youtube,
+				&.pinterest {
+					//padding-top: 0;
+				}
+				&:hover {
+					//background-color: $cuisinart-dark-gray;
+					&.instagram{
+						//background: $cuisinart-dark-gray;
+					}
+				}
+
+			}
+
+		}
+
+	}
+
+	.footer-copyright {
+		position:absolute;
+		bottom:0;
+		right:0;
+		p {
+			margin:0 1em;
+			font-weight: 400;
+			text-transform: uppercase;
+			text-align: right;
+		}
+
+	}
+
+	&.menu-active {
+		left: 65%;
+	}
+
+}
+
+/* end footer */
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+/* Mobile Lg/Sm */
+@media screen and (max-width:767px) {
+
+	/* needed for sticky footer */
+	#wrapper {
+		margin-bottom: 0;
+		min-height: 0;
+
+		&:after {
+			height: auto;
+		}
+
+	}
+
+	footer {
+		> .wrap {
+			padding: 0;
+		}
+
+		.footer-logo {
+			margin: 2.5em auto;
+			display: none;
+		}
+
+		.footer-nav {
+			width: 100%;
+			float: none;
+
+			section {
+				display: block;
+				width: 100%;
+				border-bottom: 1px solid $cuisinart-gray;
+				max-height: 2.25rem;
+				height: auto;
+				transition: height 0.3s ease;
+				overflow: hidden;
+
+				&.active {
+					height: auto;
+					max-height: 12.5em;
+				}
+
+			}
+
+			.section-title {
+				font-size: 0.875rem;
+				margin: 0;
+				padding: 0.5em 0 0.5em 0.875em;
+				cursor: pointer;
+
+				.fa {
+					display: block;
+					float: right;
+					width: 1.875rem;
+					height: 1.875rem;
+					padding-top: 0.125em;
+					text-align: center;
+				}
+
+			}
+
+			.nav-links {
+				width: 100%;
+				margin: 0;
+				padding: 0.875em;
+				overflow: hidden;
+				background: $light-gray;
+			}
+
+		}
+
+		.footer-social {
+			position:relative;
+			bottom:auto;
+			right:auto;
+			margin: 1em 0;
+
+			.content-asset {
+				float: none;
+			}
+
+			.social-links {
+				text-align: center;
+
+				li {
+					display: inline-block;
+					float: none;
+				}
+
+			}
+
+		}
+
+		.footer-copyright {
+			position:relative;
+			bottom:auto;
+			right:auto;
+			p {
+				margin:1em 0;
+				text-align: center;
+			}
+
+		}
+
+	}
+
+	.facebook-registration {
+		left: -3px;
+		position: relative;
+		width: 100.7% !important;
+
+		.fb_iframe_widget {
+			position: relative;
+			width: 100.7% !important;
+
+			span {
+				position: relative;
+				width: 100.7% !important;
+
+				iframe {
+					position: relative;
+					width: 100.7% !important;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width:480px) and (max-width:767px) {
+	.facebook-registration {
+		left: 0px;
+		position: relative;
+		width: 100% !important;
+
+		.fb_iframe_widget {
+			position: relative;
+			width: 100% !important;
+
+			span {
+				position: relative;
+				width: 100% !important;
+
+				iframe {
+					position: relative;
+					width: 100% !important;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width:479px) {
+	footer {
+		.wrap {
+			max-width: 100%;
+		}
+
+	}
+
+}
+
+/* Tablet Only */
+@media screen and (min-width:768px) and (max-width:959px) {
+	footer {
+		height: auto;
+	}
+
+	.facebook-registration {
+		left: 0px;
+		position: relative;
+		width: 100% !important;
+
+		.fb_iframe_widget {
+			position: relative;
+			width: 100% !important;
+
+			span {
+				position: relative;
+				width: 100% !important;
+
+				iframe {
+					position: relative;
+					width: 100% !important;
+				}
+
+			}
+
+		}
+
+	}
+
+}

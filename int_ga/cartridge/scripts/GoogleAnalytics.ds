@@ -1,0 +1,78 @@
+importPackage( dw.system );
+importPackage( dw.util );
+importPackage( dw.object );
+importPackage( dw.catalog );
+importPackage( dw.order );
+
+function GA_OrderInfo(order : Order) {
+	// internal functions	
+	function getOrderInfo(order : Order) {
+		var thisOrder = null;
+		
+		if (!order) { return null; }
+		
+		try	{
+			var cOrder : Order = order;
+			var cOrderTotal : dw.value.Money = cOrder.totalGrossPrice.available ? 
+						  				   cOrder.totalGrossPrice : 
+						  				   cOrder.getAdjustedMerchandizeTotalPrice(true).add(cOrder.giftCertificateTotalPrice);										 
+			
+			thisOrder = {
+						id:cOrder.orderNo,
+						site:Site.current.name,
+						total:cOrderTotal.value.toFixed(2),
+						tax:cOrder.totalTax.available ? cOrder.totalTax.value.toFixed(2) : 0,
+						shipping:cOrder.shippingTotalPrice.available ? cOrder.shippingTotalPrice.value.toFixed(2) : 0,				
+						items:[]
+					  };
+	
+			if (!cOrder.shipments || cOrder.shipments.length==0) { return thisOrder; }
+			
+			// get order items
+			for (var i=0,il=cOrder.shipments.length;i<il;i++) {		
+				var s = cOrder.shipments[i];
+				for (var c=0,cl=s.productLineItems.length;c<cl;c++) {
+					var pli = s.productLineItems[c];
+					var atts = [];
+					var variations = pli.category ? ("Category: "+pli.category.displayName) : "";
+					if (pli.product.isVariant()) {
+						var attDefs = pli.product.variationModel.attributeDefinitions;
+						for (var iAd=0, iAdl=attDefs.length;iAd<iAdl;iAd++) {					
+							var ad = attDefs[iAd];
+							var vv = pli.product.variationModel.getSelectedValue(ad);
+							if (vv) {
+								atts.push(ad.displayName+": "+vv.displayValue);
+							}						
+						} // end attributeDefinitions					
+					}
+					variations += atts.join(",");
+					var cat = pli.category ? 
+							  ({id:pli.category.ID,name:pli.category.displayName}) : 
+							  ({id:"",name:""});
+							  
+					var orderItem = {
+								sku:pli.productID,
+								name:pli.productName,
+								variation: variations,
+								unitPrice: pli.basePrice.value.toFixed(2),
+								quantity: pli.quantity.value.toFixed(0)
+							 };
+							 
+					thisOrder.items.push(orderItem);				
+				}
+			}
+			
+		}	
+		catch(error) {
+			var msg = error;
+			Logger.error("\n\nFailed to load order!\n"+msg);		
+		}
+		finally {
+			return thisOrder;
+		}
+	}
+	
+
+	var result = getOrderInfo(order); 
+	return result;
+}

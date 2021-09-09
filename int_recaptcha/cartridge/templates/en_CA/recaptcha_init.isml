@@ -1,0 +1,7 @@
+<!--- TEMPLATENAME: recaptcha_init.isml --->
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<iscomment>The purpose of this template is to include the api.js file and initialize reCAPTCHA. </iscomment>
+<!-- reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>
+<!-- End reCAPTCHA -->

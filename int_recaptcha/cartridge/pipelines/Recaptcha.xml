@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?demandware-pipeline version="2.0"?>
+
+<pipeline type="view">
+  <branch basename="Verify">
+    <segment>
+      <node>
+        <start-node call-mode="private" name="Verify" secure="false"/>
+        <node-display x="1" y="2"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <decision-node condition-key="dw.system.Site.current.preferences.custom.reCAPTCHAEnabled" condition-operator="expr"/>
+        <node-display x="0" y="1"/>
+        <branch basename="b2" source-connector="yes">
+          <transition target-connector="in"/>
+          <segment>
+            <node>
+              <pipelet-node pipelet-name="Script" pipelet-set-identifier="bc_api">
+                <config-property key="Transactional" value="false"/>
+                <config-property key="OnError" value="PIPELET_ERROR"/>
+                <config-property key="ScriptFile" value="recaptchaVerify.ds"/>
+                <key-binding alias="Log" key="ScriptLog"/>
+                <key-binding alias="SVCConfig" key="svcConfig"/>
+                <key-binding alias="HTTPResult" key="httpResult"/>
+                <key-binding alias="CurrentHttpParameterMap['g-recaptcha-response'].value" key="recaptchaResponse"/>
+                <key-binding alias="CurrentRequest.httpRemoteAddress" key="ip"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+              <branch basename="b2" source-connector="error">
+                <transition target-connector="in">
+                  <transition-display>
+                    <bend-point relative-to="source" x="2" y="0"/>
+                  </transition-display>
+                </transition>
+                <segment>
+                  <node>
+                    <end-node name="error"/>
+                    <node-display x="1" y="2"/>
+                  </node>
+                </segment>
+              </branch>
+            </node>
+            <transition target-connector="in1" target-path="../+1"/>
+          </segment>
+        </branch>
+      </node>
+      <transition target-connector="in2" target-path="./+1">
+        <transition-display>
+          <bend-point relative-to="target" x="1" y="-1"/>
+        </transition-display>
+      </transition>
+    </segment>
+    <segment>
+      <node>
+        <join-node/>
+        <node-display x="0" y="2"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <end-node name="ok"/>
+        <node-display x="0" y="1"/>
+      </node>
+    </segment>
+  </branch>
+</pipeline>

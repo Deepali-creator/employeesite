@@ -1,0 +1,62 @@
+<iscontent type="text/html " charset="UTF-8"/>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<iscomment>The "subject" tag contains the mail subject and can contain dynamic information, like the order number.</iscomment>
+<subject><isif condition="${!empty(pdict.MailSubject)}">${pdict.MailSubject}<iselse/><isprint value="${Resource.msg('order.orderconfirmation-email.001','order',null)}" encoding="off"/> <isprint value="${pdict.Order.orderNo}"/></isif></subject>
+<iscomment>
+	The "to" tag contains the email address of the recipient, the "from" tag the email address of the sender. 
+	Each tag is to be specified max. once. Multiple email address can be separated by "," (see RFC2822).
+</iscomment>
+<to>${pdict.CurrentForms.singleshipping.shippingAddress.email.emailAddress.htmlValue}</to>
+<from>${dw.system.Site.getCurrent().getCustomPreferenceValue('customerServiceEmail')}</from>
+
+<head>
+
+<isinclude template="util/modules"/>
+</head>
+<body>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" style="background:#e0e0e0;padding:50px 0;">
+			<center>
+				<table  style="background:#ffffff;border:1px solid #999999;width:680px;padding:15px;">
+					<tr>
+						<td style="font-size:24px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 10px;vertical-align:top;width:70%;color:#58585a;">
+							<strong>Your order with BaByliss PRO has been placed successfully</strong>
+						</td>
+						<td style="font-size:14px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 10px;vertical-align:top;">
+							<a href="${URLUtils.httpHome()}" title="${Resource.msg('global.storename','locale',null)}">
+								<img style="width:225px; height:auto;" src="${URLUtils.httpStatic('/images/logo@2x.png')}" alt="${Resource.msg('global.storename','locale',null)}"></img>
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size:14px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 10px;vertical-align:top; color: #58585a;" colspan="2">
+						
+							<p>${Resource.msg('account.passwordemail.dear','account',null)}&nbsp;<isprint value="${pdict.Order.billingAddress.firstName}"/>&nbsp;<isprint value="${pdict.Customer.profile.lastName}"/>,</p>	
+							
+							<p>${Resource.msg('confirmation.mail.message1','checkout',null)}<br/>
+							${Resource.msg('confirmation.mail.message3','checkout',null)} <strong>${pdict.Order.status}</strong><br/></p>
+							
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size:14px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif; color: #58585a; padding:20px 10px;vertical-align:top;" colspan="2">
+						
+							<isif condition="${pdict.Order.getCustomer().isMemberOfCustomerGroup('uk-salon')}">
+								<isemailorderdetailsnobilling order="${pdict.Order}"/>
+							<iselse>
+								<isemailorderdetails order="${pdict.Order}"/>
+							</isif>
+							
+						</td>
+					</tr>
+				</table>						
+			</center>
+		</td>
+	</tr>
+</table>	
+					
+
+</body>
+</html>

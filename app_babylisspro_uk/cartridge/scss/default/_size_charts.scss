@@ -1,0 +1,59 @@
+.sizinginformation {
+	border: 0 none;
+	padding: 10px;
+	
+	th {
+		background: none repeat scroll 0 0 $white-smoke;
+	}
+	td, th {
+		border-bottom: 1px solid $white-smoke;
+		padding: 10px;
+	}
+	td {
+		border-left: 1px solid $white-smoke;
+	}
+	.ui-tabs-nav {
+		height: 33px;
+	}
+	.sizing-charts {
+		border: 0 none;
+	}
+	.tips-list {
+		padding: 0 !important;
+		li {
+			list-style: none outside none !important;
+		}
+	}
+}
+
+
+
+
+    
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+}
+
+

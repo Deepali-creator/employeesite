@@ -1,0 +1,350 @@
+.pt_product-compare {
+	.full-width {
+		padding: 0 1.25em;
+
+		.print-page {
+			float: right;
+			margin: .75em;
+			display: none;
+		}
+
+		.back {
+			padding: 1em 0;
+			margin: 0;
+		}
+
+	}
+
+}
+
+.compare-items {
+	background: $white;
+	width: 100%;
+	clear: both;
+	margin: 1em 0;
+	overflow: hidden;
+	padding: 0 1em 1em;
+
+	h2 {
+		font-size: 0.9em;
+		margin: 0.5em 0;
+		text-transform: uppercase;
+	}
+
+}
+
+.compare-items-panel {
+	@extend %clearfix;
+	float: left;
+}
+
+.compare-item {
+	border: 1px solid $cuisinart-dark-gray;
+	float: left;
+	width: 60px;
+	height: 60px;
+	margin-right: 1.125em;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+
+	.compare-item-remove {
+		background-color: $cuisinart-dark-gray;
+		color: $white;
+		cursor: pointer;
+		display: none;
+		padding: 0 0.25em;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1;
+	}
+
+	.compare-item-number {
+		color: $cuisinart-gray;
+		font-size: 2.5em;
+		line-height: 60px;
+		vertical-align: middle;
+	}
+
+	&.active {
+		.compare-item-remove {
+			display: block;
+
+			&:hover {
+				color: $cuisinart-gray;
+			}
+
+		}
+
+		.compare-item-number {
+			display: none;
+		}
+
+	}
+
+}
+
+.compare-item-image {
+	width: 100%;
+	max-width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.compare-buttons {
+	float: left;
+	margin-top: 0.625em;
+	padding: 0.7em 0 0;
+
+	button {
+		margin-right: 1em;
+	}
+
+}
+
+.category-switch {
+	@extend .clearfix;
+	background: $white;
+	padding: 1em;
+
+	label {
+		float: left;
+		margin: 0;
+		width: 45%;
+
+		@media (min-width:410px) {
+			width: 11em;
+		}
+
+	}
+
+	select {
+		clear: both;
+		float: left;
+		margin: 0.5em 0;
+		width: 55%;
+
+		@media (min-width:410px) {
+			width: 15em;
+		}
+
+	}
+
+}
+
+#compare-table {
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
+	background: $white;
+	margin: 1em 0;
+
+	th {
+		overflow: hidden;
+		padding: 0.5em;
+
+		&:first-of-type {
+
+			/* width: 4rem; */
+		}
+
+		&.product {
+			position: relative;
+		}
+
+	}
+
+	td {
+		overflow: hidden;
+		font-size: 0.75em;
+	}
+
+	a {
+		&:hover {
+			text-decoration: underline;
+		}
+
+	}
+
+	.quickview {
+		min-width: 100%;
+		font-size: 0.675em;
+
+		i {
+			margin-right: 0;
+		}
+
+		&:hover {
+			text-decoration: none;
+		}
+
+	}
+
+	.attribute-row {
+		border-bottom: 1px solid $cuisinart-gray;
+
+		&:first-of-type {
+			border-top: 1px solid $cuisinart-gray;
+		}
+
+		&:last-of-type {
+			border-bottom: none;
+		}
+
+		&:nth-child(2n) {
+			background-color: $very-light-gray;
+		}
+
+		th {
+			font-size: 0.75em;
+		}
+
+	}
+
+	.product-attribute {
+		border-right: 1px solid $cuisinart-gray;
+		word-break: break-all;
+		font-size: 0.75em;
+	}
+
+	.button-cart {
+		font-size: 0.675em;
+	}
+
+	.action {
+		display: block;
+		padding: 0.5em 0;
+		text-decoration: underline;
+		font-size: 0.875em;
+	}
+
+	.remove-link {
+		background: $cuisinart-dark-gray;
+		font-size: 0.75em;
+		color: $white;
+		padding: 0.25em 0.3125em;
+		transition: color 0.3s ease;
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 50;
+
+		&:hover {
+			color: $cuisinart-gray;
+			text-decoration: none;
+		}
+
+	}
+
+	.product {
+		font-weight: normal;
+		text-align: center;
+	}
+
+	.value {
+		.value-item {
+			&:after {
+				content: ', ';
+			}
+
+			&:last-child {
+				&:after {
+					content: '';
+				}
+
+			}
+
+		}
+
+	}
+
+	.product-tile {
+		z-index: 49;
+
+		.product-name {
+			height: auto;
+			margin: .2em 0 1em 0;
+		}
+
+		.swatch-list {
+			display: inline-block;
+		}
+
+	}
+
+	.product-image {
+		height: auto;
+
+		img {
+			height: auto;
+		}
+
+	}
+
+	.section-header {
+		font-size: 0.9em;
+		padding: 1em;
+		text-transform: none;
+	}
+
+	.selectcategory {
+		label {
+			display: block;
+			font-size: 0.9em;
+			margin: 1em 0;
+			text-transform: none;
+		}
+
+		select {
+			margin: 0;
+			width: 100px;
+		}
+
+	}
+
+	.comparelists {
+		padding: 0;
+	}
+
+	.compare-lists {
+		label,
+		select {
+			float: none;
+			text-align: left;
+			width: 100%;
+		}
+
+	}
+
+}
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+/* Mobile Lg/Sm */
+@media screen and (max-width:767px) {
+	.product-compare,
+	.compareitems {
+		display: none !important;
+	}
+
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width:480px) and (max-width:767px) {
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width:479px) {
+}
+
+/* Tablet Only */
+@media screen and (min-width:768px) and (max-width:959px) {
+	#compare-table td .product-tile {
+		width: 79px;
+	}
+
+}

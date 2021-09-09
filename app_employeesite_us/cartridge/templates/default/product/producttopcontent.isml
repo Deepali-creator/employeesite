@@ -1,0 +1,383 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isscript>importScript("util/ProductImageSO.ds");</isscript>
+<iscomment>In the product pipeline, if a product was not found for the selected attributes, we need to refresh the ProductVariationModel using the default selected variant</iscomment>
+
+<isset name="isQuickView" value="${pdict.CurrentHttpParameterMap.source.stringValue == 'quickview' || pdict.CurrentHttpParameterMap.source.stringValue == 'cart' || pdict.CurrentHttpParameterMap.source.stringValue == 'giftregistry' || pdict.CurrentHttpParameterMap.source.stringValue == 'wishlist'}" scope="page"/>
+
+<iscomment>
+ /* Currently not being used by BabylissPRO UK */
+<isif condition="${isQuickView && pdict.CurrentHttpParameterMap.source.stringValue != 'cart'}">
+	<div class="quickview-nav">
+		<button class="quickview-prev">< ${Resource.msg('global.previous', 'locale', null)}</button>
+		<button class="quickview-next">${Resource.msg('global.next', 'locale', null)} ></button>
+	</div>
+</isif>
+</iscomment>
+
+<div class="product-col-1 clearfix">
+    <div class="product-image-container">
+    	<div class="mobile-images-block small-mobile-only flexslider"><ul class="slides"></ul></div>
+   		<isinclude template="product/components/productimages"/>
+	</div>
+</div>
+
+<div class="product-col-2  product-detail">
+	<h1 class="product-name" itemprop="name"><isprint value="${pdict.Product.name}"/></h1>
+	<div id="product-content">
+		<isinclude template="product/productcontent"/>
+	</div>
+</div>
+
+<div class="product-detail-bottom">
+
+	<div class="info-tabs product-detail">
+	<isif condition="${!isQuickView}">
+		<iscomment><button class="print-page">${Resource.msg('global.print', 'locale', null)}</button></iscomment>
+		<h2 class="visually-hidden">Additional Information</h2>
+		<isset name="vags" value="${pam.getVisibleAttributeGroups()}" scope="page"/>
+		<isset name="showAttributes" value="${false}" scope="page"/>
+
+		<iscomment>
+		<isloop items="${vags}" var="AttributeGroup" status="loopstatus">
+				<isif condition="${AttributeGroup.ID != 'mainAttributes'}">
+					<isset name="showAttributes" value="${true}" scope="page"/>
+				</isif>
+		</isloop>
+		</iscomment>
+
+		<div class="product-tabs">
+			<ul class="tabs-menu desktop-tabs desktop-only">
+				<isif condition="${! empty(pdict.Product.custom.tabDetails) && pdict.Product.custom.tabDetails.markup.length > 0}">
+					<li data-name="features">
+						<a href="#tab1">${Resource.msg('product.tab.features', 'product', null)}</a>
+					</li>
+				</isif>
+				<isif condition="${! empty(pdict.Product.custom.featuredRecipe) && pdict.Product.custom.featuredRecipe.length > 0}">
+					<isif condition="${pdict.Product.custom.featuredRecipe.length == 1}">
+						<li data-name="recipe"><a href="#tab3">${Resource.msg('product.tab.featuredrecipe', 'product', null)}</a></li>
+					<iselse>
+						<li data-name="recipe"><a href="#tab3">${Resource.msg('product.tab.featuredrecipes', 'product', null)}</a></li>
+					</isif>
+				</isif>
+				<isif condition="${!empty(pdict.Product.custom["videos-ca"]) && pdict.Product.custom["videos-ca"].length > 0}">
+					<li data-name="videos"><a href="#tab4">${Resource.msg('product.tab.videos', 'product', null)}</a>
+					</li>
+				</isif>
+				<isif condition="${dw.system.Site.current.preferences.custom.bvEnableRR_C2013}" >
+					<li data-name="reviews"><a href="#tab5">${Resource.msg('product.tab.reviews', 'product', null)}</a></li>
+				</isif>
+				<isif condition="${dw.system.Site.current.preferences.custom.bvEnableAA_C2013}" >
+					<li data-name="questions"><a href="#tab6">${Resource.msg('product.tab.questions', 'product', null)}</a></li>
+				</isif>
+
+				<isif condition="${! empty(pdict.Product.custom.serviceSupport) && pdict.Product.custom.serviceSupport.markup.length > 0}">
+					<li data-name="servicesupport"><a href="#tab7">${Resource.msg('product.tab.servicesupport', 'product', null)}</a></li>
+				</isif>
+
+				<isif condition="${!empty(pdict.Product.custom.informationBooklet) && pdict.Product.custom.informationBooklet.length > 0 || !empty(pdict.Product.custom.instructionBookletRecipes) && pdict.Product.custom.instructionBookletRecipes.length > 0 || !empty(pdict.Product.UPC) && pdict.Product.UPC.length > 0 || !empty(pdict.Product.custom.warranty) && pdict.Product.custom.warranty.length > 0 || !empty(pdict.Product.custom["unit-measure"]) && pdict.Product.custom["unit-measure"].length > 0 || !empty(pdict.Product.custom["unit-weight"]) && pdict.Product.custom["unit-weight"].length > 0 || !empty(pdict.Product.custom["gb-measure"]) && pdict.Product.custom["gb-measure"].length > 0}">
+
+					<li data-name="specs"><a href="#tab8">${Resource.msg('product.tab.specsandmanuals', 'product', null)}</a></li>
+				</isif>
+
+				<iscomment>
+
+				<isif condition="${showAttributes}">
+					<li><a href="#tab8">${Resource.msg('product.tab.attributes', 'product', null)}</a></li>
+				</isif>
+
+				</iscomment>
+			</ul>
+
+			<ul class="tabs-menu mobile-tabs">
+				<isif condition="${! empty(pdict.Product.custom.tabDetails) && pdict.Product.custom.tabDetails.markup.length > 0}">
+					<li data-name="features">
+						<a href="#tab1" class="toggle mobile-only">${Resource.msg('product.tab.features', 'product', null)}</a>
+					</li>
+					<div id="tab1" class="tab-content">
+						<isprint value="${pdict.Product.custom.tabDetails}" encoding="off"/>
+					</div>
+				</isif>
+				<isif condition="${!empty(pdict.Product.custom["featuredRecipe"]) && pdict.Product.custom["featuredRecipe"].length > 0}">
+					<li data-name="recipe" ><a href="#tab3" class="toggle mobile-only">${Resource.msg('product.tab.recipevideos', 'product', null)}</a>
+						<div id="tab3" class="tab-content recipe-tab-content" >
+
+							<isloop items="${pdict.Product.custom["featuredRecipe"]}" var="featuredRecipeItem" status="featuredRecipeStatus">
+								<isset name="recipeID" value="${pdict.Product.custom.featuredRecipe[featuredRecipeStatus.index]}" scope="page" />
+
+								<iscomment><isset name="recipeID" value="${pdict.Product.custom.featuredRecipe[0]}" scope="page" /></iscomment>
+								<div class='product-recipe-row <isif condition="${pdict.Product.custom.featuredRecipe.length == 1}">single</isif> <isif condition="${featuredRecipeStatus.first}" >active</isif>'>
+									<h3 class="product-recipe-name">
+										<a class='featured-recipe-toggle <isif condition="${featuredRecipeStatus.first}" >active</isif>'>
+											<isprint value="${dw.content.ContentMgr.getContent(recipeID).name}" encoding="off" /> <span class="icon"><i class='fa <isif condition="${featuredRecipeStatus.first}" >fa-minus <iselse>fa-plus </isif>'></i></span>
+										</a>
+									</h3>
+									<isif condition="${!empty(dw.content.ContentMgr.getContent(recipeID).custom.recipeVideo) && dw.content.ContentMgr.getContent(recipeID).custom.recipeVideo}">
+										<div class="product-recipe-content hasVid">
+											<div class="product-recipe-col">
+												<iscomment>
+													<h4><isprint value="${dw.content.ContentMgr.getContent(recipeID).name}" encoding="off" /></h4>
+												</iscomment>
+												<p class="product-recipe-description"><isprint value="${dw.content.ContentMgr.getContent(recipeID).description}" encoding="off" /></p>
+												<section class="product-recipe-servings">
+													<span class="h4 product-recipe-label"><isprint value="${Resource.msg('content.recipe.servings', 'content', null)}" encoding="off" /></span>
+													<span><isprint value="${dw.content.ContentMgr.getContent(recipeID).custom.recipeServings}" encoding="off" /></span>
+												</section>
+												<section class="product-recipe-ingredients">
+													<span class="h4 product-recipe-label"><isprint value="${Resource.msg('content.recipe.ingredients', 'content', null)}" encoding="off" /></span>
+													<span><isprint value="${dw.content.ContentMgr.getContent(recipeID).custom.recipeIngredients}" encoding="off" /></span>
+												</section>
+												<section class="product-recipe-instructions">
+													<span class="h4 product-recipe-label"><isprint value="${Resource.msg('content.recipe.instructions', 'content', null)}" encoding="off" /></span>
+													<isprint value="${dw.content.ContentMgr.getContent(recipeID).custom.recipeInstructions}" encoding="off" />
+												</section>
+											</div>
+											<div class="product-recipe-col">
+												<div class="product-recipe-video" data-url="${dw.content.ContentMgr.getContent(recipeID).custom.recipeVideo}">
+													<h3><isprint value="${Resource.msg('product.tab.video', 'product', null)}" encoding="off" /></h3>
+													<div class="vid-container">
+														<iframe class="recipeVid" id="recipe-vid" width="100%" src="${'#'}" frameborder="0" allowfullscreen ></iframe>
+													</div>
+												</div>
+											</div>
+										</div>
+									<iselse>
+										<div class="product-recipe-content">
+											<div class="product-recipe-col">
+												<iscomment>
+													<h4><isprint value="${dw.content.ContentMgr.getContent(recipeID).name}" encoding="off" /></h4>
+												</iscomment>
+												<p class="product-recipe-description"><isprint value="${dw.content.ContentMgr.getContent(recipeID).description}" encoding="off" /></p>
+												<section class="product-recipe-servings">
+													<span class="h4 product-recipe-label"><isprint value="${Resource.msg('content.recipe.servings', 'content', null)}" encoding="off" /></span>
+													<span><isprint value="${dw.content.ContentMgr.getContent(recipeID).custom.recipeServings}" encoding="off" /></span>
+												</section>
+												<section class="product-recipe-ingredients">
+													<span class="h4 product-recipe-label"><isprint value="${Resource.msg('content.recipe.ingredients', 'content', null)}" encoding="off" /></span>
+													<span><isprint value="${dw.content.ContentMgr.getContent(recipeID).custom.recipeIngredients}" encoding="off" /></span>
+												</section>
+												<section class="product-recipe-instructions">
+													<span class="h4 product-recipe-label"><isprint value="${Resource.msg('content.recipe.instructions', 'content', null)}" encoding="off" /></span>
+													<isprint value="${dw.content.ContentMgr.getContent(recipeID).custom.recipeInstructions}" encoding="off" />
+												</section>
+											</div>
+											<div class="product-recipe-col">
+												<div class="product-recipe-image">
+													<isset name="recipeImage" value="${dw.content.ContentMgr.getContent(recipeID).custom.recipeImage}" scope="page"/>
+													<img src="${URLUtils.staticURL(URLUtils.CONTEXT_LIBRARY, '', dw.content.ContentMgr.getContent(recipeID).custom.recipeImage[0])}" alt="${dw.content.ContentMgr.getContent(recipeID).name}" />
+												</div>
+											</div>
+										</div>
+									</isif>
+
+								</div>
+
+							</isloop>
+
+						</div>
+					</li>
+
+				</isif>
+
+				<isif condition="${!empty(pdict.Product.custom["videos-ca"]) && pdict.Product.custom["videos-ca"].length > 0}">
+					<li data-name="videos" ><a href="#tab4" class="toggle mobile-only">${Resource.msg('product.tab.videos', 'product', null)}</a>
+						<div id="tab4" class="tab-content tab-video">
+							<div class="videos-wrapper">
+								<isloop items="${pdict.Product.custom["videos-ca"]}" var="vid" status="loopstatus">
+									<div class="vid-container">
+										<iframe class="productVid" width="100%" height="100%" data-url="<isprint value="${vid}" encoding="off"/>" src="" frameborder="0" allowfullscreen></iframe>
+									</div>
+								</isloop>
+							</div>
+						</div>
+					</li>
+				</isif>
+				<isif condition="${dw.system.Site.current.preferences.custom.bvEnableRR_C2013}" >
+					<li data-name="reviews" ><a href="#tab5" class="toggle mobile-only">${Resource.msg('product.tab.reviews', 'product', null)}</a>
+						<div id="tab5" class="tab-content">
+							<isinclude template="bv/display/rr/reviews"/>
+						</div>
+					</li>
+				</isif>
+				<isif condition="${dw.system.Site.current.preferences.custom.bvEnableAA_C2013}" >
+					<li data-name="questions" ><a href="#tab6" class="toggle mobile-only">${Resource.msg('product.tab.questions', 'product', null)}</a>
+						<div id="tab6" class="tab-content">
+							<isinclude template="bv/display/qa/questions"/>
+						</div>
+					</li>
+				</isif>
+				<isif condition="${! empty(pdict.Product.custom.serviceSupport) && pdict.Product.custom.serviceSupport.markup.length > 0}">
+					<li data-name="servicesupport" ><a href="#tab7" class="toggle mobile-only">${Resource.msg('product.tab.servicesupport', 'product', null)}</a>
+						<div id="tab7" class="tab-content">
+							<h3><isprint value="${Resource.msg('product.tab.servicesupport', 'product', null)}" /></h3>
+							<isprint value="${pdict.Product.custom.serviceSupport}" encoding="off" />
+						</div>
+					</li>
+				</isif>
+				<isif condition="${!empty(pdict.Product.custom.informationBooklet) && pdict.Product.custom.informationBooklet.length > 0 || !empty(pdict.Product.custom.instructionBookletRecipes) && pdict.Product.custom.instructionBookletRecipes.length > 0 || !empty(pdict.Product.UPC) && pdict.Product.UPC.length > 0 || !empty(pdict.Product.custom.warranty) && pdict.Product.custom.warranty.length > 0 || !empty(pdict.Product.custom["unit-measure"]) && pdict.Product.custom["unit-measure"].length > 0 || !empty(pdict.Product.custom["unit-weight"]) && pdict.Product.custom["unit-weight"].length > 0 || !empty(pdict.Product.custom["gb-measure"]) && pdict.Product.custom["gb-measure"].length > 0}">
+
+					<li data-name="specs" >
+						<a href="#tab8" class="toggle mobile-only">${Resource.msg('product.tab.specsandmanuals', 'product', null)}</a>
+						<div id="tab8" class="tab-content">
+							<div class="specs-content">
+
+								<iscomment>UPC</iscomment>
+								<isif condition="${!empty(pdict.Product.UPC) && pdict.Product.UPC.length > 0}">
+								  	<div class="spec-row">
+								  		<div class="spec-row_label">
+								  			<span><isprint value="${Resource.msg('product.upccode','product',null)}"/></span>
+								  		</div>
+								  		<div class="spec-row_value">
+										    <span>
+										    	<isprint value="${pdict.Product.UPC}"/>
+										    </span>
+										</div>
+									</div>
+								</isif>
+
+                                <iscomment>Unit Measure</iscomment>
+                                <isif condition="${!empty(pdict.Product.custom["unit-measure"]) && pdict.Product.custom["unit-measure"].length > 0}">
+                                      <div class="spec-row">
+                                          <div class="spec-row_label">
+                                              <span><isprint value="${Resource.msg('product.unitmeasure','product',null)}"/></span>
+                                          </div>
+                                          <div class="spec-row_value">
+                                            <span>
+                                                <isprint value="${pdict.Product.custom["unit-measure"]}"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <iscomment>Unit Weight</iscomment>
+                                <isif condition="${!empty(pdict.Product.custom["unit-weight"]) && pdict.Product.custom["unit-weight"].length > 0}">
+                                      <div class="spec-row">
+                                          <div class="spec-row_label">
+                                              <span><isprint value="${Resource.msg('product.unitweight','product',null)}"/></span>
+                                          </div>
+                                          <div class="spec-row_value">
+                                            <span>
+                                                <isprint value="${pdict.Product.custom["unit-weight"]}"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <iscomment>GB Measure</iscomment>
+                                <isif condition="${!empty(pdict.Product.custom["gb-measure"]) && pdict.Product.custom["gb-measure"].length > 0}">
+                                      <div class="spec-row">
+                                          <div class="spec-row_label">
+                                              <span><isprint value="${Resource.msg('product.gbmeasure','product',null)}"/></span>
+                                          </div>
+                                          <div class="spec-row_value">
+                                            <span>
+                                                <isprint value="${pdict.Product.custom["gb-measure"]}"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </isif>
+
+                                <iscomment>Warranty</iscomment>
+								<isif condition="${!empty(pdict.Product.custom.warranty) && pdict.Product.custom.warranty.length > 0}">
+								  	<div class="spec-row">
+								  		<div class="spec-row_label">
+								  			<span><isprint value="${Resource.msg('product.warranty','product',null)}"/></span>
+								  		</div>
+								  		<div class="spec-row_value">
+										    <span>
+										    	<isprint value="${pdict.Product.custom.warranty}"/>
+										    </span>
+										</div>
+									</div>
+								</isif>
+
+								<iscomment>Information Booklet</iscomment>
+								<isif condition="${!empty(pdict.Product.custom.informationBooklet) && pdict.Product.custom.informationBooklet.length > 0}">
+									<isset name="bookletDownloadURL" value="${URLUtils.staticURL(URLUtils.CONTEXT_LIBRARY,'',pdict.Product.custom.informationBooklet)}" scope="page" />
+									<div class="spec-row">
+										<div class="spec-row_label">
+											<span><isprint value="${Resource.msg('product.booklet','product',null)}"/></span>
+										</div>
+										<div class="spec-row_value">
+									    	<a href="${bookletDownloadURL}" class="button-download-manual" target="_blank">
+									    		<span class="fa fa-download">&nbsp;</span>
+									    		<span class="download-label"><isprint value="${Resource.msg('product.download','product',null)}"/></span>
+									    	</a>
+									    </div>
+									</div>
+								</isif>
+
+								<iscomment>Recipe Booklet</iscomment>
+								<isif condition="${!empty(pdict.Product.custom.instructionBookletRecipes) && pdict.Product.custom.instructionBookletRecipes.length > 0}">
+								  	<isset name="recipeBookletDownloadURL" value="${URLUtils.staticURL(URLUtils.CONTEXT_LIBRARY,'',pdict.Product.custom.instructionBookletRecipes)}" scope="page" />
+								  	<div class="spec-row">
+								  		<div class="spec-row_label">
+								  			<span><isprint value="${Resource.msg('product.bookletrecipes','product',null)}"/></span>
+								  		</div>
+								  		<div class="spec-row_value">
+										    <a href="${recipeBookletDownloadURL}" class="button-download-manual" target="_blank">
+										      <span class="fa fa-download">&nbsp;</span>
+										      <span class="download-label"><isprint value="${Resource.msg('product.download','product',null)}"/></span>
+										    </a>
+										</div>
+									</div>
+								</isif>
+							</div>
+						</div>
+					</li>
+				</isif>
+				<iscomment>
+				<isif condition="${showAttributes}">
+					<li><a href="#tab8" class="toggle mobile-only">${Resource.msg('product.tab.attributes', 'product', null)}</a>
+						<div id="tab8" class="tab-content">
+							<isloop items="${vags}" var="AttributeGroup" status="loopstatus">
+								<isif condition="${AttributeGroup.ID != 'mainAttributes'}">
+									<isset name="group" value="${AttributeGroup}" scope="page"/>
+									<h3><isprint value="${group.getDisplayName()}"/></h3>
+									<isinclude template="product/components/group"/>
+								</isif>
+							</isloop>
+						</div>
+					</li>
+				</isif>
+				</iscomment>
+			</ul>
+		</div>
+
+	</isif>
+	</div>
+
+	<iscomment>Parts & Accessories Tiles</iscomment>
+	<isif condition="${!empty(pdict.Product.custom.parts) && pdict.Product.custom.parts.length > 0}">
+		<isset name="Accessories" value="${pdict.Product.custom.parts.slice(0,4)}" scope="pdict"/>
+		<h3 class="section-title">${Resource.msg('product.tab.spareparts', 'product', null)}</h3>
+		<div class="spare-parts-content">
+			<ul class="search-result-items">
+				<isinclude template="product/partsandaccessories" />
+				<isif condition="${pdict.Product.custom.parts.length > 4}">
+					<li class="accessories_view-more">
+						<a class="viewMore button" href="${URLUtils.url('Product-MoreAccessories','pid',pdict.Product.ID).toString()}">${Resource.msg('global.viewmore', 'locale', null)}</a>
+					</li>
+				</isif>
+			</ul>
+		</div>
+	</isif>
+
+	<iscomment>Compatible Products Tiles</iscomment>
+	<isif condition="${!empty(pdict.Product.custom.baseModel) && pdict.Product.custom.baseModel.length > 0}">
+		<isset name="CompatibleProducts" value="${pdict.Product.custom.baseModel.slice(0,4)}" scope="pdict"/>
+		<h3 class="section-title"><iscontentasset aid="compatible-products-label" /></h3></a>
+		<div class="spare-parts-content base-model-content">
+			<ul class="search-result-items">
+				<isinclude template="product/compatibleproducts" />
+				<li class="compatible_view-more">
+					<a class="viewMore button" href="${URLUtils.url('Product-MoreCompatibleProducts','pid',pdict.Product.ID).toString()}">${Resource.msg('global.viewmore', 'locale', null)}</a>
+				</li>
+			</ul>
+		</div>
+	</isif>
+
+	<isif condition="${!isQuickView}">
+		<isinclude template="product/components/recommendations"/>
+	</isif>
+
+</div>

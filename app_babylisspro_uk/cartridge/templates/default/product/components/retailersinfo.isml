@@ -1,0 +1,34 @@
+<!--- TEMPLATENAME: retailersinfo.isml --->
+<iscache type="relative" hour="24"/>
+<isscript>
+	var retData = pdict.Product.custom.retailerData;
+	var ret_data_json = JSON.parse(retData);
+	if (!empty(ret_data_json)) {
+		var logoInfo = [ret_data_json.length];
+		for( var i=0; i < ret_data_json.length; i++){
+			var identifier = ret_data_json[i].id;
+			var cor = dw.object.CustomObjectMgr.getCustomObject('ExternalRetailers',identifier);
+			var obj = {};
+			obj.logoname = cor.custom.Name;
+			obj.logopath = cor.custom.Logo.URL;
+			if(!empty(ret_data_json[i].produrl)){
+				obj.logolink = ret_data_json[i].produrl;
+			}else{
+				obj.logolink = cor.custom.DefaultUrl;
+			}
+			logoInfo[ret_data_json[i].position-1] = obj;
+		}
+	}
+</isscript>
+<isif condition="${!empty(logoInfo)}">
+	<isif condition="${logoInfo.length > 0}">
+		<div class="retailers">
+		<p>${!empty(pdict.Product.custom.onlyAvailableFromText) ? pdict.Product.custom.onlyAvailableFromText : Resource.msg('product.retaillogo.text','product',null)}</p>
+			<isloop items="${logoInfo}" var="lInfo">
+				<a class="retaillogo" href="${lInfo.logolink}" target="_blank">
+					<img src="${lInfo.logopath}" alt="${lInfo.logoname}"/>
+				</a>
+			</isloop>
+		</div>
+	</isif>
+</isif>

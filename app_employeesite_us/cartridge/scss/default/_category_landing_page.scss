@@ -1,0 +1,248 @@
+.category-top,
+.category-landing_top {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-content: center;
+	align-items: center;
+	& + .category-description {
+		margin-top: 2em;
+		line-height: 1.6;
+		&_product {
+			margin-top: 0.75em;
+		}
+	}
+	.category-intro,
+	.category-landing_intro,
+	.category-search {
+		display: inline-block;
+	}
+	.category-intro.search-enabled{
+		max-width: 60%;
+	}
+	.category-landing_intro {
+		max-width: 50%;
+	}
+}
+
+.category-head-content {
+	img {
+		margin: 0.8125em 0 0;
+	}
+}
+
+.category-landing_product {
+	padding: 0 0 3.125em;
+}
+
+.category-search {
+	position: relative;
+	width: 30%;
+	input[type="text"] {
+		//width: 20rem;
+		width: 100%;
+		height: 2.375rem;
+		padding: 0 1.5em 0 0.625em;
+		font-size: 0.875rem;
+		color: $dim-gray;
+	}
+	button {
+		position: absolute;
+		top: 50%;
+		right: 1px;
+		margin: 0;
+		padding: 0 0.625em;
+		background: transparent;
+		border: 1px solid rgba(0,0,0,0);
+		color: $dim-gray;
+		font-size: 0.625rem;
+		width: auto;
+		height: 1.375rem;
+		text-align: center;
+		transition: all 0.3s ease;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		transform: translateY(-50%);
+		i {
+			font-size: 0.875rem;
+			margin-right: 0;
+			line-height: 1.25rem;
+			//margin-top: -0.3125em;
+		}
+		&:hover {
+			color: $cuisinart-dark-gray;
+		}
+	}
+}
+
+.category-landing_results{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	&.product-landing_results {
+		flex-direction: column;
+		margin-top: 3em;
+	}
+	.category-tile {
+		position: relative;
+		width: 50%;
+		margin: 0 0 5%;
+		padding: 0 2%;
+		text-align:center;
+		&.product-category-tile {
+			width: 100%;
+			padding: 0;
+			text-align: left;
+		}
+		&.col2{
+			width: 50%;
+		}
+		&.col3{
+			width: 33.3333333%;
+		}
+		.product-tile__count {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-end;
+			span {
+				text-transform: uppercase;
+			}
+			a {
+				color: $medium-gray;
+				&:hover {
+					color: $medium-gray-alt;
+				}
+			}
+		}
+		.product-tile_view-more {
+			text-align: center;
+			.viewMore {
+				text-transform: uppercase;
+				background-color: $cuisinart-dark-gray-10;
+				border: $cuisinart-dark-gray-10;
+				&:hover {
+					background-color: $cuisinart-gray-50;
+					border: $cuisinart-gray-50;
+					color: $white;
+				}
+			}
+		}
+		.category-tile_link{
+			display:block;
+			width:100%;
+			height:100%;
+			overflow: visible;
+		}
+		.category-tile_image{
+			//display:block;
+			//width:100%;
+			margin-bottom:0.25em;
+			//background: #f5f5f5;
+		}
+		.category-tile_name{
+			display: block;
+			font-size: 1.125rem;
+			transition: color 0.3s ease;
+			&.product-category-tile_name {
+				text-transform: uppercase;
+				color: $black;
+				white-space: nowrap;
+				font-size: 1.7em;
+				&:hover {
+					color: $black;
+				}
+			}
+		}
+		&:hover{
+			.category-tile_name{
+				color: $cuisinart-gray-50;
+			}
+			.product-category-tile_name {
+				color: $cuisinart-gray-50;
+			}
+		}
+	}
+}
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+
+	.category-top,
+	.category-landing_top {
+		flex-wrap: wrap;
+		padding-bottom: 2em;
+		.category-intro.search-enabled{
+			max-width: 100%;
+		}
+		.category-landing_intro {
+			max-width: 100%;
+			&_product {
+				top: auto;
+			}
+		}
+	}
+
+	.category-search {
+		width: 40%;
+	}
+	.category-landing_results {
+		.category-tile{
+			.category-tile_name{
+				font-size: 1rem;
+				&.product-category-tile_name {
+					font-size: 1.5rem;
+					white-space: normal;
+				}
+			}
+			.product-tile__count {
+				flex-direction: column;
+				align-items: flex-start;
+				margin-bottom: 1.5em;
+			}
+		}
+	}
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+	.category-top {
+		flex-wrap: wrap;
+		.category-intro.search-enabled{
+			max-width: 100%;
+		}
+	}
+	.category-search {
+		width: 100%;
+	}
+
+	.category-landing_results {
+		.category-tile{
+			width: 100%;
+			margin: 0 0 2rem;
+		}
+	}
+	.category-landing_results {
+		.category-tile{
+			.category-tile_name{
+				&.product-category-tile_name {
+					font-size: 1.5rem;
+				}
+			}
+		}
+	}
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}

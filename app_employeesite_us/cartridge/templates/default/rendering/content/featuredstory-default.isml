@@ -1,0 +1,38 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="content/content/pt_content-fullwidth">
+<isinclude template="util/modules"/>
+<div id="featured-story" class="content-page">
+	<div class="wrap">
+		<section class="section top-section">
+			<isif condition="${!empty(pdict.Content.custom.featuredStoryBanner)}">
+				<div class="banner">
+					<img src="${pdict.Content.custom.featuredStoryBanner.getURL()}" />
+				</div>
+			</isif>
+			
+			<h1 class="title"><isprint value="${pdict.Content.name}" encoding="off" /></h1>
+			<p class="intro">
+				<isprint value="${pdict.Content.description}" encoding="off" />
+			</p>
+			<isif condition="${!empty(pdict.Content.custom.featuredStoryVideo)}">
+				<div class="video-content">
+					<div class="video-wrapper">
+						<iframe class="video" data-url="${pdict.Content.custom.featuredStoryVideo}" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</div>
+			</isif>
+			
+		</section>
+	</div>
+	<section class="section section-bottom">
+		<isprint value="${pdict.Content.custom.body}" encoding="off" />
+		<isloop items="${pdict.Content.custom.featuredStorySection}" var="row" status="rowStatus">
+			<section class="content-row">
+				<div class="wrap">
+					<isprint value="${dw.content.ContentMgr.getContent(row).custom.body}" encoding="off" />
+				</div>
+			</section>
+		</isloop>
+	</section>
+</div><!-- /featured-story -->
+</isdecorate>

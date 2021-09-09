@@ -1,0 +1,107 @@
+/**
+* ValidateDisplayCodes.ds
+*
+* @output ValidCodes : Array
+* @output CodeCount : Number
+* @output SingleLocale : String
+* @output Message : String
+* 
+*/
+importPackage( dw.system );
+importPackage( dw.util );
+
+importScript( "int_bazaarvoice:/lib/libBazaarvoice.ds" );
+importScript( "int_bazaarvoice:/lib/libConstants.ds" );
+
+function execute( pdict : PipelineDictionary ) : Number
+{
+   	var bvHelper = getBazaarVoiceHelper();
+
+   	var allowedLocales : ArrayList = Site.getCurrent().allowedLocales;
+   	var defaultLocale : String = Site.getCurrent().getDefaultLocale();
+   	var DCArray : Array = Site.getCurrent().getCustomPreferenceValue("bvLocaleMapping_C2013");
+   
+   	var validCodes : Array = new Array();
+   	var codeCount : Number = 0;
+
+	//Get displaycode for current locale
+   	if(DCArray.length > 1){
+		var index = 0;
+		var dupArray : Array = new Array();
+		
+		for each(var item : String in DCArray){
+			item = item.replace(/^[\s]+|[\"]|[\s]+$/g,"");
+							
+			if(BV_Constants.regFull.test(item) && dupArray.indexOf(defaultLocale) == -1){
+				validCodes.push(item);
+				dupArray.push(defaultLocale);
+				codeCount++;
+			}else if(BV_Constants.regPair.test(item)){				
+				var a = item.split(":");
+				a[0] = a[0].replace(/^[\s]+|[\s]+$/g,"");
+				a[1] = a[1].replace(/^[\s]+|[\s]+$/g,"");
+				
+				if(allowedLocales.indexOf(a[0]) != -1 && dupArray.indexOf(a[0]) == -1){
+					validCodes.push(item);
+					dupArray.push(a[0]);
+					codeCount++;
+				}else{
+					Logger.error("[ExportProductFeed][ValidateDisplayCodes]Site Preferences bvLocaleMapping has inactive locale " + a[0]);
+				}
+			}
+			
+			if(index == DCArray.length - 1 && validCodes.length == 0){
+				Logger.error("[ExportProductFeed][ValidateDisplayCodes]Site Preferences bvLocaleMapping has no match setting for allowedlocales");
+				pdict.Message = "Site Preferences bvLocaleMapping has no match setting for allowedlocales";
+			}
+			
+			index++;
+		}
+
+	}else if(DCArray.length == 1){
+		var item : String = DCArray[0];
+		
+		item = item.replace(/^[\s]+|[\"]|[\s]+$/g,"");
+				
+		if(BV_Constants.regFull.test(item)){
+			validCodes.push(item);
+			codeCount++;
+		}else if(BV_Constants.regPair.test(item)){
+			
+			var a = item.split(":");
+			a[0] = a[0].replace(/^[\s]+|[\s]+$/g,"");
+			a[1] = a[1].replace(/^[\s]+|[\s]+$/g,"");
+			
+			if(allowedLocales.indexOf(a[0]) != -1 && a[0].equals(defaultLocale)){
+				var bvlocale : String = a[1];
+				if(bvlocale.indexOf("/") != -1) {
+					bvlocale = bvlocale.split("/")[1];
+				}
+				validCodes.push(bvlocale);
+				codeCount++;
+			}
+			//there is only one mapping, and it does not match the (radio button) default DW locale
+			//In this case, the job needs to explicitly set the locale to the mapped DW locale
+			else if(allowedLocales.indexOf(a[0]) != -1 && !(a[0].equals(defaultLocale))){
+				pdict.SingleLocale = a[0];
+				var bvlocale : String = a[1];
+				if(bvlocale.indexOf("/") != -1) {
+					bvlocale = bvlocale.split("/")[1];
+				}
+				validCodes.push(bvlocale);
+				codeCount++;
+			}
+		}else{
+			codeCount = 0;
+			pdict.Message = "Site Preferences bvLocaleMapping does not have valid mapping for default locale" + defaultLocale;
+			return PIPELET_ERROR;
+		}
+   	}else{
+   		pdict.Message = "Site Preferences bvLocaleMapping does not have valid mapping for default locale" + defaultLocale;
+   	}
+   
+   	pdict.ValidCodes = validCodes;
+   	pdict.CodeCount = codeCount;
+
+   	return PIPELET_NEXT;
+}

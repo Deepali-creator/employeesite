@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- TemplateComment :  EMail form for inviting someone to shop  -->
+<iscontent type="text/html" charset="UTF-8"/>
+<isinclude template="util/modules"/>
+<subject><isif condition="${!empty(pdict.CurrentForms.sendtofriend.subject.value)}"><isprint value="${pdict.CurrentForms.sendtofriend.subject.value}" encoding="off" /><iselse/></isif></subject>
+<html>
+<head>
+	<style>
+		@import url("//hello.myfonts.net/count/348441");
+
+		@font-face {font-family: 'GrotesqueMTStd';src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.eot')}');src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.eot?#iefix')}') format('embedded-opentype'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.woff2')}') format('woff2'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.woff')}') format('woff'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_0_0.ttf')}') format('truetype'); font-weight:normal; font-style:normal;}
+
+		@font-face {font-family: 'GrotesqueMTStd-Bold';src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.eot')}');src: url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.eot?#iefix')}') format('embedded-opentype'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.woff2')}') format('woff2'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.woff')}') format('woff'),url('${URLUtils.httpsStatic('/fonts/grotesqueMTStd/webfonts/348441_2_0.ttf')}') format('truetype'); font-weight:normal; font-style:normal;}
+	 </style>
+</head>
+<body>
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" style="background:#e0e0e0;padding:50px 0;">
+			<center>
+				<table  style="box-sizing:border-box; background:#ffffff;border:1px solid #d2d4d6;width:680px; color: #4c4c4c; padding:15px;">
+					<tr>
+						<td style="width:70%; font-size:24px;font-family:GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 20px 20px 0;font-weight:bold;color:#5DA044;">${Resource.msg('account.sendtofriend.title','account',null)} <isprint value="${pdict.CurrentCustomer.profile.email}" encoding="off"/> </td>
+						<td><img width="225" src="${URLUtils.httpStatic('/images/logo.png')}"></img></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="font-size:12px;font-family:arial;padding:20px 0;vertical-align:top;">
+							<p style="font-size:14px;">${Resource.msg('account.sendtofriend.yourfriend','account',null)} ${pdict.CurrentForms.sendtofriend.yourname.value}, ${Resource.msg('account.sendtofriend.wantedtoshare','account',null)}</p>
+							<p style="font-size:14px;">${Resource.msg('account.passwordemail.message2','account',null)}</p>
+							<p style="font-size:14px;">${Resource.msg('account.passwordemail.message3','account',null)}</p>
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size:18px; font-family:GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif; font-weight:bold; padding:20px 0; color: #5DA044; border-top:2px solid #d2d4d6;" colspan="2">
+						    ${Resource.msg('account.sendtofriend.productdetails', 'account', null)}
+						</td>
+					</tr>
+					<tr>
+						<td style="width:100%;" colspan="2">
+							<table style="width:100%; border-spacing:initial; border-bottom:2px solid #d2d4d6; color: #4c4c4c;font-family:GrotesqueMTStd, Helvetica Neue, Helvetica, Arial, sans-serif;">
+								<tr>
+									<th style="font-size:16px; font-family:GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif; color: #4c4c4c; text-align:left; font-weight:bold; padding:0 0 10px;">
+										${Resource.msg('account.stocknotification.label.product', 'account', null)}
+									</th>
+									<th style="font-size:16px; font-family:GrotesqueMTStd-Bold, Helvetica Neue, Helvetica, Arial, sans-serif; color:#4c4c4c; text-align:left; font-weight:bold; padding:0 0 10px;">
+										${Resource.msg('account.stocknotification.label.link', 'account', null)}
+									</th>
+								</tr>
+								<tr>
+								    <td style="vertical-align:middle; font-weight:bold; font-size:16px; border-top:2px solid #d2d4d6;">
+									   <isscript>
+											importScript("util/ProductImageSO.ds");
+									   </isscript>
+									   <isset name="product" value="${pdict.Product}" scope="page"/>
+										<isset name="image" value="${new ProductImage('large', product, 0)}" scope="page"/>
+										<isif condition="${!empty(image)}">
+											<isset name="thumbnailUrl" value="${image.getURL()}" scope="page"/>
+										   	<isset name="imageAlt" value="${image.getAlt()}" scope="page"/>
+										   	<isset name="imageTitle" value="${image.getTitle()}" scope="page"/>
+										<iselse/>
+										  	<isset name="thumbnailUrl" value="${URLUtils.staticURL('/images/noimagesmall.png')}" scope="page"/>
+										  	<isset name="imageTitle" value="${item.object.product.name}" scope="page"/>
+										 	<isset name="imageAlt" value="${item.object.product.name}" scope="page"/>
+										</isif>
+										<img style="float:left; display:block; width:120px; height:120px; margin-right:15px; margin-bottom:15px;" src="${thumbnailUrl}" alt="${imageAlt}" title="${imageTitle}"/>
+										<div style="padding-top:30px;">
+										    <p style="margin:5px 0; width:100%;"><isprint value="${pdict.Product.name}" encoding="off"/></p>
+										    <p style="margin:0; width:100%; text-tranform:uppercase;"><isprint value="${pdict.Product.ID}" encoding="off"/></p>
+										</div>
+										<br style="clear:both;" />
+									</td>
+								    <td style="width:120px; font-weight:normal; font-size:16px;border-top:2px solid #d2d4d6;">
+								        <p style="margin:0; padding-bottom:15px;">
+											<a style="color: #5DA044 !important;" href="${URLUtils.http('Product-Show', 'pid', pdict.Product.ID)}" title="${Resource.msg('account.sendtofriend.viewnow','account',null)}">${Resource.msg('account.sendtofriend.viewnow','account',null)}</a>
+										</p>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</center>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

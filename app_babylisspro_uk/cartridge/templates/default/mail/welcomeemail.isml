@@ -1,0 +1,43 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<isif condition="${!empty(pdict.Customer)}">
+<subject><isif condition="${!empty(pdict.MailSubject)}">${pdict.MailSubject}<iselse/>${Resource.msg('accountemail.welcome.subject','account',null)}</isif></subject>
+<html>
+<head>
+<title>${Resource.msg('accountemail.welcome.subject','account',null)}</title>
+</head>
+<body>
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" style="background:#e0e0e0;padding:50px 0;">
+			<center>
+				<table  style="background:#ffffff;border:1px solid #999999;width:680px;padding: 0 15px;">
+					<tr>
+						<td style="width:65%;font-size:24px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 15% 20px 10px;font-weight:bold;color:#58585a">${Resource.msg('account.welcomeheading','account',null)}</td>
+						<td><img style="width:225px; height:auto;" src="${URLUtils.httpStatic('/images/logo@2x.png')}"></img></td>
+					</tr>
+					<tr>
+						<td style="font-size:14px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif; color: #58585a; padding:20px 10px;vertical-align:top;font-size:14px;" colspan="2">
+						
+							<p style="text-transform: capitalize;">${Resource.msg('account.passwordemail.dear','account',null)}&nbsp;<isprint value="${pdict.Customer.profile.firstName}"/>&nbsp;<isprint value="${pdict.Customer.profile.lastName}"/>,</p>	
+							
+							<p><isprint value="${StringUtils.format(Resource.msg('account.welcome.message1','account',null), pdict.Customer.profile.email, URLUtils.http('Account-Show') ,'My Account')}" encoding="off"/></p>
+							
+							<p><isprint value="${StringUtils.format(Resource.msg('account.welcome.message2','account',null),  URLUtils.https('Account-PasswordReset') ,'Forgot your password')}" encoding="off"/></p>
+							
+							<p>${Resource.msg('account.welcome.message3','account',null)}</p>
+								
+							<p>${Resource.msg('account.passwordemail.message2','account',null)}</p>	
+							<p>${Resource.msg('account.passwordemail.message3','account',null)}</p>
+							
+						</td>
+					</tr>
+				</table>						
+			</center>
+		</td>
+	</tr>
+</table>	
+</body>
+</html>
+</isif>

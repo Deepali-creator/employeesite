@@ -1,0 +1,28 @@
+/**
+*
+*
+*
+*
+*   @input notificationForm : dw.web.Form
+*-   @output ExampleOut : Number
+*
+*/
+importPackage( dw.system );
+importPackage( dw.object );
+importPackage( dw.web );
+
+function execute( args : PipelineDictionary ) : Number {
+	var altSku = args.notificationForm.altSKU.value;
+	var notificationIDs = new Array();
+	for each (var notifyGroup : FormList in args.notificationForm.notifyList){
+		if (notifyGroup.select.checked){
+			notificationIDs.push(notifyGroup.object.custom.ID);
+			notifyGroup.select.value=false;
+		}
+	}
+	for each (var id : String in notificationIDs){
+		var notification : CustomObject = CustomObjectMgr.getCustomObject("InStockNotification", id);
+		notification.custom.alternateSKU=altSku;
+	}
+	return PIPELET_NEXT;
+}

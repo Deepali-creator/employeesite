@@ -1,0 +1,264 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isset name="isQuickView" value="${pdict.CurrentHttpParameterMap.source.stringValue == 'quickview' || pdict.CurrentHttpParameterMap.source.stringValue == 'cart' || pdict.CurrentHttpParameterMap.source.stringValue == 'giftregistry' || pdict.CurrentHttpParameterMap.source.stringValue == 'wishlist'}" scope="page"/>
+
+<isscript>importScript("util/ProductImageSO.ds");</isscript>
+
+<iscomment>
+ /* Currently not being used by BabylissPRO UK */
+<isif condition="${isQuickView}">
+	<div class="quick-view-navigation">
+		<button class="quickview-prev">< ${Resource.msg('global.previous','locale',null)}</button>
+		<button class="quickview-next" style="float:right">${Resource.msg('global.next','locale',null)} ></button>
+	</div>
+</isif>
+</iscomment>
+
+<!-- dwMarker="product" dwContentID="${pdict.Product.UUID}" -->
+
+<isset name="OrigProduct" value="${pdict.Product}" scope="page"/>
+<isset name="ProductSet" value="${pdict.Product}" scope="pdict"/>
+<isset name="ProductSetList" value="${new dw.util.ArrayList()}" scope="pdict" />
+<isset name="isBundle" value="${pdict.Product.bundle}" scope="pdict"/>
+<isset name="isSet" value="${pdict.Product.productSet}" scope="pdict"/>
+
+<isloop items="${pdict.Product.productSet ? pdict.ProductSet.getProductSetProducts() : pdict.ProductSet.getBundledProducts()}" var="SetProduct" status="productSetLoop">
+	<isif condition="${SetProduct.online}">
+		<isscript>
+			if( SetProduct.master ) {
+				var _variants = SetProduct.getVariants();
+				if(_variants != null) {
+					if(_variants.length > 0) {
+						for each(var _p : dw.product.Product in _variants) {
+							if(_p.onlineFlag == true) {
+								SetProduct = _p;
+								break;
+							}
+						}
+					}
+				}
+			}
+
+			pdict.ProductSetList.add(SetProduct);
+		</isscript>
+	</isif>
+</isloop>
+
+
+
+<iscomment>
+	Image
+	=============================================================
+</iscomment>
+
+<div class="product-col-1 product-set"><!-- dwMarker="product" dwContentID="${pdict.Product.UUID}" -->
+
+	<isset name="FirstProductInSet" value="${pdict.ProductSetList[0]}" scope="pdict" />
+	<isset name="imageProduct" value="${pdict.FirstProductInSet}" scope="page"/>
+	<isset name="image" value="${new ProductImage('large', imageProduct, 0)}" scope="page"/>
+
+	<isif condition="${!empty(image)}">
+		<isset name="imageUrl" value="${image.getURL()}" scope="page"/>
+		<isset name="imageAlt" value="${image.getAlt()}" scope="page"/>
+		<isset name="imageTitle" value="${image.getTitle()}" scope="page"/>
+	<iselse/>
+		<isset name="imageUrl" value="${URLUtils.staticURL('/images/noimagelarge.png')}" scope="page"/>
+		<isset name="imageAlt" value="${pdict.Product.name}" scope="page"/>
+		<isset name="imageTitle" value="${pdict.Product.name}" scope="page"/>
+	</isif>
+
+	<isset name="imageHires" value="${new ProductImage('hi-res', imageProduct, 0)}" scope="page"/>
+	<isif condition="${!empty(imageHires)}">
+		<isset name="imageUrlHiRes" value="${imageHires.getURL()}" scope="page"/>
+	<iselse/>
+		<isset name="imageUrlHiRes" value="${URLUtils.staticURL('/images/noimagelarge.png')}" scope="page"/>
+	</isif>
+    <div class="product-image-container">
+    <div class="mobile-images-block mobile-only flexslider"><ul class="slides"></ul></div>
+	<div class="product-primary-image">
+		<h2 class="visually-hidden">Images</h2>
+
+		<isif condition="${!empty(imageHires)}">
+			<isset name="hi_res" scope="page" value="${imageHires.getURL().toString()}" />
+			<isset name="href" scope="page" value="${'href='+hi_res+' target=_blank'}" />
+		<iselse/>
+			<isset name="hi_res" scope="page" value="${''}" />
+			<isset name="href" scope="page" value="${'name=product_detail_image'}" />
+		</isif>
+		<isif condition="${isQuickView}">
+			<img itemprop="image" class="primary-image" src="${imageUrl}" alt="${imageAlt}" title="${pdict.Product.name}${imageTitle}"/>
+		<iselse/>
+			<a ${href} class="product-image main-image" title="${pdict.Product.name}${imageTitle}">
+				<img itemprop="image" class="primary-image" src="${imageUrl}" alt="${imageAlt}" title="${pdict.Product.name}${imageTitle}"/>
+			</a>
+			<a ${href} class="product-image-zoomLink" title="${Resource.msg('product.enlarge','product',null)}" target="_self">
+				<span class="icon"></span>
+			</a>
+		</isif>
+	</div>
+
+	<div id="thumbnails" class="product-thumbnails">
+	<div class="thumbs-wrap">
+		<iscomment><h2>${Resource.msg('product.productthumbnails.title','product',null)}</h2></iscomment>
+		<ul>
+			<isloop items="${pdict.ProductSetList}" var="product" status="loopstatus">
+				<isset name="lgImage" value="${new ProductImage('large', product, 0)}" scope="page" />
+				<isset name="hi_res" value="${new ProductImage('hi-res', product, 0)}" scope="page" />
+				<isset name="href" value="${''}" scope="page" />
+				<isif condition="${!empty(hi_res)}">
+					<isset name="href" value="${hi_res.getURL()}" scope="page" />
+				</isif>
+				<isset name="smImage" value="${new ProductImage('small', product, 0)}" scope="page" />
+				<li class="thumb ${loopstatus.first ? 'selected' : ''}">
+					<a href="${href}" target="_blank" class="thumbnail-link">
+						<img class="productthumbnail"
+							 src="${smImage.getURL()}"
+							 alt="${smImage.getAlt}"
+							 title="${smImage.getTitle()}"
+							 data-lgimg='{"url":"${lgImage.getURL()}", "title":"${lgImage.getTitle()}", "alt":"${lgImage.getAlt()}", "hires":"${href}"}'/>
+					</a>
+				</li>
+			</isloop>
+		</ul>
+	  </div>
+	</div>
+</div><iscomment> /Product Image Container </iscomment>
+	
+</div>
+
+<div class="product-col-2  product-set">
+
+	<iscomment>
+		primary details
+		=============================================================
+	</iscomment>
+	
+	<h1 class="product-name"  itemprop="name"><isprint value="${pdict.Product.name}"/></h1>
+	
+	<span class="visually-hidden" itemprop="url">${URLUtils.http('Product-Show','pid', pdict.Product.ID)}</span>
+
+	<div class="product-number">
+		${Resource.msg('product.item','product',null)} <span itemprop="productID" data-masterid="${pdict.Product.ID}"><isprint value="${pdict.Product.ID}"/></span>
+	</div>
+
+	<isif condition="${isQuickView}">
+		<!-- shown only in quick view -->
+		<a href="${URLUtils.url('Product-Show','pid', pdict.Product.ID)}" title="${pdict.Product.name}">${Resource.msg('product.viewdetails','product',null)}</a>
+	</isif>
+
+	<isset name="psProduct" value="${pdict.Product}" scope="page"/>
+
+	<isinclude template="product/components/pricing"/>
+
+	<isinclude template="product/components/promotions"/>
+	<isif condition=${pdict.isBundle}>
+		<form action="${URLUtils.url('Cart-AddProduct')}" method="post" id="${pdict.CurrentForms.product.addtocart.dynamicHtmlName}" class="pdpForm bundle">
+	</isif>
+	<div id="product-set-list" class="product-set-list">
+		<h2 class="visually-hidden">Products</h2>
+		<isset name="isUnavailable" value="${false}" scope="page"/>
+		<isloop items="${pdict.ProductSetList}" var="SetProduct" status="productSetLoop">
+			<isset name="Product" value="${SetProduct}" scope="pdict"/>
+			<isset name="isUnavailable" value="${isUnavailable || (pdict.Product.availabilityModel.availabilityStatus==dw.catalog.ProductAvailabilityModel.AVAILABILITY_STATUS_NOT_AVAILABLE)}" scope="page"/>
+			<isobject object="${pdict.Product}" view="setproduct">
+				<div class="product-set-item" id="item-${pdict.Product.ID}">
+					<isinclude template="product/components/productsetproduct"/>
+				</div>
+			</isobject>
+		</isloop>
+	</div><!-- END id=productSetScroller -->
+	<isset name="Product" value="${psProduct}" scope="pdict"/>
+	<isif condition="${pdict.isSet}">
+		<form action="${URLUtils.url('Cart-AddProduct')}" method="post" id="${pdict.CurrentForms.product.addtocart.dynamicHtmlName}" class="pdpForm">
+	</isif>
+		<div class="product-add-to-cart">
+			<isset name="disabledText" value="${isUnavailable?' disabled="disabled"':''}" scope="page"/>
+
+			<isinclude template="product/components/pricing"/>
+				<isif condition="${pdict.isSet}">
+					<button id="add-all-to-cart" type="submit" value="${Resource.msg('global.addalltocart','locale',null)}" class="button add-all-to-cart"${disabledText}>
+						${Resource.msg('global.addalltocart','locale',null)}
+					</button>
+				<iselse/>
+					<isscript>
+						var updateSources = ["cart", "giftregistry", "wishlist"];
+						var source = pdict.CurrentHttpParameterMap.source.stringValue;
+						var buttonTitle = (empty(source) || updateSources.indexOf(source)<0) ?	dw.web.Resource.msg('global.addtocart','locale','Add to Cart') : dw.web.Resource.msg('global.update','locale','Update');
+					</isscript>
+					<isset name="cartAction" value="add" scope="page"/>
+					<isif condition="${pdict.CurrentHttpParameterMap.uuid.stringValue}">
+						<input type="hidden" name="uuid" id="uuid" value="${pdict.CurrentHttpParameterMap.uuid.stringValue}" />
+						<isset name="cartAction" value="update" scope="page"/>
+					</isif>
+					<input type="hidden" name="cartAction" id="cartAction" value="${cartAction}" />
+					<input type="hidden" name="pid" id="pid" value="${pdict.Product.ID}" />
+					<button id="add-to-cart" type="submit" title="${buttonTitle}" value="${buttonTitle}" class="button add-to-cart bundle"${disabledText}>${buttonTitle}</button>
+				</isif>
+				
+				<div class="product-set-actions">
+					<h2 class="visually-hidden">Product Set Actions</h2>
+					<isscript>
+						var Url = require('~/cartridge/scripts/util/Url');
+						pdict.url = Url.getCurrent(pdict);
+						pdict.title = pdict.Product.name;
+					</isscript>
+					
+			
+					<isif condition="${pdict.isBundle}">
+						<isif condition="${!empty(pdict.CurrentHttpParameterMap.source.stringValue)}">
+							<isset name="wishlistUrl" value="${URLUtils.https('Wishlist-Add', 'pid', pdict.Product.ID, 'source', pdict.CurrentHttpParameterMap.source.stringValue)}" scope="page"/>
+						<iselse/>
+							<isset name="wishlistUrl" value="${URLUtils.https('Wishlist-Add', 'pid', pdict.Product.ID)}" scope="page"/>
+						</isif>
+						<isscript>
+							var Url = require('~/cartridge/scripts/util/Url');
+							pdict.url = Url.getCurrent(pdict);
+							pdict.title = pdict.Product.name;
+							var escapedUrl = pdict.url ? encodeURIComponent(pdict.url): '';
+							var escapedTitle = pdict.title ? encodeURIComponent(pdict.title) : '';
+						</isscript>
+						<a class="share-icon" title="${Resource.msg('global.socialshare.email.label', 'locale', null)}" data-share="email" href="mailto:name@email.com?subject=${escapedTitle}&body=${escapedUrl}" target="_blank">${Resource.msg('global.socialshare.link','locale',null)} <i class="fa fa-envelope"></i></a>
+						<a data-action="wishlist" href="${wishlistUrl}" title="${Resource.msg('global.addtowishlist.label','locale',null)}">${Resource.msg('global.addtowishlist','locale',null)} <i class="fa fa-star"></i></a>
+						
+					</isif>
+			
+				</div><!--  end details block -->
+	
+		</div><!-- END .addalltocart -->
+		
+	</form>
+	<div class="socialsharing">
+			<iscomment><isinclude template="components/socialsharing"/> </iscomment> 
+			<div class="gplus-integration">
+				<!-- +1 button to render. -->
+				<div class="g-plusone" data-href="${pdict.url}" data-size="tall"></div>
+				<!-- google plus helper -->
+				<script type="text/javascript">
+				  (function() {
+				    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+				    po.src = '//apis.google.com/js/platform.js';
+				    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+				  })();
+				</script>	
+			</div>
+			<div class="facebook-integration">
+				<div id="fb-root"></div>
+				<script>(function(d, s, id) {
+				  var js, fjs = d.getElementsByTagName(s)[0];
+				  if (d.getElementById(id)) return;
+				  js = d.createElement(s); js.id = id;
+				  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5";
+				  fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));</script>
+			
+			    <!-- Facebook like button code -->
+			    <div class="fb-like" data-href="${pdict.url}" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false"></div>
+			</div>
+			<div class="tweet-integration">
+				<a href="${pdict.url}" class="twitter-share-button" data-count="vertical" data-size="default" data-dnt="true">Tweet</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+			</div>
+		</div>
+	
+
+</div>
+<isset name="Product" value="${OrigProduct}" scope="pdict" />

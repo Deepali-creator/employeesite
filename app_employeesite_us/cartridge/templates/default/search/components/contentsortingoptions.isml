@@ -1,0 +1,42 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscomment>
+	Displays the content sorting options.
+	It expects the name of the key of the pageable in a parameter
+    pageable.
+</iscomment>
+
+<isscript>
+	var sortingoptions = [
+		{url:pdict.pagingmodel.appendPaging(pdict.productsearchmodel.url('Search-ShowContent').remove('csortb1').remove('csortd1').append('csortb1','name').append('csortd1',1),0),name:"Sort by Name A-Z"},
+		{url:pdict.pagingmodel.appendPaging(pdict.productsearchmodel.url('Search-ShowContent').remove('csortb1').remove('csortd1').append('csortb1','name').append('csortd1',2),0),name:"Sort by Name Z-A"}
+	];
+	var sortingRule = pdict.CurrentHttpParameterMap.csortb1.value == 'name' ? pdict.CurrentHttpParameterMap.csortd1.intValue == 1 ? sortingoptions[0].name : sortingoptions[1].name : null;
+
+	// in case there are multiple elements on a page
+	var uniqueId : String = '';
+	if (! empty(pdict.uniqueid))
+	{
+		uniqueId = pdict.uniqueid;
+	}
+	
+</isscript>  
+	<div class="sort-by">
+		<form action="${URLUtils.url('Search-ShowContent','cgid', pdict.CurrentHttpParameterMap.cgid)}" method="post" name="Product-Sorting-Options">
+				<fieldset>
+			
+					<label for="${uniqueId}">${Resource.msg('global.paginginformation.sortby','locale',null)}</label>
+					
+					<select id="${uniqueId}" <isif condition="${empty(sortingRule)}"> style="font-style:italic;"</isif> >
+						<isif condition="${empty(sortingRule)}">
+							<option selected>${Resource.msg('global.paginginformation.undefined','locale',null)}</option>
+						</isif>
+						<isloop items="${sortingoptions}" var="SortingOption" status="Status">
+							<option value="${SortingOption.url}"<isif condition="${sortingRule == SortingOption.name}">selected</isif>>${SortingOption.name}</option>
+						</isloop>
+					</select>
+						
+					<button class="sort-Go-Button simple-submit" type="submit" value="${Resource.msg('productsortingoptions.go','search',null)}">${Resource.msg('productsortingoptions.go','search',null)}</button>
+		
+			</fieldset>
+		</form>
+	</div><!-- END: sortby -->

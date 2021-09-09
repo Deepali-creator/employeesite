@@ -1,0 +1,87 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+	<isscript>
+		var customer = pdict.CurrentCustomer;
+		var links, title, customerName;
+		// User has session, but not authenticated
+		if (customer.registered && !customer.authenticated) {
+			title = Resource.msg('global.myaccount', 'locale', null);
+			links = [{
+				href: URLUtils.https('Account-Show'),
+				title: Resource.msg('global.accountlink', 'locale', null)
+			}, {
+				href: URLUtils.https('Login-Logout'),
+				title: Resource.msg('global.logout', 'locale', null),
+				class: 'user-logout buttonstyle'
+			}];
+		// User has session and is validated
+		} else if (customer.registered) {
+			title = Resource.msg('global.myaccount', 'locale', null);
+			customerName = "<span>"+customer.profile.firstName + " " + customer.profile.lastName+"</span>"
+			links = [{
+				href: URLUtils.https('Account-Show'),
+				title: Resource.msg('global.accountlink', 'locale', null)
+			}, {
+				href: URLUtils.https('Order-History'),
+				title: Resource.msg('global.link.orders', 'locale', null)
+			}, {
+				href: URLUtils.https('Wishlist-Show'),
+				title: Resource.msg('global.header.wishlistlink', 'locale', null)
+			}, {
+				href: URLUtils.https('GiftRegistry-Start'),
+				title: Resource.msg('global.header.registrylink', 'locale', null),
+				class: 'hidden'
+			}, {
+				href: URLUtils.https('CustomerService-ContactUs'),
+				title: Resource.msg('global.header.contactuslink', 'locale', null),
+				class: 'mobile-only'
+			}, {
+				href: URLUtils.https('Login-Logout'),
+				title: Resource.msg('global.logout', 'locale', null),
+				class: 'user-logout buttonstyle'
+			}];
+		// user has no session
+		} else {
+			title = Resource.msg('global.myaccount', 'locale', null);
+			customerName = ""
+			links = [{
+				href: URLUtils.https('Account-Show'),
+				title: Resource.msg('global.myaccount', 'locale', null) + ' /  ' + Resource.msg('global.login', 'locale', null),
+				class: 'mobile-only'
+			}, {
+				href: URLUtils.https('Account-Show'),
+				title: Resource.msg('global.login', 'locale', null),
+				class: 'desktop-only'
+			}, {
+				href: URLUtils.https('Account-StartRegister'),
+				title: Resource.msg('global.register', 'locale', null)
+			}, {
+				href: URLUtils.https('Wishlist-Show'),
+				title: Resource.msg('global.header.wishlistlink', 'locale', null),
+				class: 'mobile-only'
+			}, {
+				href: URLUtils.https('CustomerService-ContactUs'),
+				title: Resource.msg('global.header.contactuslink', 'locale', null),
+				class: 'mobile-only'
+			}];
+		}
+	</isscript>
+
+	<li class="user-info">
+		<a class="user-account" href="${URLUtils.https('Account-Show')}" title="${Resource.msg('global.user', 'locale', null) + ': ' + title}">
+			<iscomment><i class="fa fa-user"></i></iscomment>
+			<span class="account-menu-icon"></span>
+			<span class="menu-arrow"></span>
+			<span class="account-menu-title">${title}</span>
+		</a>
+		<div class="user-panel">
+			<h3 class="user-panel-title">${title}</h3>
+			<div class="user-links">
+				<span class="account-username"><isprint value="${customerName}" encoding="off" /></span>
+				<isloop items="${links}" var="link">
+					<a class="${link.class}" href="${link.href}" title="${Resource.msgf('global.goto.label', 'locale', null, link.title)}">${link.title}</a>
+				</isloop>
+			</div>
+			<isslot id="header-usermenu" description="Slot the is part of the user dropdown menu for site above 768 width" context="global" />
+		</div>
+	</li>

@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?demandware-pipeline version="2.0"?>
+
+<pipeline type="view">
+  <branch basename="_ANONYMOUS_BRANCH_1">
+    <segment>
+      <node>
+        <text-node>
+          <description>Show the table of customer requests to be notified of a product being in stock. Can set alternative product to alert customer of.</description>
+        </text-node>
+        <node-display width="2" x="1" y="1"/>
+      </node>
+    </segment>
+  </branch>
+  <branch basename="Show">
+    <segment>
+      <node>
+        <start-node name="Show" secure="true"/>
+        <node-display x="1" y="2"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <pipelet-node pipelet-name="Search" pipelet-set-identifier="bc_api">
+          <config-property key="SearchProduct" value="true"/>
+          <config-property key="SearchContent" value="false"/>
+          <config-property key="DisallowOfflineCategory" value="true"/>
+          <config-property key="RecursiveCategorySearch" value="true"/>
+          <config-property key="RecursiveFolderSearch" value="false"/>
+          <key-binding alias="ProductSearchModel" key="ProductSearchModel"/>
+          <key-binding alias="null" key="SortBy3"/>
+          <key-binding alias="null" key="SortBy2"/>
+          <key-binding alias="null" key="SortBy2Direction"/>
+          <key-binding alias="null" key="SortBy3Direction"/>
+          <key-binding alias="null" key="PriceMax"/>
+          <key-binding alias="null" key="PriceMin"/>
+          <key-binding alias="null" key="RefineBy1Name"/>
+          <key-binding alias="null" key="RefineBy1Phrase"/>
+          <key-binding alias="null" key="RefineBy1Min"/>
+          <key-binding alias="null" key="RefineBy1Max"/>
+          <key-binding alias="null" key="RefineBy2Name"/>
+          <key-binding alias="null" key="RefineBy2Phrase"/>
+          <key-binding alias="null" key="RefineBy2Min"/>
+          <key-binding alias="null" key="RefineBy2Max"/>
+          <key-binding alias="null" key="RefineBy3Name"/>
+          <key-binding alias="null" key="RefineBy3Phrase"/>
+          <key-binding alias="null" key="RefineBy3Min"/>
+          <key-binding alias="null" key="RefineBy3Max"/>
+          <key-binding alias="null" key="RefineBy4Name"/>
+          <key-binding alias="null" key="RefineBy4Phrase"/>
+          <key-binding alias="null" key="RefineBy4Min"/>
+          <key-binding alias="null" key="RefineBy4Max"/>
+          <key-binding alias="null" key="RefineBy5Name"/>
+          <key-binding alias="null" key="RefineBy5Phrase"/>
+          <key-binding alias="null" key="RefineBy5Min"/>
+          <key-binding alias="null" key="RefineBy5Max"/>
+          <key-binding alias="null" key="ProductID"/>
+          <key-binding alias="null" key="FolderID"/>
+          <key-binding alias="null" key="ContentID"/>
+          <key-binding alias="ContentSearchModel" key="ContentSearchModel"/>
+          <key-binding alias="null" key="RefineByNamePrefix"/>
+          <key-binding alias="null" key="RefineByPhrasePrefix"/>
+          <key-binding alias="null" key="RefineByMinPrefix"/>
+          <key-binding alias="null" key="RefineByMaxPrefix"/>
+          <key-binding alias="true" key="OrderableProductsOnly"/>
+          <key-binding alias="null" key="PromotionID"/>
+          <key-binding alias="null" key="PromotionProductType"/>
+          <key-binding alias="&quot;babylisspro&quot;" key="SearchPhrase"/>
+          <key-binding alias="&quot;product-id&quot;" key="SortingRuleID"/>
+        </pipelet-node>
+        <node-display x="0" y="1"/>
+      </node>
+      <transition target-connector="in1" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <join-node/>
+        <node-display x="0" y="1"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <pipelet-node pipelet-name="SearchCustomObject" pipelet-set-identifier="bc_api">
+          <config-property key="CaseSensitive" value="false"/>
+          <config-property key="CustomObjectType" value="InStockNotification"/>
+          <config-property key="SortExpression" value="custom.sentNotification ASC, custom.productSKU ASC, creationDate DESC"/>
+          <key-binding alias="Notifications" key="SearchResult"/>
+          <key-binding alias="NotificationsCount" key="SearchResultCount"/>
+          <key-binding alias="null" key="Search1Key"/>
+          <key-binding alias="null" key="Search2Key"/>
+          <key-binding alias="null" key="Search3Key"/>
+          <key-binding alias="null" key="Search4Key"/>
+          <key-binding alias="null" key="Search5Key"/>
+          <key-binding alias="null" key="Search1Value"/>
+          <key-binding alias="null" key="Search2Value"/>
+          <key-binding alias="null" key="Search3Value"/>
+          <key-binding alias="null" key="Search4Value"/>
+          <key-binding alias="null" key="Search5Value"/>
+          <key-binding alias="null" key="SortBy1"/>
+          <key-binding alias="null" key="SortBy1Direction"/>
+          <key-binding alias="null" key="SortBy2"/>
+          <key-binding alias="null" key="SortBy2Direction"/>
+          <key-binding alias="null" key="SortBy3"/>
+          <key-binding alias="null" key="SortBy3Direction"/>
+        </pipelet-node>
+        <node-display x="0" y="1"/>
+      </node>
+      <transition target-connector="in1" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <join-node/>
+        <node-display x="0" y="1"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <pipelet-node pipelet-name="UpdateFormWithObject" pipelet-set-identifier="bc_api">
+          <config-property key="Clear" value="false"/>
+          <key-binding alias="CurrentForms.notifications.notifyList" key="Form"/>
+          <key-binding alias="Notifications" key="Object"/>
+        </pipelet-node>
+        <node-display x="0" y="1"/>
+      </node>
+      <transition target-connector="in1" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <join-node/>
+        <node-display x="0" y="1"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <interaction-continue-node secure="false" start-name="notif" transaction-required="false">
+          <template buffered="true" dynamic="false" name="notifications"/>
+        </interaction-continue-node>
+        <node-display x="0" y="1"/>
+        <branch basename="b2" source-connector="search">
+          <transition target-connector="in"/>
+          <segment>
+            <node>
+              <pipelet-node pipelet-name="SearchCustomObject" pipelet-set-identifier="bc_api">
+                <config-property key="CaseSensitive" value="false"/>
+                <config-property key="CustomObjectType" value="InStockNotification"/>
+                <config-property key="SortExpression" value="creationDate DESC"/>
+                <config-property key="SearchExpression" value="custom.productSKU = {1}"/>
+                <key-binding alias="Notifications" key="SearchResult"/>
+                <key-binding alias="NotificationsCount" key="SearchResultCount"/>
+                <key-binding alias="null" key="Search1Key"/>
+                <key-binding alias="null" key="Search2Key"/>
+                <key-binding alias="null" key="Search3Key"/>
+                <key-binding alias="null" key="Search4Key"/>
+                <key-binding alias="null" key="Search5Key"/>
+                <key-binding alias="CurrentForms.notifications.searchSKU.value" key="Search1Value"/>
+                <key-binding alias="null" key="Search2Value"/>
+                <key-binding alias="null" key="Search3Value"/>
+                <key-binding alias="null" key="Search4Value"/>
+                <key-binding alias="null" key="Search5Value"/>
+                <key-binding alias="null" key="SortBy1"/>
+                <key-binding alias="null" key="SortBy1Direction"/>
+                <key-binding alias="null" key="SortBy2"/>
+                <key-binding alias="null" key="SortBy2Direction"/>
+                <key-binding alias="null" key="SortBy3"/>
+                <key-binding alias="null" key="SortBy3Direction"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+            </node>
+            <transition target-connector="in2" target-path="../-1">
+              <transition-display>
+                <bend-point relative-to="source" x="-2" y="0"/>
+                <bend-point relative-to="target" x="-2" y="0"/>
+              </transition-display>
+            </transition>
+          </segment>
+        </branch>
+        <branch basename="b3" source-connector="set">
+          <transition target-connector="in"/>
+          <segment>
+            <node>
+              <pipelet-node pipelet-name="Script" pipelet-set-identifier="bc_api">
+                <config-property key="Transactional" value="true"/>
+                <config-property key="OnError" value="PIPELET_ERROR"/>
+                <config-property key="ScriptFile" value="MarkAltSKU.ds"/>
+                <key-binding alias="null" key="ScriptLog"/>
+                <key-binding alias="CurrentForms.notifications" key="notificationForm"/>
+              </pipelet-node>
+              <node-display x="1" y="1"/>
+              <branch basename="b2" source-connector="error">
+                <transition target-connector="in1" target-path="../-1">
+                  <transition-display>
+                    <bend-point relative-to="source" x="1" y="-1"/>
+                    <bend-point relative-to="target" x="3" y="0"/>
+                  </transition-display>
+                </transition>
+              </branch>
+            </node>
+            <transition target-connector="in1" target-path="../-2">
+              <transition-display>
+                <bend-point relative-to="source" x="2" y="1"/>
+                <bend-point relative-to="target" x="4" y="0"/>
+              </transition-display>
+            </transition>
+          </segment>
+        </branch>
+      </node>
+      <transition target-connector="in2" target-path=".">
+        <transition-display>
+          <bend-point relative-to="source" x="-1" y="0"/>
+        </transition-display>
+      </transition>
+    </segment>
+  </branch>
+  <branch basename="_ANONYMOUS_BRANCH_3">
+    <segment>
+      <node>
+        <text-node>
+          <description>Job to send out the notifications by email. Sends alternatives first.</description>
+        </text-node>
+        <node-display x="5" y="1"/>
+      </node>
+    </segment>
+  </branch>
+  <branch basename="Send">
+    <segment>
+      <node>
+        <start-node call-mode="private" name="Send" secure="false"/>
+        <node-display x="5" y="2"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <pipelet-node pipelet-name="SearchCustomObject" pipelet-set-identifier="bc_api">
+          <config-property key="CaseSensitive" value="false"/>
+          <config-property key="CustomObjectType" value="InStockNotification"/>
+          <config-property key="SearchExpression" value="custom.alternateSKU != NULL AND (custom.sentNotification = false OR custom.sentNotification = NULL)"/>
+          <config-property key="SortExpression" value="custom.productSKU ASC"/>
+          <key-binding alias="Notifications" key="SearchResult"/>
+          <key-binding alias="NotificationsCount" key="SearchResultCount"/>
+          <key-binding alias="null" key="Search1Key"/>
+          <key-binding alias="null" key="Search2Key"/>
+          <key-binding alias="null" key="Search3Key"/>
+          <key-binding alias="null" key="Search4Key"/>
+          <key-binding alias="null" key="Search5Key"/>
+          <key-binding alias="null" key="Search1Value"/>
+          <key-binding alias="null" key="Search2Value"/>
+          <key-binding alias="null" key="Search3Value"/>
+          <key-binding alias="null" key="Search4Value"/>
+          <key-binding alias="null" key="Search5Value"/>
+          <key-binding alias="null" key="SortBy1"/>
+          <key-binding alias="null" key="SortBy1Direction"/>
+          <key-binding alias="null" key="SortBy2"/>
+          <key-binding alias="null" key="SortBy2Direction"/>
+          <key-binding alias="null" key="SortBy3"/>
+          <key-binding alias="null" key="SortBy3Direction"/>
+        </pipelet-node>
+        <node-display x="0" y="1"/>
+      </node>
+      <transition target-connector="in" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <loop-node element-key="notification" iterator-key="Notifications"/>
+        <node-display x="0" y="1"/>
+        <branch basename="b2" source-connector="do">
+          <transition target-connector="in"/>
+          <segment>
+            <node>
+              <pipelet-node pipelet-name="GetProduct" pipelet-set-identifier="bc_api">
+                <key-binding alias="Product" key="Product"/>
+                <key-binding alias="notification.custom.alternateSKU" key="ProductID"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+              <branch basename="b2" source-connector="error">
+                <transition target-connector="in1" target-path="./b3.1"/>
+              </branch>
+            </node>
+            <simple-transition/>
+            <node>
+              <pipelet-node pipelet-name="GetProduct" pipelet-set-identifier="bc_api">
+                <key-binding alias="OriginalProduct" key="Product"/>
+                <key-binding alias="notification.custom.productSKU" key="ProductID"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+              <branch basename="b3" source-connector="error">
+                <transition target-connector="in2"/>
+                <segment>
+                  <node>
+                    <join-node/>
+                    <node-display x="1" y="0"/>
+                  </node>
+                  <transition target-connector="in1" target-path="../../+1/b2.1/b2.1">
+                    <transition-display>
+                      <bend-point relative-to="target" x="-6" y="0"/>
+                    </transition-display>
+                  </transition>
+                </segment>
+              </branch>
+            </node>
+            <simple-transition/>
+            <node>
+              <pipelet-node pipelet-name="Assign" pipelet-set-identifier="bc_api">
+                <config-property key="Transactional" value="false"/>
+                <key-binding alias="dw.system.Site.getCurrent().getCustomPreferenceValue('customerServiceEmail')" key="From_0"/>
+                <key-binding alias="MailFrom" key="To_0"/>
+                <key-binding alias="dw.web.Resource.msgf('account.stocknotification2.subjecttitle','account',null,OriginalProduct.name)" key="From_1"/>
+                <key-binding alias="MailSubject" key="To_1"/>
+                <key-binding alias="&quot;mail/instocknotificationalt.isml&quot;" key="From_2"/>
+                <key-binding alias="MailTemplate" key="To_2"/>
+                <key-binding alias="notification.custom.customerEmail" key="From_3"/>
+                <key-binding alias="MailTo" key="To_3"/>
+                <key-binding alias="null" key="From_4"/>
+                <key-binding alias="null" key="To_4"/>
+                <key-binding alias="null" key="From_5"/>
+                <key-binding alias="null" key="To_5"/>
+                <key-binding alias="null" key="From_6"/>
+                <key-binding alias="null" key="To_6"/>
+                <key-binding alias="null" key="From_7"/>
+                <key-binding alias="null" key="To_7"/>
+                <key-binding alias="null" key="From_8"/>
+                <key-binding alias="null" key="To_8"/>
+                <key-binding alias="null" key="From_9"/>
+                <key-binding alias="null" key="To_9"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+            </node>
+            <simple-transition/>
+            <node>
+              <pipelet-node custom-name="Send email" pipelet-name="SendMail" pipelet-set-identifier="bc_api">
+                <description>Description</description>
+                <key-binding alias="MailFrom" key="MailFrom"/>
+                <key-binding alias="MailTemplate" key="MailTemplate"/>
+                <key-binding alias="MailTo" key="MailTo"/>
+                <key-binding alias="MailSubject" key="MailSubject"/>
+                <key-binding alias="LocaleID" key="LocaleID"/>
+                <key-binding alias="MailCC" key="MailCC"/>
+                <key-binding alias="MailBCC" key="MailBCC"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+            </node>
+            <simple-transition/>
+            <node>
+              <pipelet-node pipelet-name="Assign" pipelet-set-identifier="bc_api">
+                <config-property key="Transactional" value="true"/>
+                <key-binding alias="true" key="From_0"/>
+                <key-binding alias="notification.custom.sentNotification" key="To_0"/>
+                <key-binding alias="null" key="From_1"/>
+                <key-binding alias="null" key="To_1"/>
+                <key-binding alias="null" key="From_2"/>
+                <key-binding alias="null" key="To_2"/>
+                <key-binding alias="null" key="From_3"/>
+                <key-binding alias="null" key="To_3"/>
+                <key-binding alias="null" key="From_4"/>
+                <key-binding alias="null" key="To_4"/>
+                <key-binding alias="null" key="From_5"/>
+                <key-binding alias="null" key="To_5"/>
+                <key-binding alias="null" key="From_6"/>
+                <key-binding alias="null" key="To_6"/>
+                <key-binding alias="null" key="From_7"/>
+                <key-binding alias="null" key="To_7"/>
+                <key-binding alias="null" key="From_8"/>
+                <key-binding alias="null" key="To_8"/>
+                <key-binding alias="null" key="From_9"/>
+                <key-binding alias="null" key="To_9"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+            </node>
+            <transition target-connector="loop" target-path="..">
+              <transition-display>
+                <bend-point relative-to="source" x="-1" y="0"/>
+                <bend-point relative-to="target" x="-1" y="0"/>
+              </transition-display>
+            </transition>
+          </segment>
+        </branch>
+      </node>
+      <simple-transition/>
+      <node>
+        <pipelet-node pipelet-name="SearchCustomObject" pipelet-set-identifier="bc_api">
+          <config-property key="CaseSensitive" value="false"/>
+          <config-property key="CustomObjectType" value="InStockNotification"/>
+          <config-property key="SearchExpression" value="custom.sentNotification = false OR custom.sentNotification = NULL"/>
+          <config-property key="SortExpression" value="custom.productSKU ASC"/>
+          <key-binding alias="Notifications" key="SearchResult"/>
+          <key-binding alias="NotificationsCount" key="SearchResultCount"/>
+          <key-binding alias="null" key="Search1Key"/>
+          <key-binding alias="null" key="Search2Key"/>
+          <key-binding alias="null" key="Search3Key"/>
+          <key-binding alias="null" key="Search4Key"/>
+          <key-binding alias="null" key="Search5Key"/>
+          <key-binding alias="null" key="Search1Value"/>
+          <key-binding alias="null" key="Search2Value"/>
+          <key-binding alias="null" key="Search3Value"/>
+          <key-binding alias="null" key="Search4Value"/>
+          <key-binding alias="null" key="Search5Value"/>
+          <key-binding alias="null" key="SortBy1"/>
+          <key-binding alias="null" key="SortBy1Direction"/>
+          <key-binding alias="null" key="SortBy2"/>
+          <key-binding alias="null" key="SortBy2Direction"/>
+          <key-binding alias="null" key="SortBy3"/>
+          <key-binding alias="null" key="SortBy3Direction"/>
+        </pipelet-node>
+        <node-display x="2" y="0"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <pipelet-node pipelet-name="Script" pipelet-set-identifier="bc_api">
+          <config-property key="Transactional" value="false"/>
+          <config-property key="OnError" value="PIPELET_ERROR"/>
+          <config-property key="ScriptFile" value="GetAlertsFromStock.ds"/>
+          <key-binding alias="null" key="ScriptLog"/>
+          <key-binding alias="Notifications.asList()" key="unverifiedNotifications"/>
+          <key-binding alias="Notifications" key="inStockNotifications"/>
+        </pipelet-node>
+        <node-display x="0" y="1"/>
+        <branch basename="b3" source-connector="error">
+          <transition target-connector="in1" target-path="./+1/b2.1/b2.1">
+            <transition-display>
+              <bend-point relative-to="source" x="4" y="0"/>
+            </transition-display>
+          </transition>
+        </branch>
+      </node>
+      <transition target-connector="in" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <loop-node element-key="notification" iterator-key="Notifications"/>
+        <node-display x="0" y="1"/>
+        <branch basename="b2" source-connector="do">
+          <transition target-connector="in"/>
+          <segment>
+            <node>
+              <pipelet-node pipelet-name="GetProduct" pipelet-set-identifier="bc_api">
+                <key-binding alias="Product" key="Product"/>
+                <key-binding alias="notification.custom.productSKU" key="ProductID"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+              <branch basename="b2" source-connector="error">
+                <transition target-connector="in2"/>
+                <segment>
+                  <node>
+                    <join-node/>
+                    <node-display x="2" y="4"/>
+                  </node>
+                  <simple-transition>
+                    <transition-display>
+                      <bend-point relative-to="source" x="0" y="1"/>
+                    </transition-display>
+                  </simple-transition>
+                  <node>
+                    <stop-node name="ERROR"/>
+                    <node-display x="0" y="1"/>
+                  </node>
+                </segment>
+              </branch>
+            </node>
+            <simple-transition/>
+            <node>
+              <pipelet-node pipelet-name="Assign" pipelet-set-identifier="bc_api">
+                <config-property key="Transactional" value="false"/>
+                <key-binding alias="dw.system.Site.getCurrent().getCustomPreferenceValue('customerServiceEmail')" key="From_0"/>
+                <key-binding alias="MailFrom" key="To_0"/>
+                <key-binding alias="&quot;Product is in stock&quot;" key="From_1"/>
+                <key-binding alias="MailSubject" key="To_1"/>
+                <key-binding alias="&quot;mail/instocknotification.isml&quot;" key="From_2"/>
+                <key-binding alias="MailTemplate" key="To_2"/>
+                <key-binding alias="notification.custom.customerEmail" key="From_3"/>
+                <key-binding alias="MailTo" key="To_3"/>
+                <key-binding alias="null" key="From_4"/>
+                <key-binding alias="null" key="To_4"/>
+                <key-binding alias="null" key="From_5"/>
+                <key-binding alias="null" key="To_5"/>
+                <key-binding alias="null" key="From_6"/>
+                <key-binding alias="null" key="To_6"/>
+                <key-binding alias="null" key="From_7"/>
+                <key-binding alias="null" key="To_7"/>
+                <key-binding alias="null" key="From_8"/>
+                <key-binding alias="null" key="To_8"/>
+                <key-binding alias="null" key="From_9"/>
+                <key-binding alias="null" key="To_9"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+            </node>
+            <simple-transition/>
+            <node>
+              <pipelet-node custom-name="Send email" pipelet-name="SendMail" pipelet-set-identifier="bc_api">
+                <description>Description</description>
+                <key-binding alias="MailFrom" key="MailFrom"/>
+                <key-binding alias="MailTemplate" key="MailTemplate"/>
+                <key-binding alias="MailTo" key="MailTo"/>
+                <key-binding alias="MailSubject" key="MailSubject"/>
+                <key-binding alias="LocaleID" key="LocaleID"/>
+                <key-binding alias="MailCC" key="MailCC"/>
+                <key-binding alias="MailBCC" key="MailBCC"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+            </node>
+            <simple-transition/>
+            <node>
+              <pipelet-node pipelet-name="Assign" pipelet-set-identifier="bc_api">
+                <config-property key="Transactional" value="true"/>
+                <key-binding alias="true" key="From_0"/>
+                <key-binding alias="notification.custom.sentNotification" key="To_0"/>
+                <key-binding alias="null" key="From_1"/>
+                <key-binding alias="null" key="To_1"/>
+                <key-binding alias="null" key="From_2"/>
+                <key-binding alias="null" key="To_2"/>
+                <key-binding alias="null" key="From_3"/>
+                <key-binding alias="null" key="To_3"/>
+                <key-binding alias="null" key="From_4"/>
+                <key-binding alias="null" key="To_4"/>
+                <key-binding alias="null" key="From_5"/>
+                <key-binding alias="null" key="To_5"/>
+                <key-binding alias="null" key="From_6"/>
+                <key-binding alias="null" key="To_6"/>
+                <key-binding alias="null" key="From_7"/>
+                <key-binding alias="null" key="To_7"/>
+                <key-binding alias="null" key="From_8"/>
+                <key-binding alias="null" key="To_8"/>
+                <key-binding alias="null" key="From_9"/>
+                <key-binding alias="null" key="To_9"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+            </node>
+            <transition target-connector="loop" target-path="..">
+              <transition-display>
+                <bend-point relative-to="source" x="-1" y="0"/>
+                <bend-point relative-to="target" x="-1" y="1"/>
+              </transition-display>
+            </transition>
+          </segment>
+        </branch>
+      </node>
+      <simple-transition>
+        <transition-display>
+          <bend-point relative-to="source" x="2" y="0"/>
+          <bend-point relative-to="target" x="0" y="-1"/>
+        </transition-display>
+      </simple-transition>
+      <node>
+        <end-node name="OK"/>
+        <node-display x="1" y="1"/>
+      </node>
+    </segment>
+  </branch>
+  <branch basename="_ANONYMOUS_BRANCH_5">
+    <segment>
+      <node>
+        <text-node>
+          <description>Clean up in stock notification objects after 30 days</description>
+        </text-node>
+        <node-display x="10" y="1"/>
+      </node>
+    </segment>
+  </branch>
+  <branch basename="Cleanup">
+    <segment>
+      <node>
+        <start-node call-mode="private" name="Cleanup" secure="false"/>
+        <node-display x="10" y="2"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <pipelet-node pipelet-name="SearchCustomObject" pipelet-set-identifier="bc_api">
+          <config-property key="CaseSensitive" value="false"/>
+          <config-property key="CustomObjectType" value="InStockNotification"/>
+          <config-property key="SearchExpression" value="custom.sentNotification = true AND lastModified &lt; {1}"/>
+          <key-binding alias="Notifications" key="SearchResult"/>
+          <key-binding alias="NotificationsCount" key="SearchResultCount"/>
+          <key-binding alias="null" key="Search1Key"/>
+          <key-binding alias="null" key="Search2Key"/>
+          <key-binding alias="null" key="Search3Key"/>
+          <key-binding alias="null" key="Search4Key"/>
+          <key-binding alias="null" key="Search5Key"/>
+          <key-binding alias="new Date(new Date().getTime()-2592000000)" key="Search1Value"/>
+          <key-binding alias="null" key="Search2Value"/>
+          <key-binding alias="null" key="Search3Value"/>
+          <key-binding alias="null" key="Search4Value"/>
+          <key-binding alias="null" key="Search5Value"/>
+          <key-binding alias="null" key="SortBy1"/>
+          <key-binding alias="null" key="SortBy1Direction"/>
+          <key-binding alias="null" key="SortBy2"/>
+          <key-binding alias="null" key="SortBy2Direction"/>
+          <key-binding alias="null" key="SortBy3"/>
+          <key-binding alias="null" key="SortBy3Direction"/>
+        </pipelet-node>
+        <node-display x="0" y="1"/>
+      </node>
+      <transition target-connector="in" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <loop-node element-key="notification" iterator-key="Notifications"/>
+        <node-display x="0" y="1"/>
+        <branch basename="b2" source-connector="do">
+          <transition target-connector="in"/>
+          <segment>
+            <node>
+              <pipelet-node pipelet-name="RemoveCustomObject" pipelet-set-identifier="bc_api">
+                <key-binding alias="notification" key="CustomObject"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+            </node>
+            <transition target-connector="loop" target-path="..">
+              <transition-display>
+                <bend-point relative-to="source" x="-1" y="0"/>
+              </transition-display>
+            </transition>
+          </segment>
+        </branch>
+      </node>
+      <simple-transition>
+        <transition-display>
+          <bend-point relative-to="source" x="2" y="0"/>
+        </transition-display>
+      </simple-transition>
+      <node>
+        <end-node name="OK"/>
+        <node-display x="1" y="2"/>
+      </node>
+    </segment>
+  </branch>
+  <branch basename="_ANONYMOUS_BRANCH_7">
+    <segment>
+      <node>
+        <text-node>
+          <description>Alerts customer service that some products have low stock.</description>
+        </text-node>
+        <node-display x="13" y="1"/>
+      </node>
+    </segment>
+  </branch>
+  <branch basename="LowStockAlert">
+    <segment>
+      <node>
+        <start-node call-mode="private" name="LowStockAlert" secure="false"/>
+        <node-display x="13" y="2"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <pipelet-node pipelet-name="Script" pipelet-set-identifier="bc_api">
+          <config-property key="Transactional" value="false"/>
+          <config-property key="OnError" value="PIPELET_ERROR"/>
+          <config-property key="ScriptFile" value="GetLowStockProducts.ds"/>
+          <key-binding alias="null" key="ScriptLog"/>
+          <key-binding alias="LowStockProducts" key="lowStockProducts"/>
+        </pipelet-node>
+        <node-display x="0" y="2"/>
+        <branch basename="b2" source-connector="error">
+          <transition target-connector="in">
+            <transition-display>
+              <bend-point relative-to="source" x="2" y="0"/>
+            </transition-display>
+          </transition>
+          <segment>
+            <node>
+              <stop-node name="ERROR"/>
+              <node-display x="1" y="3"/>
+            </node>
+          </segment>
+        </branch>
+      </node>
+      <simple-transition/>
+      <node>
+        <decision-node condition-key="LowStockProducts.length &gt; 0" condition-operator="expr"/>
+        <node-display x="0" y="1"/>
+        <branch basename="b3" source-connector="yes">
+          <transition target-connector="in"/>
+          <segment>
+            <node>
+              <pipelet-node pipelet-name="Assign" pipelet-set-identifier="bc_api">
+                <config-property key="Transactional" value="false"/>
+                <key-binding alias="dw.system.Site.getCurrent().getCustomPreferenceValue('customerServiceEmail')" key="From_0"/>
+                <key-binding alias="MailFrom" key="To_0"/>
+                <key-binding alias="&quot;Low stock products&quot;" key="From_1"/>
+                <key-binding alias="MailSubject" key="To_1"/>
+                <key-binding alias="&quot;lowstocknotification.isml&quot;" key="From_2"/>
+                <key-binding alias="MailTemplate" key="To_2"/>
+                <key-binding alias="dw.system.Site.getCurrent().getCustomPreferenceValue('lowStockEmailRecipients')" key="From_3"/>
+                <key-binding alias="MailTo" key="To_3"/>
+                <key-binding alias="null" key="From_4"/>
+                <key-binding alias="null" key="To_4"/>
+                <key-binding alias="null" key="From_5"/>
+                <key-binding alias="null" key="To_5"/>
+                <key-binding alias="null" key="From_6"/>
+                <key-binding alias="null" key="To_6"/>
+                <key-binding alias="null" key="From_7"/>
+                <key-binding alias="null" key="To_7"/>
+                <key-binding alias="null" key="From_8"/>
+                <key-binding alias="null" key="To_8"/>
+                <key-binding alias="null" key="From_9"/>
+                <key-binding alias="null" key="To_9"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+            </node>
+            <simple-transition/>
+            <node>
+              <pipelet-node custom-name="Send email" pipelet-name="SendMail" pipelet-set-identifier="bc_api">
+                <description>Description</description>
+                <key-binding alias="MailFrom" key="MailFrom"/>
+                <key-binding alias="MailTemplate" key="MailTemplate"/>
+                <key-binding alias="MailTo" key="MailTo"/>
+                <key-binding alias="MailSubject" key="MailSubject"/>
+                <key-binding alias="LocaleID" key="LocaleID"/>
+                <key-binding alias="MailCC" key="MailCC"/>
+                <key-binding alias="MailBCC" key="MailBCC"/>
+              </pipelet-node>
+              <node-display x="0" y="1"/>
+            </node>
+            <transition target-connector="in1" target-path="../+1"/>
+          </segment>
+        </branch>
+      </node>
+      <transition target-connector="in2" target-path="./+1">
+        <transition-display>
+          <bend-point relative-to="source" x="1" y="1"/>
+          <bend-point relative-to="target" x="1" y="-1"/>
+        </transition-display>
+      </transition>
+    </segment>
+    <segment>
+      <node>
+        <join-node/>
+        <node-display x="0" y="3"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <end-node name="OK"/>
+        <node-display x="0" y="1"/>
+      </node>
+    </segment>
+  </branch>
+</pipeline>

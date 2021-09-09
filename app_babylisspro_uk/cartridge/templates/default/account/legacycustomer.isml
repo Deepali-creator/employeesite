@@ -1,0 +1,10 @@
+<!--- TEMPLATENAME: legacycustomer.isml --->
+
+<isdecorate template="account/pt_account">
+<isinclude template="util/modules"/>
+
+
+<iscontentasset aid="legacy-landing"/>
+
+
+</isdecorate>

@@ -1,0 +1,35 @@
+<!--- TEMPLATENAME: AVSselect.isml --->
+<isdecorate template="checkout/pt_checkout_avs"/>
+<isinclude template="util/modules"/>
+
+<h1>${Resource.msg('avs.header', 'avs', null)}</h1>
+<p>${Resource.msg('avs.subtext', 'avs', null)}</p>
+
+<form action="${URLUtils.continueURL()}" method="post" id="${pdict.CurrentForms.avsselect.htmlName}" class="avs-results">
+	<input type="hidden" name="${pdict.CurrentForms.avsselect.secureKeyHtmlName}" value="${pdict.CurrentForms.avsselect.secureKeyValue}"/>
+	<div class="original-address">
+	<h2>${Resource.msg('avs.entered', 'avs', null)}</h2>
+	<p class="address">
+		${pdict.VerifyAddress.address1}<br/>
+		<isif condition="${!empty(pdict.VerifyAddress.address2)}">
+			${pdict.VerifyAddress.address2}<br/>
+		</isif>
+		${pdict.VerifyAddress.city}, ${pdict.VerifyAddress.stateCode} ${pdict.VerifyAddress.postalCode}
+		<iscomment><br/>${pdict.VerifyAddress.countryCode}</iscomment>
+	</p>
+	<button name="${pdict.CurrentForms.avsselect.original.htmlName}" value="${pdict.CurrentForms.avsselect.original.htmlName}">${Resource.msg('avs.accept', 'avs', null)}</button>
+	<button class="button-fancy-large" name="${pdict.CurrentForms.avsselect.back.htmlName}" value="${pdict.CurrentForms.avsselect.back.htmlName}">${Resource.msg('avs.edit', 'avs', null)}</button>
+	</div>
+	<div class="suggested-address">
+		<h2>${Resource.msg('avs.suggested', 'avs', null)}</h2>
+		<div class="address-list">
+			<isloop var="suggestion" items="${pdict.CurrentForms.avsselect.suggest}">
+				<div class="address">
+					<p>${suggestion.text.value}, ${suggestion.desc.value}</p>
+					<button class="button-text" name="${suggestion.select.htmlName}" value="${suggestion.select.htmlName}">${Resource.msg('global.select', 'locale', null)}</button>
+				</div>
+			</isloop>
+		</div>
+	</div>
+</form>
+</isdecorate>

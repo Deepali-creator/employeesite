@@ -1,0 +1,57 @@
+<iscontent type="text/html " charset="UTF-8"/>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<iscomment>The "subject" tag contains the mail subject and can contain dynamic information, like the order number.</iscomment>
+<isif condition="${empty(pdict.MailSubject)}"><subject><isprint value="${Resource.msg('order.shippingstatus-email.subject','order',null)}" encoding="off"/></subject></isif>
+<iscomment>
+	The "to" tag contains the email address of the recipient, the "from" tag the email address of the sender. 
+	Each tag is to be specified max. once. Multiple email address can be separated by "," (see RFC2822).
+</iscomment>
+<to>${pdict.Order.customerEmail}</to>
+<from>${dw.system.Site.getCurrent().getCustomPreferenceValue('customerServiceEmail')}</from>
+
+<head>
+
+<isinclude template="util/modules"/>
+</head>
+<body>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" style="background:#e0e0e0;padding:50px 0;">
+			<center>
+				<table  style="background:#ffffff;border:1px solid #d2d4d6;width:680px;padding:15px;">
+					<tr>
+						<td style="font-size:24px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 10px;vertical-align:top;width:70%;color:#6c8d23;">
+							<strong>${Resource.msg('order.ordershipped','order',null)}</strong>
+						</td>
+						<td style="font-size:14px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 10px;vertical-align:top;">
+							<a href="${URLUtils.httpHome()}" title="${Resource.msg('global.storename','locale',null)}">
+								<img style="width:225px; height:auto;" src="${URLUtils.httpStatic('/images/logo@2x.png')}" alt="${Resource.msg('global.storename','locale',null)}"></img>
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size:14px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 10px;vertical-align:top; color: #4c4c4c;" colspan="2">
+						
+							<p>${Resource.msg('account.passwordemail.dear','account',null)}&nbsp;<isprint value="${pdict.Order.billingAddress.firstName}"/>&nbsp;<isprint value="${pdict.Order.billingAddress.lastName}"/>,</p>	
+							
+							<p>${Resource.msg('confirmation.mail.message1','checkout',null)}<br/>
+							${Resource.msg('confirmation.mail.message2','checkout',null)} CONAIR ${pdict.Order.orderNo}.<br/>
+							${Resource.msg('confirmation.mail.message3','checkout',null)} <strong>${pdict.Order.shippingStatus}</strong><br/></p>
+							<p><isprint value="${Resource.msg('order.orderdetails.tracking', 'order', null)}" /> <a href="${pdict.Order.defaultShipment.trackingNumber}"><isprint value="${pdict.Order.defaultShipment.trackingNumber}" /></a></p>
+						</td>
+					</tr>
+					<tr>
+						<td style="font-size:14px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif; color: #4c4c4c; padding:20px 10px;vertical-align:top;" colspan="2">
+							<isemailorderdetails order="${pdict.Order}"/>
+						</td>
+					</tr>
+				</table>						
+			</center>
+		</td>
+	</tr>
+</table>	
+					
+
+</body>
+</html>

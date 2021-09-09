@@ -1,0 +1,2121 @@
+<style type="text/css">
+    .bannerFirst_mobile{
+        padding-bottom:10%;
+    }
+
+    .gripGuideFisrt {
+        margin-left: 50px;
+    }
+
+    .bannerBlock2_button_desk {
+        position: absolute;
+        top: 135px;
+        right: 28% !important;
+        text-transform: uppercase !important;
+        font-size: 15px !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+        line-height: 19px;
+    }
+
+    .b1-b3 .button2{
+        right: 20% !important;
+    }
+
+    .bannerBlock2_button_mob {
+        position: absolute;
+        text-transform: uppercase !important;
+        padding-top: 2px !important;
+        font-family: 'Helvetica Neue LT W05 65 Medium' !important;
+        padding-bottom: 2px !important;
+        height: fit-content;
+        left: 100px;
+        right: 0;
+        top: 45%;
+        bottom: 35%;
+        font-size: 16px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .button1_img_1 {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .button2_img_2 {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .button3_img_3 {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    
+    .button1_img_1:hover {
+        opacity: 0.5;
+    }
+
+    .button2_img_2:hover {
+        opacity: 0.5;
+    }
+
+    .button3_img_3:hover {
+        opacity: 0.5;
+    }
+
+    #modal-privacy.vis {
+        display: block;
+    }
+
+    #modal-privacy {
+        color: #fff;
+        display: none;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 13px 20px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 9999;
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    #modal-privacy .legal-modal-close {
+        background-color: #fff;
+        -webkit-appearance: none;
+        color: #272727;
+        border: 1px solid #ccc;
+        padding: 2px 15px;
+    }
+
+    #modal-privacy p {
+        float: left;
+    }
+
+    .home-dp-mob {
+        display: none !important;
+    }
+
+    .home-dp-desk {
+        display: block;
+    }
+
+    .content-wrap {
+        margin: 0% 5% 0% 5%;
+    }
+
+    .hevetical-neuefont {
+        font-family: 'Helvetica Neue LT W05 45 Light' !important;
+    }
+
+    .p28_22 {
+        font-family: "Helvetica Neue LT W05_77 Bd Cn", Arial, sans-serif;
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 33.88px;
+    }
+
+    .p70_56 {
+        font-weight: 700;
+        font-size: 55px;
+        line-height: 84px;
+    }
+
+    .p24_19 {
+        font-family: "Helvetica Neue LT W05 45 Light", Arial, sans-serif;
+        font-weight: 200;
+        font-size: 23px;
+        line-height: 29px;
+    }
+
+    .content-wrap-img {
+        margin: 12% 0% 12% 0%;
+        height: 260.82px;
+    }
+
+    .block1 {
+        display: inline-block;
+        position: relative;
+    }
+
+    .block1_1 {
+        width: 25%;
+        float: left;
+        position: absolute;
+        top: 10%;
+        height: 150px;
+    }
+
+    .block1_2 {
+        margin-top: 20px;
+        margin-right: -5%;
+        float: right;
+    }
+
+    .block2 {
+        width: 79%;
+        display: inline-block;
+    }
+
+    .block2 img {
+        width: 261px;
+        display: inline-block;
+    }
+
+    .imgCls {
+        width: 260.82px;
+        height: 260.82px;
+        display: inline-block;
+    }
+
+    .bannerBlock1 {
+        height: 617px;
+        background: url('homepage/banners/LeandroImg.svg?$staticlink$') no-repeat;
+        background-size: cover;
+    }
+
+    .bannerBlock2 {
+        margin: 110px 0% 110px 0% !important;
+    }
+
+    .bannerBlock7Mob {
+        display: none;
+        padding-top: 10%;
+        padding-bottom: 10%;
+        font-family:'Helvetica Neue';
+        font-size:14px
+    }
+    .bannerBlock7Mob b{
+        font-size:15px
+    }
+
+    .block2_2 {
+        display: inline-block;
+    }
+
+    .block2_4 {
+        display: inline-block;
+    }
+
+    .content_banner3 {
+        position: relative;
+        padding-left: 28%;
+        top: 30%;
+    }
+
+    .p66_55 {
+        font-size: 34px !important;
+        line-height: 38.51px !important;
+        font-family: 'Helvetica Neue LT W01_75 Bold';
+    }
+
+    .p21_20 {
+        font-family: "Helvetica Neue";
+        font-size: 28px;
+        line-height: 33px;
+        margin-top: 1%;
+    }
+
+    .brClassMob {
+        display: none;
+    }
+
+    .brClass {
+        display: inline-block;
+    }
+
+    /*bannerFirst*/
+    .bannerFirst {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .bannerFirst_mobile {
+        display: none;
+        height: 100%;
+        width: 100%;
+    }
+
+    .bannerBlock5{
+        font-style:'Helvetica Neue';
+    }
+
+    .gripdiv{
+        font-size:12px;
+        font-weight:bold;
+        color:#212121;
+    }
+
+    .gripdiv a img{
+        position: absolute;
+        top: 10%;
+        width: 15%;
+
+    }
+
+    .gripdivTitle{
+        position: absolute;
+        top:90%;
+        z-index: 1;
+    }
+
+
+    .bannerBlock5Mob {
+        display: none;
+        width: auto;
+        padding: 5%;
+    }
+
+    .shopExclusive{
+        font-size:35px;
+        margin-bottom:1rem;
+        font-family: 'Helvetica Neue LT W05 65 Medium';
+        color:#212121;
+    }
+
+    .bannerBlock3Mob {
+        display: none;
+    }
+
+    .homePageBtns {
+        width: 161px;
+        font-size: 16px;
+        line-height: 19.09px;
+        font-family: "Helvetica Neue LT W05 65 Medium", Arial, sans-serif;
+    }
+
+    .brClassMid {
+        display: none;
+    }
+    
+    @media only screen and (max-width:1350px) {
+        .block2_3 {
+            margin: 0% 0% 0% 0%;
+        }
+    }
+
+    @media only screen and (min-width:1370px) {
+        .block1 {
+            width: 29%;
+        }
+    }
+
+    @media only screen and (max-width: 400px) {
+
+        .bannerBlock5-2 {
+            width: 79%;
+        }
+
+        .gripGuideFisrt {
+            margin-left: 20px;
+        }
+    }
+
+    @media only screen and (max-width: 350px) {
+        .bannerBlock5-2 {
+            width: 80%;
+        }
+
+        .gripGuideFisrt {
+            margin-left: 5px;
+        }
+
+        .gripMobdiv {
+            width: 109px !important;
+        }
+    }
+
+
+    @media only screen and (max-width: 370px) {
+        .p28_22 {
+            font-size: 24px !important;
+            line-height: 25px !important;
+        }
+
+        .block1_2{
+            margin-right:-10%;
+            margin-top:10px;
+        }
+    }
+
+   
+    @media only screen and (max-width:1500px) {
+        .brClassMid {
+            display: inline-block;
+        }
+
+        .content_banner3 {
+            padding-left: 26%;
+        }
+
+        .p21_20 {
+            font-size: 26px;
+        }
+    }
+
+    /*mobileUI trigger porint*/
+    @media only screen and (max-width:1025px) {
+        .shopExclusive {
+            font-size: 30px !important;
+        }
+
+        #Ex11+#Ex12 {
+            display: block;
+        }
+
+        #Ex21+#Ex22 {
+            display: block;
+        }
+
+
+        /*bannerFirst_mobile*/
+        .bannerFirst {
+            display: none;
+        }
+
+        .bannerFirst_mobile {
+            display: block;
+        }
+
+        .Exclusivebtn {
+            display: none !important;
+        }
+
+        /*Make Your Mess Beautiful*/
+
+        .bannerBlock2 {
+            width: 100% !important;
+            margin-left: 35%;
+            margin: 10% 0% 10% 0% !important;
+        }
+
+        .bannerBlock2_button_mob {
+            position: absolute;
+            text-transform: uppercase !important;
+            height: fit-content;
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+            border-width: initial !important;
+            width: 60%;
+            left: 0;
+            right: 0;
+            top: 45%;
+            bottom: 35%;
+            font-size: 17px !important;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .block1 {
+            width: 100%;
+            height: 160px;
+            padding: 0% 10%;
+            display: flex;
+            text-align: left;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .block1_1 {
+            width: 10%;
+        }
+
+        .block2_2 {
+            display: block;
+            padding: 10% 10% 5% 10% !important;
+            width: 100% !important;
+            margin: 0% 0% 0% 0% !important;
+        }
+
+        .block2_3 {
+            padding: 5% 10% !important;
+            width: 100% !important;
+            height: auto !important;
+            margin: 0% 0% 0% 0% !important;
+        }
+
+        .block2_4 {
+            padding: 5% 10% 10% 10% !important;
+            width: 100% !important;
+            height: auto !important;
+            margin: 0% 0% 0% 0% !important;
+        }
+
+        .block2_2 img {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .block2_2 img {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .block2_3 img {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .block2_4 img {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /*ELEVATED ESSENTIALS Banner*/
+        .bannerBlock4 {
+            display: none;
+        }
+
+        .bannerBlock4Mob {
+            display: block !important;
+        }
+
+        /* Shop Exclusive */
+        .Ex11Img {
+            height: 100%;
+            transform: scale(1.2) translateX(-20px) translateY(-20px);
+        }
+
+        .Ex21Img {
+            height: 100%;
+            transform: scale(1.3) translateX(0px) translateY(-15px);
+        }
+
+        .ExclusiveBlock .para {
+            font-family: 'Helvetica Neue LT W05 65 Medium';
+            text-align: left;
+            font-size: 13px !important;
+            font-weight: normal !important;
+            display: block;
+            line-height: 1rem;
+            padding-top: 10px;
+        }
+
+        .bannerExclusive {
+            padding-top: 40px !important;
+        }
+
+        
+        .Ex21ImgHover{
+            display: block !important;
+            transform: scale(1.3) translateX(-6px) translateY(-15px) !important;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .Ex21Img{
+            display: none !important;
+        }
+
+        /* GRIP GUIDE */
+        .bannerBlock5Mob {
+            display: block;
+            width: auto;
+            padding-top: 20%;
+            max-width: 550px;
+        }
+
+        .bannerBlock5 {
+            display: none;
+        }
+
+        /* Brush it Off */
+        .bannerBlock3 {
+            display: none;
+        }
+
+        .bannerBlock3Mob {
+            display: block !important;
+        }
+
+        /* Hot List */
+        .bannerBlock7 {
+            display: none;
+        }
+
+        .bannerBlock7Mob {
+            display: block;
+        }
+
+    }
+
+    @media only screen and (min-width:1405px) {
+        .block1 {
+            width: 31%;
+        }
+    }
+
+    @media only screen and (min-width: 1490px) {
+        .block1 {
+            bannerBlock5 width: 33%;
+        }
+    }
+
+    @media only screen and (min-width: 1540px) {
+        .block1 {
+            width: 35%;
+        }
+
+    }
+
+    @media only screen and (min-width: 1590px) {
+        .block1 {
+            width: 37%;
+        }
+
+        .block1_1 {
+            width: 20%;
+        }
+    }
+
+    @media only screen and (max-width:1300px) {
+        .content-wrap {
+            margin: 0% 5% 0% 5%;
+        }
+    }
+
+    @media only screen and (min-width:1024px) and (max-width:1200px) {
+        .block2_2 {
+            padding: 10% 10% 5% 10%;
+        }
+
+        .block2_3 {
+            padding: 5% 10%;
+        }
+
+        .block2_4 {
+            padding: 5% 10% 10% 10%;
+        }
+
+    }
+
+    @media only screen and (min-width:1024px) and (max-width:1600px) {
+        .b1-b3 .button2 {
+            right: 10% !important;
+        }
+        .b1-b2, .b1-b3, .b1-b4 {
+            width: 230px !important;
+            height: 230px !important;
+            vertical-align: top;
+            display: inline-block;
+        }
+
+        .bannerBlock2_button_desk {
+            top: 100px;
+            right: 19% !important;
+        }
+    }
+
+    @media only screen and (min-width: 1207px)and (max-width: 1229px) {
+        .block1 {
+            width: 28.9%;
+        }
+    }
+
+    @media only screen and (min-width: 1241px)and (max-width: 1255px) {
+        .block1 {
+            width: 28.8%;
+        }
+    }
+
+    @media only screen and (min-width: 1256px)and (max-width: 1275px) {
+        .block1 {
+            width: 29.7%;
+        }
+    }
+
+    @media only screen and (max-width:1150px) {
+        .content-wrap {
+            margin: 0% 1% 0% 1%;
+        }
+    }
+
+    @media only screen and (max-width:1200px) {
+        .home-dp-mob {
+            display: block !important;
+        }
+
+        .home-dp-desk {
+            display: none !important;
+        }
+
+        .bannerBlock2 {
+            width: 345px;
+            margin-left: 35%;
+        }
+
+        .block2_3 img {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .block2_4 img {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .block2_2 img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .p28_22 {
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 26.62px;
+        }
+
+        .p70_56 {
+            font-weight: 700;
+            font-size: 59px;
+            line-height: 57.6px;
+            text-align: left;
+            color: #262626;
+        }
+
+        .p24_19 {
+            font-family: "Helvetica Neue LT W05 45 Light", Arial, sans-serif;
+            font-weight: 200;
+            font-size: 19px;
+            line-height: 23px;
+        }
+    }
+
+    @media only screen and (max-width:1000px) {
+        .brClassMob {
+            display: inline-block;
+        }
+
+        .brClass {
+            display: none;
+        }
+
+        .p28_22 {
+            font-weight: 700;
+            font-size: 34px;
+            line-height: 35px;
+            color: #262626;
+        }
+
+        .p70_56 {
+            font-weight: 700;
+            font-size: 56px;
+            line-height: 67.54px;
+        }
+
+        .p24_19 {
+            font-family: "Helvetica Neue LT W05 45 Light", Arial, sans-serif;
+            font-weight: 200;
+            font-size: 19px;
+            line-height: 23px;
+        }
+    }
+
+    @media only screen and (min-width:768px) and (max-width:1000px) {
+        .p21 {
+            width: 23% !important;
+        }
+    }
+
+    @media only screen and (max-width:850px) {
+        #Ex11+#Ex12 {
+            display: block;
+        }
+
+        #Ex21+#Ex22 {
+            display: block;
+        }
+    }
+
+    @media only screen and (max-width:750px) {
+        #Ex11+#Ex12 {
+            display: block;
+        }
+
+        #Ex21+#Ex22 {
+            display: block;
+        }
+    }
+
+    @media only screen and (max-width:600px) {
+        .content-wrap {
+            margin: 0% 0% 0% 0%;
+        }
+
+        #Ex11+#Ex12 {
+            display: block;
+        }
+
+        #Ex21+#Ex22 {
+            display: block;
+        }
+
+        .content-wrap-img {
+            margin: 1% 3% 0% 3%;
+            height: 674px;
+        }
+    }
+
+    @media only screen and (max-width:550px) {
+        #Ex11+#Ex12 {
+            display: block;
+        }
+
+        #Ex21+#Ex22 {
+            display: block;
+        }
+    }
+
+    @media only screen and (max-width:500px) {
+        #Ex11+#Ex12 {
+            display: block;
+        }
+
+        #Ex21+#Ex22 {
+            display: block;
+        }
+    }
+
+    @media only screen and (max-width:400px) {
+        #Ex11+#Ex12 {
+            display: block;
+        }
+
+        #Ex21+#Ex22 {
+            display: block;
+        }
+
+        .content_banner3 {
+            position: relative;
+            padding-left: 7%;
+            top: 2%;
+        }
+
+        .block1_1 {
+            width: 10%;
+        }
+    }
+
+    @media only screen and (min-width: 318px)and (max-width: 322px) {
+        .content_banner3 {
+            position: relative;
+            padding-left: 1%;
+            top: 2%;
+        }
+    }
+
+    @media (min-width: 48em) {
+        .content__headline {
+            width: 11.6875rem !important;
+        }
+
+        .content__subline {
+            width: 7.6875rem;
+        }
+
+        .content__block.content-right {
+            left: 80%;
+            top: 35%;
+            position: relative;
+        }
+    }
+
+    
+
+    @media only screen and (max-width:767px) {
+        .bannerBlock4 {
+            display: none
+        }
+
+        .p32_30 {
+            font-size: 30px;
+            line-height: 31.86px;
+        }
+
+        .p68_60 {
+            font-size: 60px;
+            line-height: 72.36px;
+            font-weight: 700;
+        }
+
+        .bannerBlock6Mob {
+            display: block;
+        }
+
+        .bannerBlock6 {
+            display: none;
+        }
+
+        .ExclusiveBlock1 {
+            margin-bottom: 30px;
+        }
+
+        .ExclusiveBlock2 {
+            margin-bottom: 30px;
+            overflow-x:clip;
+            position: sticky;
+            
+        }
+
+
+
+        #Ex11+#Ex12 {
+            display: block;
+        }
+
+        #Ex21+#Ex22 {
+            display: block;
+        }
+
+        .bannerBlock3Mob {
+            display: block;
+        }
+
+        .bannerBlock3 {
+            display: none !important;
+        }
+
+        .homePageBtns {
+            font-size: 14px;
+            line-height: 16.7px;
+        }
+    }
+
+    .home-dp-desk {
+        text-align: justify;
+        -ms-text-justify: distribute-all-lines;
+        text-justify: distribute-all-lines;
+    }
+
+    .b1-b1 {
+        width: 350px;
+        margin-top: 2%;
+        vertical-align: top;
+        display: inline-block;
+        zoom: 1;
+    }
+
+    .b1-b2,.b1-b3,.b1-b4 {
+        width: 330px;
+        height: 330px;
+        vertical-align: top;
+        display: inline-block;
+        zoom: 1;
+    }
+
+    .stretch {
+        width: 100%;
+        display: inline-block;
+    }
+
+    .hevetical-neuefont {
+        font-family: 'Helvetica Neue LT W05 45 Light' !important;
+    }
+
+    .bannerBlock5 {
+        height: 170px;
+        margin: 10% 0% 10% 0%;
+    }
+
+    .bannerBlock6 {
+        height: 528px;
+        background: url('homepage/banners/banner_img_6-01.svg?$staticlink$') no-repeat;
+        background-size: cover;
+    }
+
+    .bannerBlock5_1 {
+        width: 25% !important;
+        float: left;
+        margin-top: -25px;
+    }
+
+    .bannerBlock5_21 {
+        display: inline-block;
+        width: 19%;
+        vertical-align: top;
+        padding-left: 25px;
+    }
+
+    .bannerBlock5_22 {
+        display: inline-block;
+        width: 19%;
+        vertical-align: top;
+        padding-left: 40px;
+    }
+
+    .bannerBlock5_23 {
+        display: inline-block;
+        width: 19%;
+        padding-left: 45px;
+        vertical-align: top;
+    }
+
+    .bannerBlock5_24 {
+        display: inline-block;
+        width: 19%;
+        vertical-align: top;
+        padding-left: 20px;
+
+    }
+
+    .bannerBlock5_25 {
+        display: inline-block;
+        width: 19%;
+        padding-left: 40px;
+        vertical-align: top;
+    }
+
+    .bannerBlock5_2 img {
+        width: 150px;
+        height: 170px;
+    }
+
+    .bannerBlock5_3 img {
+        width: 150px;
+        height: 170px;
+    }
+
+    .bannerBlock5_4 img {
+        width: 150px;
+        height: 170px;
+    }
+
+    .bannerBlock5_5 img {
+        width: 150px;
+        height: 170px;
+    }
+
+    .bannerBlock5_6 img {
+        width: 150px;
+        height: 170px;
+    }
+
+    .content_banner6 {
+        position: relative;
+        left: 65%;
+        top: 25%;
+    }
+
+    .content_banner4 {
+        position: relative;
+        padding-left: 5%;
+        top: 20%;
+    }
+
+    .bannerBlock7-2 {
+        width: 80%;
+        float: right;
+    }
+
+    .bannerBlock7_21 {
+        display: inline-block;
+        width: 14%;
+        vertical-align: top;
+    }
+
+    .bannerBlock7_22 {
+        display: inline-block;
+        width: 17%;
+        vertical-align: top;
+        padding-left: 25px;
+    }
+
+    .bannerBlock7_23 {
+        display: inline-block;
+        width: 18%;
+        vertical-align: top;
+        padding-left: 25px;
+    }
+
+    .bannerBlock7_24 {
+        display: inline-block;
+        width: 17%;
+        vertical-align: top;
+        padding-left: 25px;
+    }
+
+    .bannerBlock7_25 {
+        display: inline-block;
+        width: 17%;
+        vertical-align: top;
+        padding-left: 1px;
+    }
+
+    .bannerBlock7_26 {
+        display: inline-block;
+        width: 14%;
+        vertical-align: top;
+        padding-left: 25px;
+    }
+
+    .p32_30 {
+        font-family: "Helvetica Neue LT W01_75 Bold";
+        font-size: 34px;
+        line-height: 33.98px;
+    }
+
+    .p68_60 {
+        font-size: 68px;
+        line-height: 82.01px;
+        font-weight: 700;
+    }
+
+    
+
+    .p70_45 {
+        font-family: "Helvetica Neue LT W05_77 Bd Cn", Arial, sans-serif;
+        font-size: 70px;
+        line-height: 74.34px;
+        font-weight: 700;
+    }
+
+    .p145_96 {
+        font-size: 145px;
+        line-height: 174.87px;
+        font-weight: 700;
+    }
+
+    .p42_38 {
+        font-family: 'Helvetica Neue LT W01_75 Bold';
+        font-size: 48px;
+        line-height: 44.6px;
+        padding-top: 10%;
+    }
+
+    .ggImg {
+        background: url('homepage/banners/GG.svg?$staticlink$') no-repeat;
+        height: 90px;
+    }
+
+    @media only screen and (max-width:800px) {
+        .ExclusiveBlock1 {
+            width: 150px !important;
+            height: 150px !important;
+            margin-right: 15px !important;
+        }
+
+        .ExclusiveBlock2 {
+            overflow-x:clip;
+            position: sticky;
+            width: 150px !important;
+            height: 150px !important;
+        }
+
+        .Ex11Img {
+            transform: scale(1.3) translateX(-10px) translateY(-16px) !important;
+        }
+
+        .Ex11Img:hover {
+            transform: scale(1.3) translateX(-10px) translateY(-16px) !important;
+        }
+
+        .Ex21Img {
+            transform: scale(1.3) translateX(0px) translateY(-5px) !important;
+        }
+
+        .Ex21Img:hover {
+            transform: scale(1.3) translateX(0px) translateY(-5px) !important;
+        }
+
+        .bannerBlock7 {
+            display: none;
+        }
+
+        .bannerBlock7Mob {
+            display: block;
+        }
+
+        #Ex11+#Ex12 {
+            display: block;
+        }
+
+        #Ex21+#Ex22 {
+            display: block;
+        }
+    }
+
+    @media only screen and (max-width:1106px) {
+        .p42_38 {
+            font-size: 38px;
+            line-height: 40.36px;
+            font-weight: 100;
+        }
+
+        .p70_45 {
+            font-size: 45.72px;
+            line-height: 48.56px;
+            font-weight: 700;
+        }
+
+        .p145_96 {
+            font-size: 96.35px;
+            line-height: 116.2px;
+            font-weight: 700;
+        }
+
+        .bannerBlock5_1 {
+            display: block;
+            height: 180px;
+            margin-right: 20%;
+            width: auto;
+        }
+
+        .bannerBlock5_2 {
+            width: 140px;
+            height: 140px;
+            float: left;
+            display: block;
+        }
+
+        .bannerBlock5_3 {
+            width: 140px;
+            height: 140px;
+            float: right;
+            display: block;
+        }
+
+        .bannerBlock5_4 {
+            width: 140px;
+            height: 140px;
+            float: left;
+            display: block;
+        }
+
+        .bannerBlock5_5 {
+            width: 140px;
+            height: 140px;
+            float: right;
+            display: block;
+        }
+
+        .bannerBlock5_2 img {
+            width: 140px;
+            height: 140px;
+        }
+
+        .bannerBlock5_3 img {
+            width: 140px;
+            height: 140px;
+        }
+
+        .bannerBlock5_4 img {
+            width: 140px;
+            height: 140px;
+        }
+
+        .bannerBlock5_5 img {
+            width: 140px;
+            height: 140px;
+        }
+
+        .bannerBlock5_6 img {
+            display: none;
+        }
+
+        .content_banner6 {
+            position: relative;
+            left: 70%;
+            top: 20%;
+        }
+    }
+    @media only screen and (min-width: 1024px)and (max-width: 1150px) {
+        .bannerBlock5-2 {
+            width: 80%;
+        }
+    }
+
+    @media only screen and (min-width: 1150px)and (max-width: 1300px) {
+        .bannerBlock5-2 {
+            width: 80%;
+        }
+
+        .bannerBlock5_1 {
+            width: 25%;
+        }
+    }
+
+    @media only screen and (min-width: 1230px)and (max-width: 1349px) {
+        .bannerBlock5_1 {
+            width: 30%;
+        }
+
+        .bannerBlock5-2 {
+            width: 80%;
+        }
+    }
+
+    @media only screen and (min-width: 1349px)and (max-width: 1450px) {
+        .bannerBlock5-2 {
+            width: 80%;
+        }
+    }
+
+    @media only screen and (min-width: 1450px) {
+        .bannerBlock5_1 {
+            width: 25% !important;
+        }
+
+        .bannerBlock5-2 {
+            width: 80%;
+        }
+    }
+
+    @media only screen and (max-width:1350px) {
+        .content-wrap {
+            margin: 0% 1.5% 0% 1.5%;
+        }
+    }
+
+    @media only screen and (max-width:950px) {
+        .bannerBlock6 {
+            height: 660px;
+            background: url('homepage/banners/group710.svg?$staticlink$') no-repeat;
+            background-size: cover;
+            background-position-y: 80%;
+        }
+
+        .content_banner6 {
+            position: relative;
+            left: 20%;
+            top: 2%;
+        }
+    }
+
+    @media only screen and (max-width:700px) {
+        .content_banner6 {
+            position: relative;
+            left: 20%;
+            top: 5%;
+        }
+    }
+
+    @media only screen and (max-width:600px) {
+        .content_banner4 {
+            position: relative;
+            padding-left: 5%;
+            top: 0%;
+            width: 100%;
+        }
+
+        .content_banner6 {
+            position: relative;
+            left: 20%;
+            top: 7%;
+        }
+
+        .bannerBlock6 {
+            height: 521px;
+        }
+    }
+
+    @media (min-width: 48em) {
+        .content__headline.middle {
+            width: 17.5rem;
+        }
+
+        .content__subline.middle {
+            width: 12.0625rem;
+        }
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .bannerBlock4 {
+        position: relative;
+    }
+
+    .bannerBlock4Mob {
+        display: none
+    }
+
+    .bannerBlock6Mob {
+        display: none;
+    }
+
+    .stretch {
+        width: 100%;
+        display: inline-block;
+    }
+
+    .ExclusiveBlock {
+        display: flex;
+        padding-bottom: 100px;
+    }
+
+    .ExclusiveBlock1 {
+        width: 250px;
+        height: 250px;
+    }
+
+    .ExclusiveBlock2 {
+        overflow-x:clip;
+        position: sticky;
+        width: 250px;
+        height: 250px;
+        display: flex;
+    }
+
+    .ExclusiveBlock .Ex1 {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        border: 5px solid black;
+    }
+
+    .ExclusiveBlock .Ex2 {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        border: 5px solid black;
+    }
+
+    .ExclusiveBlock .Ex2:hover .Ex21ImgHover{
+        display: block;
+    }
+
+    .ExclusiveBlock .Ex2:hover .Ex21Img{
+        display: none;
+    }
+
+    .ExclusiveBlock .para {
+        text-align: left;
+        font-size: 14px;
+        display: block;
+        line-height: 1rem;
+        padding-top: 10px;
+    }
+
+    .bannerExclusive {
+        text-align: center !important;
+        padding-top: 100px;
+    }
+
+    #Ex12 {
+        display: none;
+    }
+
+    #Ex22 {
+        display: none;
+    }
+
+    .Ex11Img {
+        height: 100%;
+    }
+
+    .Ex21Img {
+        height: 100%;
+        transform: translateY(5px);
+    }
+
+    .Ex11Img:hover {
+        height: 100%;
+        transform: scale(1.2) translateX(-20px) translateY(-20px);
+    }
+
+    .Ex21Img:hover {
+        height: 100%;
+        transform: scale(1.3) translateX(-10px) translateY(-15px);
+    }
+
+    .Ex21ImgHover{
+        display: none;
+        transform: scale(1.3) translateX(-10px) translateY(-15px);
+        height: 100%;
+    }
+    
+
+    #Ex11:hover+#Ex12 {
+        display: block;
+    }
+
+    .ExclusiveBlock1:hover #Ex12 {
+        display: block;
+    }
+
+    #Ex21:hover+#Ex22 {
+        display: block;
+    }
+
+    #Ex12:hover .Ex21ImgHover{
+        display: block;
+    }
+
+    #Ex12:hover .Ex21Img{
+        display: none;
+    }
+
+    #Ex22:hover {
+        display: block;
+    }
+
+    @media only screen and (min-width: 1706px) {
+        .bannerExclusive {
+            text-align: center !important;
+        }
+    }
+
+    .gripdiv:hover img {
+        transform: scale(1.1);
+    }
+
+    .hotlistdiv:hover img {
+        transform: scale(1.1);
+    }
+
+    .hotlistdiv img {
+        position: absolute;
+        width:15%; 
+        top: 10%;
+    }
+    
+    /* FOR MACs */
+    @media only screen and (min-width: 2000px) {
+        /* MAKE YOUR MESS */
+        .home-dp-desk {
+            height: 310px;
+        }
+
+        .b1-b1 {
+            margin-top: 3%;
+        }
+
+        /* GRIP GUIDE */
+        .gripdiv a img{
+            top:-1%;
+        }
+    }
+
+@media only screen and (min-width: 2000px) {
+         /* HOT LIST */
+        .hotlistdiv img {
+            top: -10%;
+        }
+}
+
+    .hotlistdiv .hotlistTitle {
+        position: absolute;
+        top: 80%;
+        font-family: 'Helvetica Neue LT W01_75 Bold';
+    }
+    
+</style>
+<div class="content__image;" style="">
+    <img class="bannerFirst" alt="..." src="homepage/banners/banner_first.jpg?$staticlink$" height="764" width="1920"/>
+    <img class="bannerFirst_mobile" alt="..." src="homepage/banners/banner_first_mobile.jpg?$staticlink$" height="286" width="429" />
+</div>
+<div class="content-wrap content-wrap-mob">
+    <div class="bannerBlock2 home-dp-mob" style="margin-left:auto !important; margin-right: auto !important;">
+        <div class="block1">
+            <div style="width:350px;">
+                <div class="block1_1">
+                    <p class="p28_22 ">MAKE YOUR MESS</p>
+                </div>
+                <div class="block1_2">
+                    <p class="align-self-center align-self-md-end font-family-old-english-regular text-transform-capitalize"
+                        style="margin-left: -20px; font-size: 50px;">Beautiful.</p>
+                    <p class="p24_19 " style="margin-left: -20px">Styling tools & accessories
+                        <br />designed to be displayed</p>
+                </div>
+            </div>
+        </div>
+        <div class="block2_2" style="position: relative;">
+            <img alt="..." class="button1_img_1" src="homepage/banners/banner_image1.jpg?$staticlink$" />
+            <button class="bannerBlock2_button_mob button1" onclick="$('.Brushes')[0].click();">
+                BRUSH SHOP
+            </button>
+        </div>
+        <div class="block2_3" style="position: relative;">
+            <img alt="..." class="button2_img_3" src="homepage/banners/banner_image2.jpg?$staticlink$" />
+            <button class="bannerBlock2_button_mob button2" onclick="$('.Accessories')[0].click();">
+                ACCESSORY SHOP
+            </button>
+        </div>
+        <div class="block2_4" style="position: relative;">
+            <img alt="..." class="button3_img_3" src="homepage/banners/banner_image3.jpg?$staticlink$" />
+            <button class="bannerBlock2_button_mob button3" onclick="$('.Tools')[0].click();">
+                TOOL SHOP
+            </button>
+        </div>
+    </div>
+    <div class="bannerBlock2 home-dp-desk">
+        <div class="block1 b1-b1">
+            <div class="block1_1">
+                <p class="p28_22 ">MAKE YOUR MESS</p>
+            </div>
+            <div class="block1_2">
+                <p
+                    class="p70_56 align-self-center align-self-md-end font-family-old-english-regular text-transform-capitalize">
+                    Beautiful.</p>
+                <p class="p21_20" style="font-size:20px !important;">Styling tools and accessories
+                    <br />designed to be displayed</p>
+            </div>
+        </div>
+        <div class="block2_2 b1-b2" style="position: relative;">
+            <img alt="..." class="button1_img_1" src="homepage/banners/banner_image1.jpg?$staticlink$" height="350" width="350" loading="eager"/>
+            <button class="bannerBlock2_button_desk button1" onclick="$('.Brushes')[0].click();"
+                style="right: 42px">BRUSH SHOP</button>
+        </div>
+        <div class="block2_3 b1-b3" style="position: relative;">
+            <img alt="..." class="button2_img_2" src="homepage/banners/banner_image2.jpg?$staticlink$" height="350" width="350" loading="eager"/>
+            <button class="bannerBlock2_button_desk button2" onclick="$('.Accessories')[0].click();"
+                style="right: 21px">ACCESSORY SHOP</button>
+        </div>
+        <div class="block2_4 b1-b4" style="position: relative;">
+            <img alt="..." class="button3_img_3" src="homepage/banners/banner_image3.jpg?$staticlink$" height="350" width="350" loading="eager"/>
+            <button class="bannerBlock2_button_desk button3" onclick="$('.Tools')[0].click();" style="right: 49px">TOOL
+                SHOP</button>
+        </div>
+        <span class="stretch"></span>
+    </div>
+    <div class="vis" id="modal-privacy">
+        <div style="position:relative;">
+            <div style="float:left;width:70%;">
+                <p style="margin: 1em 0 1em 0;">We've updated our <a href="/privacy-policy.html" style="color: #fff;"
+                        target="_blank"><u>Privacy Policy</u></a> as of
+                    <strong>January 6, 2021</strong>
+                </p>
+            </div>
+            <div style="width:30%;">
+                <button class="legal-modal-close" onclick="privacyNoticeHide()"
+                    style=" position:absolute;bottom: -50px;left:87%;">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bannerBlock4">
+    <img src="homepage/banners/group22.jpg?$staticlink$" alt="..." style="width: 100%;" loading="lazy">
+    <div class="content_banner4" style="position: absolute;">
+        <p class="p32_30 text-transform-capitalize">
+                  ELEVATED
+            <br />ESSENTIALS</p>
+            <p class="p21_20" >
+                Signature styling items,<br />
+                custom tailored with<br />
+                ultra-luxe finishes
+            </p>
+            <a class="button align-self-center align-self-md-end hevetical-neuefont text-transform-capitalize shopbtn homePageBtns"
+            href="/s/us-leandrolimited/accessories-1" style="margin-top:30px;padding-top:12px;padding-bottom:12px;width:260px!important;
+            font-size:14px!important;">SHOP ALL ACCESSORIES
+            </a>
+    </div>
+</div>
+<div class="bannerBlock4Mob ">
+    <img alt="..." src="homepage/banners/elevated_essentials-mobile.jpg?$staticlink$" style="width: 100%; height:100%" height="285" width="428" loading="lazy"/>
+    <div style="width: 100%;">
+        <div class="content_banner4" style="top: 12%;padding-left: 5%;">
+            <p class="text-transform-capitalize" style="font-size: 30px; font-family: 'Helvetica Neue LT W01_75 Bold'; line-height: 30px;">ELEVATED ESSENTIALS</p>
+            <p style="width:100%; font-size: 18px;font-family: 'Helvetica Neue LT W05 45 Light';  line-height: 18px;     margin-bottom: 30px;">
+                Signature styling items,<br />
+                custom tailored with<br />
+                ultra-luxe finishes
+            </p>
+            <a class="button align-self-center align-self-md-end hevetical-neuefont text-transform-capitalize shopbtn homePageBtns"
+                href="Brushes" style="padding: 0px;
+                font-size: 17px;
+                font-family: 'Helvetica Neue LT W05 65 Medium' !important;
+                width: 272px;
+                height: 43px;
+                display: table-cell;
+                vertical-align: middle;">SHOP ALL ACCESSSORIES</a>
+        </div>
+    </div>
+
+</div>
+<div class="content-wrap">
+    <div class="bannerBlock5" style="margin-left:auto;margin-right:auto">
+        <div style="display:inline-block; width: 100%; position: relative;">
+            <p class="p42_38 " style="display:inline-block; padding-right:70px">GRIP
+                <br />GUIDE</p>
+            <div class="grip1 gripdiv" style="display:inline-block;width:15%;"> <a
+                    href="/s/us-leandrolimited/81756.html"><img  alt="..."
+                        src="homepage/banners/Grip-Guide1-sm.png?$staticlink$"   loading="lazy"/></a>
+                <p class="gripdivTitle" style="left:18%">Light Grip</p>
+            </div>
+            <div class="grip2 gripdiv" style="display:inline-block;width:15%;"> <a
+                    href="/s/us-leandrolimited/81772.html"><img alt="..."
+                        src="homepage/banners/Grip-Guide2.jpg?$staticlink$"   loading="lazy"/></a>
+
+                <p class="gripdivTitle" style="left:34%">Styling Grip</p>
+            </div>
+            <div class="grip3 gripdiv" style="display:inline-block;width:15%;"> <a
+                    href="/s/us-leandrolimited/81774.html"><img alt="..."
+                        src="homepage/banners/Grip-Guide3.jpg?$staticlink$"   loading="lazy"/></a>
+
+                <p class="gripdivTitle" style="left:49%">Working Grip</p>
+            </div>
+            <div class="grip4 gripdiv" style="display:inline-block;width:15%;"> <a
+                    href="/s/us-leandrolimited/81866.html"><img alt="..."
+                        src="homepage/banners/Grip-Guide4.jpg?$staticlink$"   loading="lazy"/></a>
+
+                <p class="gripdivTitle" style="left:64%">Firm Grip</p>
+            </div>
+            <div class="grip5 gripdiv" style="display:inline-block;width:15%;"> <a
+                    href="/s/us-leandrolimited/81870.html"><img alt="..."
+                        src="homepage/banners/Grip-Guide5.jpg?$staticlink$"   loading="lazy"/></a>
+                <p class="gripdivTitle" style="left:80%">Strong Grip</p>
+            </div>
+        </div>
+        <div style="height:18px;overflow:hidden;">
+            <div style="height:3px;background:linear-gradient(270deg, #282828, transparent);position:relative;top:5px;">
+                <div
+                    style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:-4px;margin-left:22%; border:2px solid #272727;">
+                </div>
+                <div
+                    style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:-4px;margin-left:16%;border:2px solid #272727;">
+                </div>
+                <div
+                    style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:-4px;margin-left:15%;border:2px solid #272727;">
+                </div>
+                <div
+                    style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:-4px;margin-left:13%;border:2px solid #272727;">
+                </div>
+                <div
+                    style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:-4px;margin-left:16%;border:2px solid #272727;">
+                </div>
+            </div>
+        </div>
+        <div class="bannerBlock5-2 " style="float:right;position: absolute;left: 20%;">
+            <div class="bannerBlock5_21 prodBord">
+                <p style="font-size:12px;font-weight:bold">Dent-Free Clip</p>
+                <p style="font-size:11px; line-height:1.4">Double-Sided silicone leaves no marks or creases while styling</p>
+            </div>
+            <div class="bannerBlock5_22 prodBord">
+                <p style="font-size:12px;font-weight:bold">Styling Clip</p>
+                <p style="font-size:11px; line-height:1.4">Opens wide to easily maneuver while styling</p>
+            </div>
+            <div class="bannerBlock5_23 prodBord">
+                <p style="font-size:12px;font-weight:bold">Salon Clip</p>
+                <p style="font-size:11px; line-height:1.4">Easily releases without pulling or damaging hair</p>
+            </div>
+            <div class="bannerBlock5_24 prodBord">
+                <p style="font-size:12px;font-weight:bold">Jaw Clip</p>
+                <p style="font-size:11px; line-height:1.4">Hinged jaw clip holds hair perfectly in place</p>
+            </div>
+            <div class="bannerBlock5_25">
+                <p style="font-size:12px;font-weight:bold">Alligator Clip</p>
+                <p style="font-size:11px; line-height:1.4">Extra-firm holds for sectioning and styling</p>
+            </div>
+            <span class="stretch"></span>
+        </div>
+    </div>
+    <div class="bannerBlock5Mob" style="margin-left:auto;margin-right:auto">
+        <!-- grip guide -->
+        <style>
+            .gripMobdiv {
+                width: 170px;
+                font-size: 16px;
+                display: inline-block;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .gripHeadingR {
+                font-size: 12px;
+            }
+
+            .gripHeadingL {
+                font-size: 12px;
+                text-align: right;
+            }
+        </style>
+        <div class="gripHeadingMain">
+            <p style="font-size: 25px;font-family: 'Helvetica Neue';">
+                <b>GRIP GUIDE</b>
+            </p>
+        </div>
+        <div class="container" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div class="container" style="display: flex; flex-direction: column;">
+                <div class="gripHeadingL gripMobdiv">
+                    <p style="font-weight: bold;font-size: 15px;font-family: 'Helvetica Neue';padding-top: 100%;">Light Grip</p>
+                </div>
+                <div class="grip2 gripMobdiv" style="padding-top:90%;">
+                    <a href="/s/us-leandrolimited/81772.html">
+                        <img alt="..." src="homepage/banners/Grip-Guide2.jpg?$staticlink$"   loading="lazy" />
+                        <p style="font-weight: bold;font-size:15px;text-decoration: underline;margin-bottom: 10px;font-family: 'Helvetica Neue';">Styling Clip</p>
+                        <p style="font-size:13px; line-height:1.4;font-family: 'Helvetica Neue';">Opens wide to easily maneuver while styling</p>
+                    </a>
+                </div>
+
+                <div class="gripHeadingL gripMobdiv" style="padding-top:30%;">
+                    <p style="font-weight: bold;font-size: 15px;font-family: 'Helvetica Neue';">Working Grip</p>
+                </div>
+
+                <div class="grip4 gripMobdiv" style="padding-top:70%;">
+                    <a href="/s/us-leandrolimited/81866.html">
+                        <img alt="..." src="homepage/banners/Grip-Guide4.jpg?$staticlink$"   loading="lazy" />
+                        <p style="font-weight: bold;font-size:15px;text-decoration: underline;margin-bottom: 10px;font-family: 'Helvetica Neue';">Jaw Clip</p>
+                        <p style="font-size:13px; line-height:1.4;font-family: 'Helvetica Neue';">Hinged jaw clip holds hair perfectly in place</p>
+                    </a>
+                </div>
+                <div class="gripHeadingL gripMobdiv" style="padding-top:30%;">
+                    <p style="font-weight: bold;font-size: 15px;font-family: 'Helvetica Neue';">Strong Grip</p>
+                </div>
+            </div>
+            <!-- gradent border -->
+            <div style="height:100%;width: 3px;">
+                <div
+                    style="width:3px;height: 1200px; background:linear-gradient(45deg, black, transparent);position:relative;top:5px;">
+                    <div
+                        style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:12.7%;  right:3px; border:2px solid #272727;z-index: 2;">
+                    </div>
+                    <div
+                        style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:34%; right:3px; border:2px solid #272727;z-index: 2;">
+                    </div>
+                    <div
+                        style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:49%; right:3px; border:2px solid #272727;z-index: 2;">
+                    </div>
+                    <div
+                        style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:64.5%; right:3px; border:2px solid #272727;z-index: 2;">
+                    </div>
+                    <div
+                        style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:82.4%; right:3px; border:2px solid #272727;z-index: 2;">
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="display: flex; flex-direction: column;">
+                <div class="grip1 gripMobdiv" style="padding-top:50%;">
+                    <a href="/s/us-leandrolimited/81756.html">
+                        <img alt="..." src="homepage/banners/Grip-Guide1.jpg?$staticlink$"   loading="lazy"/>
+                        <p style="font-weight: bold;font-size:15px;text-decoration: underline;margin-bottom: 10px;font-family: 'Helvetica Neue';">Dent-Free Clip</p>
+                        <p style="font-size:13px; line-height:1.4;    font-family: 'Helvetica Neue';">Double-Sided silicone leaves no marks or creases
+                            while styling</p>
+                    </a>
+                </div>
+                <div class="gripHeadingR gripMobdiv" style="padding-top:50%;">
+                    <p style="font-size: 15px;font-family: 'Helvetica Neue LT W01_75 Bold';">Styling Grip</p>
+                </div>
+                <div class="grip3 gripMobdiv" style="padding-top:60%;">
+                    <a href="/s/us-leandrolimited/81774.html">
+                        <img alt="..." src="homepage/banners/Grip-Guide3.jpg?$staticlink$"   loading="lazy"/>
+                        <p style="font-weight: bold;font-size:15px;text-decoration: underline;margin-bottom: 10px;font-family: 'Helvetica Neue';">Salon Clip</p>
+                        <p style="font-size:13px; line-height:1.4;    font-family: 'Helvetica Neue';">Easily releases without pulling or damaging hair</p>
+                    </a>
+                </div>
+                <div class="gripHeadingR gripMobdiv" style="padding-top:20%;">
+                    <p style="font-size: 15px;font-family: 'Helvetica Neue LT W01_75 Bold';">Firm Grip</p>
+                </div>
+                <div class="grip5 gripMobdiv" style="padding-top:80%;">
+                    <a href="/s/us-leandrolimited/81870.html">
+                        <img alt="..." src="homepage/banners/Grip-Guide5.jpg?$staticlink$"   loading="lazy"/>
+                        <p style="font-weight: bold;font-size:15px;text-decoration: underline;margin-bottom: 10px;font-family: 'Helvetica Neue';">Alligator Clip</p>
+                        <p style="font-size:13px; line-height:1.4;    font-family: 'Helvetica Neue';">Extra-firm holds for sectioning and styling</p>
+                    </a>
+                </div>
+                <span class="stretch"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bannerExclusive">
+    <p class="shopExclusive">SHOP EXCLUSIVES</p>
+    <div class="ExclusiveBlock" style="justify-content:center;">
+        <div class="ExclusiveBlock1" style="display:inline-block;margin-right:60px;">
+            <div class="Ex1" id="Ex11" style="display:block">
+                <a href="/s/us-leandrolimited/LL400UC.html"><img class="Ex11Img" alt="..."
+                        src="homepage/banners/Shop-Exclusive2.webp?$staticlink$" loading="lazy" height="416" width="416"/>
+                </a>
+            </div>
+            <div id="Ex12">
+                <a href="/s/us-leandrolimited/LL400UC.html">
+                    <p class="Expara1 para"><span style="    font-size: 18px; font-family: 'Helvetica Neue LT W01_75 Bold';">LA FORTEZZA</span><br />Carbon Infused Brushless Motor Hair Dryer</p>
+                </a>
+                <a style="margin-top:15px;padding-top: 14px;padding-bottom: 15px;height:20px;display:block;width:120px;font-size:12px;line-height:3px;padding-left:25px;background:#262626;"
+                    href="/s/us-leandrolimited/LL400UC.html"
+                    class="button align-self-center align-self-md-end hevetical-neuefont text-transform-capitalize shopbtn Exclusivebtn hw ">
+                    <p class="margm12">SHOP NOW</p>
+                </a>
+            </div>
+        </div>
+        <div class="ExclusiveBlock2" style="display:inline-block;">
+            <div class="Ex2" id="Ex21" style="display:block">
+                <a href="/s/us-leandrolimited/LL2197UC.html">
+                    <img class="Ex21ImgHover" loading="eager" alt="..." src="homepage/banners/Shop-Exclusive1-Hover.webp?$staticlink$" height="416" width="416"/>
+                    <img class="Ex21Img" alt="..." src="homepage/banners/Shop-Exclusive1.webp?$staticlink$" loading="lazy" height="416" width="416" />
+                </a>
+            </div>
+            <div id="Ex22">
+                <a href="/s/us-leandrolimited/LL2197UC.html">
+                    <p class="Expara2 para"><span style=" font-size: 18px; font-family: 'Helvetica Neue LT W01_75 Bold';">II FERRO</span><br />Carbon Infused 1" Styling Iron</p>
+                </a>
+                <a style="margin-top:15px;padding-top: 14px;padding-bottom: 15px;height:20px;display:block;width:120px;font-size:12px;line-height:3px;padding-left:25px;background:#262626;"
+                    href="/s/us-leandrolimited/LL2197UC.html"
+                    class="button align-self-center align-self-md-end hevetical-neuefont text-transform-capitalize shopbtn Exclusivebtn hw ">
+                    <p class="margm12">SHOP NOW</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bannerBlock3" style="margin-top:2%; margin-bottom:2%; position: relative;">
+    <img src="homepage/banners/banner_brush-it-off-new.jpg?$staticlink$" alt="..." style="width: 100%; height:100%" width="1920" height="725" loading="lazy">;
+    <div class="content_banner3" style="position: absolute;">
+        <p class="p66_55 content__headline align-self-center align-self-md-end" style="text-transform: uppercase;">Brush
+            it Off</p>
+        <p class="p21_20 p21">
+            Shop our curated collection<br class="brClass" />of contoured <br class="brClassMob" />professional <br class="brClassMid" />brushes
+        </p>
+        <a class="button align-self-center align-self-md-end hevetical-neuefont text-transform-capitalize"
+            href="/s/us-leandrolimited/Brushes"
+            style="margin-top: 30px;padding-top: 12px;padding-bottom: 12px;font-size:14px;">
+            SHOP ALL BRUSHES</a>
+    </div>
+</div>
+</div>
+<div class="bannerBlock3Mob">
+    <img alt="..." src="homepage/banners/brush-it-off-mob.png?$staticlink$" style="width: 100%; height:100%" height="287" width="430" loading="lazy"/>
+    <div style="width: 100%;">
+        <div class="content_banner3" style="top: 23%; padding-left: 5%">
+            <p class=" align-self-center align-self-md-end text-transform-capitalize"
+                style="font-size: 30px;font-weight: bold; font-family: 'Helvetica Neue LT W01_75 Bold';color:#212121;">BRUSH IT OFF</p>
+            <p style="font-size: 18px; line-height: 21px; font-family: 'Helvetica Neue LT W05 45 Light';margin-bottom: 3%;color:#212121;">
+                Shop our curated collection of contoured<br>
+                professional brushes
+            </p>
+            <a class="button align-self-center align-self-md-end hevetical-neuefont text-transform-capitalize homePageBtns"
+                href="Brushes" style=" margin-top: 3%;  padding: 0px; font-size: 17px; font-family: 'Helvetica Neue LT W05 65 Medium' !important; width: 220px;  height: 43px; display: table-cell;  vertical-align: middle;">
+                SHOP ALL BRUSHES
+            </a>
+        </div>
+    </div>
+
+</div>
+<div class="content-wrap">
+    <div class="bannerBlock7" style="margin-left:auto;margin-right:auto">
+        <div style="display:inline-block; width: 100%;position: relative;">
+            <p class="p42_38" style="display:inline-block; padding-right:10%">HOT
+                <br />LIST</p>
+            <div class="hotList1 hotlistdiv" style="font-weight:bold;font-size:12px;display:inline-block;width:13%;">
+                <a href="/s/us-leandrolimited/95380.html">
+                    <img alt="..." src="homepage/banners/95380_HERO_NEW.jpg?$staticlink$" loading="lazy"/>
+                    <div class="hotlistTitle">
+                        <p style="color:#212121; margin-left: -80px;">01 Vented Ceramic </p>
+                        <p style="color:#212121; margin-left: -80px;">Porcupine Round Brush</p>
+                    </div>
+                </a>
+            </div>
+            <div class="hotList2 hotlistdiv" style="font-weight:bold;font-size:12px;display:inline-block;width:13%;">
+                <a href="/s/us-leandrolimited/95383.html">
+                    <img alt="..." src="homepage/banners/95383_HERO_NEW.jpg?$staticlink$" loading="lazy"/>
+                    <div class="hotlistTitle">
+                        <p style="color:#212121; margin-left: -70px;">02 Thermal Ceramic</p>
+                        <p style="color:#212121; margin-left: -70px;">Carbon Round Brush</p>
+                    </div>
+                </a>
+            </div>
+            <div class="hotList3 hotlistdiv" style="font-weight:bold;font-size:12px;display:inline-block;width:13%;">
+                <a href="/s/us-leandrolimited/95410.html">
+                    <img alt="..." src="homepage/banners/95410_HERO_NEW.png?$staticlink$" loading="lazy"/>
+                    <div class="hotlistTitle">
+                        <p style="color:#212121; margin-left: -70px;">Maximum Shine Solid</p>
+                        <p style="color:#212121; margin-left: -70px;">Boar Round Brush</p>
+                    </div>
+                </a>
+            </div>
+            <div class="hotList4 hotlistdiv" style="font-weight:bold;font-size:12px;display:inline-block;width:13%;">
+                <a href="/s/us-leandrolimited/95384.html">
+                    <img alt="..." src="homepage/banners/95384_HERO_NEW.jpg?$staticlink$" loading="lazy"/>
+                    <div class="hotlistTitle">
+                        <p style="color:#212121; margin-left: -60px;">05 Scalp Care</p>
+                        <p style="color:#212121; margin-left: -60px;">Cushion Paddle Brush</p>
+                    </div>
+                </a>
+            </div>
+            <div class="hotList5 hotlistdiv" style="font-weight:bold;font-size:12px;display:inline-block;width:13%;">
+                <a href="/s/us-leandrolimited/95381.html">
+                    <img alt="..." src="homepage/banners/95381_HERO_NEW.jpg?$staticlink$" loading="lazy"/>
+                    <div class="hotlistTitle">
+                        <p style="color:#212121; margin-left: -60px;">06 Pure Boar Cushion</p>
+                        <p style="color:#212121; margin-left: -60px;"> Paddle Brush</p>
+                    </div>
+                </a>
+            </div>
+            <div class="hotList6 hotlistdiv" style="font-weight:bold;font-size:12px;display:inline-block;width:13%;">
+                <a href="/s/us-leandrolimited/95386.html">
+                    <img alt="..." src="homepage/banners/95386_HERO_NEW.jpg?$staticlink$" loading="lazy"/>
+                    <div class="hotlistTitle">
+                        <p style="color:#212121; margin-left: -60px;">07 Nylon Detangle </p>
+                        <p style="color:#212121; margin-left: -60px;">Cushion Paddle Brush</p>
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        <div style="height:18px;overflow:hidden;">
+            <div style="height:1px;background:#212121;position:relative;top:5px;">
+                <div
+                    style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:-4px;margin-left:24%; border:2px solid #272727;">
+                </div>
+                <div style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:-4px;margin-left:13%;
+                            border:2px solid #212121;"></div>
+                <div style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:-4px;margin-left:12%;
+                            border:2px solid #212121;"></div>
+                <div style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:-4px;margin-left:13%;
+                            border:2px solid #212121;"></div>
+                <div style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:-4px;margin-left:13%;
+                            border:2px solid #212121;"></div>
+                <div style="float:left;width:10px;height:10px;background:white;border-radius:50%;position:relative;top:-4px;margin-left:13%;
+                            border:2px solid #212121;"></div>
+            </div>
+        </div>
+        <p style="float:left;font-size:16px;">brushes we can’t
+            <br />live without</p>
+        <div class="bannerBlock7-2 " style="position: sticky;left: 20%;">
+            <div class="bannerBlock7_21 prodBord">
+                <p style="font-size:12px;font-family: 'Helvetica Neue LT W01_75 Bold';padding-bottom: 15px;">Volume & Shine</p>
+                <p style="font-size:11px; line-height:1.4">the ultimate round brush for bombshell blowouts</p>
+            </div>
+            <div class="bannerBlock7_22 prodBord">
+                <p style="font-size:12px;font-family: 'Helvetica Neue LT W01_75 Bold';padding-bottom: 15px;">Smooth & Straightens</p>
+                <p style="font-size:11px; line-height:1.4">carbon infused wavy bristles eliminate static and frizz</p>
+            </div>
+            <div class="bannerBlock7_23 prodBord">
+                <p style="font-size:12px;font-family: 'Helvetica Neue LT W01_75 Bold';padding-bottom: 15px;">Silky Smooth</p>
+                <p style="font-size:11px; line-height:1.4">redistribute hair's natural oils for smooth, shiny finish</p>
+            </div>
+            <div class="bannerBlock7_24 prodBord">
+                <p style="font-size:12px;font-family: 'Helvetica Neue LT W01_75 Bold';padding-bottom: 15px;">Stimulate & Straighten</p>
+                <p style="font-size:11px; line-height:1.4">eliminate buildup and residue for a clean, healthy scalp</p>
+            </div>
+            <div class="bannerBlock7_25">
+                <p style="font-size:12px;font-family: 'Helvetica Neue LT W01_75 Bold';padding-bottom: 15px;">Polished Finish</p>
+                <p style="font-size:11px; line-height:1.4">100% boar bristles create a smooth, shine-enhancing finish
+                </p>
+            </div>
+            <div class="bannerBlock7_26">
+                <p style="font-size:12px;font-family: 'Helvetica Neue LT W01_75 Bold';padding-bottom: 15px;">Detangle & Protect</p>
+                <p style="font-size:11px; line-height:1.4">comfortable ball-tip bristles prevent breakage when brushing
+                </p>
+            </div>
+            <span class="stretch"></span>
+        </div>
+    </div>
+    <div class="bannerBlock7Mob" style="margin-left:auto;margin-right:auto">
+        <!-- swiper js CDN -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <!--End swiper js CDN -->
+        <style>
+            .swiper-container {
+                width: 100%;
+                text-align: center;
+                line-height: 1.4;
+            }
+
+            .swiper-pagination {
+                --swiper-theme-color: #A5A5A5;
+                padding-top: 5%;
+            }
+
+        </style>
+        <div class="container" style="position: relative;">
+            <div style="position: absolute; z-index: 2;top: 20px; padding-left:5%;">
+                <p style=" font-size: 55px;line-height: 1;font-family: 'Helvetica Neue LT W01_75 Bold';">
+                    HOT<br />LIST
+                </p>
+                <p style="font-size:15px; font-family: 'Helvetica Neue LT W05 65 Medium'; line-height: 15px;">
+                    Brushes we can’t<br />live without
+                </p>
+            </div>
+            <div>
+                <!-- Slider main container -->
+                <div class="swiper-container">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <div class="hotList1 " style="display:inline-block;">
+                                <a href="/s/us-leandrolimited/95380.html">
+                                    <img alt="..." src="homepage/banners/95380_HERO_NEW.jpg?$staticlink$"
+                                        style="border-radius: 47px;" loading="lazy" />
+                                    <b>01 Vented Ceramic Porcupine Round Brush</b>
+                                    <p>Volume & Shine</p>
+                                    <p>the ultimate round brush for bombshell blowouts</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="hotList2 " style="display:inline-block;">
+                                <a href="/s/us-leandrolimited/95383.html">
+                                    <img alt="..." src="homepage/banners/95383_HERO_NEW.jpg?$staticlink$"
+                                        style="border-radius: 47px;" loading="lazy" />
+                                    <b>02 Thermal Ceramic Carbon Round Brush</b>
+                                    <p>Smooth & Straighten</p>
+                                    <p>carbon infused wavy bristles eliminate static and frizz</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="hotList3 " style="display:inline-block;">
+                                <a href="/s/us-leandrolimited/95410.html">
+                                    <img alt="..." src="homepage/banners/95410_HERO_NEW.png?$staticlink$"
+                                        style="border-radius: 47px;" loading="lazy" />
+                                    <b> Maximum Shine Solid Boar Round Brush</b>
+                                    <p>Silky & Smooth</p>
+                                    <p>redistribute hair’s natural oils for a smooth, shiny finish</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="hotList4 " style="display:inline-block;">
+                                <a href="/s/us-leandrolimited/95384.html">
+                                    <img alt="..." src="homepage/banners/95384_HERO_NEW.jpg?$staticlink$"
+                                        style="border-radius: 47px;" loading="lazy" />
+                                    <b>05 Scalp Care Cushion Paddle Brush</b>
+                                    <p>Stimulate & Strengthen</p>
+                                    <p>eliminates buildup and residue for a clean, healthy scalp</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="hotList5 " style="display:inline-block;">
+                                <a href="/s/us-leandrolimited/95381.html">
+                                    <img alt="..." src="homepage/banners/95381_HERO_NEW.jpg?$staticlink$"
+                                        style="border-radius: 47px;" loading="lazy" />
+                                    <b>06 Pure Boar Cushion Paddle Brush</b>
+                                    <p>Polish & Shine</p>
+                                    <p>100% boar bristles create a smooth, shine-enhancing finish</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class=" hotList6 " style="display:inline-block;">
+                                <a href="/s/us-leandrolimited/95386.html">
+                                    <img alt="..." src="homepage/banners/95386_HERO_NEW.jpg?$staticlink$"
+                                        style="border-radius: 47px;" loading="lazy" />
+                                    <b>07 Nylon Detangle Cushion Paddle Brush</b>
+                                    <p>Detangle & Protect</p>
+                                    <p>comfortable ball-tip bristles help prevent breakage</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination" style="position: initial;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>function privacyNoticeHide(){document.getElementById("modal-privacy").style.display="none"}</script>
+<script>
+    const swipe1=new Swiper(".swiper-container",{direction:"horizontal",loop:!0,pagination:{el:".swiper-pagination"}});
+</script>

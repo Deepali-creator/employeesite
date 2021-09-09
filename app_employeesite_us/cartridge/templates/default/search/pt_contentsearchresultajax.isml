@@ -1,0 +1,5 @@
+<div class="wrap">
+	<isreplace/>
+	<div id="secondary" class="nav refinements">
+	<isinclude template="search/components/contentsearchrefinebar"/>
+</div>

@@ -1,0 +1,63 @@
+<!--- TEMPLATENAME: regions.isml --->
+<iscache type="relative" hour="24"/>
+<isinclude template="util/modules"/>
+
+<div class="region-selector">
+	<div class="region-logo">
+		<img src="${URLUtils.staticURL('/images/logo.png')}" alt="${Resource.msg('global.storename', 'locale', null)}">
+	</div>
+	<iscontentasset aid="region-selector-content"/>
+	
+<iscomment>Commented out due to migration to content asset (CON-647)
+
+		<div class="region-info">
+			<iscontentasset aid="region-selector-content"/>
+			
+			<p class="find">FIND YOUR REGION</p>
+		</div>
+		
+		<div class="region-selectform">
+			<form id="regionform">
+				<button class="button-text" id="region-submit" type="submit" name="region-submit" value="#">
+					GO
+				</button>
+			</form>
+			<select name="regionlist" form="regionform">
+			  <option value="uk">UNITED KINGDOM</option>
+			  <option value="eu">EUROPE</option>
+			  <option value="na">NORTH AMERICA</option>
+			  <option value="la">LATIN AMERICA</option>
+			</select>
+			<div class="clear"><!-- empty --></div>
+		</div>
+
+	<script type="text/javascript">
+
+		$("button[name='region-submit']").on('click',function (e) {
+			e.preventDefault();
+			var selected = $("select[name='regionlist']").children(':selected')
+			var value = $(selected).val();
+			switch (value)
+			{
+			   case "uk": $('.regions-dialog #dialog-container').dialog('close');
+			   break;
+			   
+			   case "eu": window.location.href = "http://www.babylisspro.com/";
+			   break;
+			   
+			   case "na": window.location.href = "http://babylissus.com/";
+			   break;
+	
+			   case "la": window.location.href = "http://babylissprola.com/";
+			   break;
+			   
+			   default: $('.regions-dialog #dialog-container').dialog('close');
+			}
+			$('.regions-dialog #dialog-container').dialog('close');
+			$.cookie('regionSelected', value, { path: '/' });
+		});
+
+	</script>
+</iscomment>
+
+</div>

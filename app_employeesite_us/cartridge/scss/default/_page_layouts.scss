@@ -1,0 +1,218 @@
+#wrapper {
+	border: 0;
+	left: 0;
+	margin: auto;
+	position: relative; 
+	width: 100%;
+	min-height:100%;
+	margin-bottom:-15.875em;
+  background:$white;
+  &:before{
+    content:'';
+    pointer-events:none;
+    transition:all 0.1s ease;
+    background:rgba(0,0,0,0);
+    z-index:99;
+  }
+	&:after{
+	  content:"";
+	  display:block;
+	  height:15.875em;
+	}
+	&.menu-active {
+		margin-left: 65%;
+    &:before{
+      content:'';
+      display:block;
+      width:100%;
+      height:100%;
+      position:fixed;
+      pointer-events: auto;
+      top:0;
+      bottom:0;
+      left:60%;
+      right:0;
+      opacity:1;
+      background:rgba(0,0,0,0.75);
+    }
+		.wrap{
+		  padding:0;
+		  margin:0;
+		}
+	}
+	@media screen and (min-width: 768px) {
+		&.menu-active {
+			left: auto;
+		}
+	}
+}
+
+
+.wrap{
+  display:block;
+  max-width:66.5625rem;
+  width:100%;
+  margin:0 auto;
+  clear:both;
+  transition:margin 0.3s ease;
+  &:after{
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+  }
+}
+
+
+.primary-content {
+  border: none;
+  float: right;
+  margin:0;
+  padding: 0.5em 0 1em 1em;
+  position: relative;
+  width: 70%;
+  //border-left:1px solid $cuisinart-gray;
+  /*
+	.primary-focus & {
+		border: 0 none;
+		float: left;
+		margin: 0;
+		width: 76%;
+	}
+	*/
+	
+	&.full-width,
+	.full-width & {
+		border: 0 none;
+		width: 100%;
+		padding: 0 0 3.125em;
+  }
+  
+  &.full-width_product {
+    padding: 0 0 3.125em;
+  }
+}
+
+#secondary {
+  background: #fff;
+  float: left;
+  width: 30%;
+  position: relative;
+  margin:0;
+  padding: 0.625em 0 1em 0.625em;
+  nav {
+    padding:0 0.625em;
+    a {
+      display: block;
+	  color: $cuisinart-gray-50;
+	  &:hover{
+		  color: $black;
+	  }
+    }
+  }
+}
+
+.secondary-content {
+	clear: both;
+}
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  .wrap{
+    width:100%;
+    padding:0 0.875em;
+  }
+  .primary-content{
+    width:100%;
+    padding-left:0;
+  }
+  #secondary{
+    border: 0;
+    float: none;
+    font-size: 1.1em;
+    width: 100%;
+    background: $white;
+    /*temporary fix for auto-height bug */
+    overflow:hidden;
+    &.nav{
+      .secondary-navigation{
+        text-align:center;
+        margin-top:2em;
+        padding-top:1em;
+        border-top:1px solid $cuisinart-gray;
+      }
+    }
+    .account-nav-asset{
+      text-align:center;
+      padding:10px 15px;
+    }
+  }
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .wrap{
+    max-width:480px;
+  }
+  /*
+  #secondary {
+    width: 28%;
+  }
+  .primary-content {
+    width: 70%;
+  }
+  .primary-focus {
+    .primary-content {
+      width: 540px;
+    }
+    #secondary {
+      width: 190px;
+    }
+  }
+  */
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  .wrap{
+    max-width:320px;
+  }
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  #wrapper{
+    min-height:0;
+    margin-bottom:0;
+    &:after{
+      height:0;
+    }
+  }
+  .wrap{
+    max-width:760px;
+  }
+  
+  #secondary {
+    width: 28%;
+  }
+  .primary-content {
+    width: 70%;
+  }
+  .primary-focus {
+    .primary-content {
+      width: 540px;
+    }
+    #secondary {
+      width: 190px;
+    }
+  }
+  
+  
+}

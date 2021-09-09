@@ -1,0 +1,56 @@
+/**
+*
+*
+*   @output lowStockProducts : dw.util.Map lists of products keyed by category
+*
+*/
+importPackage( dw.system );
+importPackage( dw.catalog );
+importPackage( dw.util );
+var pau=require('~/cartridge/scripts/ProductAvailabilityUtil.ds');
+
+function execute( args : PipelineDictionary ) : Number {
+	args.lowStockProducts=traverseCategory(new LinkedHashMap(),CatalogMgr.siteCatalog.root);
+	return PIPELET_NEXT;
+}
+
+function traverseCategory(products:Map,category:Category):Map{
+	var lowStockProductsInCategory:List=new ArrayList();
+	for each(var product:Product in category.onlineProducts){
+		if(product.custom.forSale && (empty(product.primaryCategory)||product.primaryCategory.ID==category.ID) && !exists(products,product) && pau.isProductLowStock(product)){
+			lowStockProductsInCategory.add(product);
+		}
+	}
+	if(!empty(lowStockProductsInCategory)){
+		products.put(getCategoryBreadcrumb(category),lowStockProductsInCategory);
+	}
+	for each(var subCat:Category in category.onlineSubCategories){
+		if(subCat.custom.showInMenu){
+			traverseCategory(products, subCat);
+		}
+	}
+	return products;
+}
+
+function exists(products:HashMap,product:Product):boolean{
+	for each(var cat:Category in product.allCategories){
+		if(products.containsKey(cat)){
+			if(products.get(cat).contains(product)){
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+function getCategoryBreadcrumb(category:Category):String{
+	var breadcrumb=category.displayName;
+	if(category.root){
+		return breadcrumb;
+	}
+	category=category.parent;
+	for(;!category.root;category=category.parent){
+		breadcrumb=category.displayName+" > "+breadcrumb;
+	}
+	return breadcrumb;
+}

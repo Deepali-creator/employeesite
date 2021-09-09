@@ -1,0 +1,18 @@
+/**
+*   This script force redirects unauthenticated requests that come from anywhere besides Home-Show or Account-Show
+*   @input CurrentRequest : dw.system.Request Current request
+*
+*   @output Location : String
+*
+*/
+
+function execute( args : PipelineDictionary ) : Number
+{
+	var pathBits : Array = args.CurrentRequest.httpPath.split('/');
+	pathBits.pop();
+	var path = pathBits.join('/');
+	
+    args.Location = dw.web.URLUtils.https('Home-Show').toString();
+
+    return PIPELET_NEXT;
+}

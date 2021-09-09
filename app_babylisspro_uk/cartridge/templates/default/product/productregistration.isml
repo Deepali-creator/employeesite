@@ -1,0 +1,20 @@
+<!--- TEMPLATENAME: productregistration.isml --->
+<isdecorate template="content/pt_customerservice">
+<isinclude template="util/modules"/>
+
+<form action="${URLUtils.continueURL()}" method="POST">
+	<input name="${pdict.CurrentForms.productregistration.secureKeyHtmlName}" value="${pdict.CurrentForms.productregistration.secureKeyValue}" type="hidden"/>
+	<isinputfield formfield="${pdict.CurrentForms.productregistration.name}" type="input"/>
+	<isinputfield formfield="${pdict.CurrentForms.productregistration.email}" type="input"/>
+	<isinputfield formfield="${pdict.CurrentForms.productregistration.address}" type="textarea"/>
+	<isinputfield formfield="${pdict.CurrentForms.productregistration.postal}" type="input"/>
+	<isinputfield formfield="${pdict.CurrentForms.productregistration.product}" type="input"/>
+	<isinputfield formfield="${pdict.CurrentForms.productregistration.date}" type="date"/>
+	<isinputfield formfield="${pdict.CurrentForms.productregistration.serial}" type="input"/>
+	<isinputfield formfield="${pdict.CurrentForms.productregistration.retailer}" type="input"/>
+	<isinputfield formfield="${pdict.CurrentForms.productregistration.age}" type="input"/>
+	<isinputfield formfield="${pdict.CurrentForms.productregistration.gender}" type="input"/>
+	<isinputfield formfield="${pdict.CurrentForms.productregistration.updates}" type="checkbox"/>
+	<button name="${pdict.CurrentForms.productregistration.send.htmlName}">${Resource.msg(pdict.CurrentForms.productregistration.send.label, 'forms', null)}</button>
+</form>
+</isdecorate>

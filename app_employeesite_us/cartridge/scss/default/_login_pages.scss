@@ -1,0 +1,81 @@
+.checkoutlogin {
+	margin: 4em auto;
+	width: 80%;
+	.col-1 {
+		@media screen and (min-width: 768px) {
+			border-right: 1px solid $gainsboro;
+		}
+	}
+}
+.login-box {
+  padding-right:1em;
+  padding-bottom:1.5em;
+	h3 {
+		margin: 0;
+	}
+	p {
+		margin: 1em 0;
+	}
+	.error {
+		margin-left: 0;
+	}
+}
+
+.login-rememberme {
+	display: inline-block;
+	margin-left: .5em;
+}
+
+.login-oauth{
+  p{
+    &:first-child{
+      font-size:1.25em;
+      font-weight: 600;
+      text-align:center;
+      margin:0.625em 0;
+      text-transform:uppercase;
+      display:block;
+      height:15px;
+      border-bottom:1px solid $cuisinart-gray;
+      span{
+        padding:0.5em;
+        background: $white;
+      }
+    }
+  }
+}
+
+#OAuthProvider {
+	display: block;
+	margin-bottom: 1em;
+	width: 80%;
+}
+
+
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}

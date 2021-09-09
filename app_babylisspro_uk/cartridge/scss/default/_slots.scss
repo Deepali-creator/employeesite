@@ -1,0 +1,278 @@
+.content-slot img {
+	height: auto;
+	max-width: 100%;
+}
+
+.slot-grid-header p {
+	margin: 0;
+	padding: 0;
+}
+
+.product-listing-1x4 {
+	background: none repeat scroll 0 0 $white;
+	overflow: hidden;
+	padding: .83em 0;
+	.search-result-items .grid-tile {
+		margin: 0 1% 0 2%;
+		width: 18%;
+	}
+}
+
+.account-nav-asset {
+	margin: 30px 5px;
+	padding: 10px 0;
+	border-top:1px solid $medium-gray;
+	h2{
+	  font-weight:500;
+	  font-style:italic;
+	  margin-top:0;
+	}
+	p{
+	  a{
+	    text-decoration:underline;
+	    text-transform:none;
+	  }
+	}
+}
+
+.content-asset {
+	p {
+		line-height: 1.6em;
+		margin: 1em 0;
+	}
+	ul,
+	ol {
+		line-height: 1.6em;
+		margin: 1em 0 1em 2em;
+		padding: 0 1.5em;
+	}
+	address {
+		margin: 1em 0;
+	}
+	ul {
+		li {
+			list-style: square outside none;
+		}
+	}
+	ol li {
+		list-style: decimal outside none;
+	}
+	.account-options {
+		margin: 0;
+		padding: 0;
+		li {
+			border-bottom: 1px solid $gainsboro;
+			float: left;
+			list-style: none outside none !important;
+			margin: 0 0 0 4%;
+			padding: 1em 0;
+			position: relative;
+			width: 46%;
+			min-height:7rem;
+			a {
+				display: block;
+				width:100%;
+				height:100%;
+				padding: 0;
+				h3{
+				  margin:10px 0;
+				  font-size: 1.5em;
+				  font-weight:600;
+				}
+			}
+			img {
+				float:left;
+				margin-right:10px;
+			}
+			p {
+				margin: 0;
+				padding-left:60px;
+			}
+		}
+	}
+}
+
+.browser-compatibility-alert {
+	background-color: $sangria;
+	color: $white;
+	font-size: 1.3em;
+	line-height: 2em;
+	padding: 0.8em;
+}
+
+.folder-slot {
+	border-style: solid;
+	border-color:  $islamic-green;
+	border-width: 1px;
+	background-color: white;
+	padding: 0.5em 0.5em;
+
+	h2{
+		color: 	$dark-gray;
+		margin: 0.5em 0em;
+	}
+}
+
+.menu-slot {
+  width:13.5rem;
+  display:block;
+	border-top: 1px solid $tutu;
+	margin-top: 0.5em;
+	padding-top: 1.5em;
+	.social-links {
+		padding-left: 0;
+		li {
+			display: inline-block;
+			padding-left: 0;
+		}
+	}
+}
+#homepage-slider {
+	position: relative;
+	width:960px;
+	margin:0;
+	padding-top:20px;
+}
+
+.category-slot,
+.product-slot {
+	.catlanding-banner {
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+		img {
+			height: auto;
+			width: 100%;
+		}
+	}
+	.category-tile {
+		float: left;
+		overflow: hidden;
+		padding: 0 .15%;
+		position: relative;
+		width: 33%;
+		img {
+			height: auto;
+			width: 100%;
+		}
+	}
+	.cat-banner {
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+		img {
+			height: auto;
+			width: 100%;
+		}
+		h1 {
+			color: $dark-gray;
+			right: 2%;
+		}
+	}
+}
+
+
+.education-slot-content{
+	display:inline-block;
+	vertical-align:top;
+	overflow:hidden;
+	padding:0;
+}
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  .content-asset{
+    .account-options{
+      li{
+        min-height:0;
+      }
+    }
+  }
+  
+  #homepage-slider.flexslider{
+     .slides > li{
+       border:none;
+     }
+     .flex-direction-nav a::before{
+       text-shadow:none;
+     }
+     .flex-direction-nav a{
+       text-shadow:none;
+     }
+   }
+   
+   .flex-control-nav{
+    .pt_storefront & {
+      display:none;
+    }
+    
+  }
+  .home-bottom-slots {
+    display:none;
+    .home-bottom-right,
+    .home-bottom-left,
+    .home-bottom-center {
+      width: 100%;
+      clear:both;
+      float:none;
+    }
+  }
+  
+  .menu-slot{
+    width:auto;
+    display:none;
+  }
+  
+  .category-slot,
+  .product-slot{
+    .category-tile{
+      width:100%;
+    }
+  }
+
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+  .pt_storefront{
+    #main{
+      padding-bottom:15px;
+    }
+  }
+
+  .home-bottom-slots {
+    display:none;
+  }
+  #homepage-slider{
+    margin-bottom:30px;
+  }
+  
+  .html-slot-container img,
+  .bottom-banner-cell img {
+    max-width: 100%;
+  }
+  
+  .home-bottom-right .product-tile {
+    min-height: 0;
+  }
+  
+}
+
+

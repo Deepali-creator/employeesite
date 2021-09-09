@@ -1,0 +1,39 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscache type="relative" hour="24"/>
+
+<iscomment>
+	This template renders the slot content for the Recipe Landing Featured Recipes section
+</iscomment>
+
+<iscomment>make sure we have content at all</iscomment>
+<isif condition="${slotcontent != null}">
+	<h2 class="featured-title"><isprint value="${slotcontent.calloutMsg}" encoding="off"/></h2>
+	<div class="recipe-tiles">
+		<ul class="search-result-items">
+			<iscomment>Loop through all recipe assets in slot</iscomment>
+			<isloop items="${slotcontent.content}" var="contentAsset">
+				<li class="grid-tile">
+					<a class="recipe-tile" href="${URLUtils.url('Page-Show','cid', contentAsset.ID)}">
+						<iscomment><img class="recipe-thumb" src="http://placehold.it/300x300?text=Featured+Recipe+Image" /></iscomment>
+						<div class="recipe-thumb">
+							<isif condition="${!empty(contentAsset.custom.recipeImage)}">
+								<img src="${URLUtils.staticURL(URLUtils.CONTEXT_LIBRARY, '', contentAsset.custom.recipeImage[0])}" alt="${contentAsset.name}" />
+							<iselse>
+								<img class="placeholder-image" src="${URLUtils.staticURL('/images/noimagelarge.png')}" />
+							</isif>
+							<span class="view-icon"><isprint value="${Resource.msg('content.recipe.viewrecipe', 'content', null)}"/></span>
+						</div>
+						<h4 class="recipe-name"><isprint value="${contentAsset.name}" encoding="off"/></h4>
+						<p class="recipe-desc"><isprint value="${contentAsset.description}" encoding="off"/></p>
+					</a>
+				</li>
+			</isloop>
+		</ul>
+		<iscomment>
+			<isloop items="${slotcontent.content}" var="contentAsset">
+				<li class="grid-tile">
+				<isprint value="${contentAsset.custom.body}" encoding="off"/>
+			</isloop>
+		</iscomment>
+	</div>
+</isif>

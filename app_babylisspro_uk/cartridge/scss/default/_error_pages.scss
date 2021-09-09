@@ -1,0 +1,168 @@
+/*==================================================================
+						404 Error Page
+===================================================================*/
+.pt_error {
+  #main > .wrap {
+    	background: $white;
+    }
+    .primary-content {
+	    padding-right: 20px;
+	    h1 {
+		    margin: 15px 0;
+		}
+	}
+	.error-page-search .input-text {
+	    width: 70%;
+	}
+	.error-page-search button {
+	    border: 1px solid $very-light-gray;
+	    line-height: 28px;
+	    margin: 0 0 0 5px;
+	}
+	#secondary {
+	    margin: 0 9px 30px 0;
+	}
+}	
+
+.notfound {
+	margin: 60px 0 15px 12px;
+    min-height: 275px;
+    padding: 5px 0 0 325px;
+    position: relative;
+    background: rgba(0, 0, 0, 0) url("../images/exception.png") no-repeat scroll left top;
+    h1 {
+    	font: bold 25px Arial,sans-serif;
+    	padding: 0 0 25px;
+    }
+    ul {
+    	padding: 0;
+    }
+    li {
+	    display: inline-block;
+	    list-style: outside none none;
+	}
+	a {
+	    color: $black;
+	    margin-right: 15px;
+	    text-decoration: underline;
+	    font-size: 14px;
+	    cursor: pointer;
+	}
+	p {
+	    font-size: 14px;
+	}
+}			
+.error-code {
+    color: $zumthor;
+    font: bold 86px/70px Arial,sans-serif;
+    left: 63px;
+    position: absolute;
+    top: 92px;
+    em {
+	    display: block;
+	    font: 26px Arial,sans-serif;
+	    text-align: center;
+	}
+}
+
+
+    
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+  .pt_error .error-page-search .input-text {
+      width: 77%;
+  }
+  
+  .pt_error {
+    .primary-content {
+      padding-right: 0;
+    }
+    .error-page-search{
+      .input-text{
+        width:85%;
+      }
+    }
+  }
+  
+  .pt_error_onecolumn{
+    .full-width{
+      .primary-content{
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+  .notfound {
+    background: none;
+    display: block;
+    left: 0;
+    margin: 10px 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    h1{
+      margin:0 10px;
+      text-align:center;
+    }
+    li{
+      display:block;
+      padding:5px 0;
+    }
+  }
+  .error-code {
+    display: block;
+    left: 0;
+    margin: 10px 0;
+    position: relative;
+    top: 0;
+    width: 100%;
+    padding: 40px 0 20px;
+    color: $black;
+  }
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+  .pt_error {
+    .primary-content {
+        padding: 0;
+    }
+    .page-content{
+      .primary-content{
+        width:100%;
+      }
+    }
+  }
+  
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+  .pt_error {
+    .page-content .primary-content {
+      width: 70%;
+      padding: 0 15px 15px 0;
+    }
+  }
+  
+}
+
+

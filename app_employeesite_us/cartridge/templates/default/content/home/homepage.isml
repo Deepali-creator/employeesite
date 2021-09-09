@@ -1,0 +1,17 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscache type="relative" hour="24"/>
+<isdecorate template="content/home/pt_storefront">
+
+<iscomment>this is the template rendering the homepage</iscomment>
+
+	<div id="oc"></div>
+	<div class="homepage-content">
+		<div class="wrap">
+			<isslot id="home-main" description="Featured Slider on homepage" context="global" />
+			<isslot id="home-promo-content" description="Promo content displayed below main and above featured content" context="global" />
+			<isslot id="home-featured-content" description="Featured content sections on homepage" context="global" />
+			<isslot id="home-featured-categories" description="Featured categories on homepage" context="global" />
+		</div>
+	</div>
+
+</isdecorate>

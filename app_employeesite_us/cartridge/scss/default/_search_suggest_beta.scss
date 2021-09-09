@@ -1,0 +1,176 @@
+#search-suggestions{
+  position:absolute;
+  z-index:99;
+}
+.search-suggestion-wrapper {
+	@extend %clearfix;
+	background-color: $white;
+	border: 1px solid $gainsboro;
+	box-shadow: 0 3px 3px 0 rgba(0,0,0,0.25);
+	width:200%;
+	margin-left:-100%;
+	font-size:0.875em;
+	&.full {
+	  	width:200%;
+        margin-left:-142%;
+	    .phrase-suggestions {
+	      width: 42.8571429%;
+	      float: left;
+	      margin:1.2em 0;
+	    }
+	    .product-suggestions {
+	      width: 55.1428571%;
+	      margin-left:2%;
+	      float: right;
+	      margin:1.2em 0;
+	      padding:0 1.2em 1.2em;
+	      border-left:1px solid $very-light-gray;
+	      text-align:left;
+	    }
+  	}
+	.hitgroup {
+		color: $dim-gray;
+		margin: 0.7em 0 0.7em 0.7em;
+		.header {
+			margin: 0 0 0.5rem 0;
+			background: $cuisinart-dark-gray;
+			color: $white;
+			font-size:0.875em;
+			padding: 0.3125em;
+			text-transform:uppercase;
+		}
+		.hit {
+			display: block;
+			width:100%;
+			margin-left: 0.5em;
+			margin-bottom: 0.5em;
+			text-align:left;
+			color: $cuisinart-dark-gray;
+			font-size:0.875rem;
+			text-transform:none;
+			&:hover {
+				text-decoration: underline;
+				.parent-category{
+				  text-decoration: none;
+				}
+			}
+		}
+		.parent-category {
+			color: $nobel;
+			font-size:0.75em;
+		}
+	}
+}
+
+.phrase-suggestions {
+  border-top:none;
+}
+
+.product-suggestion {
+	@extend %clearfix;
+	.product-link{
+	  	display:block;
+	  	width:100% !important;
+	  	height:100%;
+	  	border: 1px solid $white;
+    	border-top-color: $very-light-gray;
+    	padding: 0.5em;
+    	text-align:left;
+    	font-size:1rem;
+    &:hover,
+    &:focus{
+      	background-color: $cuisinart-gray;
+      	border-color: $very-light-gray;
+      	border-bottom-color: rgba(0,0,0,0);
+    }
+	}
+	.product-image {
+		float: left;
+		text-align: center;
+		width: 25%;
+		border:1px solid $very-light-gray;
+		img {
+		  display:block;
+			max-width: 100%;
+		}
+	}
+	.product-details {
+		float: right;
+		padding-top: 0.5em;
+		width: 70%;
+		.product-price {
+			color: $black;
+			font-size:0.875em;
+		}
+	}
+}
+
+.search-phrase {
+	color: $nobel;
+	margin: 1em;
+	text-align:left;
+	font-size:0.875rem;
+	line-height:1;
+	a {
+		font-size:0.875rem !important;
+		color: $cuisinart-dark-gray !important;
+		text-transform:none !important;
+	}
+	.completed {
+		font-style: italic;
+		.original {
+			text-decoration: underline;
+		}
+	}
+	.corrected {
+		font-weight: bold;
+	}
+}
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  .search-suggestion-wrapper{
+    width:100%;
+    margin-left:0;
+    &.full{
+      width:100%;
+      margin-left:0;
+      .phrase-suggestions,
+      .product-suggestions{
+        width:100%;
+      }
+      .product-suggestions{
+        border:none;
+        margin:0;
+      }
+    }
+    .hitgroup{
+      margin-right:0.7em;
+    }
+  }
+  .phrase-suggestions{
+    border-top: 1px solid $very-light-gray;
+  }
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}

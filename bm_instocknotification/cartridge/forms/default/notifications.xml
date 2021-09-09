@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+	<list formid="notifyList">
+		<field formid="select" type="boolean" label="select" />
+	</list>
+	<field formid="altSKU" type="string" />
+	<field formid="searchSKU" type="string" label="searchsku" />
+	<action formid="set" valid-form="false"/>
+	<action formid="search" valid-form="false"/>
+</form>

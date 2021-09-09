@@ -1,0 +1,44 @@
+.infinite-scroll {
+	.search-result-content .infinite-scroll-loading {
+		text-align: center;
+		background: url("../images/infinite-loading-indicator.gif") center no-repeat;
+		height: 35px;
+		width: 100%;
+	}
+}
+
+.disable-infinite-scroll{
+  .search-result-content{
+    .page-element{
+      display:none;
+    }
+  }
+}
+    
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+}
+
+

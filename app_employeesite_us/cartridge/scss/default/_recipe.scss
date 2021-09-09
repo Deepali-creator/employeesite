@@ -1,0 +1,1228 @@
+.pt_recipe-content {
+	.primary-content {
+		padding: 0 0 3.125em;
+	}
+
+}
+
+.recipe-header {
+	img {
+		width: 100%;
+	}
+
+}
+
+.recipe-main {
+	position: relative;
+	text-align: center;
+
+	.recipe-landing-top {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		align-content: center;
+	}
+
+	.recipe-intro,
+	.recipe-search {
+		display: inline-block;
+	}
+
+	.recipe-intro {
+		.page-description {
+			margin-top: 0;
+		}
+
+	}
+
+	.recipe-search {
+		position: relative;
+		width: 30%;
+		float: right;
+		align-self: flex-end;
+		margin-bottom: 3%;
+
+		input[type="text"] {
+			//width: 20rem;
+			width: 100%;
+			height: 2.375rem;
+			padding: 0 1.5em 0 0.625em;
+			font-size: 0.875rem;
+			color: $dim-gray;
+		}
+
+		button {
+			position: absolute;
+			top: 50%;
+			right: 0;
+			margin: 0;
+			padding: 0 0.625em;
+			background: transparent;
+			border: 1px solid rgba(0, 0, 0, 0);
+			color: $cuisinart-gray-50;
+			font-size: 0.625rem;
+			width: auto;
+			height: 1.375rem;
+			text-align: center;
+			transition: all 0.3s ease;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			transform: translateY(-50%);
+
+			i {
+				font-size: 0.875rem;
+				margin-right: 0;
+				line-height: 1.25rem;
+				//margin-top: -0.3125em;
+			}
+
+			&:hover {
+				color: $black;
+			}
+
+		}
+
+	}
+
+	.recipe-advanced-search {
+		flex-basis: 100%;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+
+		.recipe-advanced-search_toggle {
+			margin-top: -3%;
+			margin-bottom: -1px;
+			padding: 0.5em;
+			color: $black;
+			border: 1px solid rgba(255, 255, 255, 0);
+			border-bottom-color: $white;
+			border-radius: 3px 3px 0 0;
+			z-index: 10;
+			&:hover {
+				color: $cuisinart-gray-50;
+			}
+
+			&.active {
+				margin-top: 0;
+				border-color: $cuisinart-gray;
+				border-bottom-color: $white;
+			}
+
+		}
+
+		.recipe-advanced-search_panel {
+			flex-basis: 100%;
+			position: relative;
+			display: none;
+			align-self: flex-start;
+			flex-basis: 100%;
+			max-height: 0;
+			height: 0;
+			transition: all 0.3s ease;
+
+			&.active {
+				display: block;
+				max-height: 31.25em;
+				height: auto;
+				border-color: $cuisinart-gray;
+			}
+
+			.panel-inner-wrap {
+				width: 100%;
+				margin: 0;
+				border-top: 1px solid $cuisinart-gray;
+			}
+
+		}
+
+	}
+
+	.recipe-categories {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 3em;
+
+		.recipe-category {
+			position: relative;
+			width: 48%;
+			margin-bottom: 3%;
+
+			.recipe-category-name {
+				font-size: 1.25rem;
+				font-weight: 400;
+				color: $black;
+				text-transform: uppercase;
+				transition: all 0.3s ease;
+			}
+
+			&:hover {
+				.recipe-category-name {
+					color: $cuisinart-gray-50;
+				}
+			}
+
+		}
+
+	}
+
+	.featured-recipes {
+		display: block;
+		width: 100%;
+		overflow: hidden;
+		margin: 1em 0 0;
+		text-align: center;
+	}
+
+	.refinement-title,
+	.featured-title {
+		color: $cuisinart-dark-gray;
+		font-size: 2em;
+		font-family: $serif;
+		font-style: italic;
+		margin-bottom: 15px;
+		text-align: center;
+	}
+
+	.featured-title {
+		margin-bottom: 0;
+	}
+
+	a.recipe-tile {
+		display: block;
+		width: 100%;
+		height: 100%;
+
+		.recipe-thumb {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: auto;
+			border: 5px solid $cuisinart-dark-gray;
+			margin-bottom: 0.75em;
+
+			&:before {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(119, 136, 28, 0.75);
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+
+			img {
+				display: block;
+				width: 100%;
+			}
+
+			.view-icon {
+				display: block;
+				width: 80px;
+				height: 80px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -40px 0 0 -40px;
+				color: $white;
+				font-size: 0.75em;
+				font-weight: 600;
+				text-align: center;
+				text-transform: uppercase;
+				padding-top: 50px;
+				background: url('../images/icon-recipe.svg')0 0 no-repeat;
+				background-size: contain;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+
+		}
+
+		.recipe-name {
+			font-size: 1.125em;
+		}
+
+		.recipe-desc {
+			margin: 0.25em 0 0.5em;
+			color: $black;
+		}
+
+		&:hover {
+			text-decoration: none;
+
+			.recipe-thumb {
+				position: relative;
+
+				&:before {
+					opacity: 1;
+				}
+
+				.view-icon {
+					opacity: 1;
+				}
+
+			}
+
+			.recipe-name {
+				color: $cuisinart-dark-gray;
+				text-decoration: underline;
+			}
+
+		}
+
+	}
+
+}
+
+.recipe-tiles {
+	.search-result-items {
+		overflow: hidden;
+		margin: 0;
+		padding: 0;
+
+		.grid-tile {
+			display: inline-block;
+			vertical-align: top;
+			width: 31%;
+			margin-right: 3%;
+
+			&:nth-child(3n) {
+				margin-right: 0;
+			}
+
+		}
+
+	}
+
+}
+
+.recipe-refinements {
+	display: block;
+	width: 100%;
+	margin: 1em 0;
+	padding: 0.5em;
+	overflow: hidden;
+}
+
+.recipe-refinement {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	width: 32.25%;
+	margin-right: 1%;
+	padding-bottom: 3.125em;
+	overflow: hidden;
+
+	li {
+		line-height: 1.75;
+	}
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	.refinement-submenu{
+		ul li a{
+			color: $cuisinart-gray-50;
+			&:hover{
+				color: $black;
+			}
+		}
+	}
+}
+
+/*************************/
+
+/***** Recipe Detail *****/
+
+/*************************/
+
+.recipe-main {
+	margin: 1em 0;
+	padding: 0;
+	text-align: left;
+
+	.button-secondary {
+		color: $black;
+		background-color: transparent;
+		border-color: $black;
+		&:hover {
+			border-color: $cuisinart-gray-50;
+			color: $cuisinart-gray-50;
+		}
+	}
+
+	.button-back {
+		padding: 0.3125em 0.625em;
+		font-weight: 400;
+		font-size: 0.875em;
+
+		.fa {
+			margin-right: 0.3125em;
+			font-size: 0.75em;
+			vertical-align: middle;
+		}
+
+	}
+
+	h1.recipe-name {
+		font-size: 2em;
+		line-height: 1.2;
+	}
+
+	.recipe-top {
+		margin: 1em 0 0;
+		padding: 0 0 1em;
+		overflow: hidden;
+	}
+
+	.recipe-col-1 {
+		float: left;
+		width: 52.44444%;
+	}
+
+	.recipe-col-2 {
+		float: right;
+		width: 47.55556%;
+	}
+
+	.recipe-image-container {
+		position: relative;
+		display: inline-block;
+
+		.recipe-thumbnails {
+			display: block;
+			padding-right: 0.625em;
+			float: left;
+
+			ul {
+				li {
+					width: 60px;
+					height: auto;
+					margin: 0 0 0.3125em;
+					border: 1px solid $cuisinart-gray;
+
+					&.selected {
+						border-color: $dark-gray;
+					}
+
+					a {
+						display: block;
+						width: 100%;
+						height: 100%;
+
+						img {
+							display: block;
+						}
+
+					}
+
+				}
+
+			}
+
+			.thumbs-wrap {
+				position: relative;
+				width: auto;
+				overflow: hidden;
+				display: inline-block;
+
+				ul {
+					position: relative;
+					top: 0;
+					left: 0;
+					overflow: hidden;
+
+					li {
+						list-style-type: none;
+					}
+
+				}
+
+				&.overflow {
+					position: relative;
+					max-height: 275px;
+
+					.prev-thumbs,
+					.next-thumbs {
+						display: block;
+						width: 60px;
+						height: 30px;
+						margin-bottom: 5px;
+						text-align: center;
+						line-height: 30px;
+						position: relative;
+						z-index: 10;
+						background: $white;
+						pointer-events: auto;
+						transition: none;
+						border: 2px solid $white;
+
+						span {
+							display: block;
+							width: 100%;
+							height: 100%;
+							background-image: url('../images/nav-arrows-vertical.png');
+							background-position: 2px -8px;
+							background-repeat: no-repeat;
+							text-indent: -9999px;
+						}
+
+						&.disabled {
+							//opacity: 0.3;
+							color: $very-light-gray;
+							pointer-events: none;
+
+							span {
+								opacity: 0.3;
+							}
+
+						}
+
+					}
+
+					.prev-thumbs {
+						top: 0;
+					}
+
+					.next-thumbs {
+						position: absolute;
+						bottom: 0;
+						margin-bottom: 0;
+
+						span {
+							background-position: 2px -32px;
+						}
+
+					}
+
+				}
+
+			}
+
+		}
+
+		.mobile-images-block {
+			position: absolute;
+			left: -99999px;
+			width: 292px;
+			border: 1px solid rgba(255, 255, 255, 0);
+		}
+
+		&.mobile-thumbs-active {
+			.mobile-images-block {
+				position: relative;
+				left: auto;
+				display: none;
+			}
+
+		}
+
+	}
+
+	.recipe-primary-image {
+		position: relative;
+		display: inline-block;
+		float: left;
+		//width: 85%;
+		//max-width: 400px;
+		margin-right: 5%;
+		border: 1px solid $cuisinart-gray;
+		//box-shadow: 4px 4px 10px 0 rgba(66, 66, 66, 0.2);
+
+		img {
+			display: block;
+			width: 100%;
+		}
+
+		.recipe-video-button {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			display: block;
+			width: 60px;
+			height: 60px;
+			margin: -30px 0 0 -30px;
+			color: $white;
+			text-align: center;
+
+			.fa {
+				font-size: 3.5em;
+			}
+
+			&:hover {
+				color: $cuisinart-gray;
+			}
+
+		}
+
+	}
+
+	.recipe-stats,
+	.recipe-actions {
+		display: block;
+		width: 100%;
+		margin: 1em 0 0;
+		padding: 1em 0;
+	}
+
+	.recipe-name {
+		margin-bottom: 0;
+	}
+
+	.recipe-desc {
+		margin-top: 0;
+	}
+
+	.recipe-stats {
+		display: table;
+		margin-top: 0;
+		font-size: 1em;
+
+		.recipe-servings,
+		.recipe-prepTime,
+		.recipe-cookTime {
+			display: inline-block;
+			display: table-cell;
+			width: 32%;
+			margin-right: 2%;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			span,
+			div {
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			.icon {
+				width: 30px;
+				height: 30px;
+				text-align: center;
+				//background: $cuisinart-dark-gray;
+				//color: $white;
+				border: 4px solid $cuisinart-dark-gray;
+				color: $cuisinart-dark-gray;
+				margin-right: 0.3125em;
+				//padding-top: 0.375em;
+				padding-top: 0.05em;
+				border-radius: 50%;
+
+				.fa {
+					font-size: 1em;
+				}
+
+			}
+
+		}
+
+		.recipe-prepTime,
+		.recipe-cookTime {
+			.icon {
+				background: transparent;
+				color: $cuisinart-dark-gray;
+				margin-top: -0.325em;
+				border: none;
+				padding: 0;
+
+				.fa {
+					font-size: 2.5em;
+				}
+
+			}
+
+		}
+
+	}
+
+	.recipe-actions {
+		position: relative;
+		display: block;
+		width: 100%;
+		margin: 1em 0 0;
+		padding: 1em 0;
+		font-size: 0.875em;
+		text-align: right;
+
+		.button {
+			margin-right: 0.625em;
+			font-weight: 400;
+
+			&.print-button {
+				float: left;
+				&:hover {
+					color: $cuisinart-gray-50;
+					border-color: $cuisinart-gray-50;
+				}
+			}
+
+			&.email-button {
+				line-height: 3.625em;
+				color: $black;
+				&:hover {
+					color: $cuisinart-gray-50;
+				}
+			}
+
+			.fa {
+				display: block;
+				margin-right: 0.3125em;
+			}
+
+		}
+
+		.socialsharing {
+			display: inline-block;
+			float: right;
+
+			.social-links {
+				li {
+					width: 2.3625em;
+					border-radius: 50%;
+					float: right;
+				}
+			}
+
+			.social-link {
+				display: block;
+				width:100%;
+				height:100%;
+				text-align: center;
+				line-height: 2.5em;
+				color: $white;
+				border-radius: 50%;
+				transition: background 0.3s ease;
+				background-image: url('../images/interface/footer-social-sprite@2x.png');
+				background-position:0 0;
+				background-size: 165px 33px;
+				&.twitter {
+					background-position: -33px 0;
+				}
+				&.pinterest {
+					background-position: -132px 0;
+				}
+				.fa {
+					visibility: hidden;
+				}
+
+			}
+
+		}
+
+	}
+
+	.compatible-products {
+		display: block;
+		width: 100%;
+		font-size: 0.875em;
+		margin-top: 3em;
+		padding: 3em 0;
+		border: 0 solid $cuisinart-gray;
+		border-width: 1px 0 0;
+		clear: both;
+		float: left;
+
+		.section-title {
+			text-transform: uppercase;
+			margin-bottom: 1.5em;
+		}
+
+		ul {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+
+			li {
+				display: inline-block;
+				width: 24%;
+				max-width: 14.125rem;
+				margin: 0 1% 0.125em 0;
+
+				&:last-child {
+					margin-right: auto;
+				}
+
+			}
+
+		}
+
+		.product-tile {
+
+			.product-image {
+				border: 0;
+			}
+
+			.product-name {
+				font-size: 1rem;
+				line-height: 1.3125rem;
+				text-align: center;
+
+				a {
+					font-size: 1rem;
+					line-height: 1.3125rem;
+					text-align: center;
+					color: $black;
+				}
+
+			}
+
+		}
+
+	}
+
+	.recipe-bottom {
+		display: block;
+		width: 100%;
+		margin: 2em 0;
+		padding: 1.5em 0;
+		clear: both;
+		border-top: 1px solid $cuisinart-gray;
+		overflow: hidden;
+	}
+
+	.recipe-ingredients,
+	.recipe-instructions {
+		display: block;
+		float: left;
+		width: 50%;
+		padding-right: 1em;
+
+		.section-title {
+			font-size: 1.125rem;
+		}
+
+		a{
+			color: $cuisinart-gray-50;
+			text-decoration: underline;
+			&:hover{
+				color: $black;
+			}
+		}
+
+	}
+
+	.recipe-instructions {
+		float: right;
+
+		ol {
+			counter-reset: list;
+			margin: 0;
+			padding-left: 1.5em;
+
+			> li {
+				list-style: none;
+				position: relative;
+				margin-bottom: 0.75em;
+
+				&:before {
+					position: absolute;
+					left: -1.4em;
+					counter-increment: list;
+					content: counter(list) ") ";
+				}
+
+			}
+
+		}
+
+	}
+
+	.recipe-ingredients {
+		ul {
+			margin-right: 0.625em;
+			padding-left: 0;
+
+			li {
+				list-style: none;
+				margin: 0.25em 0;
+				padding: 0.3125em 0;
+			}
+
+		}
+
+	}
+
+}
+
+.recipe-video-dialog .dialog-content {
+	text-align: center;
+}
+
+.recipe-video-content {
+	position: relative;
+	height: 0;
+	padding-bottom: 56.25%; /* proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25%) */
+	padding-top: 25px;
+
+	iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+}
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+/* Mobile Lg/Sm */
+@media screen and (max-width:767px) {
+	.print-page {
+		display: inline-block !important;
+	}
+
+	.recipe-tiles {
+		.search-result-items {
+			.grid-tile {
+				display: inline-block;
+				vertical-align: top;
+				width: 100%;
+				margin: 0;
+				margin-bottom: 2%;
+			}
+
+		}
+
+	}
+
+	.recipe-refinement {
+		width: 100%;
+		height: 300px;
+		margin-bottom: 2em;
+
+		.refinement-image {
+			position: relative;
+			width: 450px;
+			height: 300px;
+			margin-left: -225px;
+		}
+
+		.recipe-refinements.isActive & {
+			width: 100%;
+
+			&.active {
+				width: 100%;
+				height: auto;
+
+				.refinement-image {
+					position: absolute;
+				}
+
+				.refinement-submenu {
+					position: relative;
+					opacity: 1;
+				}
+
+			}
+
+		}
+
+		.refinement-image {
+			position: absolute;
+		}
+
+		.refinement-submenu {
+			ul {
+				position: relative;
+				left: auto;
+				width: 100%;
+
+				+ ul {
+					position: relative;
+					left: auto;
+					margin-top: 0;
+				}
+
+			}
+
+		}
+
+	}
+
+	.recipe-main {
+		.recipe-landing-top {
+			display: inline-block;
+			width: 100%;
+		}
+
+		.recipe-intro,
+		.recipe-search {
+			width: 100%;
+		}
+
+		.recipe-advanced-search {
+			clear: both;
+
+			.recipe-advanced-search_toggle {
+				margin: 0 auto -1px;
+			}
+
+			.recipe-advanced-search_panel,
+			.recipe-advanced-search_panel.active {
+				max-height: none;
+			}
+
+		}
+
+		.recipe-categories {
+			margin-top: 1em;
+
+			.recipe-category {
+				width: 48%;
+				margin-bottom: 5%;
+				align-self: flex-start;
+
+				.recipe-category-name {
+					font-size: 0.875rem;
+				}
+
+			}
+
+		}
+
+	}
+
+	.recipe-refinement {
+		height: auto;
+		margin-bottom: 0;
+		padding-bottom: 1em;
+	}
+
+	.recipe-main {
+		h1 {
+			&.recipe-name {
+				font-size: 1.625em;
+			}
+
+		}
+
+		.recipe-col-1,
+		.recipe-col-2 {
+			width: 100%;
+			float: none;
+		}
+
+		.recipe-col-1 {
+			padding-bottom: 1em;
+		}
+
+		.recipe-top {
+			padding-bottom: 0;
+		}
+
+		.recipe-primary-image {
+			max-width: 100%;
+			margin-right: 0;
+		}
+
+		.recipe-actions {
+			padding: 1em 0.125em 0;
+			.button {
+				&.email-button {
+					line-height: 2em;
+				}
+			}
+			.socialsharing {
+				clear: both;
+				text-align: center;
+
+				.share-icon {
+					margin: 0 0.125em;
+				}
+
+			}
+
+		}
+
+		.recipe-bottom {
+			margin-top: 0.5em;
+			padding: 0.25em;
+
+			.recipe-actions {
+				padding-bottom: 0.5em;
+				border-bottom: 1px solid $cuisinart-gray;
+
+				.email-button {
+					text-align: center;
+					margin-top: 5px;
+				}
+
+			}
+
+		}
+
+		.recipe-ingredients,
+		.recipe-instructions {
+			width: 100%;
+			float: none;
+			padding-right: 0;
+
+			.section-title {
+				margin-bottom: 1em;
+			}
+
+			ul {
+				margin-right: 0;
+			}
+
+		}
+
+		.recipe-ingredients {
+			margin-bottom: 2em;
+			padding-top: 1em;
+		}
+
+		.recipe-instructions {
+			ol {
+				> li {
+					margin-bottom: 0.75em;
+				}
+
+			}
+
+		}
+
+		.compatible-products {
+			ul {
+				li {
+					width: 48%;
+					margin: 0 0 5% 2%;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width:480px) and (max-width:767px) {
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width:479px) {
+	.recipe-main {
+		.recipe-actions {
+			.print-button {
+				float: left;
+				margin-bottom: 1em;
+			}
+
+			.socialsharing {
+				position: relative;
+				display: block;
+				float: none;
+				margin: 0.5em auto;
+			}
+
+		}
+
+	}
+
+}
+
+/* Tablet Only */
+@media screen and (min-width:768px) and (max-width:959px) {
+	.recipe-main {
+		.recipe-stats {
+			.recipe-servings {
+				.icon {
+					width: 25px;
+					height: 25px;
+					margin-top: -0.375em;
+					margin-right: 0;
+
+					.fa {
+						font-size: 0.825em;
+						margin-top: 0.325em;
+						display: block;
+					}
+
+				}
+
+			}
+
+			.recipe-prepTime,
+			.recipe-cookTime {
+				.icon {
+					margin-right: 0;
+
+					.fa {
+						font-size: 2em;
+					}
+
+				}
+
+			}
+
+		}
+
+		.recipe-actions {
+			.button {
+				&.print-button {
+					margin-bottom: 1em;
+				}
+
+			}
+
+		}
+
+	}
+
+	.recipe-tiles {
+		.search-result-items {
+			.grid-tile {
+				margin-right: 2.5%;
+
+				&:nth-child(3n) {
+					margin-right: 0;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+@media print {
+	#header,
+	#footer,
+	.footer-menu,
+	.breadcrumb,
+	.recipe-main .button-back,
+	.recipe-main .recipe-actions,
+	.recipe-main .recipe-image-container .recipe-video-button {
+		display: none !important;
+	}
+
+	.recipe-main .recipe-col-1 {
+		width: 45%;
+	}
+
+	.recipe-main .recipe-col-2 {
+		width: 50%;
+	}
+
+	.recipe-main .recipe-image-container {
+		box-shadow: none;
+	}
+
+}

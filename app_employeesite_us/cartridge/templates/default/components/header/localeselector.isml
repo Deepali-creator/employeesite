@@ -1,0 +1,19 @@
+<!--- TEMPLATENAME: localeselector.isml --->
+
+<iscomment>
+	Include a list element that contains a language switch link.
+	For Canada site, the link switches between English and French.
+</iscomment>
+
+<isscript>
+	var currentLocale = pdict.CurrentRequest.locale;
+	var locale = currentLocale == "en_CA" ? "fr_CA" : "en_CA";
+	var currentlocaleparam = currentLocale == "fr_CA" ? "lang=fr" : "lang=en";
+	var localeparam = currentLocale == "fr_CA" ? "lang=en" : "lang=fr";
+	var languageLink = pdict.CurrentRequest.httpURL.toString().replace(currentLocale,locale).replace(currentlocaleparam,localeparam);
+	// there is no language identifier set
+	if(pdict.CurrentRequest.httpURL.toString() == languageLink) {
+		languageLink += languageLink.indexOf('?')!=-1 ? "&lang=fr" : "?lang=fr";
+	}
+</isscript>
+<div class="language"><a class="language-link" href="${languageLink}"><isprint value="${Resource.msg('global.french', 'locale', null)}" encoding="off"/></a></div>

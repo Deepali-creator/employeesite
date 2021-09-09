@@ -1,0 +1,54 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isset name="DecoratorTemplate" value="search/pt_productsearchresult" scope="page"/>
+
+<isif condition="${pdict.CurrentHttpParameterMap.format.stringValue == 'ajax'}">
+
+	<isset name="DecoratorTemplate" value="util/pt_empty" scope="page"/>
+	
+</isif>
+
+<isdecorate template="${DecoratorTemplate}">
+
+	
+	<div class="wrap">
+	<isinclude template="search/components/productsearchbreadcrumbs"/>
+	
+	<div id="primary" class="primary-content">
+		<isreplace/>
+	</div>
+	
+	<div id="secondary" class="refinements">
+		<isinclude template="search/components/productsearchrefinebar"/>
+	</div>
+	
+	<div class="ref-ext">
+		<!-- empty -->
+	</div>
+
+	<div class="category-recommendations">
+		<isinclude url="${URLUtils.url('Product-IncludeLastVisited')}"/>
+	</div>
+	
+	
+	<iscomment>
+	<isscript>
+		importScript( "util/ViewHelpers.ds" );
+	</isscript>
+	<isset name="topLevelCategory" value="${getTopLevelCategory()}" scope="page"/>
+	<isif condition="${topLevelCategory != null}">
+		<ul class="top-level-category-mobile mobile-only">
+		<isloop items="${getSubcategoriesInMenuForCategory(topLevelCategory)}" var="topCat">
+			<li>
+				<isset name="topLevelClass" value="${''}" scope="page"/>
+				<a class="${topLevelClass}" href="<isprint value="${getCategoryUrl(topCat)}" encoding="off"/>">
+					<isprint value="${topCat.getDisplayName()}"/>
+				</a>
+			</li>
+
+		</isloop>
+		</ul>
+	</isif>
+	</iscomment>
+	
+	</div>
+</isdecorate>

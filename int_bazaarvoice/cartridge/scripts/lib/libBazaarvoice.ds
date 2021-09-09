@@ -1,0 +1,372 @@
+/**
+ *
+ * A library file for BazaarVoice communication.
+ *
+ * It cannot be used as a pipelet.
+ *
+ */
+importPackage(dw.system);
+importPackage(dw.order);
+importPackage(dw.rpc);
+importPackage(dw.util);
+importPackage(dw.value);
+importPackage(dw.crypto);
+importPackage(dw.io);
+importPackage(dw.net);
+importPackage(dw.catalog);
+
+importScript( "int_bazaarvoice:/lib/libConstants.ds" );
+importScript("int_bazaarvoice:/ProductImageSO.ds");
+
+/**
+ * Used building output as Hex
+ */
+var DIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+var USER_STRING_TEMPLATE: String = "date={0}&userid={1}&username={2}";
+
+var BazaarVoiceHelper = {
+	
+	/*******************************************************************************************************************
+	*  getImageURL()
+	*
+	*	Returns a product image url for use in the product and purchase feeds.  By default,
+	*	the custom site preferences for image type is used to get the url: e.g. large, medium, small.
+	*	If no image is found, the medium image is used.  If no medium image is found, an empty string is returned.
+	*
+	*	feed parameter is either "PRODUCT" or "PURCHASE", defaults to PRODUCT.
+	*
+	*	If you do not use the standard DW product images (scene7, SITS, etc.), you must customize this function!
+	*******************************************************************************************************************/
+	getImageURL : function(product : Product, feed : String) : String {
+		var IMAGE_SIZE : String = "";
+ 		var imgURL : String = "";
+ 		var image;
+ 		
+ 
+		if(feed.equals(BV_Constants.PURCHASE)) {
+			if(Site.getCurrent().getCustomPreferenceValue("bvOrderImageType_C2013") != null) {
+				IMAGE_SIZE = Site.getCurrent().getCustomPreferenceValue("bvOrderImageType_C2013").toString();
+			}
+		}
+		else {
+			if(Site.getCurrent().getCustomPreferenceValue("bvProductImageType_C2013") != null) {
+				IMAGE_SIZE = Site.getCurrent().getCustomPreferenceValue("bvProductImageType_C2013").toString();
+			}
+		}
+		
+		if(!empty(IMAGE_SIZE) && product.image) {
+			image = new ProductImage(IMAGE_SIZE, product, 0);
+		}
+		else if(product.image) {
+			image = new ProductImage(BV_Constants.BV_DEFAULTIMAGETYPE, product, 0);
+		}else{
+		    return;
+		}
+		
+		if(!empty(image) && image.getMediaFile().exists()) {
+			imgURL = image.getAbsURL();
+		}
+		
+		return encodeURI(imgURL);
+	},
+	/******************************************************************************************************************
+	*******************************************************************************************************************/
+	
+	getCustomerName : function() : String {
+		var name : String = "";
+		if(Site.getCurrent().getCustomPreferenceValue("bvCustomerName_C2013") != null){
+			name = Site.getCurrent().getCustomPreferenceValue("bvCustomerName_C2013").toString();
+		}
+		return name;
+	},
+	
+	getRatingsFeedName : function() : String {
+		var fname : String = BV_Constants.RatingsFeedFilename;
+		if(Site.getCurrent().getCustomPreferenceValue("bvCustomerName_C2013") != null){
+			fname = BV_Constants.RatingsFeedPrefix + "_" + Site.getCurrent().getCustomPreferenceValue("bvCustomerName_C2013").toString().toLowerCase() + "_" + BV_Constants.RatingsFeedFilename;
+		}
+		return fname;
+	},
+
+	replaceIllegalCharacters: function (rawId: String): String {
+        return rawId.replace("&", "_and_", "g").replace("/", "_fslash_", "g");
+    },
+
+	decodeId: function (id: String) {
+        return id.replace("_and_", "&", "g").replace("_fslash_", "/", "g");
+    },
+
+	md5: function (data: String) {
+        var digest: MessageDigest = new MessageDigest(MessageDigest.DIGEST_MD5);
+        return digest.digest(data);
+    },
+
+	encodeHex: function (data: String) {
+        var l: Number = data.length;
+        var out: String = "";
+        // two characters form the hex value.
+        for (var i = 0; i < l; i++) {
+            out += DIGITS[(0xF0 & data.charCodeAt(i)) >>> 4];
+            out += DIGITS[0x0F & data.charCodeAt(i)];
+        }
+        return out;
+    },
+
+	encryptReviewerId: function (reviewerId: String, reviewerNickname: String) {
+        if (!empty(reviewerId) && !empty(reviewerNickname)) {
+            var dateAndreviewerId: String = StringUtils.format(USER_STRING_TEMPLATE, StringUtils.formatCalendar(new Calendar(), 'yyyyMMdd'), reviewerId, reviewerNickname);
+
+            var sharedKey: String = Site.getCurrent().getCustomPreferenceValue("bvEncodingKey_C2013");
+            var md5String: String = BazaarVoiceHelper.md5(sharedKey + dateAndreviewerId);
+            var hexUserID: String = BazaarVoiceHelper.encodeHex(dateAndreviewerId);
+
+            return md5String + hexUserID;
+        }
+        return null;
+    },
+
+	getBvApiHostUrl: function (): String {
+    	var client : String = Site.getCurrent().getCustomPreferenceValue("bvCustomerName_C2013");
+    	if(empty(client)) {
+    		Logger.error("Site Preference bvCustomerName is null or empty!");
+    		client = "CLIENTNAME";
+    	}
+    	
+        var bvdisplay : String = BazaarVoiceHelper.getDisplayData();
+        
+        var env : String = BazaarVoiceHelper.getEnvironment();
+        var host : String = BV_Constants.APIHostStaging;
+        if(!empty(env) && env.toLowerCase() == "production") {
+        	host = BV_Constants.APIHostProduction;
+        }
+        
+        return "//" + host + "/static/" + client + "/" + encodeURI(bvdisplay.zone) + "/" + bvdisplay.locale + "/bvapi.js";
+    },
+    
+    getDisplayData : function() {
+    	var currentLocale : String = request.locale;
+		var defaultLocale : String = Site.getCurrent().getDefaultLocale();
+		var isCurrentDefault : Boolean = currentLocale.equals(defaultLocale);
+		var allowedLocales : ArrayList = Site.getCurrent().allowedLocales;
+		
+		var bvzone : String = "";
+    	var bvlocale : String = "";
+		
+    	var map : Array = Site.getCurrent().getCustomPreferenceValue("bvLocaleMapping_C2013");
+		
+		if(map.length > 1){
+			var index = 0;
+			for each(var item : String in map){
+				item = item.replace(/^[\s]+|[\"]|[\s]+$/g,"");
+				
+				if(BV_Constants.regFull.test(item) && isCurrentDefault){
+					bvlocale = item;
+					break;
+				}
+				else if(BV_Constants.regPair.test(item)){
+					var a = item.split(":");
+					a[0] = a[0].replace(/^[\s]+|[\s]+$/g,"");
+					a[1] = a[1].replace(/^[\s]+|[\s]+$/g,"");
+					
+					if(allowedLocales.indexOf(a[0]) != -1){
+						if(a[0] == currentLocale){
+							bvlocale = a[1];
+							if(bvlocale.indexOf("/") != -1) {
+								var b = bvlocale.split("/");
+								bvzone = decodeURI(b[0]);
+								bvlocale = b[1];
+							}
+							break;
+						}
+					}else{
+						Logger.error("Site Preference bvLocaleMapping has inactive locale " + a[0]);
+					}
+				}
+				
+				if(index == map.length - 1){
+					Logger.error("Site Preference bvLocaleMapping has no match setting for " + currentLocale);
+				}
+				index++;
+			}
+		}
+		else if(map.length == 1){
+			var item : String = map[0];
+			item = item.replace(/^[\s]+|[\"]|[\s]+$/g,"");
+			
+			if(BV_Constants.regFull.test(item)){
+				//there is only one display code, so it doesnt matter what dw locale we are on
+				bvlocale = item;
+			}
+			else if(BV_Constants.regPair.test(item)){
+				var a = item.split(":");
+				a[0] = a[0].replace(/^[\s]+|[\s]+$/g,"");
+				a[1] = a[1].replace(/^[\s]+|[\s]+$/g,"");
+				
+				if(allowedLocales.indexOf(a[0]) != -1){			
+					if(a[0] == currentLocale){
+						bvlocale = a[1];
+					}else{
+						Logger.error("Site Preference bvLocaleMapping has no input for" + currentLocale);
+					}
+				}else{
+					Logger.error("Site Preference bvLocaleMapping has inactive locale " + currentLocale);
+				}
+			}else{
+				Logger.error("Site Preference bvLocaleMapping has invalid format for" + currentLocale);
+			}
+		}else{
+			Logger.error("Site Preference bvLocaleMapping requires at least one setting");
+		}
+		
+		//Deployment Zone was not overridden in the locale mapping, so grab it from the preference
+		//If no DZ is defined, default to 'Main Site'
+		if(empty(bvzone)) {
+			bvzone = Site.getCurrent().getCustomPreferenceValue("bvDeploymentZone_C2013");
+			if(empty(bvzone)) {
+	        	Logger.error("Site Preference bvDeploymentZone is null or empty!. Using 'Main Site'.");
+	        	bvzone = BV_Constants.DEFAULT_ZONE;
+	        }
+		}
+		
+		return {"zone" : bvzone, "locale" : bvlocale};
+    },
+    
+    getExternalSubjectForPage: function(pdict : PipelineDictionary) : Object {
+        var ret = {};
+        
+        var bvExternalSubjectID = null;
+        if (pdict.Product != null) {
+            ret.bvSubjectType = "product";
+            ret.bvExternalSubjectName = (pdict.Product.variant) ? pdict.Product.variationModel.master.name : pdict.Product.name;
+            bvExternalSubjectID = (pdict.Product.variant && !BV_Constants.UseVariantID) ? pdict.Product.variationModel.master.ID : pdict.Product.ID;
+        } else if (pdict.Category != null) {
+            ret.bvSubjectType = "category";
+            ret.bvExternalSubjectName = pdict.Category.displayName;
+            bvExternalSubjectID = pdict.Category.ID;
+        } else if (pdict.ProductSearchResult != null && pdict.ProductSearchResult.category != null ) {
+            ret.bvSubjectType = "category";
+            ret.bvExternalSubjectName = pdict.ProductSearchResult.category.displayName;
+            bvExternalSubjectID = pdict.ProductSearchResult.category.ID;
+        }
+        else if (pdict.ProductSearchResult != null && pdict.ProductSearchResult.deepestCommonCategory != null ) {
+            ret.bvSubjectType = "category";
+            ret.bvExternalSubjectName = pdict.ProductSearchResult.deepestCommonCategory.displayName;
+            bvExternalSubjectID = pdict.ProductSearchResult.deepestCommonCategory.ID;
+        }
+
+        if (bvExternalSubjectID != null) {
+            ret.bvExternalSubjectID = BazaarVoiceHelper.replaceIllegalCharacters(bvExternalSubjectID);
+        }
+        
+        return ret;
+    },     
+    
+    finalizeFeed: function(xsw : XMLStreamWriter) {
+        xsw.writeEndElement();  //</Feed>
+        xsw.writeEndDocument();
+   
+        xsw.flush();
+        xsw.close();
+    },
+
+    writeElement: function(xsw : XMLStreamWriter, elementName : String, chars : String) {
+        xsw.writeStartElement(elementName);
+        xsw.writeCharacters(chars);
+        xsw.writeEndElement();
+    },
+
+	insertLeadingZero: function(nb : Number) : String {
+        if(nb < 10) {
+            return "0"+nb;
+        } else {
+            return ""+nb;
+        }
+    },
+    
+    getEnvironment : function() : String {
+    	var env : EnumValue = Site.getCurrent().getCustomPreferenceValue("bvEnvironment_C2013");
+    	if(empty(env) || empty(env.value)) {
+    		Logger.error("bvEnvironment is null or empty!");
+			return "";
+    	}
+    	return env.value;
+    },
+    
+    getFtpTimeout : function() : Number {
+    	var milli : Number = Site.getCurrent().getCustomPreferenceValue("bvFtpTimeout_C2013");
+    	if(empty(milli)) {
+    		milli = 5000;
+    	}
+    	return milli;
+    },
+    
+    uploadFile: function(destinationPath : String, destinationFilename : String, localFile : File, pdict : PipelineDictionary) : String {
+    	var ftpClient : SFTPClient = new SFTPClient();
+    	ftpClient.setTimeout(BazaarVoiceHelper.getFtpTimeout());
+    	
+    	var env : String = BazaarVoiceHelper.getEnvironment();
+    	if(empty(env)) {
+    		return StringUtils.format(BV_Constants.MESSAGE_TEMPLATE,"ERROR", "Error while trying to connect to BV SFTP server: bvEnvironment is null or empty!","", "", "", "", "");
+    	}
+    	
+        var host : String = BV_Constants.FTPHostStaging;
+        if(env.toLowerCase() == "production") {
+        	host = BV_Constants.FTPHostProduction;
+        }
+        
+        if(empty(host)) {
+        	Logger.error("SFTP host is null or empty! Verify the configuration in libConstants.ds");
+			return StringUtils.format(BV_Constants.MESSAGE_TEMPLATE,"ERROR", "Error while trying to connect to BV SFTP server: SFTP host is null or empty! Verify the configuration in libConstants.ds","", "", "", "", "");
+        }
+        
+        var user  : String = Site.getCurrent().getCustomPreferenceValue("bvCustomerName_C2013");
+        if(empty(user)){
+			Logger.error("bvCustomerName is null or empty!");
+			return StringUtils.format(BV_Constants.MESSAGE_TEMPLATE,"ERROR", "Error while trying to connect to BV SFTP server: bvCustomerName is null or empty!","", "", "", "", "");
+        }
+        
+        var pwd   : String = Site.getCurrent().getCustomPreferenceValue("bvFTPPassword_C2013");
+        if(empty(pwd)){
+			Logger.error("bvFTPPassword is null or empty!");
+			return StringUtils.format(BV_Constants.MESSAGE_TEMPLATE,"ERROR", "Error while trying to connect to BV SFTP server: bvFTPPassword is null or empty!","", "", "", "", "");
+        }
+        
+        //The client name may be mixed case, so
+        //force it to be lowercase for the sftp username
+        user = user.toLowerCase();
+        
+        if(!ftpClient.connect(host, user, pwd)) {
+        	Logger.error("Could not connect to sftp server! host: {0}, user: {1}, pwd: {2}, path: {3}, file: {4}", host, user, pwd, destinationPath, destinationFilename);
+            return StringUtils.format(BV_Constants.MESSAGE_TEMPLATE,"ERROR", "Error while trying to connect to BV SFTP server.",host, user, "XXXXX", destinationPath, destinationFilename);
+        }
+        
+        if( !ftpClient.cd(destinationPath)) {
+        	Logger.error("Could not change directory on sftp server! host: {0}, user: {1}, pwd: {2}, path: {3}, file: {4}", host, user, pwd, destinationPath, destinationFilename);
+            ftpClient.disconnect();        
+            return StringUtils.format(BV_Constants.MESSAGE_TEMPLATE,"ERROR", "Error while accessing folder on BV SFTP Server.",host, user, "XXXXX", destinationPath, destinationFilename);            
+		}
+		
+        //there might be an old one
+        var allRemoteFiles = ftpClient.list();
+        for each(var f : SFTPFileInfo in allRemoteFiles) {
+        	if(f.name == destinationFilename) {
+        		ftpClient.del(destinationFilename);
+        	}
+        }
+        
+        // send file to server
+        var success = ftpClient.putBinary(destinationFilename, localFile);
+        ftpClient.disconnect();
+        return StringUtils.format(BV_Constants.MESSAGE_TEMPLATE,"SUCCESS", "Export Processed - Connecton Details" ,host, user, "XXXXX", destinationPath, destinationFilename);
+    
+    }
+
+};
+
+
+
+// Helper method to export the helper
+
+function getBazaarVoiceHelper() {
+    return BazaarVoiceHelper;
+}

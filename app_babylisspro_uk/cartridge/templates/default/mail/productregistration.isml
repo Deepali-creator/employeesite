@@ -1,0 +1,13 @@
+<html><body>
+${Resource.msg(pdict.CurrentForms.productregistration.name.label, 'forms', null)}: ${pdict.CurrentForms.productregistration.name.value} <br/>
+<isif condition="${!empty(pdict.CurrentForms.productregistration.email.value)}">${Resource.msg(pdict.CurrentForms.productregistration.email.label, 'forms', null)}: ${pdict.CurrentForms.productregistration.email.value} <br/></isif>
+${Resource.msg(pdict.CurrentForms.productregistration.address.label, 'forms', null)}: ${pdict.CurrentForms.productregistration.address.value} <br/>
+${Resource.msg(pdict.CurrentForms.productregistration.postal.label, 'forms', null)}: ${pdict.CurrentForms.productregistration.postal.value} <br/>
+${Resource.msg(pdict.CurrentForms.productregistration.product.label, 'forms', null)}: ${pdict.CurrentForms.productregistration.product.value} <br/>
+${Resource.msg(pdict.CurrentForms.productregistration.date.label, 'forms', null)}: ${pdict.CurrentForms.productregistration.date.value} <br/>
+${Resource.msg(pdict.CurrentForms.productregistration.serial.label, 'forms', null)}: ${pdict.CurrentForms.productregistration.serial.value} <br/>
+${Resource.msg(pdict.CurrentForms.productregistration.retailer.label, 'forms', null)}: ${pdict.CurrentForms.productregistration.retailer.value} <br/>
+<isif condition="${!empty(pdict.CurrentForms.productregistration.age.value)}">${Resource.msg(pdict.CurrentForms.productregistration.age.label, 'forms', null)}: ${pdict.CurrentForms.productregistration.age.value} <br/></isif>
+<isif condition="${!empty(pdict.CurrentForms.productregistration.gender.value)}">${Resource.msg(pdict.CurrentForms.productregistration.gender.label, 'forms', null)}: ${pdict.CurrentForms.productregistration.gender.value} <br/></isif>
+${Resource.msg(pdict.CurrentForms.productregistration.updates.label, 'forms', null)}: ${pdict.CurrentForms.productregistration.updates.value}
+</body></html>

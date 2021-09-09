@@ -1,0 +1,34 @@
+<isinclude template="util/modules"/>
+
+ <isscript>
+
+
+	if(pdict.CurrentHttpParameterMap && pdict.CurrentHttpParameterMap.folder_id.value){
+		videoCats = dw.content.ContentMgr.getFolder(pdict.CurrentHttpParameterMap.folder_id.value).getContent();
+	}
+
+	videoCats = dw.content.ContentMgr.getFolder(pdict.CurrentHttpParameterMap.folder_id.value).getContent();
+	var initialVideo : Object  = videoCats[0];
+	var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+	var videoNum = initialVideo.custom.featuredVideo;
+	var initialVid = videoNum.match(regExp);
+	var thumbnail : String = "https://img.youtube.com/vi/" + initialVid[7] + "/maxresdefault.jpg";
+ </isscript>
+
+<isset name="featuredVid" value="${dw.content.ContentMgr.getContent('featured-video')}" scope="page" />
+<isset name="featuredVidURL" value="${featuredVid.name}" scope="page" />
+<div id="dialog" title="Basic dialog"></div>
+
+<isif condition="${!empty(initialVideo.custom.featuredVideo)}">
+
+	<div class="featured-video">
+		<div class="wrap">
+			<div class="featured-video_wrapper">
+				<iframe class="featured-vid" id="featured-video" width="100%" data-url="${videoNum}&enablejsapi=1" src="${"#"}" frameborder="0" allowfullscreen ></iframe>
+			</div>
+		</div>
+	</div>
+
+		</div>
+	</div>
+</isif>

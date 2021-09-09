@@ -1,0 +1,25 @@
+<iscontent type="text/html" charset="UTF-8" compact="true">
+
+<!---
+	ISMODULE definitions used in this cartridge
+--->
+
+<iscomment>define reusable input field and label rendering</iscomment>
+<ismodule template="custom/inputfield.isml"
+	name="inputfield"
+	attribute="formfield"
+	attribute="type"
+	attribute="maxlength"
+	attribute="size"
+	attribute="xhtmlclass"
+	attribute="label"
+	attribute="value"
+	attribute="p_dynamic"
+	attribute="attribute1"
+	attribute="value1"
+	attribute="attribute2"
+	attribute="value2"
+	attribute="attribute3"
+	attribute="value3"
+	attribute="requiredtext"
+/>

@@ -1,0 +1,47 @@
+<!--- TEMPLATENAME: address.isml --->
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="checkout/avs/pt_avs">
+	<div id="avs">
+		<form action="${URLUtils.continueURL()}" method="post" id="avsForm">
+			<h2 class="section-header">${Resource.msg('global.avs.suggest.header', 'locale', '')}</h2>
+			<p class="sub-header">${Resource.msg('global.avs.suggest.subheader', 'locale', '')}</p>
+			<div class=" avs-wrap clearfix">
+				
+				<div class="address-block suggested">
+					<h4>${Resource.msg('global.avs.suggest.matches', 'locale', '')}</h4>
+					
+					<iscomment>Loop through AVS matches and display them</iscomment>
+					<div class="address-row">
+						<isloop items="${pdict.upsform.addresslist}" var="address">
+						<div class="suggestedAddress">
+							<address>
+								<isprint value="${address.object.address1}"/><br/>
+								<isif condition="${!empty(address.object.address2)}"><isprint value="${address.object.address2}"/><br/></isif>
+								<isprint value="${address.object.city}"/>, <isprint value="${address.object.stateCode}"/> <isprint value="${address.object.postalCode}"/>
+							</address>
+							<button class="btn btn-primary" name="${address.select.htmlName}" value="${address.select.htmlName}">${Resource.msg('global.avs.suggest.select', 'locale', '')}</button>
+						</div><!-- end suggestedAddress -->
+						</isloop>
+					</div>
+				</div><!-- /suggested block -->
+				
+				<div class="address-block original">
+					<h4>${Resource.msg('global.avs.suggest.entered', 'locale', '')}</h4>
+					
+					<iscomment>Display original address as entered </iscomment>
+					
+					<div class="originalAddress">
+						<address>
+							<isprint value="${pdict.Basket.defaultShipment.shippingAddress.address1}"/><br/>
+							<isif condition="${!empty(pdict.Basket.defaultShipment.shippingAddress.address2)}"><isprint value="${pdict.Basket.defaultShipment.shippingAddress.address2}"/><br/></isif>
+							<isprint value="${pdict.Basket.defaultShipment.shippingAddress.city}"/>, <isprint value="${pdict.Basket.defaultShipment.shippingAddress.stateCode}"/> <isprint value="${pdict.Basket.defaultShipment.shippingAddress.postalCode}"/>
+						</address>
+						<button class="btn btn-secondary" name="${pdict.upsform.useoriginal.htmlName}" value="${pdict.upsform.useoriginal.htmlName}">${Resource.msg('global.avs.suggest.select', 'locale', '')}</button>
+						<button class="edit-address" name="${pdict.upsform.edit.htmlName}" value="${pdict.upsform.edit.htmlName}">${Resource.msg('global.avs.suggest.edit', 'locale', '')}</button>
+					</div>
+				</div><!-- /original block -->
+				
+			</div>
+		</form>
+	</div><!-- /avs -->
+</isdecorate>

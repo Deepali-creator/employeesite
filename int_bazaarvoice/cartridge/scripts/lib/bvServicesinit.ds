@@ -1,0 +1,23 @@
+/**
+*
+*
+*   @input order : dw.order.Order
+*   @input cvn : String
+*   @output AuthorizationCode : String
+*   @output TransactionID : String
+*
+*/
+importPackage( dw.system );
+importPackage( dw.svc );
+
+function execute( args : PipelineDictionary ) : Number {
+	ServiceRegistry.configure("babylisss_bazaarvoice.sftp", {
+	createRequest: function(svc:FTPService, args){
+		return svc;
+	},
+	parseResponse: function(svc:FTPService, result:Array) {
+		return result;
+	}
+});
+	return PIPELET_ERROR;
+}

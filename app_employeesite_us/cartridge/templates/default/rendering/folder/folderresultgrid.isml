@@ -1,0 +1,26 @@
+<!--- TEMPLATENAME: folderresultgrid.isml --->
+
+<isif condition="${!pdict.ContentPagingModel.empty}">
+	<div class="search-result-options">
+		<iscomment>sorting and hits info</iscomment>
+		<ispaginginformation pagingmodel="${pdict.ContentPagingModel}"/>
+		<iscomment>sort by</iscomment>
+		<iscontentsortingoptions productsearchmodel="${pdict.ContentSearchResult}" pagingmodel="${pdict.ContentPagingModel}" uniqueid="content-sort-header" sortingRuleID="${pdict.CurrentHttpParameterMap.csortb1.value}"/>
+		<iscomment>pagination</iscomment>
+		<ispaginginformation pagingmodel="${pdict.ContentPagingModel}" pageurl="${pdict.ContentSearchResult.url('Search-ShowContent')}"  uniqueid="content-paging-header"/>
+		<ispagingbar pageurl="${pdict.ContentSearchResult.url(URLUtils.url('Search-ShowContent','csortb1',pdict.CurrentHttpParameterMap.csortb1.value))}"  pagingmodel="${pdict.ContentPagingModel}"/>
+	</div>
+		<isinclude template="rendering/folder/folderresultgrid"/>
+	<isif condition="${pdict.ContentSearchResult.count == 0}">
+		<p>${Resource.msgf('rendering.foldercontenthits.noproducts','rendering',null,pdict.ContentSearchResult.searchPhrase)}</p>
+	</isif>
+	<div class="search-result-options">
+		<iscomment>sorting and hits info</iscomment>
+		<ispaginginformation pagingmodel="${pdict.ContentPagingModel}"/>
+		<iscomment>sort by</iscomment>
+		<iscontentsortingoptions productsearchmodel="${pdict.ContentSearchResult}" pagingmodel="${pdict.ContentPagingModel}" uniqueid="content-sort-header" sortingRuleID="${pdict.CurrentHttpParameterMap.csortb1.value}"/>
+		<iscomment>pagination</iscomment>
+		<ispaginginformation pagingmodel="${pdict.ContentPagingModel}" pageurl="${pdict.ContentSearchResult.url('Search-ShowContent')}"  uniqueid="content-paging-header"/>
+		<ispagingbar pageurl="${pdict.ContentSearchResult.url(URLUtils.url('Search-ShowContent','csortb1',pdict.CurrentHttpParameterMap.csortb1.value))}"  pagingmodel="${pdict.ContentPagingModel}"/>
+	</div>
+</isif>

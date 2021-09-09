@@ -1,0 +1,533 @@
+
+.pt_product-search-result,
+.pt_content-search-result{
+  .primary-content{
+    background: $white;
+  }
+}
+
+.pt_product-search-result{
+  .primary-content{
+    h1{
+      &.content-header{
+        padding-left:15px;
+      } 
+    }
+  }
+}
+
+.slot-grid-header {
+	margin: 0;
+	.search-results-push{
+	  margin-top:-13px;
+	}
+}
+
+.category-head-content{
+	position:relative;	
+}
+
+.category-head-name {
+	position:absolute;
+	top:0;
+	right:0;
+    display: block;
+    color: $white;
+    font-size: 2.5825em;
+    margin: 0;
+    padding: 7px 10px 7px;
+    text-transform: uppercase;
+    line-height: 35px;
+    &.default{
+      position:relative;
+      top:auto;
+      right:auto;
+      color: $black;
+    }
+    h1{
+      font-size:inherit;
+      margin:0;
+    }
+}
+
+.refinement.Category{
+  ul{
+    .pt_productsearchresult.nohits & {
+      margin-top:10px;
+    }
+  }
+}
+
+#noresults-help,
+.no-hits-search{
+  margin-left: 10px;
+}
+.no-hits-search-term,
+.no-hits-search-term-suggest {
+	color: $sangria;
+	font-style: italic;
+}
+
+.no-hits-footer {
+	border-top: 1px solid $very-light-gray;
+	margin: 20px 10px;
+	padding: 20px 0;
+}
+.pt_product-search-noresult {
+	
+	.primary-content {
+	    padding: 0 15px;
+	    background: $white;
+	}
+	.no-hits-search .input-text {
+	    width: 70%;
+	}
+	.no-hits-search button {
+	    border: 1px solid $very-light-gray;
+	    line-height: 28px;
+	    margin: 0 0 0 5px;
+	}
+	.content-asset p {
+	    margin: 0 0 1em;
+	}
+}
+.search-result-bookmarks {
+	margin: 15px;
+	.first {
+		border-right: 1px solid $nobel;
+		padding-right: 5px;
+	}
+}
+
+.sortpages{
+  float:left;
+}
+
+.search-result-options {
+  display:none;
+	margin: 17px 0 21px;
+	overflow: hidden;
+	width: 100%;
+	background-color: $white;
+  padding: 1em 0;
+}
+
+.sort-by,
+.items-per-page {
+	float: left;
+	margin: 0 0 0 1em;
+	padding: 3px 5px;
+}
+
+.sort-by,
+.items-per-page {
+	label {
+		display: none;
+	}
+}
+
+.pagination {
+	.results-hits {
+		color: $dim-gray;
+		float: left;
+	}
+	float: right;
+	margin: 4px 20px 0 0;
+	ul {
+		float: right;
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		display: block;
+		float: left;
+		list-style: none;
+		padding: 0 0.5em;
+	}
+	a{
+	  text-decoration:underline;
+	}
+}
+
+.search-result-items {
+	margin: 0;
+	padding: 0;
+	li {
+		list-style: none outside none;
+	}
+	.new-row {
+		clear: both;
+	}
+	.grid-tile {
+		float: left;
+		list-style: none outside none;
+		width: 32%;
+		margin: 2% 0 0 2%;
+		&.new-row{
+			margin-left:0;	
+		}
+		&.education-tile{
+			width:31.25%;
+			margin:2% 1% 0;
+			&.new-row{
+				margin-left:1%;	
+			}
+		}
+	}
+	.invisible {
+		display: none;
+	}
+}
+
+.search-result-content {
+	clear: both;
+}
+
+.search-promo {
+	padding: 20px;
+	display: none;
+}
+
+#results-content {
+	padding-top: 30px;
+}
+
+.folder-content-list {
+	margin: 0;
+	overflow: hidden;
+	padding: 0 20px;
+	li {
+		float: left;
+		list-style: none outside none;
+		margin: 0;
+		padding: 2% 2% 2% 0;
+		width: 48%;
+	}
+	.content-title {
+		display: block;
+	}
+}
+
+.no-results {
+	padding: 20px;
+}
+
+.toggle-grid {
+	display: block;
+	float: left;
+	margin-right: 0.5em;
+	i {
+		cursor: pointer;
+		margin-right: 0.3em;
+	}
+	[data-option="column"] {
+		color: $dark-gray;
+	}
+	&.wide {
+		[data-option="wide"] {
+			color: $dark-gray;
+		}
+		[data-option="column"] {
+			color: $dim-gray;
+		}
+	}
+}
+
+.wide-tiles {
+	.search-result-items .grid-tile {
+		width: 91%;
+	}
+	.product-tile {
+		.product-swatches {
+			bottom: auto;
+			left: auto;
+			position: relative;
+			right: auto;
+			margin-top: 5px;
+			li {
+				float: left;
+			}
+		}
+	}
+}
+
+.category-recommendations{
+  	clear:both;
+  	overflow:hidden;
+  	.last-visited{
+  		h2{
+	  		border-bottom:1px solid $dark-gray;
+	  		font-weight:400;
+	  		padding:0 0 5px;
+	  		text-transform:uppercase;
+	  	}
+	  	.search-result-items{
+	  		.grid-tile{
+	  			width:23%;
+	  		}	
+	  	}
+  	}
+  	
+  }  
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+  ul.search-result-items{
+    .grid-tile{
+      margin: 0 0 3% 4%;
+      width: 48%;
+      &.education-tile{
+      	margin:0 1.5% 3%;
+      	width:47%;
+      }
+      &:nth-child(odd) {
+        margin-left:0;
+        clear: both;
+        &.education-tile{
+        	margin-left:1.5%;
+			clear:both;
+        }
+      }
+      &.new-row {
+        margin-left:4%;
+        clear: none;
+        &.education-tile{
+        	margin-left:1.5%;	
+        }
+      }
+      &:nth-child(odd).new-row {
+        margin-left:0;
+        &.education-tile{
+        	margin-left:1.5%;	
+        }
+      }
+    }
+  }
+
+  .search-result-options {
+    display: none;
+    margin: 0.5em 0 0px 0;
+    .sort-by {
+      margin: 0;
+      select {
+        width: 120px;
+      }
+    }
+    .pagination {
+      margin: 0;
+      .results-hits {
+        display: none;
+      }
+    }
+  }
+  
+  .wrap{
+    > .refinements{
+      display:none;
+    }
+  }
+
+  .search-result-content {
+    margin-top: 1em;
+  }
+  
+  .mobile-category-refinement {
+    &.mobile-only {
+      display: none !important;
+    }
+      background-color: $white;
+      margin: 0 0 0.5em 0;
+      padding: 14px;
+      #toggle-mobile-refinements {
+        width: 100%;
+        border: 2px solid $gainsboro;
+        padding: 5px;
+        &:after {
+          content: '   +';
+        }
+        font-size: 20px;
+      }
+      .category-refinement {
+        text-transform: uppercase;
+      }
+      .mobile-refinements-container {
+        padding: 14px;
+        border: 2px solid $gainsboro;
+        border-radius: 3px;
+        visibility: hidden;
+        opacity: 0;
+        display: none;
+        transition: visibility 0.5s, opacity 0.5s linear;
+      }
+      
+      &.open {
+        .mobile-refinements-container {
+          visibility: visible;
+          opacity: 1;
+          display: block;
+        }
+      #toggle-mobile-refinements:after {
+        content: '  -';
+          white-space: pre;
+      }
+    }
+  }
+  
+  .category-head-content {
+    .content-slot {
+      .contentasset{
+        .category-head-name{
+          position:relative;
+          right:auto;
+          color: $black;
+          text-align:left;
+        }
+        img{
+          display:none;
+        }
+      }
+    }
+  }
+  .category-head-name {
+    display:block;
+    &.default{
+      display:none;
+      .html-slot-container & {
+        display:block;
+      }
+    }
+  }
+
+ 
+  .pt_product-search-noresult {
+    .no-hits-search {
+      padding-right:1em;
+      .input-text {
+          width: 77%;
+      }
+    }
+    #secondary{
+      padding:0.8em;
+    }
+    .no-hits-footer{
+      margin-bottom:0;
+    }
+  }
+
+  .pt_content-search-result{
+    .folder-content-list{
+      li{
+        float: none;
+        width: 100%;
+        clear: both;
+      }
+    }
+    .pagination{
+      clear: both;
+      float: none;
+      .results-hits{
+        float:none;
+      }
+    }
+  }
+  .search-result-options {
+    display:none;
+    padding-bottom: 0;
+    .pagination {
+      width: 70%;
+        margin: auto;
+        padding: 6px 0;
+    }
+    ul {
+      float: none;
+      padding-top: 10px;
+    }
+    .sortpages {
+      padding-left: 40px;
+    }
+  }
+  
+  .pt_product-search-noresult {
+    .primary-content {
+        padding: 0;
+    }
+    .no-hits-search {
+      .input-text {
+          width: 85%;
+      }
+    }
+  }
+  
+	.category-recommendations{
+		.search-result-items{
+			.grid-tile{
+	  			width:48%;
+			}	
+		}
+	}
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+  .pt_content-search-result{
+    .folder-content-list{
+      li{
+        float: none;
+        width: 100%;
+        clear: both;
+      }
+    }
+    .pagination{
+      clear: both;
+      float: none;
+      .results-hits{
+        float:none;
+      }
+    }
+  }
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+  ul.search-result-items {
+    .new-row {
+      clear: none;
+    }
+    .grid-tile {
+      width: 32%;
+      .product-tile {
+        .product-compare {
+            top: 145px;
+        }
+      }
+    }
+  }
+
+  .category-head-name {
+    display:block;
+
+    &.default{
+      .html-slot-container & {
+        display:block;
+      }
+    }
+  }
+  
+}
+
+

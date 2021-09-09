@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+	<field formid="emailAddress" label="billing.email" type="string" mandatory="true" regexp="^(?:[\w!#\$%\*\+\-\/=\?\^`\{\|\}~À-ʯ]+?\.?)*?[\w!#\$%\*\+\-\/=\?\^`\{\|\}~À-ʯ]@[\w\-]+(\.[\w]{2,})+$" max-length="100" missing-error="address.email.invalid" range-error="address.email.invalid" parse-error="address.email.invalid" value-error="address.email.invalid"/>
+	<field formid="confirm" label="newsletter.confirm" type="boolean"/>
+	<field formid="confirmMulti" label="newsletter.confirmMulti" type="string"/>
+	<action formid="unsubscribe" label="newsletter.unsubscribe" valid-form="true"/>
+</form>

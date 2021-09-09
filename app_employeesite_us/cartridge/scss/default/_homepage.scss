@@ -1,0 +1,149 @@
+.homepage-featured {
+  margin-bottom: 1%;
+}
+
+.homepage-content{
+  padding: 0 0 2em;
+  h2{
+    text-align:center;
+    text-transform:uppercase;
+  }
+}
+
+#homepage-slider {
+	position: relative;
+	width: 100%;
+	margin: 0.8125em 0;
+	padding: 0;
+	.slide {
+    float: left;
+    overflow: hidden;
+    position: relative;
+  }
+}
+
+.flex-control-nav{
+  bottom: 1.25em;
+  right: 0;
+  text-align: center;
+  li{
+    margin: 0 0.3125em;
+  }
+}
+
+.flex-control-paging{
+  li{
+    a{
+      width: 1em;
+      height: 1em;
+      background: $cuisinart-gray;
+      &.flex-active{
+        background: $cuisinart-dark-gray;
+      }
+    }
+  }
+}
+
+.featured-content{
+    margin: 2.5em auto;
+    .featured-content_title{
+      text-transform: none;
+      color: $black;
+      font-family: $sassoonPrimary, $serif;
+    }
+    .featured-tiles{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0 auto;
+      .tile{
+        width: 49%;
+        display: inline-block;
+        margin-bottom: 2%;
+        //font-size:0.875rem;
+        a{
+          color: $black;
+          &:hover{
+            text-decoration:none;
+            color: $cuisinart-gray-50;
+          }
+        }
+        .tile-name{
+          margin: 0.3125em 0 0;
+          font-size: 1.125rem;
+          font-weight: 400;
+          text-transform: uppercase;
+        }
+        .tile-description{
+          font-size: 0.875rem;
+
+          margin: 0 0 0.3125em;
+        }
+      }
+    }
+  }
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  .homepage-content{
+    .wrap {
+      padding: 0 0.3125em;
+    }
+
+    h2{
+      font-size: 1rem;
+    }
+  }
+
+   #homepage-slider.flexslider{
+     .slides > li{
+       border: none;
+     }
+     .flex-direction-nav a::before{
+       text-shadow: none;
+     }
+     .flex-direction-nav a{
+       text-shadow: none;
+     }
+   }
+
+   .featured-content{
+      .featured-tiles{
+        .tile{
+          //width:100%;
+          margin-bottom: 5%;
+          .tile-name{
+            font-size: 0.875rem;
+          }
+          .tile-description{
+            display: none;
+          }
+        }
+      }
+   }
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  .pt_storefront{
+    #main{
+      padding-bottom: 1em;
+    }
+  }
+}
+

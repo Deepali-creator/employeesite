@@ -1,0 +1,148 @@
+h1,h2,h3,h4,h5,h6{
+  font-weight:400;
+  margin:0;
+  padding:0;
+}
+
+h1, .h1 {
+	font-size: 2.25em;
+	margin: 0 0 0.3125em;
+	color: $black;
+	&.content-header{
+	  padding-left:1em;
+	}
+}
+
+h2, .h2 {
+	font-size: 1.5em;
+	margin: 0.5em 0;
+}
+h3, .h3 {
+	font-size: 1.275em;
+	margin: 0.375em 0;
+}
+h4, .h4 {
+  font-size: 1.125em;
+  margin:0;
+}
+h5, .h5 {
+  font-size: 1em;
+  margin:0;
+}
+h6, .h6{
+  font-size:0.875em;
+  margin:0;
+}
+
+.subtext{
+  font-size: 0.75em;
+}
+
+.sub-heading{
+  margin-top:0;
+}
+
+.primary-content {
+	dl {
+		clear: both;
+		overflow: hidden;
+		dt {
+			clear: both;
+			float: left;
+			margin: 2% 0 0;
+			min-width: 15%;
+		}
+		dd {
+			float: left;
+			margin: 2% 0 0;
+			padding: 0 0 0 5%;
+		}
+	}
+}
+
+.col-1 {
+	float: left;
+	margin: 4px 0;
+	width: 48%;
+}
+
+.col-2 {
+	float: right;
+	margin: 4px 0;
+	width: 48%;
+}
+
+
+.section-header {
+	position: relative;
+	width: 100%;
+	span {
+		font-size: 12px;
+		font-weight: 400;
+		position: relative;
+		padding: 0 0.5em;
+	}
+}
+
+
+.section-header-note {
+	font-size: 0.9em;
+	font-weight: 400;
+	text-transform: none;
+}
+
+.back {
+	display: block;
+	margin: 0 0 10px;
+}
+
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  h1,.h1{
+    font-size:1.875em;
+    &.content-header{
+      padding-left:0;
+    }
+  }
+
+  .col-1,
+  .col-2 {
+    float: none;
+    width: 100%;
+  }
+  .scrollable {
+    height: auto;
+    li {
+      float: left;
+      a {
+        border: 1px solid #d9d9d9;
+        border-radius: 6px;
+        display: block;
+        padding: .2em .8em;
+      }
+    }
+  }
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}

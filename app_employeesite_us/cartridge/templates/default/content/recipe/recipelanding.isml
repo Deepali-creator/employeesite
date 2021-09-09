@@ -1,0 +1,168 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="content/content/pt_recipe-content-landing-fullwidth">
+<isinclude template="util/modules"/>
+
+<div class="recipe-main">
+
+<isscript>
+	var recipeCats : Collection = dw.content.ContentMgr.getFolder("recipes").getOnlineSubFolders();
+</isscript>
+
+	<div class="recipe-landing-top">
+		<div class="recipe-intro">
+			<h1 class"page-title"><isprint value="${dw.content.ContentMgr.getFolder("recipes").getDisplayName()}" encoding="off" /></h1>
+			<iscomment> <p class="page-description"><isprint value="${dw.content.ContentMgr.getFolder("recipes").description}" encoding="off" /></p> </iscomment>
+		</div>
+
+		<div class="recipe-search">
+			<form role="search" action="${URLUtils.url('Search-ShowContent', 'fdid', 'recipes')}" method="get" name="simpleSearch">
+				<fieldset>
+					<label class="visually-hidden" for="q">${Resource.msg('global.search', 'locale', null)}</label>
+					<input type="text" id="q" name="q" value="" placeholder="${Resource.msg('global.searchrecipes', 'locale', null)}"/>
+					<input type="hidden" name="lang" value="${pdict.CurrentRequest.locale}"/>
+					<button type="submit" class="button button-secondary"><span class="visually-hidden">${Resource.msg('global.searchrecipes', 'locale', null)}</span><i class="fa fa-search"></i></button>
+				</fieldset>
+			</form>
+		</div>
+		<div class="recipe-advanced-search">
+			<a class="recipe-advanced-search_toggle" href="${'#'}">
+				<span>${Resource.msg('content.recipe.advancedsearch', 'content', null)}</span> <i class="fa fa-plus"></i>
+			</a>
+			<div class="recipe-advanced-search_panel">
+				<div class="panel-inner-wrap">
+					<div class="recipe-refinements">
+				        <ul><isloop items="${pdict.ContentSearchResult.refinements.refinementDefinitions}" var="refinement" >
+				            <li class="recipe-refinement">
+				            	<iscomment>
+				                <span class="refinement-image"><iscontentasset aid="${refinement.attributeID}" /></span>
+				                <a class="refinement-button"><isprint value="${Resource.msg('content.recipe.'+refinement.attributeID, 'content', null)}" /></a>
+				                </iscomment>
+				                <div class="refinement-submenu">
+				                    <h3 class="submenu-title"><isprint value="${Resource.msg('content.recipe.'+refinement.attributeID, 'content', null)}" /></h3>
+				                    <ul>
+				                    <isloop items="${pdict.ContentSearchResult.refinements.getAllRefinementValues(refinement)}" var="RefinementValue" status="refStatus">
+				                    	<iscomment>
+				                        <isif condition="${refinement.attributeID != 'recipeProductRefinement'}">
+				                            <isif condition="${refStatus.count == 11}" >
+				                                <isbreak />
+				                            </isif>
+				                        <iselse>
+				                            <isif condition="${refStatus.count == 17}" >
+				                                <isbreak />
+				                            </isif>
+				                        </isif>
+										</iscomment>
+
+				                            <isif condition="${refinement.attributeID == 'recipeProductRefinement'}">
+				                                <li class="productRef">
+				                                    <a title="${RefinementValue.getDisplayValue()}" href="${pdict.ContentSearchResult.urlRefineAttributeValue('Search-ShowContent',RefinementValue.getID(),RefinementValue.getValue())}" >
+				                                        <span><isprint value="${RefinementValue.getDisplayValue()}"/></span>
+				                                    </a>
+				                                </li>
+				                            <iselse>
+				                                <li>
+				                                    <a title="${RefinementValue.getDisplayValue()}" href="${pdict.ContentSearchResult.urlRefineAttributeValue('Search-ShowContent',RefinementValue.getID(),RefinementValue.getValue())}" >
+				                                        <span><isprint value="${RefinementValue.getDisplayValue()}"/></span>
+				                                    </a>
+				                                </li>
+				                            </isif>
+
+				                    	</isloop>
+
+				                    </ul>
+				                    <iscomment>
+				                    <a href="${'#'}" class="submenu-close-button"><i class="fa fa-times"></i></a>
+				                    </iscomment>
+				                </div>
+				            </li></isloop>
+				        </ul>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<ul class="recipe-categories">
+		<isloop items="${recipeCats}" var="recipeFolder" status="refStatus" end="7">
+			<isset name="recipeRef" value="${recipeFolder.getID()}" scope="page" />
+			<li class="recipe-category">
+				<a href="${dw.web.URLUtils.url('Search-ShowContent','fdid', recipeRef)}" title="${recipeFolder.getDisplayName()}" >
+					<div class="recipe-category-image">
+						<img src="${recipeFolder.custom.featuredImage.getUrl()}" alt="${recipeFolder.getDisplayName()}"/>
+					</div>
+					<h3 class="recipe-category-name"><isprint value="${recipeFolder.getDisplayName()}" encoding="off" /></h3>
+				</a>
+			</li>
+		</isloop>
+	</ul>
+
+
+	<iscomment>
+    <div class="recipe-refinements">
+        <iscontentasset aid="recipe-landing-refinement-title" />
+        <ul><isloop items="${pdict.ContentSearchResult.refinements.refinementDefinitions}" var="refinement" >
+            <li class="recipe-refinement">
+                <span class="refinement-image"><iscontentasset aid="${refinement.attributeID}" /></span>
+                <a class="refinement-button"><isprint value="${Resource.msg('content.recipe.'+refinement.attributeID, 'content', null)}" /></a>
+                <div class="refinement-submenu">
+                    <h3 class="submenu-title"><isprint value="${Resource.msg('content.recipe.'+refinement.attributeID, 'content', null)}" /></h3>
+                    <ul>
+                    
+                    <isloop items="${pdict.ContentSearchResult.refinements.getAllRefinementValues(refinement)}" var="RefinementValue" status="refStatus">
+                    
+                        <isif condition="${refinement.attributeID != 'recipeProductRefinement'}">
+                            <isif condition="${refStatus.count == 11}" >
+                                <isbreak />
+                            </isif>
+                        <iselse>
+                            <isif condition="${refStatus.count == 17}" >
+                                <isbreak />
+                            </isif>
+                        </isif>
+
+                            <isif condition="${refinement.attributeID == 'recipeProductRefinement'}">
+                                <li class="productRef">
+                                    <a title="${RefinementValue.getDisplayValue()}" href="${pdict.ContentSearchResult.urlRefineAttributeValue('Search-ShowContent',RefinementValue.getID(),RefinementValue.getValue())}" >
+                                        <span><isprint value="${RefinementValue.getDisplayValue()}"/></span>
+                                    </a>
+                                </li>
+                            <iselse>
+                                <li>
+                                    <a title="${RefinementValue.getDisplayValue()}" href="${pdict.ContentSearchResult.urlRefineAttributeValue('Search-ShowContent',RefinementValue.getID(),RefinementValue.getValue())}" >
+                                        <span class="submenu-item-thumb"><img src="${URLUtils.staticURL(URLUtils.CONTEXT_LIBRARY, '', '/recipes/icon-'+RefinementValue.getValue()+'.png')}" /></span>
+                                        <span><isprint value="${RefinementValue.getDisplayValue()}"/></span>
+                                    </a>
+                                </li>
+                            </isif>
+                            
+                    </isloop>
+                        
+                    </ul>
+                    <a href="${'#'}" class="submenu-close-button"><i class="fa fa-times"></i></a>
+                </div>
+            </li></isloop>
+        </ul>
+    </div>
+
+    <div class="featured-recipes">
+        <isslot id="recipe-landing-featured" context="global" description="Recipe Landing Featured Section" />
+    </div>
+    <ul class="recipe-categories">
+        <isloop items="${recipeCats}" var="recipeFolder" status="refStatus">
+            <isset name="recipeRef" value="${recipeFolder.getID()}" scope="page" />
+            <li class="recipe-category">
+                <a href="${dw.web.URLUtils.url('Search-ShowContent','fdid','recipeRef')}" title="${recipeFolder.getDisplayName()}" >
+                    <div class="recipe-category-image">
+                        <img src="${recipeFolder.custom.featuredImage.getUrl()}" alt="${recipeFolder.getDisplayName()}"/>
+                    </div>
+                    <h3 class="recipe-category-name"><isprint value="${recipeFolder.getDisplayName()}" encoding="off" /></h3>
+                </a>
+            </li>
+        </isloop>
+    </ul>
+
+    </iscomment>
+
+
+</div><!-- /recipe-main -->
+</isdecorate>

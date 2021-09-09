@@ -1,0 +1,167 @@
+/* ##############################################
+   # ISML Directory: component/Fakes
+   ############################################## */
+h1.page-title {padding: 10px 0 5px; }
+
+.fakescounterfeits {
+  .content-asset{
+    p{
+      color: $night-rider;
+      font-size: 1.11em;
+    }
+  }
+  .form-horizontal{
+    label{
+      float: none;
+      font-weight: normal;
+      margin-bottom: 5px;
+      text-align: left;
+      width: 100%;
+    }
+    .field-wrapper{
+      padding: 0;
+    }
+    .form-row-button{
+      margin-left:0;
+      width: auto;
+    }
+  }
+
+	span.error, 
+	div.error {
+	    margin-top: 5px;
+	}
+
+	input[type="text"], 
+	textarea {
+	    padding: 10px 10px 7px;
+	}
+	.button-fancy-large {
+	    padding: 5px 35px;
+	}
+}
+
+#fakescounterfeits-message {
+  margin-top: 25px;
+}
+
+.pt_content{
+  .content{
+    padding:0 15px;
+  }
+}
+
+
+//===========================================//
+//------------- NEWSLETTER SIGNUP -----------//
+//===========================================//
+
+.newsletter-wrap {
+  margin-top: -1.5em;
+  padding: 0 3em;
+}
+
+.newsletter-signup {
+  .newsletter-signup-form-label {
+    .content-asset {
+      display: inline;
+    }
+  }
+
+  label {
+    margin-bottom: 0;
+    width: 25%;
+    text-align: left;
+    text-transform: none;
+  }
+
+  .field-wrapper {
+    float: left;
+  }
+
+  .newsletter-inputfields {
+    padding: 2.35em 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .newsletter-header {
+    text-transform: lowercase;
+    letter-spacing: normal;
+    margin: 9px 0 0.75em 0;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  .form-row-button {
+    margin: 2em 0 4em 27%;
+  }
+
+  .confirm-signup {
+    width: 50%;
+    margin-top: 3.35em;
+    margin-bottom: 2em;
+  }
+
+  .privacy-policy {
+    text-transform: lowercase;
+    font-weight: bold;
+    
+    span {
+      color: #b4907e;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  .newsletter-signup label {
+    text-align: left;
+    width: auto;
+  }
+
+  .form-row-button {
+    margin-left: 0 !important;
+  }
+
+  #footer-email-signup {
+    margin: 2em auto 0 auto !important;
+  }
+
+
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .newsletter-signup .confirm-signup {
+    width: 86%;
+  }
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  .newsletter-signup .confirm-signup {
+    width: 95%;
+  }
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+}
+
+

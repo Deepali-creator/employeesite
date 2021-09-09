@@ -1,0 +1,172 @@
+<isif condition="${false&&pdict.resetAttributes}">
+	<isscript>
+		var ProductUtils = require('~/cartridge/scripts/product/ProductUtils.js');
+		var url = dw.web.URLUtils.url('Product-Variation', 'pid', pdict.Product.ID, 'format', 'ajax');
+		var qs = ProductUtils.getQueryString(pdict.CurrentHttpParameterMap, ["source", "uuid", "Quantity"]);
+		if (qs && qs.length>0) { url+="&"+qs; }
+	</isscript>
+	<isinclude url="${url}"/>
+<iselse/>
+	<isset name="isQuickView" value="${pdict.CurrentHttpParameterMap.source.stringValue == 'quickview' || pdict.CurrentHttpParameterMap.source.stringValue == 'cart' || pdict.CurrentHttpParameterMap.source.stringValue == 'giftregistry' || pdict.CurrentHttpParameterMap.source.stringValue == 'wishlist'}" scope="page"/>
+	<isscript>
+		var masterId = pdict.Product.isVariant() ? pdict.Product.masterProduct.ID : pdict.Product.ID;
+		var avm = pdict.Product.availabilityModel;
+		pdict.available = avm.availability>0 && pdict.Product.custom.forSale;
+	</isscript>
+	<iscomment>
+		primary details
+		=============================================================
+	</iscomment>
+
+	<h2 class="visually-hidden">Details</h2>
+	<span class="visually-hidden" itemprop="url">${URLUtils.http('Product-Show','pid', pdict.Product.ID)}</span>
+
+	<div class="product-number">
+		<iscomment>Put master ID on a data-attribute to be used by CQuotient</iscomment>
+		${Resource.msg('product.item','product',null)} <span itemprop="productID" data-masterid="${masterId}"><isprint value="${ pdict.available ? pdict.Product.ID : masterId }"/></span>
+	</div>
+
+	<iscomment>
+		reviews
+		=============================================================
+	</iscomment>
+
+	<isif condition="${!isQuickView}">
+		<isinclude template="product/components/reviewsmini"/>
+	</isif>
+
+	<iscomment>
+		view detail link for quick view
+		=============================================================
+	</iscomment>
+
+	<isif condition="${isQuickView}">
+		<!-- shown only in quick view -->
+		<a href="${URLUtils.url('Product-Show','pid', pdict.Product.ID)}" title="${pdict.Product.name}">${Resource.msg('product.viewdetails','product',null)}</a>
+	</isif>
+
+	<iscomment>
+		product pricing
+		=============================================================
+	</iscomment>
+	<isif condition="${pdict.Product.priceModel.price.available}">
+		<isset name="showTieredPrice" value="${true}" scope="page"/>
+		<isinclude template="product/components/pricing"/>
+	</isif>
+
+	<isset name="pam" value="${pdict.Product.getAttributeModel()}" scope="page"/>
+	<isset name="group" value="${pam.getAttributeGroup('mainAttributes')}" scope="page"/>
+	<isinclude template="product/components/group"/>
+
+	<iscomment>
+		variations
+		=============================================================
+	</iscomment>
+
+	<isinclude template="product/components/variations"/>
+
+	<iscomment>
+		add to cart form
+		=============================================================
+	</iscomment>
+
+	<form action="${URLUtils.continueURL()}" method="post" id="${pdict.CurrentForms.product.addtocart.dynamicHtmlName}" class="pdpForm">
+		<fieldset>
+			<iscomment>
+				product options (Must be inside form)
+				=============================================================
+			</iscomment>
+
+			<h2 class="visually-hidden">Add to cart options</h2>
+			<isinclude template="product/components/options"/>
+
+			<iscomment>
+				product promotions
+				=============================================================
+			</iscomment>
+			
+			<isset name="showTieredPrice" value="${false}" scope="page"/>
+			<isinclude template="product/components/promotions"/>
+
+			<isinclude url="${URLUtils.url('Product-AvailabilityBlock', 'pid', pdict.Product.ID, 'template', 'productaddtocart')}" />
+		</fieldset>
+	</form>
+
+	<iscomment>
+		product actions
+		=============================================================
+	</iscomment>
+
+	<div class="product-actions">
+		<isscript>
+			var Url = require('~/cartridge/scripts/util/Url');
+			pdict.url = Url.getCurrent(pdict);
+			pdict.title = pdict.Product.name;
+		</isscript>
+		
+		<iscomment> Short Description </iscomment>
+		<iscomment>
+		<isif condition="${! empty(pdict.Product.shortDescription)}">
+			<div class="product-description">
+				<isprint value="${pdict.Product.shortDescription}" encoding="off"/>
+			</div>
+		</isif>
+		</iscomment>
+		<isif condition="${! empty(pdict.Product.longDescription)}">
+			<div class="product-description-preview">
+				<div class="preview-wrap dot-ellipsis dot-height-60">
+					<isprint value="${pdict.Product.longDescription}" encoding="off"/>
+				</div>
+				<isif condition="${!isQuickView}">
+					<a class="ui-tabs-anchor view-desc-link" href="${'#tab1'}"><span>${Resource.msg('rendering.foldercontenthits.readmore', 'rendering', null)}</span></a>
+				</isif>
+			</div>
+		</isif>
+
+			<div class="retailer-info">
+	        	<isinclude url="${URLUtils.url('Product-RenderRetailerLinks', 'pid', pdict.Product.ID)}" />
+	        </div>
+
+			<div class="socialsharing">
+				<iscomment><isinclude template="components/socialsharing"/> </iscomment> 
+				<iscomment>
+					<div class="gplus-integration">
+						<!-- +1 button to render. -->
+						<div class="g-plusone" data-href="${pdict.url}" data-size="tall" data-annotation="none"></div>
+						<!-- google plus helper -->
+						<script type="text/javascript">
+						  (function() {
+						    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+						    po.src = '//apis.google.com/js/platform.js';
+						    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+						  })();
+						</script>	
+					</div>
+					<div class="facebook-integration">
+						<div id="fb-root"></div>
+						<script>(function(d, s, id) {
+						  var js, fjs = d.getElementsByTagName(s)[0];
+						  if (d.getElementById(id)) return;
+						  js = d.createElement(s); js.id = id;
+						  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5";
+						  fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));</script>
+					
+					    <!-- Facebook like button code -->
+					    <div class="fb-like" data-href="${pdict.url}" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+					</div>
+					<div class="tweet-integration">
+						<a href="${pdict.url}" class="twitter-share-button" data-count="vertical" data-size="default" data-dnt="true">Tweet</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+					</div>
+				</iscomment>
+			</div>
+		
+	</div><!--  end details block -->
+	<iscomment>This is ugly, but it works until we can get a better solution</iscomment>
+	<isif condition="${pdict.GetImages}">
+		<div id="update-images" style="display:none">
+			<isinclude template="product/components/productimages"/>
+		</div>
+	</isif>
+</isif>

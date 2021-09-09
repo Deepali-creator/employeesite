@@ -1,0 +1,13 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<div class="breadcrumb">
+    <a class="breadcrumb-element" href="${URLUtils.url('Home-Show')}" title="${Resource.msg('global.home','locale',null)}"><span>${Resource.msg('global.home','locale',null)}</span></a>
+
+	<isif condition="${!empty(pdict.Content) && !empty(pdict.Content.custom.recipeImage)}">
+		<a class="breadcrumb-element" href="${URLUtils.url('Recipe-Show')}" title=" ${Resource.msg('content.recipe.recipes','content',null)}"><span>${Resource.msg('content.recipe.recipes','content',null)}</span></a>
+	</isif>
+
+	<iscomment> SHOW CONTENT NAME </iscomment>
+	<isif condition="${!empty(pdict.Content)}">
+		<a class="breadcrumb-element" href="${URLUtils.url('Page-Show','cid',pdict.Content.ID)}" title=" ${pdict.Content.name}"><span>${pdict.Content.name}</span></a>
+	</isif>
+</div><!-- END: breadcrumb -->

@@ -1,0 +1,55 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isinclude template="util/modules"/>
+
+<isif condition="${!empty(pdict.Product)}">
+	<isscript>
+		importScript('util/ProductImageSO.ds');
+		// get all orderable cross sell recommendations (1 = cross sell)
+		var recommendations : dw.util.Iterator = pdict.Product.getOrderableRecommendations(1).iterator();
+		var recProducts : dw.util.Collection = new dw.util.ArrayList();
+
+		// display 20 recommendations at maximum
+		var maxRecs = 20, counter = 0;
+
+		while( recommendations.hasNext() )
+		{
+			var recommendation : dw.catalog.Recommendation = recommendations.next();
+			var recommendedProduct : dw.catalog.Product = recommendation.getRecommendedItem();
+
+			recProducts.add( recommendedProduct );
+
+			if(++counter >= maxRecs)
+			{
+				break;
+			}
+		}
+	</isscript>
+
+	<isif condition="${recProducts.size() > 0}">
+		<div class="recommendations cross-sell">
+			<h3 class="section-title"><isif condition="${pdict.Product.productSet}">${Resource.msg('product.recommendations.productsets','product',null)}<iselse/>${Resource.msg('product.recommendations.products','product',null)}</isif></h3>
+			<div>
+				<ul class="search-result-items recommendations-list tiles-container">
+					<iscomment>Preserve the Product instance</iscomment>
+					<isset name="mainProduct" value="${pdict.Product}" scope="pdict"/>
+
+					<isloop items="${recProducts}" var="rec" status="loopstate">
+						<isset name="Product" value="${rec}" scope="pdict"/>
+						<isset name="pName" value="${pdict.Product.name}" scope="page"/>
+						<isif condition="${loopstate.index === 4}">
+							<li class="recommendations_view-more">
+								<a class="viewMore button" href="${URLUtils.url('Product-MoreRecommendations','pid',pdict.mainProduct.ID).toString()}">${Resource.msg('global.viewmore', 'locale', null)}</a>
+							</li>
+							<isbreak/>
+						</isif>
+						<li class="grid-tile col4">
+							<isproducttile product="${rec}" showswatches="${true}" showpricing="${true}" showpromotion="${true}" showrating="${true}"/>
+						</li>
+					</isloop>
+					<iscomment>Restore the Product instance</iscomment>
+					<isset name="Product" value="${pdict.mainProduct}" scope="pdict"/>
+				</ul>
+			</div>
+		</isif>
+	</div>
+</isif>

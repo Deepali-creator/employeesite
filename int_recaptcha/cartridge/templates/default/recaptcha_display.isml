@@ -1,0 +1,9 @@
+<!--- TEMPLATENAME: recaptcha_display.isml --->
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscomment>The purpose of this template is to display the reCAPTCHA widget. </iscomment>
+<isif condition="${'reCAPTCHAEnabled' in dw.system.Site.current.preferences.custom && dw.system.Site.current.preferences.custom.reCAPTCHAEnabled && 'reCAPTCHASiteKey' in dw.system.Site.current.preferences.custom && !empty(dw.system.Site.current.preferences.custom.reCAPTCHASiteKey)}">
+<div class="g-recaptcha form-horizontal" data-sitekey="${dw.system.Site.current.preferences.custom.reCAPTCHASiteKey}"></div>
+<div class="form-caption hide recaptcha-error">
+	<span class="recaptcha_error">${Resource.msg('global.captchaerror','locale',null)}</span>
+</div>
+</isif>

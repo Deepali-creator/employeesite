@@ -1,0 +1,15 @@
+<!--- TEMPLATENAME: gtmsearch.isml --->
+<isif condition="${dw.system.Site.current.preferences.custom.GoogleAnalyticsEnabled&&!empty(dw.system.Site.current.preferences.custom.GoogleAnalyticsID)}"><script>
+if("undefined"===typeof(impressions)){
+	var impressions=[];
+}
+<isif condition="${pdict.product.priceModel.minPrice.available}">var currency="${pdict.product.priceModel.minPrice.currencyCode}";</isif>
+impressions.push({
+	'name': '${pdict.product.name}',
+	'id': '${pdict.product.ID}',
+	'price': '${pdict.product.priceModel.minPrice.value.toFixed(2)}',
+	'brand': '${pdict.product.brand}',
+	'position': impressions.length+1,
+	'category': '${!empty(pdict.product.primaryCategory) ? pdict.product.primaryCategory.displayName : !empty(pdict.product.classificationCategory) ? pdict.product.classificationCategory.displayName : pdict.product.categories.iterator().next().displayName}'
+});
+</script></isif>

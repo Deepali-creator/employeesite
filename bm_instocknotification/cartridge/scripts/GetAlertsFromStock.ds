@@ -1,0 +1,34 @@
+/**
+*
+*
+*
+*
+*
+*
+*   @input unverifiedNotifications : dw.util.List InStockNotification custom objects. Bonus points if sorted by productSKU.
+*   @output inStockNotifications : dw.util.List
+*
+*/
+importPackage( dw.system );
+importPackage( dw.catalog );
+importPackage( dw.object );
+importPackage( dw.util );
+
+function execute( args : PipelineDictionary ) : Number {
+	var verified : List = new ArrayList();
+	var product : Product = null;
+	var inStock : Boolean = false;
+	for each (var notify : CustomObject in args.unverifiedNotifications){
+		if (product == null || product.ID != notify.custom['productSKU']){
+			product = ProductMgr.getProduct(notify.custom['productSKU']);
+			var inventoryRecord : ProductInventoryRecord = product.availabilityModel.inventoryRecord;
+			inStock = product.availabilityModel.availabilityStatus == ProductAvailabilityModel.AVAILABILITY_STATUS_IN_STOCK && 
+				inventoryRecord != null && (inventoryRecord.stockLevel.available || inventoryRecord.perpetual);
+		}
+		if (inStock){
+			verified.add(notify);
+		}
+	}
+	args.inStockNotifications=verified;
+	return PIPELET_NEXT;
+}

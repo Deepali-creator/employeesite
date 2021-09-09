@@ -1,0 +1,84 @@
+.js {
+	#suggestions {
+		background-color: $dim-gray;
+		color: $gainsboro;
+		cursor: pointer;
+		padding: 0;
+		display: none;
+		position: absolute;
+		z-index: 8184;
+		div {
+			clear: both;
+			height: 23px;
+			padding: 5px;
+			overflow: hidden;
+			white-space: nowrap;
+			&:hover {
+				background-color: $very-light-gray;
+				color: $night-rider;
+			}
+			.suggestionterm {
+				float: left;
+				overflow: hidden;
+				width: 110px;
+			}
+			.hits {
+				float: right;
+				line-height: 1.8em;
+				text-align: right;
+				margin-left: 3px;
+			}
+		}
+	}
+}
+
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+  .search-suggestion-wrapper{
+    width:100%;
+    margin-left:3%;
+    .product-suggestion{
+      text-align: left;
+    }
+    .hitgroup{
+      margin:.5rem;
+      .hit{
+        margin-left:0;
+      }
+    }
+  }
+  .product-suggestion{
+    .product-image{
+      width:15%;
+    }
+    .product-details{
+      width:80%;
+    }
+  }
+  
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}

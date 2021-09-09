@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+	<field formid="name" label="register.name" type="string" mandatory="true" max-length="100" />
+	<field formid="email" label="register.email" type="string" mandatory="false" max-length="100" regexp="^.+?@[^\.]+?\..+?$" />
+	<field formid="address" label="register.address" type="string" mandatory="true" max-length="500" />
+	<field formid="postal" label="register.postcode" type="string" mandatory="true" min-length="5" max-length="10" regexp="(^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]? {1,2}[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)$)" />
+	<field formid="product" label="register.product" type="string" mandatory="true" max-length="20" />
+	<field formid="date" label="register.date" type="string" mandatory="true" max-length="50" />
+	<field formid="serial" label="register.serial" type="string" mandatory="true" max-length="50" />
+	<field formid="retailer" label="register.retailer" type="string" mandatory="true" min-length="2" max-length="50" />
+	<field formid="age" label="register.age" type="number" mandatory="false" max-length="50" />
+	<field formid="gender" label="register.gender" type="string" mandatory="false" min-length="4" max-length="6" />
+	<field formid="updates" label="register.updates" type="boolean" mandatory="false" />
+
+	<action formid="send" label="register.send" valid-form="true"/>
+</form>

@@ -1,0 +1,17 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<isinclude template="util/modules"/>
+
+<isif condition="${!empty(pdict.LastVisitedProducts)}">
+	<div class="product-listing last-visited">
+		<iscomment><h2 class="ipad">${Resource.msg('cart.lastvisited.header','checkout',null)}</h2></iscomment>
+		<h2><isprint value="${Resource.msg('cart.recentlyviewed','checkout',null)}" /></h2>
+		<ul class="search-result-items ">
+			<isloop items="${pdict.LastVisitedProducts}" var="product" begin="0" end="3" status="loopstate">
+				<li class="grid-tile col4">
+					<isinclude url="${URLUtils.url('Product-HitTile','pid',product.ID,'showswatches','false','showpricing','true','showpromotion','false','showrating','true')}">
+				</li>
+			</isloop>
+		</ul>
+	</div>
+</isif>

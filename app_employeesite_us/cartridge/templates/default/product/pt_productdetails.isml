@@ -1,0 +1,60 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+
+<head>
+
+	<isscript>
+		var pageContext = {
+			title: (pdict.Product.name || 'Product Detail'),
+			type: 'product',
+			ns:'product'
+		};
+	</isscript>
+	<isinclude template="components/header/htmlhead"/>
+
+	<isinclude template="product/pt_productdetails_UI"/>
+
+	<link rel="canonical" href="${URLUtils.url('Product-Show','pid', pdict.Product.ID)}"/>
+
+	<isinclude template="bv/display/headerincludes"/>
+</head>
+<body>
+
+	<div id="wrapper" class="pt_product-details">
+	    <isinclude template="util/modules"/>
+		<isinclude template="components/header/header"/>
+
+		<div id="main" role="main" class="full-width clearfix">
+			<div class="wrap">
+
+				<isinclude template="components/browsertoolscheck"/>
+	
+				<div id="primary" class="primary-content">
+					<isinclude template="components/productbreadcrumbs"/>
+					<iscomment>
+						<div id="product-nav-container">
+							<isinclude template="search/productnav"/>
+						</div> <!-- /product-nav-container -->
+					</iscomment>
+					<isreplace/>
+				</div><!-- /primary-content -->
+			
+			</div>
+			<iscomment>Custom product banner </iscomment>
+			<div class="product-banner">
+			    <isif condition="${!empty(pdict.Product.custom.productBanner)}">
+				    <img src="${URLUtils.httpStatic(URLUtils.CONTEXT_LIBRARY,'',pdict.Product.custom.productBanner)}" />
+			    </isif>
+			</div>
+		</div> <!-- /main -->
+
+		
+		<isinclude template="product/pt_productdetails_VARS"/>
+	</div> <!-- /pt_product-details -->
+	<isinclude template="components/footer/footer"/>
+</body>
+</html>

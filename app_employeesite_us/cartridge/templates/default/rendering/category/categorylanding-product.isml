@@ -1,0 +1,82 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="search/pt_categorylanding">
+
+	<iscache type="relative" minute="30" varyby="price_promotion"/>
+	
+	<isinclude template="util/modules"/>
+
+    <isscript>importScript("util/ProductImageSO.ds");</isscript>
+	
+	<iscomment>
+		Configured as rendering template for the general category landing page.
+		Displays two category specific slots containing static html with promotional
+		banner in the first slot and either up to four featured products or promotional
+		content in the second slot.
+	</iscomment>
+	<div class="wrap">
+		<div class="category-head-content">
+			<div class="content-slot slot-grid-header">
+				<isif condition="${!empty(pdict.ProductSearchResult.category)}">
+					<isslot id="cat-landing-slotbanner" context="category" description="Banner at the top of Category Landing Pages" context-object="${pdict.ProductSearchResult.category}"/>
+				</isif>
+			</div>
+		</div>
+
+		<div id="primary" class="primary-content full-width full-width_product category-landing category-landing_product">
+
+			<isinclude template="search/components/productsearchbreadcrumbs"/>
+
+			<div class="category-landing_top">
+				<div class="category-landing_intro category-landing_intro_product">
+					<isif condition="${!empty(pdict.ProductSearchResult.category)}">
+						<h1 class="category-name">
+							<isprint value="${pdict.ProductSearchResult.category.displayName}" />
+						</h1>
+						<iscomment> <p class="category-description">
+							<isprint value="${pdict.ProductSearchResult.category.description}" encoding="off" />
+						</p> </iscomment>
+					</isif>
+				</div>
+				<isif condition="${pdict.ProductSearchResult.category.getID() == "refurbished-products" || pdict.ProductSearchResult.category.isSubCategoryOf(dw.catalog.CatalogMgr.getCategory('refurbished-products'))}">
+					<div class="category-search">
+						<form role="search" action="${URLUtils.url('Search-Show', 'cgid', 'refurbished-products')}" method="get" name="simpleSearch">
+							<fieldset>
+								<label class="visually-hidden" for="q">${Resource.msg('global.search', 'locale', null)}</label>
+								<input type="text" id="q" name="q" value="" placeholder="${Resource.msg('global.searchrefurbished', 'locale', null)}"/>
+								<input type="hidden" name="lang" value="${pdict.CurrentRequest.locale}"/>
+								<button type="submit" class="button"><span class="visually-hidden">${Resource.msg('global.searchrefurbished', 'locale', null)}</span><i class="fa fa-search"></i></button>
+							</fieldset>
+						</form>
+					</div>
+				</isif>
+			</div>
+            <p class="category-description category-description_product">
+                <isprint value="${pdict.ProductSearchResult.category.description}" encoding="off" />
+            </p>
+
+			<isset name="subCats" value="${pdict.ProductSearchResult.category.getOnlineSubCategories()}" scope="page">
+
+			<div class="category-landing_results product-landing_results">
+				<isloop items="${subCats}" var="subcat" status="loopstate">
+					<iscomment> Rip this out and replace with my own logic </iscomment>
+					<div class="category-tile product-category-tile">
+						<div class="category-tile_link">
+                            <div class="product-tile__count">
+                                <span class="category-tile_name product-category-tile_name"><isprint value="${subcat.displayName}" encoding="off"/></span>
+                                <span>${(subcat.onlineProducts.length >= 2 || subcat.onlineProducts.length == 0) ? subcat.onlineProducts.length + " " + Resource.msg('search.items', 'search', null) : subcat.onlineProducts.length + " " + Resource.msg('search.item', 'search', null)}</span>
+                            </div>
+                            <isscript>
+                            var ProductSearchResult=new dw.catalog.ProductSearchModel();
+                            ProductSearchResult.setCategoryID(subcat.ID);
+                            ProductSearchResult.search();
+                            </isscript>
+                            <isset name="ProductSearchResult" value="${ProductSearchResult}" scope="pdict" />
+                            <isinclude template="rendering/category/categorylanding-grid" />
+						</div>
+					</div>
+				</isloop>
+			</div>
+		</div>
+		
+	</div>
+</isdecorate>

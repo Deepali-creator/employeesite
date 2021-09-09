@@ -1,0 +1,606 @@
+#PasswordResetForm,
+#NewPasswordForm {
+	fieldset {
+		position: relative;
+		max-width: 320px;
+		padding-bottom: 2em;
+	}
+
+	button {
+		margin-top: 1em;
+	}
+}
+
+.reset-request-confirm {
+	padding-bottom: 2em;
+}
+
+h1 .account-logout {
+	font-size: 0.6em;
+	float: none;
+}
+
+h1 {
+	.pt_account & {
+		font-weight: 400;
+		text-transform: none;
+		letter-spacing: initial;
+	}
+}
+
+/*
+.account-options {
+    margin: 0;
+    padding: 0;
+    li {
+      border-bottom: 1px solid $light-gray;
+      float: left;
+      list-style: none outside none !important;
+      margin: 0 0 0 4%;
+      padding: 1em 0;
+      position: relative;
+      width: 46%;
+      @media screen and (min-width: 768px) {
+        min-height: 7rem;
+      }
+      a {
+        display: block;
+        width:100%;
+        height:100%;
+        padding: 0;
+        h3{
+          margin:10px 0;
+          font-size: 1.5em;
+          font-weight:600;
+        }
+      }
+      img {
+        float:left;
+        margin-right:10px;
+      }
+      p {
+        margin: 0;
+        padding-left:60px;
+      }
+    }
+  }
+*/
+ul.account-options,
+ul.support-options {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	.option {
+		list-style: none;
+		float: left;
+		margin: 0;
+		padding: 1em 0;
+		width: 32%;
+
+		a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			padding: 0;
+			color: $black;
+
+			h3 {
+				margin: 0.625em 0;
+				font-size: 1.5em;
+				font-weight: 400;
+				padding-left: 5.5rem;
+			}
+
+			.icon {
+				display: block;
+				width: 5rem;
+				height: 5rem;
+				border-radius: 50%;
+				background-color: $light-gray;
+				text-align: center;
+				float: left;
+
+				.fa,
+				img {
+					font-size: 2.5rem;
+					position: relative;
+					top: 50%;
+					color: $cuisinart-dark-gray;
+					transform: translateY(-50%);
+					margin: 0 auto;
+				}
+
+				img {
+					width: 5rem;
+					height: 5rem;
+					margin: 0 auto;
+				}
+			}
+
+			&:hover {
+				h3, p{
+					color: $cuisinart-gray-50;
+				}
+			}
+		}
+
+		img {
+			float: left;
+			margin-right: 0.625em;
+		}
+
+		p {
+			margin: 0;
+			padding: 0 1.5em 0 5.5em;
+		}
+	}
+}
+
+ul.account-options {
+	.option {
+		a {
+			.icon {
+				background: transparent;
+				border: 1px solid $light-gray;
+
+				img {
+					float: none;
+					margin: 0 auto;
+				}
+			}
+		}
+	}
+}
+
+.return-rma-message {
+	padding: 10px;
+
+	span {
+		font-size: 14px;
+		color: $red;
+	}
+}
+
+.form-horizontal {
+	.form-caption {
+		font-size: 0.75em;
+
+		&.error-message {
+			font-size: 0.875em;
+		}
+	}
+
+	.form-row_radio {
+
+		label {
+			margin-right: 1rem;
+			float: left;
+		}
+
+		.label-inline {
+			float: left;
+
+			label {
+				position: relative;
+				top: 0.35rem;
+			}
+		}
+
+		.field-wrapper {
+			width: auto;
+		}
+	}
+}
+
+.registration-selection {
+
+	input,
+	label {
+		display: inline;
+		float: none;
+	}
+}
+
+.address-list {
+	padding: 0;
+
+	li {
+		float: left;
+		list-style: none outside none;
+		margin: 0;
+		min-height: 135px;
+		padding: 1em 0;
+		width: 30%;
+		display: inline-block;
+
+		&.default {
+			border-bottom: 1px solid $white-smoke;
+			float: none;
+			//width: auto;
+		}
+	}
+
+	.mini-address-title {
+		font-style: italic;
+		font-weight: 400;
+	}
+
+	.mini-address-location,
+	.mini-address-location address {
+		font-style: normal;
+	}
+}
+
+.payment-list {
+	overflow: hidden;
+	padding: 0;
+
+	li {
+		float: left;
+		list-style: none outside none;
+		margin: 0;
+		min-height: 110px;
+		width: 33%;
+	}
+}
+
+
+.order-history-header {
+	background: $white-smoke;
+	overflow: hidden;
+	padding: 10px;
+
+	.label {
+		font-weight: 400;
+	}
+
+	button {
+		float: right;
+	}
+
+	.order-date,
+	.order-status,
+	.order-number {
+		float: left;
+		margin: 2px 0;
+		width: 60%;
+	}
+}
+
+.order-history-items {
+	margin: 20px 0;
+}
+
+.order-history-table {
+
+	th,
+	td {
+		padding: 5px 10px;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		list-style: none outside none;
+	}
+
+	.order-shipped-to,
+	.order-items,
+	.order-total-price {
+		width: 33%;
+	}
+
+	.toggle {
+		cursor: pointer;
+		display: block;
+	}
+}
+
+.js .order-history-table .hidden {
+	display: none;
+}
+
+.return-reason-action.inactive {
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0.5s, opacity 0s linear;
+}
+
+.return-reason-action {
+	visibility: visible;
+	opacity: 1;
+	transition: visibility 0.5s, opacity 0.5s linear;
+	width: 66%;
+	float: left;
+
+	.form-row {
+		width: 45%;
+		display: inline-block;
+
+		&.option-reason {
+			margin-right: 2%;
+		}
+	}
+}
+
+#return-items {
+	float: right;
+	margin: 1em 0;
+}
+
+.trackingnumber {
+	.value {
+		word-break: break-word;
+	}
+}
+
+#order-items-form {
+	.order-totals-table {
+		min-width: 160px;
+
+		tr {
+			border-bottom: none;
+		}
+	}
+
+	.order-shipment-table {
+		.line-item-details {
+			min-width: 150px;
+		}
+	}
+}
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+	.content-asset ul.account-options li {
+		float: none;
+		width: auto;
+		margin-left: 0;
+	}
+
+	.address-list li,
+	.payment-list li {
+		float: none;
+		width: auto;
+	}
+
+	.order-history-header button {
+		font-size: 1em;
+		padding: .25em;
+	}
+
+	.page-content-tab-navigaton button {
+		width: 100%;
+	}
+
+	#order-items-form {
+		padding: 0 10px;
+
+		.item-list,
+		.order-shipment-table {
+			th.section-header {
+				white-space: normal;
+				display: none;
+			}
+
+			.mobile-table-header {
+				font-size: 16px;
+				font-weight: 400;
+				text-transform: uppercase;
+				padding: 0.5em 0 0.25em 0.5em;
+				margin-bottom: 0.5em;
+				border-bottom: 1px solid $gainsboro;
+				background: $gainsboro;
+			}
+
+			td {
+				display: block;
+				padding: 1em 0;
+			}
+		}
+
+		.item-list {
+			margin-bottom: 3em;
+		}
+
+		.order-totals-table {
+			max-width: 60%;
+
+			td {
+				display: table-cell;
+				text-align: left;
+				padding: 0.25em 0;
+			}
+		}
+
+		.order-shipment-table {
+			.shipment-item-price {
+				min-width: 100px;
+				text-align: center;
+				padding: 1em 0.5em;
+			}
+
+			td.line-item-return,
+			td.line-item-returnqty {
+				width: 50%;
+				float: left;
+			}
+
+			td.line-item-returnqty {
+				.input-text {
+					max-width: 45px;
+				}
+			}
+		}
+
+		.return-reason-action {
+			width: 100%;
+
+			.option-reason,
+			.option-action {
+				width: 48%;
+			}
+		}
+
+		#return-controls {
+			clear: both;
+		}
+	}
+
+	table.item-list .section-header,
+	.order-shipment-table .section-header {
+		background-image: none;
+	}
+
+	table.item-list {
+
+		.item-image,
+		.item-details,
+		.item-availability,
+		.item-dashboard {
+			display: inline-block;
+		}
+
+		.item-image {
+			width: 30%;
+		}
+
+		.item-details {
+			width: 50%;
+		}
+
+		.item-availability,
+		.item-dashboard {
+			width: 97%;
+		}
+
+		.delete-registry {
+			text-align: center;
+		}
+
+		.pt_wish-list & {
+			.item-image {
+				width: 35%;
+			}
+
+			.item-details {
+				width: 60%;
+			}
+		}
+	}
+
+	.list-table-header {
+		padding: 1em !important;
+
+		.button {
+			display: block;
+			margin: 20px 0;
+			width: 196px;
+		}
+
+		p {
+			display: none;
+		}
+
+		button {
+			display: block;
+			width: 260px;
+		}
+	}
+
+	ul.account-options,
+	ul.support-options {
+		display: block;
+
+		.option {
+			width: 100%;
+
+			a {
+				h3 {
+					margin: 0 0 0.3125em;
+					padding-left: 5.75rem;
+					font-size: 1.25em;
+				}
+			}
+
+			p {
+				margin: 0;
+				padding: 0 0 0 6.6125em;
+				font-size: 0.875rem;
+			}
+		}
+	}
+
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+	#order-items-form {
+		.item-list {
+			th.section-header {
+				white-space: normal;
+			}
+		}
+	}
+
+	ul.account-options,
+	ul.support-options {
+		.option {
+			margin-bottom: 0.625em;
+
+			a {
+				display: flex;
+				flex-direction: column;
+
+				h3 {
+					margin: 0.3125em 0 0.3125em;
+					padding-left: 0;
+					text-align: center;
+					min-height: 3.125rem;
+				}
+
+				.icon {
+					float: none;
+					margin: 0 auto;
+				}
+			}
+
+			p {
+				margin: 0;
+				padding: 0;
+				text-align: center;
+			}
+		}
+	}
+
+	ul.account-options {
+		.option {
+			a {
+				h3 {
+					min-height: 0;
+				}
+			}
+		}
+	}
+
+}

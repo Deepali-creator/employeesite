@@ -1,0 +1,158 @@
+.pt_wish-list {
+	.list-table-header {
+		background: url("../images/interface/icon-double-line-header.png") repeat-x scroll left top $white-smoke;
+		overflow: hidden;
+		padding: 2em;
+		p {
+			color: $nobel;
+			float: right;
+			margin: 0;
+			overflow: hidden;
+			width: 40%;
+		}
+	}
+	.primary-content .list-table-header h2 {
+		float: left;
+	}
+	.item-image{
+	  width:150px;
+	  img{
+	    width:100%;
+	  }
+	}
+	
+}
+
+.list-share {
+	@extend %clearfix;
+	border-top: 1px solid $gainsboro;
+	border-bottom: 1px solid $gainsboro;
+	padding: 2em 0;
+	.share-option {
+		box-sizing: border-box;
+		display: block;
+		margin-bottom: 0.5rem;
+		float: right;
+		.fa{
+		  display:inline-block;
+		  font-size:2em;
+		  vertical-align:middle;
+		  margin:-0.125em 0.3125em 0 0;
+		}
+	}
+	.share-options {
+		font-size: 1.7em;
+		display:block;
+		float: left;
+		margin:0 0 0.5em;
+		vertical-align:top;
+		.share-title {
+			display: inline;
+		}
+	}
+	.list-title {
+		float: left;
+	}
+	.print-page {
+		float: right;
+		margin-top:8px;
+	}
+	.share-link {
+		cursor: pointer;
+	}
+	.share-link-content {
+		display: none;
+		&.active {
+			display: block;
+			float: left;
+		}
+		span.label{
+		  font-weight:bold;
+		  padding-right:5px;
+		}
+	}
+}
+.option-priority{
+  label{
+    span{
+      margin-right:5px;
+    }
+  }
+}
+.event-info {
+	margin: 1em;
+}
+
+.wishlist-search,
+.registry-search {
+	.form-row {
+		clear: none;
+		margin: .5rem 0 .5rem 1%;
+		float: left;
+		width: 32.666666667%;
+		&:nth-of-type(3n + 1) {
+			margin-left: 0;
+		}
+	}
+	.form-row-button {
+		margin-left: 0;
+	}
+  .button-find{
+    margin-bottom:10px;
+  }
+  input[type="text"] {
+  	line-height: normal;
+  }
+}
+.form-horizontal{
+  label.editAddressLabel{
+    margin-top:0;
+    margin-bottom:5px;
+  }
+}
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  .wishlist-search,
+  .registry-search{
+    .form-row{
+      width:100%;
+      margin:0.3125em 0;
+    }
+  }
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .wishlist-search,
+  .registry-search{
+    .form-row{
+      width:80%;
+    }
+  }
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  .pt_wish-list {
+    td.item-dashboard{
+      width:50%;
+    }
+    .item-image{
+      width:100px;
+    }
+    
+  }
+}

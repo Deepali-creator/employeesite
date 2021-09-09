@@ -1,0 +1,138 @@
+// mixins
+
+// colors
+// names taken from http://www.color-blindness.com/color-name-hue/
+$black: #000;
+$cerulean: #00629b;
+$charcoal: #424242;
+// $citrus: #84bd00;
+$citrus: #0954ab;
+$dark-gray: #58585A;
+$dolphin: #717174;
+$medium-gray: #a6a8aa;
+$light-gray: #cacacc;
+$dim-gray: #666;
+$gainsboro: #e0e0e0;
+$islamic-green: #019328;
+$mortar: #5A5A5A;
+$night-rider: #333;
+$nobel: #999;
+$rain-forest: #64772d;
+$sangria: #990000;
+$stark-white: #f1e9c9;
+$teal: #008578;
+$tutu: #faeded;
+$very-light-gray: #ccc;
+$white-smoke: #E9E9E9;
+$white: #fff;
+$zumthor: #ccd0d3;
+$red: #ff0000;
+$error-pink: #faeded;
+$staryellow: #f1e42a;
+$brown: #b4907e;
+
+$swatch-types: black #000000, beige #f5f5dc, blue blue, purple purple, red red, brown #783201, green green, grey #8f979d, pink #fe249a, orange orange, white #ffffff, yellow #ffff00, navy navy;
+
+// fonts
+
+$helveticaNeueUltraLight:'HelveticaNeueW01-UltLt';
+$helveticaNeueUltraLightItalic:'HelveticaNeueW01-UltLtI';
+$helveticaNeueThin:'HelveticaNeueW01-Thin';
+$helveticaNeueThinItalic:'HelveticaNeueW01-ThinIt';
+$helveticaNeueLight45:'HelveticaNeueW01-45Ligh';
+$helveticaNeueLight46:'HelveticaNeueW01-46Ligh';
+$helveticaNeueRegular:'HelveticaNeueW01-55Roma';
+$helveticaNeueRegularItalic:'HelveticaNeueW01-56It';
+$helveticaNeueMedium65:'HelveticaNeueW01-65Medi';
+$helveticaNeueMedium66:'HelveticaNeueW01-66Medi';
+$helveticaNeueBold75:'HelveticaNeueW01-75Bold';
+$helveticaNeueBold76:'HelveticaNeueW01-76Bold';
+$helveticaNeueHeavy85:'HelveticaNeueW01-85Heav';
+$helveticaNeueHeavy86:'HelveticaNeueW01-86Heav';
+$helveticaNeueBlack:'HelveticaNeueW01-95Blac';
+$helveticaNeueBlackItalic:'HelveticaNeueW01-BlackI';
+$helveticaNeueBoldOutline:'HelveticaNeueW01-BdOutl';
+
+/* Font Variations */
+/* 
+font-family:'HelveticaNeueW01-UltLtC_673371';
+font-family:'HelveticaNeueW01-UltLtC_673374';
+font-family:'HelveticaNeueW01-ThinCn_673383';
+font-family:'HelveticaNeueW01-ThinCn_673386';
+font-family:'HelveticaNeueW01-47LtCn_692686';
+font-family:'HelveticaNeueW01-47LtCn_692689';
+font-family:'HelveticaNeueW01-57Cn';
+font-family:'HelveticaNeueW01-57CnOb';
+font-family:'HelveticaNeueW01-67MdCn_692710';
+font-family:'HelveticaNeueW01-67MdCn_692713';
+font-family:'HelveticaNeueW01-77BdCn_692722';
+font-family:'HelveticaNeueW01-77BdCn_692725';
+font-family:'HelveticaNeueW01-87HvCn_692734';
+font-family:'HelveticaNeueW01-87HvCn_692737';
+font-family:'HelveticaNeueW01-97Blac';
+font-family:'HelveticaNeueW01-BlackC';
+font-family:'HelveticaNeueW01-XBlkCn_710276';
+font-family:'HelveticaNeueW01-XBlkCn_710279';
+font-family:'HelveticaNeueW01-UltLtE_710282';
+font-family:'HelveticaNeueW01-UltLtE_710285';
+font-family:'HelveticaNeueW01-ThinEx_710288';
+font-family:'HelveticaNeueW01-ThinEx_710291';
+font-family:'HelveticaNeueW01-LtExt';
+font-family:'HelveticaNeueW01-LtExtO';
+font-family:'HelveticaNeueW01_53 Ext';
+font-family:'HelveticaNeueW01-ExtObl';
+font-family:'HelveticaNeueW01-MdExt';
+font-family:'HelveticaNeueW01-MdExtO';
+font-family:'HelveticaNeueW01-BdExt';
+font-family:'HelveticaNeueW01-BdExtO';
+font-family:'HelveticaNeueW01-HvExt';
+font-family:'HelveticaNeueW01-HvExtO';
+font-family:'HelveticaNeueW01-BlkExt_710327';
+font-family:'HelveticaNeueW01-BlkExt_710330';
+font-family:'Neue Helvetica W01_29 C1289686';
+font-family:'Neue Helvetica W01_39 C1289693';
+font-family:'Neue Helvetica W01_49 Cm Light';
+font-family:'Neue Helvetica W01_59 Comp';
+font-family:'Neue Helvetica W01_69 C1289704';
+font-family:'Neue Helvetica W01_79 C1289709';
+font-family:'Neue Helvetica W01_89 Cm Heavy';
+font-family:'Neue Helvetica W01_99 Cm Black';
+*/
+
+$sans-serif: Arial, Helvetica, sans-serif;
+$sans-serif-alt: Lato, sans-serif;
+$serif: Crete Round, serif;
+$fontawesome: FontAwesome;
+$raleway: Raleway, $sans-serif;
+
+// flag-icon-css
+$flag-icon-css-path: '../lib/flag-icon-css/flags';
+    
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+}
+
+
+

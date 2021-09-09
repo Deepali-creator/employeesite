@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobs xmlns="http://www.demandware.com/xml/impex/jobs/2015-07-01">
+    <job job-id="AssignProductsPartsCategoryCSV" priority="0">
+        <description>Converts a CSV information to XML to assign products to single category.
+CSV structure: Product ID,weight,length,width,height,product display name,full_description,meta_keywords,meta_description,page_title,price,seo_name</description>
+        <parameters/>
+        <flow>
+            <context site-id="uk-babylisspro"/>
+            <step step-id="AssignProductsPartsCategoryCSV" type="ExecuteScriptModule" enforce-restart="false">
+                <description/>
+                <parameters>
+                    <parameter name="ExecuteScriptModule.Module">app_babylisspro_uk/cartridge/scripts/impex/AssignProductsPartsCategoryCSV.js</parameter>
+                    <parameter name="ExecuteScriptModule.FunctionName">AssignProducts</parameter>
+                    <parameter name="ExecuteScriptModule.Transactional">false</parameter>
+                    <parameter name="csvFileName">products.csv</parameter>
+                    <parameter name="catalogID">storefront-uk-sparesbabyliss</parameter>
+                </parameters>
+            </step>
+        </flow>
+        <rules/>
+        <triggers>
+            <run-once enabled="false">
+                <date>2018-03-07Z</date>
+                <time>10:17:32.000Z</time>
+            </run-once>
+        </triggers>
+    </job>
+
+</jobs>

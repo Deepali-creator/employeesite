@@ -1,0 +1,168 @@
+h1, .h1 {
+	font-size: 2em;
+	font-weight: 400;
+	margin: 0.625rem 0 14px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	&.page-title{
+	  background: $white;
+	  padding:10px;
+	}
+	#secondary & {
+	  font-size: 1.75em;
+    font-style: italic;
+    font-weight: 400;
+    margin: 0 0 14px;
+	}
+}
+
+h2, .h2 {
+	font-size: 1.3em;
+	text-transform: uppercase;
+}
+
+h3, .h3 {
+	font-size: 1.15em;
+}
+h4, .h4 {
+  font-size: 1.083em;
+  margin:0;
+}
+.subtext{
+  font-size: 0.917em;
+}
+
+.primary-content {
+	dl {
+		clear: both;
+		overflow: hidden;
+		dt {
+			clear: both;
+			float: left;
+			margin: 2% 0 0;
+			min-width: 15%;
+		}
+		dd {
+			float: left;
+			margin: 2% 0 0;
+			padding: 0 0 0 5%;
+		}
+	}
+}
+
+.col-1,
+.col-2 {
+  float:left;
+	margin: 4px 0;
+	width: 48%;
+}
+
+.col-2 {
+	float: right;
+}
+
+.content-header {
+	font-size: 1.75em;
+	font-style: italic;
+	font-weight: 400;
+	margin: 0 0 14px !important;
+	span {
+		font-size: 0.75em;
+		font-style: normal;
+		font-weight: 400;
+	}
+}
+
+.section-header {
+	border-top: 1px solid $gainsboro;
+	font-size: 1.1em;
+	font-weight: 700;
+	margin: 0 0 10px 0;
+	padding: 0.5em 1.25% 0.5em;
+	position: relative;
+	text-transform: uppercase;
+	width: 100%;
+	.ie7 & {
+		width: 94%;
+	}
+	span {
+		font-size: 12px;
+		font-weight: 400;
+		position: relative;
+		text-transform: uppercase;
+		padding: 0 .5em;
+		em {
+			color: $red;
+		}
+	}
+}
+
+
+.section-header-note {
+	font-size: 0.9em;
+	font-weight: 400;
+	text-transform: none;
+}
+
+.back {
+	display: block;
+	margin: 0 0 10px;
+}
+.button-fancy-large {
+    //background: rgba(0, 0, 0, 0) linear-gradient(to bottom, $white 0%, $stark-white 100%) repeat scroll 0 0;
+    background: $brown;
+    border: 1px solid $brown;
+    color:$white;
+    font-size: 15px;
+    font-weight: 400;
+    //border-radius: 4px;
+    height: 37px;
+    padding: 3px 35px;
+    transition:all 0.3s ease;
+    &:hover {
+    	background: $dark-gray;
+    	border-color: $dark-gray;
+    }
+}
+
+
+    
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+  h1, .h1 {
+    margin: 0.625rem 0;
+  }
+  
+  .col-1,
+  .col-2 {
+    float: none;
+    width: 100%;
+  }
+  
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+}
+
+
+

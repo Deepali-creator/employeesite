@@ -1,0 +1,12 @@
+<!--- TEMPLATENAME: gtmcart.isml --->
+<isif condition="${!empty(pdict.ProductLineItem)}">
+<script>
+(function(){
+	var GTMproducts=[];<isset name="pli" value="${pdict.ProductLineItem}" scope="page"/>
+	<isinclude template="components/google/gtmpli"/>
+	dataLayer.push({
+		'event': 'addToCart',
+		'ecommerce': {'add': {'products': GTMproducts } }
+	});
+})();</script>
+</isif>

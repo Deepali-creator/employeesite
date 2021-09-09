@@ -1,0 +1,340 @@
+@import "nav";
+@import "menu_utility";
+@import "country_selector";
+
+#header{
+  background: $white;
+}
+
+.top-banner {
+  position: relative;
+  min-height:95px;
+  .header-left{
+    display:block;
+    float:left;
+    min-height:95px;
+    width: 22.60417%;
+  }
+  .header-right{
+    display:block;
+    float:right;
+    width: 76.77084%;
+    .header-right-top{
+      display:block;
+      float:right;
+      width:100%;
+      padding:5px 0 0;
+      #header-social{
+        float:right;
+        ul{
+          display:inline-block;
+          margin:5px 0;
+          padding:0;
+          overflow:hidden;
+          list-style-type:none;
+          float:left;
+          li{
+            display:block;
+            width:30px;
+            height:30px;
+            margin-right:5px;
+            list-style-type:none;
+            float:left;
+            border-radius:15px;
+            &:last-child{
+              margin-right:0;
+            }
+            a{
+              display:block;
+              width:100%;
+              height:100%;
+              background: url('../images/interface/icon-sprite-footer@2x.png');
+              background-size:120px 48px;
+              border-radius:15px;
+              &.facebook{
+                background-color: #3b5998;
+                background-position: 3px 3px;
+                &:hover{
+                  background-position:3px -21px;
+                }
+              }
+              &.twitter{
+                background-color: #00aced;
+                background-position: -21px 3px;
+                &:hover{
+                  background-position: -21px -21px;
+                }
+              }
+              &.youtube{
+                background-color: #bb0000;
+                background-position: -45px 3px;
+                &:hover{
+                  background-position: -45px -21px;
+                }
+              }
+              &.instagram{
+                background-color: #b18f74 /*blue #517fa4 */;
+                background-position: -69px 3px;
+                &:hover{
+                  background-position: -69px -21px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .header-right-bottom{
+      display:block;
+      float:right;
+      width:100%;
+      padding: 5px 0 0;
+      .header-promo-area{
+        width:auto;
+        float:right;
+        text-align: right;
+        margin-right: 10px;
+        padding: 0.80125em 0;
+        p{
+          padding:0;
+          margin:0;
+        }
+        .subscript{
+          font-size:11px;
+        }
+      }
+    }
+  }
+}
+
+.primary-logo {
+  z-index: 1;
+  margin:0;
+  a{
+    display:block;
+  }
+  img{
+    width:217px;
+    float:left;
+    display:block;
+    margin: 23px 0px;
+  }
+}
+
+.header-banner {
+  display:block;
+  .cookie-policy-warning{
+    background: $black;
+    padding:5px 0;
+    text-align:center;
+    color: #e6e6e6;
+    font-size:11px;
+    line-height:1.8em;
+    display:none;
+    p{
+      display:inline;
+      margin:0;
+    }
+    a.close-button{
+      background: #D6244F;
+      color: #e6e6e6;
+      padding:3px 5px;
+      margin-left:10px;
+      border-radius:3px;
+      &:hover{
+        background: #951937;
+      }
+    }
+    a.learn-more{
+      color: #e6e6e6;
+      margin-left:10px;
+    }
+  }
+}
+
+.header-search {
+  color: $dark-gray;
+  background-color: #e2e2e2;
+  width: 200px;
+  float: right;
+  input[type="text"] {
+    border-right: 0;
+    display: block;
+    padding: 0 10px;
+    width: 82%;
+    font-size: 13px;
+    float:left;
+    color: $dark-gray;
+    outline:none;
+    height:30px;
+    background:transparent;
+    border:none;
+    &:focus{
+    	outline:none;
+    	box-shadow:none;	
+    }
+  }
+  
+  button {
+    color: $dark-gray;
+    float:left;
+    width:18%;
+    padding: 0;
+    transition:none;
+    height:30px;
+    background: transparent;
+    border:none;
+    &:hover{
+    	.fa{
+    		color: $brown;	
+    	}	
+    }
+    i {
+      font-size: 1.4em;
+      color: $dark-gray;
+    }
+  }
+}
+
+/*** Hide Fonts.com badge ***/
+#mti_wfs_colophon{
+  display:none !important;
+}
+
+
+    
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  
+  #header {
+    height: auto;
+    padding: 0;
+    .top-banner{
+      min-height:inherit;
+      .header-left{
+        width: 56.1%;
+        min-height:0;
+      }
+      .header-right{
+        float:none;
+        width:auto;
+        .header-right-top{
+          float:left;
+          width:26.9%;
+          padding:0;
+          .menu-utility-user{
+            display:none;
+          }
+          #header-social{
+            display:none;
+          }
+        }
+        .header-right-bottom{
+          text-align:center;
+          padding:5px 0;
+          display:none;
+            .header-promo-area{
+              display:none;
+            }
+        }
+      }
+    }
+  }
+  
+  .header-search{
+    display: inline-block;
+    float: none;
+    width: 90%;
+  }
+  
+  .primary-logo img{
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 13px 16px 0;
+    width:190px;
+    float:none;
+  }
+  
+  button.mobile-search-toggle{
+    float: right;
+    border-radius: 0;
+    background: none;
+    padding: 9px 0 9px 0;
+    line-height: inherit;
+    font-size: 21px;
+    border:none;
+    i{
+      padding:8px 7px;
+      color:$dark-gray;
+    }
+    &:focus,
+    &:active{
+      outline:none;
+      .fa{
+      		
+      }
+    }
+  }
+  
+  
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+  #header .top-banner{
+    padding-bottom:10px;
+    .header-left{
+      width: 65.1%;
+    }
+    .header-right .header-right-top{
+      width: 17.9%;
+    }
+  }
+  .primary-logo{
+    img{
+      width:217px;
+    }
+  }
+  .header-search{
+    button{
+      width:10%;
+    }
+    input[type="text"]{
+      width:90%;
+    }
+  }
+  
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+  .top-banner{
+     .header-left{
+       width: 30.60417%;
+     }
+     .header-right{
+       width: 68.77084%;
+       .header-right-bottom{
+         display:block !important;
+       }
+     }
+   } 
+  
+  
+}
+
+

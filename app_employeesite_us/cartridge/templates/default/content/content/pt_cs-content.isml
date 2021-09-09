@@ -1,0 +1,35 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<!doctype html>
+<!--[if lt IE 7]> <html class="ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+
+<head>
+
+	<isinclude template="util/modules"/>
+
+	<isinclude template="components/header/htmlhead"/>
+	<isinclude template="content/content/pt_content_UI"/>
+
+	<iscomment>Add template-specific header information here.</iscomment>
+
+</head>
+
+<body>
+
+	<div id="wrapper" class="pt_content ${pdict.CurrentHttpParameterMap.cid.stringValue}">
+		<isinclude template="components/header/header"/>
+
+		<div id="main" role="main" class="cs-main clearfix">
+			<isreplace/>
+		</div>
+
+
+		
+		<isinclude template="content/content/pt_content_VARS"/>
+
+	</div>
+	<isinclude template="components/footer/footer"/>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!--- TEMPLATENAME: compatibleproducts.isml --->
+<isif condition="${'ajax'===pdict.CurrentHttpParameterMap.format.stringValue}">
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscache type="relative" hour="24" />
+<isscript>importScript("util/ProductImageSO.ds");</isscript>
+</isif>
+<isloop items="${pdict.CompatibleProducts}" var="modelID" status="modelstatus">
+	<isset name="model" value="${dw.catalog.ProductMgr.getProduct(modelID)}" scope="page" />
+	<iscomment><isif condition="${!model.onlineFlag}"><iscontinue/></isif></iscomment>
+	<isif condition="${model.onlineFlag}">
+		<li class="grid-tile col4">
+			<div class="product-tile">
+				<div class="product-image">
+					<a href="${URLUtils.url('Product-Show', 'pid', modelID)}" class="thumb-link">
+						<img src="${new ProductImage('medium', model, 0 ).getURL()}" />
+					</a>
+				</div>
+				<div class="product-name">
+					<a href="${URLUtils.url('Product-Show', 'pid', modelID)}" class="name-link">
+						<isprint value="${model.name}" />
+					</a>
+				</div>
+				<div class="product-number">
+					<span><isprint value="${modelID}" /></span>
+				</div>
+			</div>
+		</li>
+	<iselse/>
+		<iscomment>Remove links if product not online</iscomment>
+		<li class="grid-tile ">
+			<div class="product-tile">
+				<div class="product-image">
+					<span class="thumb-link">
+						<img src="${new ProductImage('medium', model, 0 ).getURL()}" />
+					</span>
+				</div>
+				<div class="product-name">
+					<span href="" class="name-link">
+						<isprint value="${model.name}" />
+					</span>
+				</div>
+				<div class="product-number">
+					<span><isprint value="${modelID}" /></span>
+				</div>
+			</div>
+		</li>
+	</isif>
+</isloop>

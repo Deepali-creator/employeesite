@@ -1,0 +1,70 @@
+.store-locator-header {
+	background: url("../images/interface/icon-double-line-header.png") repeat-x scroll left top transparent;
+	font-size: 1.75em;
+	font-style: italic;
+	font-weight: 400;
+	margin: 20px 0 0;
+	padding: 20px 0;
+}
+
+.store-information {
+	background: none repeat scroll 0 0 $gainsboro;
+	border-bottom: 1px solid $white;
+}
+
+.store-name {
+	font-weight: bold;
+	margin: 0 0 10px;
+}
+
+.store-map {
+	border-bottom: 1px solid $gainsboro;
+}
+
+.store-locator-details {
+	float: left;
+	width: 44%;
+	img {
+		max-width: 100%;
+	}
+	h1, p {
+		margin: 0.25em 0;
+	}
+}
+
+.store-locator-details-map {
+	float: right;
+	width: 50%;
+	img {
+		max-width: 100%;
+	}
+}
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+   #preferred-store-panel input[type="text"] {
+    width: 49.5966%;
+  }
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}
+

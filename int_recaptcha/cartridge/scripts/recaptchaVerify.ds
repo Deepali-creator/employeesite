@@ -1,0 +1,26 @@
+/**
+* 
+*    @input recaptchaResponse : String response from widget
+*    @input ip : String IP Address of remote widget request
+*	 @output svcConfig : dw.svc.Service the service configuration object.
+*    @output httpResult : dw.svc.Result the http result object.
+*
+*/
+importPackage( dw.system );
+importPackage( dw.svc );
+importPackage( dw.net );
+importPackage( dw.io );
+
+function execute( args : PipelineDictionary ) : Number {
+	var service : Service = ServiceRegistry.get("recaptchaVerify");
+	var log : Log = Logger.getLogger("recaptcha");
+	var sitesecret : String = dw.system.Site.getCurrent().getCustomPreferenceValue("reCAPTCHASecret");
+	var response : Result = service.call({'secret' : sitesecret, 'response' : args.recaptchaResponse, 'remoteip' : args.ip});
+    if ( response == null || service == null ){
+    	return PIPELET_ERROR;
+    } else if (!response.object['success']){
+    	log.error("reCAPTCHA error - " + response.object);
+    	return PIPELET_ERROR;
+    }
+    return PIPELET_NEXT;
+}

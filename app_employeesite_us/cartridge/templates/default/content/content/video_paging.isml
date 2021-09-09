@@ -1,0 +1,20 @@
+<iscache type="relative" hour="24"/>
+<isset name="nextPageURL" value="${pdict.VideoPaging.count > pdict.VideoPaging.end+1 ? pdict.VideoPaging.appendPaging(URLUtils.url('Video-Video_Paging','folder_id',pdict.CurrentHttpParameterMap.folder_id.value),pdict.VideoPaging.end+1).toString() : ''}" scope="page" />
+<isloop items="${pdict.VideoPaging.pageElements}" var="video" status="videoStatus">
+	<isscript>
+		var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+		var videoUrlParts = video.custom.featuredVideo.match(regExp);
+		var thumbnail : String = "https://img.youtube.com/vi/" + videoUrlParts[7] + "/mqdefault.jpg";
+	</isscript>
+	<li class="grid-tile" data-next-page="${nextPageURL}">
+		<div class="video-tile" >
+			<a href="#" class="videoView" data-code="${videoUrlParts[7]}">
+				<div class="video-thumbnail-container">
+					<img class="video-tile_image" src="${thumbnail}" />
+					<i class="fa fa-youtube-play"></i>
+				</div>
+				<h4 class="video-tile_name"><isprint value="${video.name}" encoding="off" /></h4>
+			</a>
+		</div>
+	</li>
+</isloop>

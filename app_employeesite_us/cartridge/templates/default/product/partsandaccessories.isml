@@ -1,0 +1,24 @@
+<!--- TEMPLATENAME: partsandaccessories.isml --->
+<isif condition="${'ajax'===pdict.CurrentHttpParameterMap.format.stringValue}">
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscache type="relative" hour="24" />
+<isscript>importScript("util/ProductImageSO.ds");</isscript>
+</isif>
+<isloop items="${pdict.Accessories}" var="partID" status="partstatus">
+	<isset name="part" value="${dw.catalog.ProductMgr.getProduct(partID)}" scope="page" />
+	<isif condition="${!part.onlineFlag}"><iscontinue/></isif>
+	<li class="grid-tile col4">
+		<div class="product-tile">
+			<div class="product-image">
+				<a href="${URLUtils.url('Product-Show', 'pid', partID)}" class="thumb-link">
+					<img src="${new ProductImage('medium', part, 0 ).getURL()}" />
+				</a>
+			</div>
+			<div class="product-name">
+				<a href="${URLUtils.url('Product-Show', 'pid', partID)}" class="name-link">
+					<isprint value="${part.name}" />
+				</a>
+			</div>
+		</div>
+	</li>
+</isloop>

@@ -1,0 +1,98 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isif condition="${pdict.Product.master && pdict.CurrentVariationModel}">
+    <isset name="imageProduct" value="${pdict.CurrentVariationModel}" scope="page"/>
+<iselseif condition="${pdict.Product.variant && !empty(pdict.Product.getVariationModel())}">
+    <isset name="imageProduct" value="${pdict.Product.getVariationModel()}" scope="page"/>
+<iselse/>
+    <isset name="imageProduct" value="${pdict.Product}" scope="page"/>
+</isif>
+<isscript>importScript("util/ProductImageSO.ds");</isscript>
+<isset name="image" value="${new ProductImage('large', imageProduct, 0)}" scope="page"/>
+<isset name="largeImages" value="${image.getAllImages()}" scope="page"/>
+
+<isset name="imageSmall" value="${new ProductImage('small', imageProduct, 0)}" scope="page"/>
+<isset name="imageMedium" value="${new ProductImage('medium', imageProduct, 0)}" scope="page"/>
+<isset name="imageHiRes" value="${new ProductImage('hi-res', imageProduct, 0)}" scope="page"/>
+<isset name="hiResImages" value="${imageHiRes.getAllImages()}" scope="page"/>
+
+<isif condition="${!empty(image) && image.getMediaFile().exists()}">
+	<isset name="imageUrl" value="${image.getURL()}" scope="page"/>
+	<isset name="imageAlt" value="${image.getAlt()}" scope="page"/>
+	<isset name="imageTitle" value="${image.getTitle()}" scope="page"/>
+<iselse/>
+	<isset name="imageUrl" value="${URLUtils.staticURL('/images/noimagelarge.png')}" scope="page"/>
+	<isset name="imageAlt" value="${pdict.Product.name}" scope="page"/>
+	<isset name="imageTitle" value="${pdict.Product.name}" scope="page"/>
+</isif>
+
+<isif condition="${!empty(imageHiRes) && !empty(imageHiRes.getMediaFile()) && imageHiRes.getMediaFile().exists()}">
+	<isset name="imageUrlHiRes" value="${imageHiRes.getURL()}" scope="page"/>
+<iselse/>
+	<isset name="imageUrlHiRes" value="${URLUtils.staticURL('/images/noimagelarge.png')}" scope="page"/>
+</isif>
+
+<div class="product-primary-image">
+	<h2 class="visually-hidden">Images</h2>
+	<isif condition="${!empty(imageHiRes)}">
+		<isset name="hi_res" scope="page" value="${imageUrlHiRes}" />
+		<isset name="href" scope="page" value="${hi_res}" />
+	<iselse/>
+		<isset name="hi_res" scope="page" value="${''}" />
+		<isset name="href" scope="page" value="${'name=product_detail_image'}" />
+	</isif>
+	
+	<iscomment>RAP-2997, if the product name is missing from the image title, add it in</iscomment>
+	<isif condition="${!empty(imageTitle) && imageTitle.charAt(0) == ','}">
+		<isset name="imageTitle" value="${pdict.Product.name + imageTitle}" scope="page"/>
+	</isif>
+	<isif condition="${isQuickView}">
+		<img itemprop="image" class="primary-image" src="${imageUrl}" alt="${imageAlt}"/>
+	<iselse/>
+		<a href="${href}" class="product-image main-image" title="${imageTitle}">
+			<img itemprop="image" class="primary-image" src="${imageUrl}" alt="${imageAlt}"/>
+		</a>
+		<span class="product-image-zoomLink">
+			<span class="icon"></span>
+		</span>
+	</isif>
+</div>
+
+<isset name="largeImagesSize" value="${largeImages.length}" scope="page"/>
+<isset name="mediumImagesSize" value="${imageMedium.getAllImages().length}" scope="page"/>
+<isset name="smallImagesSize" value="${imageSmall.getAllImages().length}" scope="page"/>
+<isset name="noOfImages" value="${largeImagesSize > smallImagesSize ? smallImagesSize : largeImagesSize}" scope="page"/>
+<isif condition="${smallImagesSize > 0}">
+	<div id="thumbnails" class="product-thumbnails">
+		<iscomment><h2>${Resource.msg('product.productthumbnails.title','product',null)}</h2></iscomment>
+		<div class="thumbs-wrap">
+		<ul>
+			<isloop items="${imageMedium.getAllImages()}" var="img" status="imgMdStatus">
+				<iscomment>we only show the smallest of large or small images, there is 1-1 correspondence</iscomment>
+				<isif condition="${imgMdStatus.count > noOfImages}">
+					<isbreak/>
+				</isif>
+				<isset name="lgImage" value="${largeImages[imgMdStatus.index.toFixed(0)]}" scope="page"/>
+				<isif condition="${!empty(imageHiRes) && hiResImages.length>imgMdStatus.index}">
+					<isset name="hi_res" scope="page" value="${hiResImages[imgMdStatus.index.toFixed(0)].getURL()}" />
+					<isset name="href" scope="page" value="${'href='+hi_res+' target=_self'}" />
+				<iselse/>
+					<isset name="hi_res" scope="page" value="${''}" />
+					<isset name="href" scope="page" value="${'name=product_detail_image'}" />
+				</isif>
+
+				<iscomment>RAP-2997, if the product name is missing from the image title, add it in</iscomment>
+				<isset name="imageTitle" value="${img.title}" scope="page"/>
+				<isif condition="${!empty(imageTitle) && imageTitle.charAt(0) == ','}">
+					<isset name="imageTitle" value="${pdict.Product.name + imageTitle}" scope="page"/>
+				</isif>
+
+				<li class="thumb${imgMdStatus.first ? ' selected' : ''}">
+					<a ${href} class="thumbnail-link">
+						<img class="productthumbnail" src="${img.getURL()}" alt="${img.getAlt()}" data-lgimg='{"url":"${lgImage.getURL()}", "title":"<isprint value="${lgImage.getTitle()}" encoding="on"/>", "alt":"<isprint value="${lgImage.getAlt()}" encoding="on"/>", "hires":"${hi_res}"}'/>
+					</a>
+				</li>
+			</isloop>
+		</ul>
+	  </div><!-- /thumbs-wrap -->
+	</div>
+</isif>

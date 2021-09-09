@@ -1,0 +1,84 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<iscomment>This page must be cached to prevent performance problems</iscomment>
+<iscache type="relative" hour="24"/>
+
+<iscomment>410 is one of the few error codes, for which pages are cached in the WebAdapter</iscomment>
+<isstatus value="410"/>
+
+<iscomment>This page should be static or only have limited dynamic parts. </iscomment>
+<head>
+	<title>${Resource.msg('global.redirect_error.title','locale',null)}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Robots" content="noindex, nofollow" />
+	
+	<!--  UI -->
+	<link rel="stylesheet" href="${URLUtils.staticURL('/css/style.css')}" />
+	
+	<style>
+		body{
+		  	background: #fff;
+		}
+		.content{
+			display:block;
+			width:80%;
+			margin:0 auto;
+			padding-bottom: 15px;
+			overflow:hidden;
+			max-width:480px;
+		}
+		.logo-block{
+		  display:block;
+		  width:auto;
+		  margin:3em auto 0;
+		  text-align:center;
+		}
+		.logo-block a{
+		  display:inline-block;
+		}
+		.logo{
+		  display:inline-block;
+		  width:217px;
+		  margin: 0;
+		}
+		.error-info{
+		  	display:block;
+		 	float:left;
+		  	background-color:#f2f2f1;
+		  	box-shadow: inset 0 0 100px 15px #f2f2f1;
+		  	border: 2px solid #cccccc;
+		  	width:100%;
+		  	margin: 30px auto 0;
+		  	padding:20px 15px;
+		  	text-align:center;
+		  	font-size:14px;
+		}
+		h1{
+			font-size:24px;
+		}
+	</style>
+</head>
+
+<body>
+	<iscomment>${Resource.msg('global.redirect_error.message','locale',null)} <a href="/">${Resource.msg('global.redirect_error.home','locale',null)}</a></iscomment>
+  <div class="main">
+    <div class="content">
+      <div class="logo-block">
+			<a class="logo-link" href="${URLUtils.url('Home-Show')}" title="${Resource.msg('global.storename', 'locale', null)}  ${Resource.msg('global.home', 'locale', null)}">
+				<img class="logo" src="${URLUtils.staticURL('/images/logo@2x.png')}" alt="${Resource.msg('global.storename', 'locale', null)}">
+				<span class="visually-hidden">${Resource.msg('global.storename', 'locale', null)}</span>
+			</a>
+		</div>
+      <div class="error-info">
+        <h1>URL Not Found</h1>
+        <p class="system_info">
+          The requested URL was not found.<br/>
+          Click the logo above to return to the homepage.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

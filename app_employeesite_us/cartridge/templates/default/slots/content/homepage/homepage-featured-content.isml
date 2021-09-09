@@ -1,0 +1,24 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscache type="relative" hour="24"/>
+<iscomment>
+	This template renders the slot content of the bottom category landing slot
+	in case the slot content is of type Content Asset.
+	Note, only one content asset is rendered.
+</iscomment>
+
+<iscomment>make sure we have content at all</iscomment>
+<isif condition="${slotcontent != null}">
+	<div class="featured-content">
+		<div class="wrap">
+			<h2 class="featured-content_title"><isprint value="${slotcontent.calloutMsg}" encoding="off"/></h2>
+			<ul class="featured-tiles">
+				<isloop items="${slotcontent.content}" var="contentAsset">
+					<li class="tile">
+						<isprint value="${contentAsset.custom.body}" encoding="off"/>
+					</li>
+				</isloop>
+			</ul>
+		</div>
+	</div>
+
+</isif>

@@ -1,0 +1,17 @@
+<!--- TEMPLATENAME: gtmproduct.isml --->
+<script>
+dataLayer.push({
+	'ecommerce': {
+		'detail': {
+			'products': [{
+					"name": "${pdict.Product.name}",
+					"id": "${pdict.Product.ID}",
+					"brand": "${pdict.Product.brand}",
+					"category": "${!empty(pdict.Product.primaryCategory) ? pdict.Product.primaryCategory.displayName : !empty(pdict.Product.classificationCategory) ? pdict.Product.classificationCategory.displayName : pdict.Product.categories.iterator().next().displayName}",
+					"price": <isif condition="${!empty(SalesPrice) && SalesPrice.available}">${SalesPrice.value.toFixed(2)}<iselse/>${pdict.Product.priceModel.price.value.toFixed(2)}</isif>
+				}
+			]
+		}
+	}
+});
+</script>

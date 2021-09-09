@@ -1,0 +1,59 @@
+.regions-dialog {
+	.region-logo {
+		width: 300px;
+		height:auto;
+		margin:0 auto;
+	}
+	img {
+		width: 100%;
+	}
+	.region-info {
+		text-align: center;
+		.content-asset p{
+			font-size: 1.4em;
+		}
+		.find {
+			font-size: 20px;
+		}
+		
+	}
+	.region-selectform {
+		width: 75%;
+		margin: 10px auto;
+		#regionform {
+			width: 20%;
+			float: right;
+			margin-left: 5%;
+		}
+		select {
+			float: right;
+			width: 60%;
+		}
+	}
+}
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}

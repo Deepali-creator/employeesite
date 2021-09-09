@@ -1,0 +1,71 @@
+// mixins
+%clearfix {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.clearfix {
+	@extend %clearfix;
+}
+
+// colors
+// names taken from http://www.color-blindness.com/color-name-hue/
+$black: #000;
+$cerulean: #00629b;
+$charcoal: #424242;
+// $citrus: #84bd00;
+$citrus: #0954ab;
+$gray: #e2e6e5;
+$altGray: #9f9d9c;
+$dark-gray: #58585A;
+$dolphin: #717174;
+$medium-gray-alt: #7a7a7a;
+$medium-gray: #a6a8aa;
+$medium-gray-alt: #7a7a7a;
+$light-gray: #f9f9f9;
+$dim-gray: #696867;
+$gainsboro: #e0e0e0;
+$islamic-green: #019328;
+$mortar: #5A5A5A;
+$night-rider: #333;
+$nobel: #999;
+$rain-forest: #64772d;
+$sangria: #990000;
+$stark-white: #f1e9c9;
+$teal: #008578;
+$tutu: #faeded;
+$very-light-gray: #ccc;
+$white-smoke: #E6E7E6;
+$white: #fff;
+$zumthor: #ccd0d3;
+$red: #ff0000;
+$error-pink: #faeded;
+$staryellow: #f1e42a;
+
+/* Cuisinart Colors */
+
+$cuisinart-gray: #d6d6d7;
+$cuisinart-dark-gray: $medium-gray-alt;
+$cuisinart-dark-gray-10: #363636;
+$cuisinart-gray-50: #4c4c4c;
+$cuisinart-green: #5DA044;
+$cuisinart-red: #e0232a;
+
+$swatch-types: black #000000, beige #f5f5dc, blue blue, purple purple, red red, brown #783201, green green, grey #8f979d, pink #fe249a, orange orange, white #ffffff, yellow #ffff00, navy navy;
+
+/* Fonts */
+//$sans-serif: 'Open Sans', Helvetica, Arial, sans-serif;
+$sans-serif: 'GrotesqueMTStd', sans-serif;
+$sans-serif-alt: 'BebasNeue', sans-serif;
+$serif: 'Droid Serif', serif;
+$sassoonPrimary: 'SassoonPrimaryRg';
+$fontawesome: FontAwesome;
+
+
+// flag-icon-css
+$flag-icon-css-path: '../lib/flag-icon-css/flags';
+
+

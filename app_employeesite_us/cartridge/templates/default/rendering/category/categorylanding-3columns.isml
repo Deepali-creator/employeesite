@@ -1,0 +1,70 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isdecorate template="search/pt_categorylanding">
+
+	<iscache type="relative" minute="30" varyby="price_promotion"/>
+
+	<isinclude template="util/modules"/>
+
+	<iscomment>
+		Configured as rendering template for the general category landing page.
+		Displays two category specific slots containing static html with promotional
+		banner in the first slot and either up to four featured products or promotional
+		content in the second slot.
+	</iscomment>
+	<div class="wrap">
+		<div class="category-head-content">
+			<div class="content-slot slot-grid-header">
+				<isif condition="${!empty(pdict.ProductSearchResult.category)}">
+					<isslot id="cat-landing-slotbanner" context="category" description="Banner at the top of Category Landing Pages" context-object="${pdict.ProductSearchResult.category}"/>
+				</isif>
+			</div>
+		</div>
+
+		<div id="primary" class="primary-content full-width category-landing">
+
+
+			<isinclude template="search/components/productsearchbreadcrumbs"/>
+
+			<div class="category-landing_top">
+				<div class="category-landing_intro">
+					<isif condition="${!empty(pdict.ProductSearchResult.category)}">
+						<h1 class="category-name">
+							<isprint value="${pdict.ProductSearchResult.category.displayName}" />
+						</h1>
+						<p class="category-description">
+							<isprint value="${pdict.ProductSearchResult.category.description}" encoding="off" />
+						</p>
+					</isif>
+				</div>
+				<div class="category-search">
+					<form role="search" action="${URLUtils.url('Search-Show', 'cgid', pdict.ProductSearchResult.category.getID())}" method="get" name="simpleSearch">
+						<fieldset>
+							<label class="visually-hidden" for="q">${Resource.msg('global.search', 'locale', null)}</label>
+							<input type="text" id="q" name="q" value="" placeholder="${Resource.msg('global.search.partnumber', 'locale', null)}"/>
+							<input type="hidden" name="lang" value="${pdict.CurrentRequest.locale}"/>
+							<button type="submit" class="button"><span class="visually-hidden">${Resource.msg('global.search.partnumber', 'locale', null)}</span><i class="fa fa-search"></i></button>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+			<isset name="subCats" value="${pdict.ProductSearchResult.category.getOnlineSubCategories()}" scope="page">
+
+			<div class="category-landing_results">
+				<isloop items="${subCats}" var="subcat" status="loopstate">
+					<div class="category-tile col3">
+						<a class="category-tile_link" href="${URLUtils.http('Search-Show', 'cgid', subcat.ID)}" title="${subcat.displayName}">
+							<div class="category-tile_image">
+								<isif condition="${!empty(subcat.thumbnail)}">
+									<img class="category-tile_image" src="${subcat.thumbnail.getURL()}" alt="${subcat.displayName}"/>
+								<iselse/>
+									<img class="category-tile_image" src="${URLUtils.staticURL('/images/noimagelarge.png')}" alt="${subcat.displayName}"/>
+								</isif>
+							</div>
+							<span class="category-tile_name"><isprint value="${subcat.displayName}" encoding="off"/></span>
+						</a>
+					</div>
+				</isloop>
+			</div>
+		</div>
+	</div>
+</isdecorate>

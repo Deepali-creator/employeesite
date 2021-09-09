@@ -1,0 +1,76 @@
+/**
+* 
+*
+*
+*   @input selectedAddressObject : Object
+*   @input selectedAddressId : String
+*   @output addressObject : Object
+*   @output address1 : String
+*   @output address2 : String
+*   @output city : String
+*   @output stateCode : String
+*   @output countryCode : String
+*   @output postalCode : String
+*
+*/
+importPackage( dw.system );
+importPackage( dw.crypto );
+importPackage( dw.util );
+importPackage( dw.net );
+importPackage( dw.svc );
+importPackage( dw.ws );
+
+function execute( args : PipelineDictionary ) : Number {
+	var svcConfig : Service = LocalServiceRegistry.createService("AddressCompleteRetrieve",{
+		createRequest : function(service : Service, params) {
+			Logger.info("retrieving key: {0}", params.key);
+			var url = service.URL + StringUtils.format("?Key={0}&Id={1}",
+					service.configuration.credential.password, Encoding.toURI(params.key));
+			service.setURL(url);
+		},
+		parseResponse : function(service : Service, response : Object) : Object {
+			// return something useful based on the data from response parameter
+			var address = JSON.parse(response.text)[0];
+			var cc = empty(address.CountryIso2) ? null : address.CountryIso2.toLocaleUpperCase();
+			return {address1: address.Line1, address2: address.Line2, department: address.Department, company: address.Company,
+				city: address.City, stateCode: address.Province, countryCode: cc, postalCode: address.PostalCode, label: address.Label};
+		}
+	});
+	var addressId = args.selectedAddressId;
+	try{
+		if (!empty(args.selectedAddressObject) && !empty(args.selectedAddressObject.Id)){
+			addressId = args.selectedAddressObject.Id;
+		}
+	}catch(ex){}
+	var result : Result = svcConfig.call({key: addressId});
+	if (Result.OK == result.status){
+		if (!empty(result.object)){
+			args.addressObject=result.object;
+			if (!empty(result.object.department) || !empty(result.object.company)){
+				var pieces = result.object.label.split("\n");
+				args.address1="";
+				for each (var piece : String in pieces){
+					if (piece.toLocaleLowerCase() == result.object.address1.toLocaleLowerCase()){
+						args.address2 = piece;
+						if (!empty(result.object.address2)){
+							args.address2 += ", " + result.object.address2;
+						}
+						break;
+					}
+					args.address1 += args.address1.length>0 ? ", " + piece : piece;
+				}
+			} else {
+				args.address1=result.object.address1;
+				args.address2=result.object.address2;
+			}
+			args.addressObject.address1=args.address1;
+			args.addressObject.address2=!empty(args.address2)?args.address2:null;
+			args.city=result.object.city;
+			args.stateCode=result.object.stateCode;
+			args.countryCode=result.object.countryCode.toLocaleUpperCase();
+			args.postalCode=result.object.postalCode;
+			return PIPELET_NEXT;
+		}
+	}
+	return PIPELET_ERROR;
+}

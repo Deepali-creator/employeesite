@@ -1,0 +1,26 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscache type="relative" hour="24"/>
+
+<isif condition="${slotcontent != null}">
+
+	<iscomment> Render a tile of the category Name and the Category Landing Slot Image field </iscomment>
+	<div class="wrap">
+	<h2><isprint value="${slotcontent.calloutMsg}" encoding="off"/></h2>
+		<div class="category-slot">
+			<isloop items="${slotcontent.content}" var="category" status="loopstate">
+				<div class="category-tile">	
+					<a href="${URLUtils.http('Search-Show', 'cgid', category.ID)}" title="${category.displayName}">
+						<div class="category-tile-image">
+							<isif condition="${!empty(category.thumbnail)}">
+								<img class="tile-image" src="${category.thumbnail.getURL()}" alt="${category.displayName}"/>
+							<iselse/>
+								<img class="tile-image" src="${URLUtils.staticURL('/images/noimagelarge.png')}" alt="${category.displayName}"/>
+							</isif>
+						</div>
+						<span class="tile-name"><isprint value="${category.displayName}" encoding="off"/></span>
+					</a>
+				</div>					
+			</isloop>
+		</div>
+	</div>
+</isif>

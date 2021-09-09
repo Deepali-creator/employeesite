@@ -1,0 +1,39 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<iscache type="relative" hour="24"/>
+<isdecorate template="content/content/pt_video_content">
+	<isinclude template="util/modules"/>
+
+	<isset name="featuredVid" value="${dw.content.ContentMgr.getContent('featured-video')}" scope="page" />
+	<div id="dialog" title="Basic dialog"></div>
+
+	<isif condition="${!empty(featuredVid)}">
+		<div class="featured-video">
+			<div class="wrap">
+				<div class="featured-video_wrapper">
+					<iframe class="featured-vid" id="featured-video" width="100%" data-url="${featuredVid.custom.featuredVideo}&enablejsapi=1" src="${"#"}" frameborder="0" allowfullscreen ></iframe>
+				</div>
+			</div>
+		</div>
+	</isif>
+
+	<div class="wrap video-wrap">
+		<isinclude template="components/browsertoolscheck"/>
+		<div id="secondary" class="nav">
+			<div class="video-sidebar-menu">
+				<h3>${Resource.msg('search.suggest.categories','search',null)}</h3>
+				<ul class="video-categories" id="videoCategoryList">
+					<isloop items="${dw.content.ContentMgr.getFolder('videos').onlineSubFolders}" var="videoFolder" status="vidStatus">
+						<li class="video-category">
+							<a class='video-category_link <isif condition="${vidStatus.first}">active</isif>' href="${URLUtils.url('Video-Show','folder_id',videoFolder.ID)}" data-folder="${videoFolder.ID}" title="${videoFolder.displayName}">
+								<h4 class="video-category_name">
+									<isprint value="${videoFolder.displayName}" encoding="off" />
+								</h4>
+							</a>
+						</li>
+					</isloop>
+				</ul>
+			</div>
+		</div>
+		<isinclude url="${URLUtils.url('Video-Ajax_Display','folder_id','product-videos')}"/>
+	</div>
+</isdecorate>

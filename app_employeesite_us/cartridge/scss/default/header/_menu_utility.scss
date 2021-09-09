@@ -1,0 +1,125 @@
+.menu-utility-user {
+	margin:0;
+	padding: 0;
+	li {
+		list-style: none;
+		margin:0;
+		padding: 0;
+    text-align: center;
+	}
+	.user-info {
+	  position:relative;
+	  z-index:99;
+		.user-panel {
+			transition: all 0.3s ease;
+			width:100%;
+			opacity:0;
+			display:none;
+			visibility: hidden;
+			background: $white;
+			margin:0;
+			padding:0.625em;
+			position:absolute;
+			top: 1.375rem;
+			visibility: hidden;
+      z-index:90;
+      text-align: left;
+			// border:1px solid $cuisinart-dark-gray;
+			.account-welcome-label,
+			.account-username{
+			  font-weight: 600;
+			  color: $black;
+			}
+			a {
+				display: block;
+				margin:0 0 0.3125em;
+				transition: background-color 0.3s ease, color 0.3s;
+			}
+			
+		}
+		&:hover,
+		&.active{
+		  > a.user-account{
+		    color: $black !important;
+		  }
+      .user-panel{
+        display:block;
+        opacity:1;
+        visibility: visible;
+      }
+    }
+	}
+}
+
+
+
+//=============================================//
+//--------------- MEDIA QUERIES ---------------//
+//=============================================//
+
+/* Mobile Lg/Sm */
+@media screen and (max-width: 767px) {
+  .menu-utility-user{
+    li{
+      a{
+        color: $dim-gray;
+        display:block;
+        text-align:left;
+        font-size:0.875rem;
+        font-weight:400;
+        padding:1em;
+        text-transform:uppercase;
+        border-bottom: 1px solid $altGray;
+        &.user-account{
+          display:none;
+        }
+        &:hover{
+          color: $dim-gray;
+          text-decoration:none;
+        }
+      }
+    }
+    .user-account{
+      padding:0;
+      display:none;
+    }
+    
+    .user-info,
+    .user-info:hover{
+      .user-panel{
+        position:relative;
+        top:0;
+        display:block;
+        opacity:1;
+        visibility: visible;
+        border:none;
+        padding:0;
+        //background:$light-gray;
+        a{
+          margin-bottom:0;
+        }
+        .user-links{
+          margin-top:0;
+        }
+        .account-username{
+          display:none;
+        }
+      }
+    }
+  }
+}
+
+/* Mobile Lg Only */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  
+}
+
+/* Mobile Sm Only */
+@media screen and (max-width: 479px) {
+  
+}
+
+/* Tablet Only */
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  
+}

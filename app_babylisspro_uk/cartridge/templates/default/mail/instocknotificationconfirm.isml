@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- TemplateComment :  EMail form for inviting someone to shop  -->
+<iscontent type="text/html" charset="UTF-8"/>
+<isinclude template="util/modules"/><isscript>importScript("util/ProductImageSO.ds");</isscript>
+<subject><isif condition="${!empty(pdict.MailSubject)}">${pdict.MailSubject}<iselse/></isif></subject>
+<html>
+<head>
+
+</head>
+<body>
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" style="background:#e0e0e0;padding:50px 0;">
+			<center>
+				<table  style="background:#ffffff;border:1px solid #999999;width:680px; padding:15px; color:#58585a;">
+					<tr>
+						<td style="width:70%; font-size:24px;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 20px 20px 0;font-weight:bold;color:#58585a;">${Resource.msg('account.stocknotification.confirm.subjecttitle','account',null)}</td>
+						<td><img style="width:225px; height:auto;" src="${URLUtils.httpStatic('/images/logo@2x.png')}"></img></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="font-size:12px; font-family:Helvetica Neue, Helvetica, Arial, sans-serif;padding:20px 15px 20px 0;vertical-align:top;">
+							<iscomment>Check if user is current customer to display name or default text</iscomment>
+							<p style="padding-bottom:15px; font-size:14px;">${Resource.msg('account.stocknotification.dearcustomer', 'account', null)}</p>
+							<iscomment> Show name of original product origin of notification request in message</iscomment>
+							<p style="padding-bottom:15px; font-size:14px;">${Resource.msgf('account.stocknotification.confirmmessage1', 'account', null, pdict.Product.name)}
+							<p style="padding-bottom:15px; font-size:14px;">${Resource.msg('account.stocknotification.confirmmessage2', 'account', null)}</p>
+							<p style="padding-bottom:15px; font-size:14px;">${Resource.msg('account.stocknotification.regards', 'account', null)}</p>
+							<p style="padding-bottom:15px; font-size:14px;">${Resource.msg('account.stocknotification.team', 'account', null)}</p>
+						</td>
+					</tr>
+					<tr>
+					  <td style="width:100%;" colspan="2">
+					    <table style="width:100%; border-spacing:initial; border-bottom:2px solid #cccccc; color: #58585a;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;">
+								<tr>
+								    <th style="font-size:16px; text-align:left; font-weight:bold; padding:0 0 10px;">
+								        ${Resource.msg('account.stocknotification.label.product', 'account', null)}
+								    </th>
+								    <th style="font-size:16px; text-align:left; font-weight:bold; padding:0 0 10px;">
+								        ${Resource.msg('account.stocknotification.label.link', 'account', null)}
+								    </th>
+								</tr>
+								<iscomment> Product Row </iscomment>
+								<tr>
+								    <td style="vertical-align:middle; font-weight:bold; font-size:16px; border-top:2px solid #cccccc;">
+									    <isset name="image" value="${new ProductImage('small', pdict.Product, 0)}" scope="page"/>
+										<isset name="imageURL" value="${image.getURL()}" scope="page"/>
+										<isif condition="${!empty(image)}">
+											<isset name="thumbnailUrl" value="${imageURL}" scope="page"/>
+											<isset name="imageAlt" value="${image.getAlt()}" scope="page"/>
+											<isset name="imageTitle" value="${image.getTitle()}" scope="page"/>
+										<iselse/>
+											<isset name="thumbnailUrl" value="${URLUtils.httpStatic('/images/noimagesmall.png')}" scope="page"/>
+											<isset name="imageTitle" value="${pdict.Product.name}" scope="page"/>
+											<isset name="imageAlt" value="${pdict.Product.name}" scope="page"/>
+										</isif>
+										<img style="float:left; display:block; width:120px; height:120px; margin-right:15px;" src="${thumbnailUrl}" alt="${imageAlt}" title="${imageTitle}"/>
+										<div style="padding-top:30px;">
+										    <p style="margin:5px 0; width:100%;"><isprint value="${pdict.Product.name}" encoding="off"/></p>
+										    <p style="margin:0; width:100%; text-tranform:uppercase;"><isprint value="${pdict.Product.ID}" encoding="off"/></p>
+										</div>
+										<br style="clear:both;" />
+									</td>
+								    <td style="width:120px; font-weight:normal; color:#b4907e; font-size:16px;border-top:2px solid #cccccc;">
+								        <p style="margin:0; padding-bottom:15px;">
+											<a style="color:#b4907e;" href="${URLUtils.http('Product-Show', 'pid', pdict.Product.ID)}" title="${Resource.msg('productlist.viewitem','account',null)}">${Resource.msg('productlist.viewitem','account',null)}</a>
+										</p>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>						
+			</center>
+		</td>
+	</tr>
+</table>
+	
+</body>
+</html>
