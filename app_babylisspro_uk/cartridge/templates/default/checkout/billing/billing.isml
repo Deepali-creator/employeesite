@@ -92,7 +92,7 @@
 
 		<iscomment>provide option to add address to address book if customer is authenticated</iscomment>
 		<isif condition="${pdict.CurrentCustomer.authenticated}">
-			<isinputfield formfield="${pdict.CurrentForms.billing.billingAddress.addToAddressBook}" type="checkbox"/>
+			<iscomment> <isinputfield formfield="${pdict.CurrentForms.billing.billingAddress.addToAddressBook}" type="checkbox"/> </iscomment>
 		</isif>
 
 		<isinputfield formfield="${pdict.CurrentForms.billing.billingAddress.addToEmailList}" type="checkbox"/>

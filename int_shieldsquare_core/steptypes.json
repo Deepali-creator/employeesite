@@ -1,0 +1,13 @@
+{
+	"step-types": {
+    "script-module-step":[{
+        "@type-id":"custom.UpdateSQServerConfig",
+	    "@supports-site-context":"true",
+	    "@supports-organization-context":"false",
+	    "description":"Script Step to fetch and import Configuration from Shield Square server",
+	    "module":"int_shieldsquare_core/cartridge/scripts/configs/shieldSquareConfig.js",
+	    "function":"execute",
+	    "transactional":"true"
+	}]
+  }
+}

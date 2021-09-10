@@ -98,7 +98,7 @@
 					</iscomment>
 					<iscomment>Add address to Address Book</iscomment>
 					<isif condition="${pdict.CurrentCustomer.authenticated}">
-						<isinputfield formfield="${pdict.CurrentForms.singleshipping.shippingAddress.addToAddressBook}" type="checkbox"/>
+						<iscomment> <isinputfield formfield="${pdict.CurrentForms.singleshipping.shippingAddress.addToAddressBook}" type="checkbox"/> </iscomment>
 					</isif>
 
 					<iscomment>Use address for Billing Address</iscomment>

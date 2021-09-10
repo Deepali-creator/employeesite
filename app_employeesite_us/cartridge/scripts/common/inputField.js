@@ -50,14 +50,15 @@ module.exports = function (pdict) {
 	var attributes = '';
 	var label = '';
 	var type = pdict.type;
-	var value = StringUtils.stringToHtml(pdict.formfield.htmlValue) || '';
+	// var value = StringUtils.stringToHtml(pdict.formfield.htmlValue) || '';
+	var value = '';
 	var help = '';
 	var readonly = 'readonly = true';
 	var fieldClass = '';
 	var labelAfter = false;
 	var required = pdict.formfield.mandatory;
 	var element, name, id, rowClass, caption;
-
+	
 	// default type is 'text' for 'input' element
 	if (type === 'input') {
 		element = type;
@@ -104,13 +105,13 @@ module.exports = function (pdict) {
 		required = pdict.required;
 	}
 	if (required) {
-		// fieldClass += ' required "' +readonly;
+	    fieldClass += ' required';
 		rowClass += ' required';
 	}
 
-	// else{
-	// 	fieldClass += ' required "' +readonly;
-	// }
+	if (pdict.formfield.formId === 'phone' || pdict.formfield.formId === 'country' || pdict.formfield.formId === 'postal' || pdict.formfield.formId === 'firstName'|| pdict.formfield.formId === 'address1' || pdict.formfield.formId === 'address2' ||  pdict.formfield.formId === 'lastName' ||  pdict.formfield.formId === 'city') {
+		fieldClass += ' "' +readonly;
+	}
 
 	// validation
 	if (!pdict.formfield.valid) {
@@ -129,7 +130,15 @@ module.exports = function (pdict) {
 	// input
 	switch (element) {
 		case 'select':
-			input = '<select disabled class="input-select ' + fieldClass + '" id="' + id + '" name="' + name + '" ' + attributes + '>';
+			if(pdict.formfield.formId === 'state' || pdict.formfield.formId === 'country')
+			{
+				input = '<select disabled class="input-select ' + fieldClass + '" id="' + id + '" name="' + name + '" ' + attributes + '>';
+			}
+			else
+			{
+				input = '<select class="input-select ' + fieldClass + '" id="' + id + '" name="' + name + '" ' + attributes + '>';
+			}
+		
 			// interate over pdict.formfield.options, append to the options array
 			Object.keys(pdict.formfield.options).forEach(function (optionKey) {
 				var option = pdict.formfield.options[optionKey];

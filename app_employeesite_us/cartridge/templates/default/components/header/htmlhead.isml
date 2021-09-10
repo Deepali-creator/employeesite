@@ -83,3 +83,10 @@ If you are not using the build cartridge the comments can be safely removed.
 
 <iscomment>Gather device-aware scripts</iscomment>
 <isinclude url="${URLUtils.url('Home-SetLayout')}"/>
+
+
+<isif condition="${dw.system.Site.current.preferences.custom.enableshieldsquare}">
+<script src="${URLUtils.staticURL('/js/shieldSquareTag.js')}" type="text/javascript">
+</script>
+</isif>
+
