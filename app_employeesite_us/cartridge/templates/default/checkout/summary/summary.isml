@@ -232,6 +232,7 @@
 			</div>
 
 			<form action="${URLUtils.https('COSummary-Submit')}" method="post" class="submit-order">
+				<isinclude url="${URLUtils.url('K-ExampleVerification')}"/>
 				<fieldset>
 					<div class="form-row">
 						<a class="back-to-cart" href="${URLUtils.url('Cart-Show')}">

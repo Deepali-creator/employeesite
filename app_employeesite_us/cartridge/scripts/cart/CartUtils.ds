@@ -7,8 +7,9 @@ function CartUtils() {}
 
 CartUtils.getAddressList = function(basket, currentCustomer, includeLineItems) {	
 	function getAddressObject(addy, plist) {
-		Logger.debug("-----------addy------------"+addy);
-		// var display = addy.ID;
+		// var b = dw.order.BasketMgr.getCurrentBasket().paymentInstruments[0].paymentMethod;
+		// var a = dw.order.PaymentMgr.getPaymentMethod(b).paymentProcessor.ID;
+		//var display = addy.ID;
 		// var key = addy.ID;
 		var display = addy.custom.ID;
 		 var key = addy.custom.ID;
@@ -25,15 +26,18 @@ CartUtils.getAddressList = function(basket, currentCustomer, includeLineItems) {
 			UUID : addy.UUID,	
 			ID: addy.custom.ID,
 			key: key,
-            firstName: addy.custom.firstName,
-            lastName: addy.custom.lastName,
+			firstName: '',
+			lastName: '',
+			phone: '',
+            // firstName: addy.custom.firstName,
+            // lastName: addy.custom.lastName,
             address1: addy.custom.address1,
             address2: addy.custom.address2,
             postalCode: addy.custom.postalCode,
             city: addy.custom.city,
             stateCode: addy.custom.stateCode,
             countryCode: addy.custom.countryCode,
-            phone: addy.custom.phone,            
+            // phone: addy.custom.phone,            
             type: addyType,
             displayValue: display       
 		};
@@ -45,7 +49,7 @@ CartUtils.getAddressList = function(basket, currentCustomer, includeLineItems) {
 		return al;
 	}
 
-	var customAddressBookList = dw.object.CustomObjectMgr.queryCustomObjects('customAddressBook', 'custom.lastName != NULL', null);
+	var customAddressBookList = dw.object.CustomObjectMgr.queryCustomObjects('customAddressBook', 'custom.address1 != NULL', null);
 	var addressList = [];
 	while(customAddressBookList.hasNext())
     {

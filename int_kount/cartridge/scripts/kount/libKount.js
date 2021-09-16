@@ -4,6 +4,7 @@
 
 // API
 var Logger = require('dw/system/Logger').getLogger('kount', 'LibKount');
+var ExtendedLogger = require('dw/system/Logger').getLogger('ext_kount', 'ext_LibKount');
 var Site = require('dw/system/Site').current;
 var Template = require('dw/util/Template');
 var HashMap = require('dw/util/HashMap');
@@ -163,7 +164,7 @@ function filterIP(IP) {
  *	@param {string} msg Error message
  */
 function sendEmailNotification(msg) {
-    var template = new Template('mail/errorNotification');
+    var template = new Template('mail/errornotification');
     var templateMap = new HashMap();
     var mailMsg = new Mail();
     var siteName = Site.getName();
@@ -519,6 +520,8 @@ function postRIS(order, isSfra, isPreRiskCall) {
             OrderID: order.orderNo
         };
     } else {
+    	var orderNo=null;
+    	try{orderNo=order.orderNo}catch(e){}
         creditCardNumber = session.forms.billing.paymentMethods.creditCard.number.value;
         last4 = creditCardNumber ? creditCardNumber.substr(creditCardNumber.length - 4) : '';
         hashedCCNumber = KHash.hashPaymentToken(creditCardNumber);	// hash CC number from form
@@ -532,7 +535,7 @@ function postRIS(order, isSfra, isPreRiskCall) {
             },
             CurrentRequest: request,
             Order: order,
-            OrderID: order.orderNo
+            OrderID: orderNo
         };
     }
     var riskResult = RiskService.init(serviceData, isPreRiskCall);
@@ -549,11 +552,13 @@ function postRIS(order, isSfra, isPreRiskCall) {
  * @returns {Object} risk result
  */
 function preRiskCall(order, isSfra) {
+	_clearSession();
     var data = order;
     if (isKountEnabled() && authType === constants.RISK_WORKFLOW_TYPE_PRE) {
         try {
             var result = postRIS(data, isSfra, true);
             if (!empty(result.KountOrderStatus) && result.KountOrderStatus === 'DECLINED') {
+                ExtendedLogger.error('KOUNT: Invalid pre risk call response for order "' + order.orderNo + '"\n' + JSON.stringify(result, null, 4));
                 return {
                     KountOrderStatus: result.KountOrderStatus,
                     error: true
@@ -563,6 +568,7 @@ function preRiskCall(order, isSfra) {
             return result;
         } catch (e) {
             Logger.error('ERROR: ' + e.message + '\n' + e.stack);
+            ExtendedLogger.error('KOUNT: Pre risk error: ' + e.message + '\n' + e.stack);
             writeExecutionError(String(e.stack), 'preRiskCall', 'error');
             return undefined;
         }
@@ -594,24 +600,27 @@ function simulateVerifications(ord) {
  */
 function postRiskCall(paymentCallback, order, isSfra) {
     if (isKountEnabled()) {
-        simulateVerifications(order);
-        var orderNo = isSfra ? order.orderNo : undefined;
-        var paymentResult = paymentCallback(order, orderNo);
-        var params;
-        if (paymentResult && paymentResult.error) {
-            params = KountUtils.extend({}, paymentResult);
-        } else {
-            params = KountUtils.extend(postRIS(order, isSfra, false), paymentResult);
+        try {
+            simulateVerifications(order);
+            var orderNo = isSfra ? order.orderNo : undefined;
+            var paymentResult = paymentCallback(order, orderNo);
+            var params = {};
+            if (constants.RISK_WORKFLOW_TYPE === constants.RISK_WORKFLOW_TYPE_POST && paymentResult && paymentResult.error) {
+                params = KountUtils.extend({}, paymentResult);
+            } else {
+                params = KountUtils.extend(postRIS(order, isSfra, false), paymentResult);
+            }
+            if (!empty(params.KountOrderStatus) && params.KountOrderStatus === 'DECLINED') {
+                ExtendedLogger.error('KOUNT: Invalid post risk call response for order "' + order.orderNo + '"\n' + JSON.stringify(params, null, 4));
+                params = {
+                    KountOrderStatus: params.KountOrderStatus,
+                    error: true
+                };
+            }
+            return params;
+        } catch (e) {
+            ExtendedLogger.error('KOUNT: Post risk error: ' + e.message + '\n' + e.stack);
         }
-        if (!empty(params.KountOrderStatus) && params.KountOrderStatus === 'DECLINED') {
-            params = {
-                KountOrderStatus: params.KountOrderStatus,
-                error: true
-            };
-        }
-        // clear session variable 'TRAN' for 'PRE' auth.
-        _clearSession();
-        return params;
     }
     writeExecutionError(new Error('KOUNT: K.js: Kount is not enabled'), 'PostRIS', 'info');
     _clearSession();
@@ -653,6 +662,31 @@ function getSessionIframe(sessionIframe, basketUUID) {
 }
 
 /**
+ * Add to appropriate Order note with ENS event data
+ * @param {Array} ensEventsList - list of ENS event objects
+ * @param {string} ensRecordXml - kount request body
+ */
+function storeENSRecordInOrder(ensEventsList, ensRecordXml) {
+    var OrderMgr = require('dw/order/OrderMgr');
+    var Transaction = require('dw/system/Transaction');
+    var storeRecord = Site.getCustomPreferenceValue('storeKountENSRecord');
+    if (!storeRecord) { return; }
+
+    Transaction.wrap(function () {
+        ensEventsList.forEach(function (event) {
+            var order = OrderMgr.getOrder(event.orderNo);
+            if (!empty(order)) {
+                try {
+                    order.addNote('Kount ENS record', ensRecordXml);
+                } catch (e) {
+                    Logger.error('ERROR: ' + e.message + '\n' + e.stack);
+                }
+            }
+        });
+    });
+}
+
+/**
  *	@description Creates custom objects for ens event batches
  *	@param {string} requestBody Body from ENS webhook request from Kount
  */
@@ -663,6 +697,7 @@ function queueENSEventsForProcessing(requestBody) {
             var ensRecord = CustomObjectMgr.createCustomObject('KountENSQueue', require('dw/util/UUIDUtils').createUUID());
             ensRecord.custom.ensResponseBody = JSON.stringify(result);
         });
+        storeENSRecordInOrder(result, requestBody);
     } catch (e) {
         Logger.error('ERROR: ' + e.message + '\n' + e.stack);
         writeExecutionError(new Error('KOUNT: K_ENS.js: Error when parsing ENS xml'), 'EventClassifications', 'error');
@@ -719,5 +754,6 @@ module.exports = {
     isENSEnabled: isENSEnabled,
     isExampleVerificationsEnabled: isExampleVerificationsEnabled,
     queueENSEventsForProcessing: queueENSEventsForProcessing,
-    validateIpAddress: validateIpAddress
+    validateIpAddress: validateIpAddress,
+    storeENSRecordInOrder: storeENSRecordInOrder
 };

@@ -28,7 +28,12 @@
 	<iscomment> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		billing address
 	 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</iscomment>
-
+    
+	<isif condition="${!empty(pdict.KountOrderStatus) && pdict.KountOrderStatus =='DECLINED'}">
+    	<div class="error-message">
+    		<isprint value="${dw.web.Resource.msg('kount.DECLINED','kount',null)}" encoding="on"/>
+    	</div>
+    </isif>
 	<fieldset>
 
 		<iscomment>billing address area</iscomment>
@@ -42,7 +47,8 @@
 		</legend>
 
 		<iscomment>display select box with stored addresses if customer is authenticated and there are saved addresses</iscomment>
-		<isif condition="${pdict.CurrentCustomer.authenticated && pdict.CurrentCustomer.profile.addressBook.addresses.size() > 0}">
+		<iscomment> <isif condition="${pdict.CurrentCustomer.authenticated && pdict.CurrentCustomer.profile.addressBook.addresses.size() > 0}"> </iscomment>
+		<isif condition="${pdict.CurrentCustomer.authenticated}">
 			<div class="select-address">
 				<div class="form-row">
 					<label for="${pdict.CurrentForms.billing.addressList.htmlName}">

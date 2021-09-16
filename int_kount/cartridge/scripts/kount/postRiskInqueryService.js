@@ -5,6 +5,7 @@
 var Site = require('dw/system/Site');
 var Resource = require('dw/web/Resource');
 var Encoding = require('dw/crypto/Encoding');
+var ExtendedLogger = require('dw/system/Logger').getLogger('ext_kount', 'ext_LibKount');
 
 // scripts
 var constants = require('*/cartridge/scripts/kount/kountConstants');
@@ -33,7 +34,7 @@ function init(args, preRiskCall) {
     var request = args.CurrentRequest;
     var email = args.Email || Resource.msg('kount.noemail', 'kount', 'noemail@kount.com');
     var IP = request.httpRemoteAddress || '10.0.0.1';
-    var sessID = args.SessionID || kount.getSessionIframe(session, args.Order.getUUID());
+    var sessID = args.SessionID || kount.getSessionIframe(session.sessionID, args.Order.getUUID());
     var orderID = args.OrderID || null;
     var order = args.Order;
     var totalPrice = (order.getTotalGrossPrice().getValue() * 100).toFixed();
@@ -162,10 +163,10 @@ function init(args, preRiskCall) {
     var RequiredInquiryKeysVal;
     if (constants.RISK_WORKFLOW_TYPE === constants.RISK_WORKFLOW_TYPE_PRE && !preRiskCall && orderID && args.Order.custom.kount_Status.value !== 'RETRY') {
         RequiredInquiryKeysVal = {
-            AUTH: Resource.msg('kount.AUTH', 'kount', null),
-            AVST: constants.ALLOWED_VERIFICATION_VALUES.indexOf(order.custom.kount_AVST) > -1 ? order.custom.kount_AVST : 'X',
-            AVSZ: constants.ALLOWED_VERIFICATION_VALUES.indexOf(order.custom.kount_AVSZ) > -1 ? order.custom.kount_AVSZ : 'X',
-            CVVR: constants.ALLOWED_VERIFICATION_VALUES.indexOf(order.custom.kount_CVVR) > -1 ? order.custom.kount_CVVR : 'X',
+            AUTH: (payInstr && !empty(payInstr.paymentTransaction.transactionID)) ? Resource.msg('kount.AUTH', 'kount', null) : Resource.msg('kount.DECL', 'kount', null),
+			AVST: (payInstr && !empty(payInstr.paymentTransaction.custom.AVSstreetOK)) ? (payInstr.paymentTransaction.custom.AVSstreetOK ? "M" : "N") : "X",
+			AVSZ: (payInstr && !empty(payInstr.paymentTransaction.custom.AVSzipOK)) ? (payInstr.paymentTransaction.custom.AVSzipOK ? "M" : "N") : "X",
+			CVVR: (payInstr && !empty(payInstr.paymentTransaction.custom.CVVOK)) ? (payInstr.paymentTransaction.custom.CVVOK ? "M" : "N") : "X",
             FRMT: Resource.msg('kount.FRMT', 'kount', 'JSON'),
             MACK: Resource.msg('kount.MACK', 'kount', 'Y'),
             MERC: kount.getMerchantID(),
@@ -200,8 +201,9 @@ function init(args, preRiskCall) {
             TOTL: totalPrice,
             VERS: Resource.msg('kount.VERS', 'kount', '0630'), // Provided by Kount
             // Optional keys
-            AVST: constants.ALLOWED_VERIFICATION_VALUES.indexOf(order.custom.kount_AVST) > -1 ? order.custom.kount_AVST : 'X',
-            AVSZ: constants.ALLOWED_VERIFICATION_VALUES.indexOf(order.custom.kount_AVSZ) > -1 ? order.custom.kount_AVSZ : 'X',
+			AVST: (payInstr && !empty(payInstr.paymentTransaction.custom.AVSstreetOK)) ? (payInstr.paymentTransaction.custom.AVSstreetOK ? "M" : "N") : "X",
+			AVSZ: (payInstr && !empty(payInstr.paymentTransaction.custom.AVSzipOK)) ? (payInstr.paymentTransaction.custom.AVSzipOK ? "M" : "N") : "X",
+			CVVR: (payInstr && !empty(payInstr.paymentTransaction.custom.CVVOK)) ? (payInstr.paymentTransaction.custom.CVVOK ? "M" : "N") : "X",
             B2A1: billingAddr.getAddress1(),
             B2A2: billingAddr.getAddress2(),
             B2CC: billingAddr.getCountryCode() && billingAddr.getCountryCode().getValue(),
@@ -210,7 +212,6 @@ function init(args, preRiskCall) {
             B2PN: billingAddr.getPhone(),
             B2ST: billingAddr.getStateCode(),
             CASH: totalPrice,
-            CVVR: constants.ALLOWED_VERIFICATION_VALUES.indexOf(order.custom.kount_CVVR) > -1 ? order.custom.kount_CVVR : 'X',
             NAME: customerName,
             FRMT: Resource.msg('kount.FRMT', 'kount', 'JSON'),
             ORDR: orderID,
@@ -247,10 +248,12 @@ function init(args, preRiskCall) {
             }
             responseArgs.responseRIS = response;
         } else {
+            ExtendedLogger.error('KOUNT: Empty call response for order "' + order.orderNo + '"');
             responseArgs.KountOrderStatus = 'APPROVED';
             responseArgs.responseRIS = '';
         }
     } catch (err) {
+        ExtendedLogger.error('KOUNT: ' + err.message + '; order: "' + order.orderNo + '"\n' + err.stack);
         kount.writeExecutionError(err, 'PostRiskInqueryService.ds', 'error');
         responseArgs.KountOrderStatus = 'APPROVED';
         responseArgs.responseRIS = '';

@@ -1553,7 +1553,7 @@ Additionally the authorization pipeline may put a dw.system.Status object into t
         <text-node>
           <description>Sets the Order status to 'New'.</description>
         </text-node>
-        <node-display x="1" y="26"/>
+        <node-display x="1" y="28"/>
       </node>
     </segment>
   </branch>
@@ -1749,7 +1749,7 @@ Additionally the authorization pipeline may put a dw.system.Status object into t
         <text-node>
           <description>Creates purchased gift certificates with this order.</description>
         </text-node>
-        <node-display x="1" y="28"/>
+        <node-display x="1" y="30"/>
       </node>
     </segment>
   </branch>
@@ -1759,7 +1759,7 @@ Additionally the authorization pipeline may put a dw.system.Status object into t
         <text-node>
           <description>Send order confirmation and clear used forms within the checkout process.</description>
         </text-node>
-        <node-display x="1" y="34"/>
+        <node-display x="1" y="33"/>
       </node>
     </segment>
   </branch>

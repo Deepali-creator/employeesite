@@ -208,7 +208,7 @@
       </node>
       <simple-transition/>
       <node>
-        <decision-node condition-key="CurrentForms.billing.billingAddress.addToEmailList.checked || CurrentForms.billing.billingAddress.addToEmailListMulti.value" condition-operator="expr"/>
+        <decision-node condition-key="CurrentForms.billing.billingAddress.addToEmailList.checked || CurrentForms.billing.billingAddress.addToEmailListMulti" condition-operator="expr"/>
         <node-display x="0" y="1"/>
         <branch basename="b2" source-connector="yes">
           <transition target-connector="in"/>
@@ -221,7 +221,7 @@
                 <key-binding alias="firstname" key="To_1"/>
                 <key-binding alias="CurrentForms.billing.billingAddress.addressFields.lastName.value" key="From_2"/>
                 <key-binding alias="lastname" key="To_2"/>
-                <key-binding alias="CurrentForms.billing.billingAddress.addToEmailListMulti.value ? CurrentForms.billing.billingAddress.addToEmailListMulti.value : ''" key="From_3"/>
+                <key-binding alias="CurrentForms.billing.billingAddress.addToEmailListMulti ? CurrentForms.billing.billingAddress.addToEmailListMulti : ''" key="From_3"/>
                 <key-binding alias="listIDs" key="To_3"/>
                 <key-binding alias="null" key="From_4"/>
                 <key-binding alias="null" key="To_4"/>

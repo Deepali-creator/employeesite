@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
-/* global PIPELET_NEXT PIPELET_ERROR empty */
-
 /**
+*   postris script
+*
 *   @input Order : Object
 *   @output KountOrderStatus : String
 *
@@ -15,7 +14,7 @@ var Kount = require('*/cartridge/scripts/kount/libKount');
  * @returns {number} - returns execution result
  */
 function execute(args) {
-    var call = Kount.postRiskCall(function () {}, args.Order);
+    var call = Kount.postRiskCall(function () {}, args.Order, false);
 
     if (empty(call)) {
         return PIPELET_ERROR;

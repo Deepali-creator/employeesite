@@ -1,7 +1,7 @@
-/* eslint-disable no-unused-vars */
-/* global PIPELET_NEXT PIPELET_ERROR empty*/
-
 /**
+*   check status script
+*
+
 *   @input KountOrderStatus : String
 *
 */

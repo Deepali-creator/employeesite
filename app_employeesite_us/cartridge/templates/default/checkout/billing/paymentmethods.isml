@@ -141,6 +141,7 @@
 			${Resource.msg('billing.custompaymentmethod','checkout',null)}
 		</div>
 	</fieldset>
+	<isinclude url="${URLUtils.url('K-DataCollector')}"/> 
 <iselse/>
 	<div class="gift-cert-used form-indent">
 		<isif condition="${pdict.gcPITotal>0}">${Resource.msg('billing.giftcertnomethod','checkout',null)}<iselse/>${Resource.msg('billing.zerobalance','checkout',null)}</isif>

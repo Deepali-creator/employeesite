@@ -109,7 +109,7 @@ module.exports = function (pdict) {
 		rowClass += ' required';
 	}
 
-	if (pdict.formfield.formId === 'phone' || pdict.formfield.formId === 'country' || pdict.formfield.formId === 'postal' || pdict.formfield.formId === 'firstName'|| pdict.formfield.formId === 'address1' || pdict.formfield.formId === 'address2' ||  pdict.formfield.formId === 'lastName' ||  pdict.formfield.formId === 'city') {
+	if ( pdict.formfield.formId === 'country' || pdict.formfield.formId === 'postal' || pdict.formfield.formId === 'address1' || pdict.formfield.formId === 'address2' ||   pdict.formfield.formId === 'city') {
 		fieldClass += ' "' +readonly;
 	}
 

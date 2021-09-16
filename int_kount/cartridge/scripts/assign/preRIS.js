@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
-/* global PIPELET_NEXT PIPELET_ERROR */
-
 /**
+*   preris script
+*
 *   @input Basket : Object
 */
 
@@ -13,7 +12,7 @@ var Kount = require('*/cartridge/scripts/kount/libKount');
  * @returns {number} - returns execution result
  */
 function execute(args) {
-    var call = Kount.preRiskCall(args.Basket, function () {});
+    var call = Kount.preRiskCall(args.Basket, false);
 
     if (call && call.KountOrderStatus === 'DECLINED') {
         return PIPELET_ERROR;

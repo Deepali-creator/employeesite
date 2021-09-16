@@ -8,8 +8,9 @@ var LocalServiceRegistry = require('dw/svc/LocalServiceRegistry');
 var kountService = LocalServiceRegistry.createService('kount', {
     createRequest: function (svc, args) {
         var argsArray = [];
+        var a = svc;
+        var b = args;
         var keys = Object.keys(args);
-
         for (var i = 0; i < keys.length; i++) {
             var key = keys[i];
             argsArray.push(key + '=' + args[key]);

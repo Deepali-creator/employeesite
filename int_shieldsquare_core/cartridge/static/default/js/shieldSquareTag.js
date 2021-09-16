@@ -1,4 +1,3 @@
-<script>
   (function(w, d, e, u, c, g, a, b){
     w["SSJSConnectorObj"] = w["SSJSConnectorObj"] || {ss_cid : c, domain_info: "auto"};
     w[g] = function(i, j){w["SSJSConnectorObj"][i] = j};
@@ -11,5 +10,5 @@
   })(window,document,"script","https://cdn.perfdrive.com/aperture/aperture.js","bgtd","ssConf");
     
     ssConf("c1" , "https://cas.avalon.perfdrive.com");
-</script>
+
 

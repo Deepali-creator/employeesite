@@ -127,6 +127,10 @@ var Hub = {
                         }
                     } else { // is not sfra version
                         placeOrderResult = OrderModel.submit(order, 'APPROVED');
+						if("ca-cuisinart"===Site.current.ID){
+							order.custom.nextEmailReminder=new Date(new Date().getTime()+(3600000*48)); // 48 hours from now
+							order.exportAfter=new Date();
+						}
                         if (placeOrderResult.error) {
                             throw new Error('Place order failed in proceed Order.');
                         } else {
@@ -148,6 +152,9 @@ var Hub = {
         Transaction.wrap(function () {
             return OrderMgr.failOrder(order);
         });
+        try{
+        	Hub.sendMail("mail/orderdeclined",order.customerEmail,Resource.msg('order.orderconfirmation-email.confirmnumber','order',null)+" "+order.orderNo,{Order:order});
+        }catch(ex){}
     },
     createGiftCertificates: function (order) {
         var gc;
