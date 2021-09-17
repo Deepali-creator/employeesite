@@ -25,9 +25,17 @@
 </isscript>
 <isset name="topLevelCategory" value="${getTopLevelCategory()}" scope="page"/>
 <isif condition="${topLevelCategory != null}">
+<div style="display: none;">
+${getTopLevelCategory().ID}	
+</div>
 	<ul class="menu-category level-1">
-		<isloop items="${getSubcategoriesInMenuForCategory(topLevelCategory)}" var="topCat">
+	<isloop items="${dw.catalog.CatalogMgr.getSiteCatalog().getRoot().subCategories}" var="topCat">
+		<iscomment> <isloop items="${getSubcategoriesInMenuForCategory(topLevelCategory)}" var="topCat"> </iscomment>
 			<isset name="subCategories" value="${getSubcategoriesInMenuForCategory(topCat)}" scope="page"/>
+			<div style="display: none;">
+			    ${topCat.ID}
+				${subCategories}
+			</div>
 				<li class='menu-item <isif condition="${subCategories.length > 0}">has-submenu</isif> <isif condition="${topCat.ID == 'sale'}"> saleCat </isif><isif condition="${topCat.ID == 'parts'}"> partsCat </isif>'>
 					<a href="<isprint value="${getCategoryUrl(topCat)}" encoding="off" />" class="<isif condition="${topCat.ID == 'sale'}"> saleLink </isif>" >
 						<span><isprint value="${topCat.getDisplayName()}"/></span>

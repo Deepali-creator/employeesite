@@ -115,7 +115,7 @@
 			<isif condition="${dw.order.TaxMgr.getTaxationPolicy() == dw.order.TaxMgr.TAX_POLICY_NET}">
 				<isif condition="${pdict.p_showtaxinfo}">
 					<tr class="order-sales-tax">
-						<td><isif condition="${empty(pdict.Basket.defaultShipment) || empty(pdict.Basket.defaultShipment.shippingAddress) || empty(pdict.Basket.defaultShipment.shippingAddress.stateCode)}">
+						<td><isif condition="${empty(dw.order.BasketMgr.getCurrentBasket().defaultShipment) || empty(dw.order.BasketMgr.getCurrentBasket().defaultShipment.shippingAddress) || empty(dw.order.BasketMgr.getCurrentBasket().defaultShipment.shippingAddress.stateCode)}">
 							${Resource.msg('order.ordersummary.estimatedordertax','order',null)}
 							<iselse/>${Resource.msg('order.ordersummary.ordertax','order',null)}
 						</isif></td>

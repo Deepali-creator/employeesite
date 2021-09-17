@@ -14,7 +14,7 @@ importPackage( dw.catalog );
  */
 function getSubcategoriesInMenuForCategory(category : Category) : Object {
 	var result = [];
-	
+	var c = category;
 	var psm : ProductSearchModel = new ProductSearchModel();
 	psm.setCategoryID(category.getID());
 	psm.search();
@@ -22,12 +22,14 @@ function getSubcategoriesInMenuForCategory(category : Category) : Object {
 	var level1 : Collection = psr.getNextLevelCategoryRefinementValues(category);
 
 	for each (var psrv : ProductSearchRefinementValue in level1) {
+		dw.system.Logger.warn("--------------"+psrv.value);
 		var subCategory :  Category = CatalogMgr.getCategory(psrv.value);
 		if (('showInMenu' in subCategory.custom) && subCategory.custom.showInMenu) {
 			result.push(subCategory);
 		}
 	}
 	
+	var a =  result;
 	return result;
 }
 
@@ -49,6 +51,7 @@ function getTopLevelCategory() : dw.catalog.Category {
 	if (siteCatalog != null) {
 		root = siteCatalog.getRoot();
 	}
+	var result = root;
 	return root;
 }
 
